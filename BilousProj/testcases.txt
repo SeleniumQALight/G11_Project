@@ -1,0 +1,21 @@
+#001 Test valid login
+
+Precondition:
+To log in the user with unique name (drbilous + [date_time])
+
+Steps:
+1.  Open login page httpf//.
+2.  To input login input login user
+3. To input parole input
+4. Click to logIn button
+
+Expected result
+
+1.  Check the log in user:
+-  avatar is visible on the page
+-  button Sign in is unvisible
+
+Postcondition
+1.  Delate the user
+
+#002 Next test case
