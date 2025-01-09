@@ -12,6 +12,20 @@
   <modules>
     <module>overAll</module>
     <module>AdoninaProj</module>
+    <module>BezhevetsProj</module>
+    <module>BereskaProj</module>
+    <module>BilousProj</module>
+    <module>HorbovskyiProj</module>
+    <module>DmytryshynProj</module>
+    <module>MarkovaProj</module>
+    <module>NogaProj</module>
+    <module>RyabokonProj</module>
+    <module>SavchenkoProj</module>
+    <module>SobkoProj</module>
+    <module>TreshchovProj</module>
+    <module>KhasanovaProj</module>
+    <module>CherkasovaProj</module>
+    <module>ShramenkoProj</module>
   </modules>
 
   <properties>
