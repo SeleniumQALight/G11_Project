@@ -1,0 +1,16 @@
+#Test for valid login
+Preconditions:
+Register a new user with unique name (qaMaksym+[date_time])
+
+Steps
+1. Open login page https://aqa-complexapp.onrender.com/
+2. In login input enter login for user from preconditions
+3. In password input enter password for user from preconditions
+4. Click on Sign in button
+
+Expected result:
+User is logged in
+Login and password fields are not shown
+
+Post condition:
+Delete created user
