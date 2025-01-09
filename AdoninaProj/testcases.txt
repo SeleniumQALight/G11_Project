@@ -1,0 +1,20 @@
+#001 Test valid login
+
+Precondition:
+1. Sing up user with name (gvik+[date_time])
+
+Steps:
+1. Open login page url.
+2. Input in field fill exist user.
+3. Input password exist user.
+4. Click on button LogIn
+
+Expected result:
+1. Verify that user is login:
+- image display in page
+- button Sign In display in page
+
+Postcondition:
+1. Delate existing user
+
+# 002 ...
