@@ -18,6 +18,14 @@
     <module>HorbovskyiProj</module>
     <module>DmytryshynProj</module>
     <module>MarkovaProj</module>
+    <module>NogaProj</module>
+    <module>RyabokonProj</module>
+    <module>SavchenkoProj</module>
+    <module>SobkoProj</module>
+    <module>TreshchovProj</module>
+    <module>KhasanovaProj</module>
+    <module>CherkasovaProj</module>
+    <module>ShramenkoProj</module>
   </modules>
 
   <properties>
