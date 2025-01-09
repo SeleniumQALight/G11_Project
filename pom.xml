@@ -13,6 +13,11 @@
     <module>overAll</module>
     <module>AdoninaProj</module>
     <module>BezhevetsProj</module>
+    <module>BereskaProj</module>
+    <module>BilousProj</module>
+    <module>HorbovskyiProj</module>
+    <module>DmytryshynProj</module>
+    <module>MarkovaProj</module>
   </modules>
 
   <properties>
