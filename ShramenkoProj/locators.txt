@@ -1,0 +1,14 @@
+#Login page
+input.username = ".//input..."
+button.signin = ".//button..."
+
+
+
+
+
+#Home page
+
+
+
+#Create new post page
+
