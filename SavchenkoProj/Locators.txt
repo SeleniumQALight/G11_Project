@@ -1,0 +1,39 @@
+#Home page for guest
+
+input.username.auth = "//form[@action='/login']//input[@id='username1']"
+input.password = "//form[@action='/login']//input[@name='password']"
+button.signin = "//form[@action='/login']//button[text()='Sign In']"
+input.username.register = "//form[@action='/register']//input[@id='username-register']"
+input.email.register = "//form[@action='/register']//input[@id='email-register']"
+input.password.register = "//form[@action='/register']//input[@id='password-register']"
+button.signup = "//form[@action='/register']//button[@type='submit']"
+
+
+#Home page for user
+
+button.myprofile = "//img[@alt='My profile']"
+button.createpost = "//a[@href='/create-post']"
+title = "//h2"
+
+
+#Create post page
+
+input.title = "//input[@id='post-title']"
+input.bodycontent = "//textarea[@id='post-body']"
+button.savenewpost = "//button[text()='Save New Post']"
+
+
+#View post page
+
+notification.newpostcreated = "//div[text()='New post successfully created.']"
+button.edit = "//a[@data-original-title='Edit']"
+button.delete = "//button[@data-original-title='Delete']"
+
+
+#Edit post page
+
+link.backtopost = "//a[contains(text(), 'Back to post permalink')]"
+input.title = "//input[@id='post-title']"
+input.bodycontent = "//textarea[@id='post-body']"
+button.saveupdates = "//button[text()='Save Updates']"
+notification.postupdated = "//div[text()='Post successfully updated.']"
