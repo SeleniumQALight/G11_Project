@@ -1,5 +1,37 @@
-#Login page
-input.username =".//input..."
-button.signin = ".//button..."
+#Login page (https://aqa-complexapp.onrender.com/ - when user in not signed in)
+ input.username.signin = ".//*[@name='username' and not (@id='username-register')]"
+ input.password.signin = ".//*[@name='password' and @placeholder='Password']"
+ button.signin = ".//button[text()='Sign In']"
 
-#Home page
+ input.username.signup = ".//*[@name='username' and @id='username-register']"
+ input.email.signup = ".//input[@id='email-register']"
+ input.password.signup = ".//*[@name='password' and @placeholder='Create a password']"
+ button.signup = ".//button[@type='submit']"
+
+
+#Home page (https://aqa-complexapp.onrender.com/ - when user in signed in)
+ image.myprofile = ".//img[@alt='My profile']"
+ button.createpost = ".//a[@href='/create-post']"
+ button.signout = ".//button[text()='Sign Out']"
+ h2.hello.text = ".//h2[contains(text(),'Hello')]"
+ span.chat = ".//span[@data-original-title='Chat']"
+
+#New post page (https://aqa-complexapp.onrender.com/create-post)
+ input.title.post = ".//input[@id='post-title']"
+ input.body.post = ".//textarea[@id='post-body']"
+ input.checkbox.uniquePost = ".//input[@type='checkbox' and @name='uniquePost']"
+ select.type.post = ".//select//option[@value='All Users']"
+ button.save.post = ".//button[@class='btn btn-primary']"
+ div.text.post.created = ".//div[contains(text(),'created')]"
+
+#Profile page
+ section.posts = ".//a[@class='profile-nav-link nav-item nav-link active']"
+ a.post.for.removing = ".//strong[contains(text(),'removing')]//..//img//.."
+ button.delete.post = ".//button[@data-original-title='Delete']"
+ dix.text.post.deleted = ".//div[contains(text(),'deleted')]"
+
+#Chat form
+ input.chat = ".//input[@id='chatField']"
+ div.chat.message = ".//div[@class='chat-message-inner']"
+ img.chat.user.avatar = ".//img[@class='chat-avatar avatar-tiny']"
+
