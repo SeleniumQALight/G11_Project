@@ -1,20 +1,95 @@
-#001 Test valid login
+#001 Verification valid login
 
 Precondition:
-1. Sing up user with name (gvik+[date_time])
+1. Sing up user with name (vadon+[date_time]).
 
 Steps:
-1. Open login page url.
-2. Input in field fill exist user.
-3. Input password exist user.
-4. Click on button LogIn
+1. Open login page url https://aqa-complexapp.onrender.com/.
+2. Fill username existing user.
+3. Fill password existing user.
+4. Click on button Sign In.
 
 Expected result:
 1. Verify that user is login:
-- image display in page
-- button Sign In display in page
+- image My Profile is displayed on the page.
+- button Sign Out is displayed on the page.
 
-Postcondition:
-1. Delate existing user
+Post condition:
+1. Delete sign up user.
 
-# 002 ...
+
+# 002 Verification header on home page
+
+Steps:
+1. Open login page url https://aqa-complexapp.onrender.com/.
+2. Fill field Username following data vadon+[date_time].
+3. Fill field Email following data vadon@gmail.com.
+4. Fill password following data 123456qwerty.
+5. Click on button Sign up for OurApp.
+
+Expected result:
+1. Verify header is displayed with following data 'Hello username , your feed is empty.'.
+
+Post condition:
+1. Delete sign up user.
+
+
+# 003 Verification create new post
+
+Precondition:
+1. Sing up user with name (vadon+[date_time]).
+
+Steps:
+1. Click on Create Post button on home page.
+2. Fill field Title following data 'Test Post username''.
+3. Fill field Body Content following data 'What is a testing pyramid?'.
+4. Click on  button Save New Post.
+5. Click on button My Profile.
+
+Expected result:
+1. Verify that post with Title 'Test Post username' is displayed on the profile page.
+
+Post condition:
+1. Delete created post.
+2. Delete sign up user.
+
+
+# 004 Verification edite post
+
+Precondition:
+1. Sing up user with name (vadon+[date_time]).
+2. Create new post.
+3. Click on button My Profile.
+
+Steps:
+1. Click on Title existing post on the profile page.
+2. Click on button Edit.
+3. Fill field Title following data 'Edit Test Post vadon+[date_time]'.
+4. Click on button Save Updates.
+5. Click on button My Profile.
+
+Expected result:
+1. Verify post Title with following data 'Edit Test Post vadon+[date_time]' is displayed on the profile page.
+
+Post condition:
+1. Delete created post.
+2. Delete sign up user.
+
+
+# 005 Verification search post
+
+Precondition:
+1. Sing up user with name (vadon+[date_time]).
+2. Create new post with Title 'Test Post username'.
+3. Click on button My Profile.
+
+Steps:
+1. Click on button Search.
+2. Fill field 'What are you interested in?' following data 'Test Post username'.
+
+Expected result:
+1. Verify that post with Title 'Test Post username' is displayed in Search Results modal.
+
+Post condition:
+1. Delete created post.
+2. Delete sign up user.
