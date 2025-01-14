@@ -51,7 +51,6 @@ public class LoginTestAllStepsInOneClass {
 
         webDriver.findElement(By.xpath("//button[text()='Sign In']")).click();
         logger.info("Button SignIn was clicked");
-
         Assert.assertTrue("Button SignOut is not visible", isButtonSignOutVisible());
 
     }
