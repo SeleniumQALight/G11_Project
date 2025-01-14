@@ -4,13 +4,82 @@ Register a new user with unique name (qaMaksym+[date_time])
 
 Steps
 1. Open login page https://aqa-complexapp.onrender.com/
-2. In login input enter login for user from preconditions
-3. In password input enter password for user from preconditions
-4. Click on Sign in button
+2. In login input enter login for user from preconditions ".//input[@name='username' and @placeholder='Username']"
+3. In password input enter password for user from preconditions ".//input[@name='password' and @placeholder='Password']"
+4. Click on Sign in button ".//button[@class='btn btn-primary btn-sm']"
 
 Expected result:
 User is logged in
-Login and password fields are not shown
+Login and password fields are not shown ".//input[@name='username' and @placeholder='Username']" ".//input[@name='password' and @placeholder='Password']"
+
+Post condition:
+Delete created user
+
+#Test for creating user while using invalid email
+Preconditions: User is not logged in
+
+Steps
+1. Open login page https://aqa-complexapp.onrender.com/
+2. Input QAMaksym+[date_time] in Username field ".//input[@id='username-register']"
+3. Input "123321321123eE" password in Password field ".//input[@id='password-register']"
+4. Input "213@asdasg" in Email field ".//input[@id='email-register']"
+5. Click on "Sign up for OurApp" button ".//button[@type='submit']"
+
+Expected result:
+User is not created
+Warning message is shown .//div[@class='alert alert-danger small']
+
+Post condition:
+Delete created user
+
+#Test for search function
+Register a new user with unique name (QAMaksym+[date+time])
+
+Steps
+1. Open login page https://aqa-complexapp.onrender.com/
+2. Input login of created user in Username field  ".//input[@name='username' and @placeholder='Username']"
+3. Input password of created user in Password field ".//input[@name='password' and @placeholder='Password']"
+4. Click on Sign in Button  ".//button[@class='btn btn-primary btn-sm']"
+5. Click on Search icon  ".//a[@class='text-white mr-2 header-search-icon']"
+6. Input "Закарпаття" in opened field .//input[@id='live-search-field']
+
+Expected result:
+Search Results page is shown .//div[@class='list-group-item active']
+
+Post condition:
+Delete created user
+
+#Test for opening Create post window
+Preconditions: Register a new user with unique name (QAMaksym+[date+time])
+
+Steps
+1. Open login page https://aqa-complexapp.onrender.com/
+2. Input login of created user in Username field  ".//input[@name='username' and @placeholder='Username']"
+3. Input password of created user in Password field ".//input[@name='password' and @placeholder='Password']"
+4. Click on Sign in Button  ".//button[@class='btn btn-primary btn-sm']"
+5. Click on Create Post button .//a[@href='/create-post']
+
+Expected result:
+Create Post screen is shown
+Title input is shown .//input[@id='post-title']
+Body input is shown .//textarea[@id='post-body']
+
+Post condition:
+Delete created user
+
+#Test for sign out as logged-in user
+Preconditions: Register a new user with unique name (qaMaksym+[date_time])
+
+Steps
+1. Open login page https://aqa-complexapp.onrender.com/
+2. Input login of created user in Username field  ".//input[@name='username' and @placeholder='Username']"
+3. Input password of created user in Password field ".//input[@name='password' and @placeholder='Password']"
+4. Click on Sign in Button  ".//button[@class='btn btn-primary btn-sm']"
+5. Click on Sign Out button ".//button[@class='btn btn-sm btn-secondary']"
+
+Expected result:
+User is logged out
+Sign in button is shown ".//button[@class='btn btn-primary btn-sm']"
 
 Post condition:
 Delete created user
