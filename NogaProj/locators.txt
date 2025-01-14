@@ -1,0 +1,6 @@
+#Login page
+input.username = ".//input.."
+button.signin = ".//button"
+
+#Home page
+
