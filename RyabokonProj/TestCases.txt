@@ -1,4 +1,4 @@
-1. Test case valid user
+1. Test case valid user Sign In
 
 Precondition
 Register a valid user
@@ -46,6 +46,20 @@ Home page loads, user is logged, user returns to his profile page without loggin
 
 Post Condition
 Usser is continiously logged
+
+4. Test Case Valid User Sign Out
+
+Precondition
+Valid user Signed In
+
+Steps to Reproduce
+1. From My Profile page click the button Sign Out oon the upper banner
+
+Expected result
+User os logged out, and the home page loads
+
+Post Condition
+Any user is logged in
 
 
 
