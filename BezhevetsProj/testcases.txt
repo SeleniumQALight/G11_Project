@@ -1,0 +1,24 @@
+#001 Valid login test
+
+Precondition:
+1. New user with unique name is created (qavlad + [date_time])
+
+Steps:
+1. Open the login page of the site (https://aqa-complexapp.onrender.com)
+2. Enter the username of the created user in the "Username" field
+3. Enter the password of the created user in the "Password" field
+4. Click on the "Sign in" button
+
+Expected result:
+1. Check that the user is signed in
+ - the user avatar is displayed on the page
+ - the "Sing in" button and the "Username", "Password" fields are not displayed on the page
+
+ Post condition:
+ 1. Delete the created user
+
+
+ #002 ...
+
+
+

@@ -1,0 +1,10 @@
+#Login page
+input.username = ""
+button.signin = ""
+
+
+
+
+
+
+#Home page
