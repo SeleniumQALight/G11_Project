@@ -11,5 +11,6 @@
 .//*[@href = '/'  and @class = 'text-white']
 .//img[@src = 'https://gravatar.com/avatar/8ac2c3d00fdbb12f80dd9ee98d2bdc9f?s=128' and @alt='My profile'  ]
 
-
+4. Test Case Valid User Sign Out
+.//button
 
