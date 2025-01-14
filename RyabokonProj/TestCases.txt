@@ -1,4 +1,55 @@
-222
+1. Test case valid user
+
+Precondition
+Register a valid user
+
+Step to reproduce
+1. Open the page https://aqa-complexapp.onrender.com/
+2. Enter a valid login
+3. Enter a valid password
+4. Click a button Sign in
+
+Expected Result
+1. Login and passeword are recogniised
+2. Users profile is opened
+3. User can execute actions the page
+
+Post conditions
+User's profile is updated
+
+2. Test case go to the home page clicking on the logo
+
+Precondition
+Users profile page
+
+Steps to reproduce
+1. Click on the logo on the upper banner
+
+Expected Result
+
+Home page is loaded
+
+PostCondition
+User is logged
+
+3. Test Case the user is logged and the session is opened when leaving the user's page
+
+User is logged, session is opened
+
+Steps to reproduce
+1. Click on the logo on the top banner
+2. Wait till the home page loads
+3. Click back on the avatar to return to the profile's page
+
+Expected result
+Home page loads, user is logged, user returns to his profile page without logging in again
+
+Post Condition
+Usser is continiously logged
+
+
+
+
 
 
 4556
