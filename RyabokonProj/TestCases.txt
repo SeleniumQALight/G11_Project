@@ -17,6 +17,8 @@ Expected Result
 Post conditions
 User's profile is updated
 
+
+
 2. Test case go to the home page clicking on the logo
 
 Precondition
@@ -32,9 +34,11 @@ Home page is loaded
 PostCondition
 User is logged
 
+
+
 3. Test Case the user is logged and the session is opened when leaving the user's page
 
-User is logged, session is opened
+Precondition: User is logged, session is opened
 
 Steps to reproduce
 1. Click on the logo on the top banner
@@ -47,6 +51,8 @@ Home page loads, user is logged, user returns to his profile page without loggin
 Post Condition
 Usser is continiously logged
 
+
+
 4. Test Case Valid User Sign Out
 
 Precondition
@@ -56,10 +62,28 @@ Steps to Reproduce
 1. From My Profile page click the button Sign Out oon the upper banner
 
 Expected result
-User os logged out, and the home page loads
+User is logged out, and the home page loads
 
 Post Condition
 Any user is logged in
+
+
+5. Test case unfollow one user in the followlist
+
+Precondition: the user is logged in, session is opened on the "My profile page"
+
+Steps to reproduce:
+1. Click on the button "following";
+2. Click on the first follower in the list
+3.Click on the button "Stop following";
+
+Expected result
+The follower isn't on the list of following
+
+Post condition
+Follower is deleted, possibility to follow again
+
+
 
 
 
