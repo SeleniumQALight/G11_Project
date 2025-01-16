@@ -1,6 +1,7 @@
 package org.example.loginTest;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -9,12 +10,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.slf4j.Logger;
 
 import java.util.concurrent.TimeUnit;
 
 public class LoginTestAllStepsInOneClass {
     private WebDriver webDriver;
+    private org.apache.log4j.Logger logger = Logger.getLogger(getClass());
+
 
 
 
@@ -51,7 +53,13 @@ public class LoginTestAllStepsInOneClass {
     }
 
     private boolean isButtonSignOutVisible() {
-        boolean state = webDriver.findElement(By.xpath("//button[text()='Sign Out']")).isDisplayed();
-        return state;
+        try {
+            boolean state = webDriver.findElement(By.xpath("//button[text()='Sign Out']")).isDisplayed();
+            logger.info(state + " is element visible");
+            return state;
+        } catch (Exception e) {
+            logger.info("Element is not found");
+            return false;
+        }
     }
 }
