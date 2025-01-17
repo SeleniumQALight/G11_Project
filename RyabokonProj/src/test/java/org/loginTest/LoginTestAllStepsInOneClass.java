@@ -1,4 +1,4 @@
-package loginTest;
+package org.loginTest;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.Logger;
@@ -56,5 +56,8 @@ public class LoginTestAllStepsInOneClass {
 private boolean isButtonSignOutVisible(){
         boolean state = webDriver.findElement(By.xpath("//button[text()='Sign Out']")).isDisplayed();
         return state;
+
+
+
 }
 }
