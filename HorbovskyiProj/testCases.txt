@@ -1,0 +1,94 @@
+#001 Test for valid login
+
+Preconditions:
+Register a new user with unique name (qaMaksym+[date_time])
+
+Steps
+1. Open login page https://aqa-complexapp.onrender.com/
+2. In login input enter login for user from preconditions
+3. In password input enter password for user from preconditions
+4. Click on Sign in button
+
+Expected result:
+User is logged in
+Login and password fields are not shown
+
+Post condition:
+Delete created user
+
+#002 Test for valid sign out
+
+Preconditions:
+Register a new user with unique name (qaMaksym+[date_time])
+Login with created user
+
+Steps:
+1. Open homepage https://aqa-complexapp.onrender.com/
+2. Click on Sign Out button
+
+Expected result:
+- Login form is visible (login, password, Sign In button)
+
+Post condition:
+Delete created user
+
+#003 Test for valid post creation
+
+Preconditions:
+Register a new user with unique name (qaMaksym+[date_time])
+Login with created user
+
+Steps:
+1. Open homepage https://aqa-complexapp.onrender.com/
+2. Click on Create Post button
+3. Fill Title field with unique data ([date+time])
+4. Fill Body Content field with unique data ([date+time])
+5. Click on Save New Post button
+
+Expected result:
+- "New post successfully created" message is shown
+
+Post conditions:
+Delete created post
+Delete created user
+
+#004 Test for working post search
+
+Preconditions:
+Register a new user with unique name (qaMaksym+[date_time])
+Login with created user
+User have post created
+
+Steps:
+1. Open homepage https://aqa-complexapp.onrender.com/
+2. Click on Search button
+3. Enter data from Title field of created post
+4. Click on first item in the search results
+
+Expected result:
+- Data from title field in created post must be shown in the Title of a post
+
+Post conditions:
+Delete created post
+Delete created user
+
+
+#005 Test for valid post deletion
+
+Preconditions:
+Register a new user with unique name (qaMaksym+[date_time])
+Login with created user
+User have post created
+
+Steps:
+1. Open homepage https://aqa-complexapp.onrender.com/
+2. Click on Search button
+3. Enter data from Title field of created post
+4. Click on first item in the search results
+5. Click on Delete button
+
+Expected result:
+- "Post successfully deleted." is shown
+
+Post conditions:
+Delete created user
