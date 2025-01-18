@@ -40,7 +40,7 @@ public class LoginTestAllStepsInOneClass {
 
         WebElement inputUserName = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
         inputUserName.clear();
-        inputUserName.sendKeys("qaauto");
+        inputUserName.sendKeys("qaauto111");
         logger.info("qaauto was inputed into input username");
 
         WebElement inputPassport = webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
@@ -57,8 +57,15 @@ public class LoginTestAllStepsInOneClass {
     }
 
     private boolean isButtonSighOutVisible() {
-        boolean state = webDriver.findElement(By.xpath("//button[text()='Sign Out']")).isDisplayed();
-        return state;
+        try {
+            boolean state = webDriver.findElement(By.xpath("//button[text()='Sign Out']")).isDisplayed();
+            logger.info(state + " is element visible ");
+            return state;
+        } catch (Exception e) {
+            logger.info("Elenent is not found");
+            return false;
+        }
+
     }
 
 
