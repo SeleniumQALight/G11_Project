@@ -21,6 +21,6 @@ Text on the home page .//h1[@class = 'display-3' and 'Remember Writing?']
 
 1.following .//a[@class = 'profile-nav-link nav-item nav-link active']
 2.user .//a[@href ='/profile/testuser' ]
-3. stop following .//button[@class='btn btn-danger btn-sm']
+3. stop following .//button[@class='btn btn-danger btn-sm'];
 
 

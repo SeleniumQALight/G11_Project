@@ -89,7 +89,8 @@ Expected result
 The follower isn't on the list of "following"
 
 Post condition
-Follower is deleted, possibility to follow again
+Follower is deleted
+
 
 
 
