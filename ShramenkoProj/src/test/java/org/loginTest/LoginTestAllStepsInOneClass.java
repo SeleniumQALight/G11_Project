@@ -74,8 +74,14 @@ public class LoginTestAllStepsInOneClass {
 
     //знайти кнопку, якщо вона є - true, якщо її немає - false
     private boolean isButtonSighOutVisible() {
-        boolean state = webDriver.findElement(By.xpath("//button[text()='Sign Out']")).isDisplayed();
-        //isDisplayed - якщо кнопка показана - true
-        return state;
+        try {
+            boolean state = webDriver.findElement(By.xpath("//button[text()='Sign Out']")).isDisplayed();
+            //isDisplayed - якщо кнопка показана - true
+            logger.info(state + " is element visible");
+            return state;
+        } catch (Exception e) {
+            logger.info("Element isn't found");
+            return false;
+        }
     }
 }
