@@ -53,21 +53,19 @@ public class LoginTestAllStepsInOneClass {
     logger.info("Button SingIn was clicked");
 
     Assert.assertTrue("Button SignOut is not visible", isButtonSignOutVisible());
-
-
   }
 
   private boolean isButtonSignOutVisible() {
     try {
       boolean state = webDriver.findElement(By.xpath("//button[text()='Sign Out']")).isDisplayed();
-      logger.info(state + " is element visible");
+      logger.info(state + " is Sign Out visible");
       return state;
     } catch (Exception e) {
-      logger.info("Element is not found");
+      logger.info("Sign out is not found");
       return false;
     }
-
   }
+
   @Test
   public void invalidLogin() {
     webDriver.get("https://aqa-complexapp.onrender.com");
@@ -92,7 +90,17 @@ public class LoginTestAllStepsInOneClass {
 
     Assert.assertFalse("Button Sign Out is visible", isButtonSignOutVisible());
 
-    WebElement signInButton = webDriver.findElement(By.xpath("//button[text()='Sign In']"));
-    Assert.assertTrue("Button Sign In is not visible", signInButton.isDisplayed());
+    Assert.assertTrue("Button Sign In is not visible", isButtonSignInVisible());
+  }
+
+  private boolean isButtonSignInVisible() {
+    try {
+      boolean state = webDriver.findElement(By.xpath("//button[text()='Sign In']")).isDisplayed();
+      logger.info(state + " is Sign In button visible");
+      return state;
+    } catch (Exception e) {
+      logger.info("Sign In button is not found");
+      return false;
+    }
   }
 }
