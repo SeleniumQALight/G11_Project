@@ -1,7 +1,10 @@
 #001 Test на валідний логін
 
 Precondition:
-1. Зареєструвати користувача з унікальним іменем (allash+[date_time])
+1. Зареєструвати користувача:
+- з іменем (allash+[date_time])
+- email (ashramenko+test[date_time]@gmail.com)
+- password ("123456qwerty")
 
 Steps:
 1. В браузері Chrome відкрити login page https://aqa-complexapp.onrender.com.
@@ -25,7 +28,10 @@ Postcondition:
 #002 Test на коректність відображення особистої інформації на Home page
 
 Precondition:
-1. Зареєструвати користувача з унікальним іменем (allash+[date_time])
+1. Зареєструвати користувача:
+- з іменем (allash+[date_time])
+- email (ashramenko+test[date_time]@gmail.com)
+- password ("123456qwerty")
 2. В браузері Chrome відкрити login page https://aqa-complexapp.onrender.com.
 3. Зробити розмір вікна maximize.
 4. Знайти input login, очистити, ввести логін зареєстрованого користувача.
@@ -45,10 +51,37 @@ Postcondition:
 2. Закрити браузер.
 
 
-#003 Test на //поки що не знаю як правильно назвати - відкриття Profile page?
+#003 Test на реєстрацію нового користувача
 
 Precondition:
-1. Зареєструвати користувача з унікальним іменем (allash+[date_time])
+
+Steps:
+1. В браузері Chrome відкрити Home page https://aqa-complexapp.onrender.com.
+2. Знайти input імені нового користувача, очистити його, ввести нове ім'я (allash+[date_time])
+3. Знайти input email, очистити, ввести email(ashramenko+test[date_time]@gmail.com)
+4. Знайти input password, очистити, ввести password ("123456qwerty")
+5. Знайти і натиснути кнопку "Sigh Up For Our App"
+
+Expected result:
+1. Успішна реєстрація нового користувача.
+Перевірка:
+- є кнопка Sigh Out
+- є welcoming text для нового юзера
+- відсутнє попередження про вже існуючий логін
+- відсутнє попередження про вже існуючий email
+
+Postcondition:
+1. Видалити щойно створеного користувача.
+2. Закрити браузер.
+
+
+#004 Test on new post creating
+
+Precondition:
+1. Зареєструвати користувача:
+- з іменем (allash+[date_time])
+- email (ashramenko+test[date_time]@gmail.com)
+- password ("123456qwerty")
 2. В браузері Chrome відкрити login page https://aqa-complexapp.onrender.com.
 3. Зробити розмір вікна maximize.
 4. Знайти input login, очистити, ввести логін зареєстрованого користувача.
@@ -56,14 +89,18 @@ Precondition:
 6. Знайти і клікнути кнопку SighIn.
 
 Steps:
-1. В браузері Chrome відкрити Home page https://aqa-complexapp.onrender.com.
-2. Знайти об'єкт з ім'ям користувача (allash+[date_time])
-3. Порівняти текст із використанним логіном
+1. Знайти і натиснути кнопку/посилання Create Post
+2. Знайти input для заголовка Post і ввести текст ("Welcome to our community of new users")
+3. Знайти textarea для тексту і ввести текст ("Tell us a little about yourself.
+What city are you from, what languages do you speak, and what are your interests?")
+4. Знайти і натиснути кнопку Save New Post
 
 Expected result:
-1. Ім'я на сторінці збігається з введеним логіном.
+1. Створиться і відкриється нова сторінка з постом.
+Перевірка:
+- є попередження про успішне створення нового посту
+- адреса сторінки зміниться с /create-post на /post
 
 Postcondition:
 1. Видалити щойно створеного користувача.
 2. Закрити браузер.
-

@@ -1,8 +1,17 @@
 #Login page
 link = "https://aqa-complexapp.onrender.com/"
-input.login = "//input[@placeholder='Username']"
+input.login = "//input[@id='username2']"
 input.password = "//input[@placeholder='Password']"
 button.signIn = "//button[text()='Sign In']"
+
+----make new user:
+input.login = "//input[@id='username-register']"
+input.email = "//input[@id='email-register']"
+input.password = "//input[@id='password-register']"
+button.sighUpForOurApp = "//button[@type='submit']"
+alertVisible.invalidName = "//div[text()='This username is already taken.']"
+alertVisible.invalidEmail = "//div[text()='You must provide a valid email address.']"
+
 
 #Home page
 link = "https://aqa-complexapp.onrender.com/"
@@ -11,11 +20,20 @@ button.signOut = "//button[text()='Sign Out']"
 link.createPost = "//a[@href='/create-post']"  //виглядає як кнопка
 profile.avatar = "//img[@data-original-title='My Profile']"
 profile.link = "//a[@class='mr-2']"
+text.onEmptyPageForNewUser = "//p[@class='lead text-muted']"
+
 
 #My Profile page
 link = "https://aqa-complexapp.onrender.com/profile/username"
-h2 = "//h2//text()"
 
 
 #Create new post page
 link = "https://aqa-complexapp.onrender.com/create-post"
+input.title = "//input[@name='title']"
+textarea.bodyContent = "//textarea[@name='body']"
+button.SaveNewPost = "//button[@class='btn btn-primary']"
+
+
+#Publishing new post page
+alert.success = "//div[@class='alert alert-success text-center']"
+link = "https://aqa-complexapp.onrender.com/post/*"
