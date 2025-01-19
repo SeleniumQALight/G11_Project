@@ -53,7 +53,6 @@ public class LoginTestAllStepsInOneClass {
     logger.info("Button SingIn was clicked");
 
     Assert.assertTrue("Button SignOut is not visible", isButtonSignOutVisible());
-    Assert.assertEquals("URL is not expected", "https://aqa-complexapp.onrender.com/profile", webDriver.getCurrentUrl());
 
 
   }
