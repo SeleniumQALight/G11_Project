@@ -1,8 +1,6 @@
 package org.pages;
 
 import org.apache.log4j.Logger;
-import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -46,50 +44,5 @@ public class LoginPage extends ParentPage {
   public void clickOnButtonSignIn() {
     buttonSignIn.click();
     logger.info("Button SingIn was clicked");
-  }
-
-  public void checkIsButtonSignOutNoVisible() {
-    Assert.assertFalse("Button Sign Out is visible", isButtonSignOutNoVisible());
-  }
-
-  private boolean isButtonSignOutNoVisible() {
-    try {
-      boolean state = webDriver.findElement(By.xpath("//button[text()='Sign Out']")).isDisplayed();
-      logger.info("Sign Out button is visible");
-      return state;
-    } catch (Exception e) {
-      logger.info("Sing Out button no displayed in login page");
-      return false;
-    }
-  }
-
-  public void checkIsButtonSignInVisible() {
-    Assert.assertTrue("Button Sign In is not visible", isButtonSignInVisible());
-  }
-
-  private boolean isButtonSignInVisible() {
-    try {
-      boolean state = webDriver.findElement(By.xpath("//button[text()='Sign In']")).isDisplayed();
-      logger.info("Sign In button is visible");
-      return state;
-    } catch (Exception e) {
-      logger.info("Sing In button is not found");
-      return false;
-    }
-  }
-
-  public void checkIsInvalidLoginMassageVisible() {
-    Assert.assertTrue("Invalid username/password massage is not visible", isInvalidLoginMassageVisible());
-  }
-
-  private boolean isInvalidLoginMassageVisible() {
-    try {
-      boolean state = webDriver.findElement(By.xpath("//div[contains(text() ,'Invalid')]")).isDisplayed();
-      logger.info("Error massage is visible");
-      return state;
-    } catch (Exception e) {
-      logger.info("Error massage is not found");
-      return false;
-    }
   }
 }

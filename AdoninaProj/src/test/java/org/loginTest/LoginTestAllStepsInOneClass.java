@@ -53,6 +53,7 @@ public class LoginTestAllStepsInOneClass {
     logger.info("Button SingIn was clicked");
 
     Assert.assertTrue("Button SignOut is not visible", isButtonSignOutVisible());
+    Assert.assertEquals("URL is not expected", "https://aqa-complexapp.onrender.com/profile", webDriver.getCurrentUrl());
 
 
   }
@@ -66,5 +67,33 @@ public class LoginTestAllStepsInOneClass {
       logger.info("Element is not found");
       return false;
     }
+
+  }
+  @Test
+  public void invalidLogin() {
+    webDriver.get("https://aqa-complexapp.onrender.com");
+    logger.info("Site was opened");
+
+    WebElement inputUserName = webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
+    inputUserName.clear();
+    inputUserName.sendKeys("invalidUser");
+    logger.info("invalidUser was inputted into input UserName");
+
+    WebElement inputPassword = webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
+    inputPassword.clear();
+    inputPassword.sendKeys("invalidPassword");
+    logger.info("invalidPassword was inputted into input password");
+
+    webDriver.findElement(By.xpath("//button[text()='Sign In']")).click();
+    logger.info("Button SignIn was clicked");
+
+    WebElement errorMessage = webDriver.findElement(By.xpath("//div[contains(@class, 'alert-danger')]"));
+    Assert.assertTrue("Error message is not displayed", errorMessage.isDisplayed());
+    Assert.assertEquals("Error message text is not as expected", "Invalid username/password.", errorMessage.getText());
+
+    Assert.assertFalse("Button Sign Out is visible", isButtonSignOutVisible());
+
+    WebElement signInButton = webDriver.findElement(By.xpath("//button[text()='Sign In']"));
+    Assert.assertTrue("Button Sign In is not visible", signInButton.isDisplayed());
   }
 }

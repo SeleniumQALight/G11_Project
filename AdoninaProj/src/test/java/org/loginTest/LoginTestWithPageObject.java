@@ -14,17 +14,4 @@ public class LoginTestWithPageObject extends BaseTest {
     pageProvider.getHomePage().checkIsButtonSignOutVisible();
 
   }
-
-  @Test
-  public void T0002_inValidLogin() {
-    pageProvider.getLoginPage().openPage();
-    pageProvider.getLoginPage().enterTextIntoInputLogin("qaauto1");
-    pageProvider.getLoginPage().enterTextIntoInputPassw0rd("123456qwerty");
-    pageProvider.getLoginPage().clickOnButtonSignIn();
-
-    pageProvider.getLoginPage().checkIsButtonSignOutNoVisible();
-    pageProvider.getLoginPage().checkIsButtonSignInVisible();
-    pageProvider.getLoginPage().checkIsInvalidLoginMassageVisible();
-
-  }
 }
