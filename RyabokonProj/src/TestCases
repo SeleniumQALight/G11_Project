@@ -1,0 +1,92 @@
+1. Test case valid user Sign In
+
+Precondition
+Register a valid user
+
+Step to reproduce
+1. Open the page https://aqa-complexapp.onrender.com/
+2. Enter a valid login
+3. Enter a valid password
+4. Click a button Sign in
+
+Expected Result
+1. Login and password are recognised
+2. Users profile page is opened with the list of posts
+3. User's avatar is seen
+3. Sign out button is present
+
+
+Post conditions
+User's profile is updated
+
+
+
+2. Test case go to the home page clicking on the logo
+
+Precondition
+Users profile page
+
+Steps to reproduce
+1. Click on the logo on the upper banner
+
+Expected Result
+
+Home page is loaded
+
+PostCondition
+Home page is loaded
+
+
+
+3. Test Case the user is logged and the session is opened when leaving the user's page
+
+Precondition: User is logged, session is opened
+
+Steps to reproduce
+1. Click on the logo on the top banner
+2. Wait till the home page loads
+3. Click back on the avatar to return to the profile's page
+
+Expected result
+1. Home page loads,
+2. user is logged,
+3. user returns to his profile page without logging in again
+
+Post Condition
+User is continiously logged
+
+
+
+4. Test Case Valid User Sign Out
+
+Precondition
+Valid user Signed In
+
+Steps to Reproduce
+1. From My Profile page click the button Sign Out on the upper banner
+
+Expected result
+1. User is logged out
+2. Sign In button is available on the top banner
+
+Post Condition
+Sign In button is available on the top banner
+
+
+5. Test case unfollow one user in the followlist
+
+Precondition:
+1. the user is logged in;
+2. session is opened on the "My profile page";
+3. the user has at list one account on the list of "following";
+
+Steps to reproduce:
+1. Click on the button "following";
+2. Click on the first account in the list
+3.Click on the button "Stop following";
+
+Expected result
+The follower isn't on the list of "following"
+
+Post condition
+Follower is deleted
