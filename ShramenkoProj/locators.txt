@@ -4,7 +4,7 @@ input.login = "//input[@placeholder='Username']"
 input.password = "//input[@placeholder='Password']"
 button.signIn = "//button[text()='Sign In']"
 
-#Logged Homepage   залогінена сторінка
+#Home page
 link = "https://aqa-complexapp.onrender.com/"
 profile.username = "//span[@class='text-white mr-2']"
 button.signOut = "//button[text()='Sign Out']"
@@ -12,8 +12,9 @@ link.createPost = "//a[@href='/create-post']"  //виглядає як кноп�
 profile.avatar = "//img[@data-original-title='My Profile']"
 profile.link = "//a[@class='mr-2']"
 
-#MyProfilePage
+#My Profile page
 link = "https://aqa-complexapp.onrender.com/profile/username"
+h2 = "//h2//text()"
 
 
 #Create new post page
