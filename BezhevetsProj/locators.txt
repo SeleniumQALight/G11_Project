@@ -27,8 +27,10 @@
 #Profile page
  section.posts = ".//a[@class='profile-nav-link nav-item nav-link active']"
  a.post.for.removing = ".//strong[contains(text(),'removing')]//..//img//.."
+ a.post.edit = "//a[@data-original-title='Edit']"
  button.delete.post = ".//button[@data-original-title='Delete']"
  dix.text.post.deleted = ".//div[contains(text(),'deleted')]"
+ a.created.post.name = "//a[@class='list-group-item list-group-item-action']//strong[text()='test title + [date_time]']"
 
 #Chat form
  input.chat = ".//input[@id='chatField']"

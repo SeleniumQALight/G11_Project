@@ -62,8 +62,9 @@ Steps:
 
 Expected result:
  1. Check that the new post is created
-  - The page of the new post is opened
+  - The page of the new post is opened (the edit post icon is displayed)
   - The "New post successfully created." banner is displayed on the page
+  - The new post is displayed in the "Posts" tab of the user profile (new post can be found by its title)
 
 Post condition:
  1. Delete the created post
