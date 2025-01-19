@@ -44,6 +44,9 @@ Steps:
 2. Fill field Title following data 'Test Post username''.
 3. Fill field Body Content following data 'What is a testing pyramid?'.
 4. Click on  button Save New Post.
+
+Expected result:
+1. Verify massage 'New post successfully created.'.
 5. Click on button My Profile.
 
 Expected result:
@@ -66,6 +69,9 @@ Steps:
 2. Click on button Edit.
 3. Fill field Title following data 'Edit Test Post vadon+[date_time]'.
 4. Click on button Save Updates.
+
+Expected result:
+1. Verify massage 'Post successfully updated.'.
 5. Click on button My Profile.
 
 Expected result:

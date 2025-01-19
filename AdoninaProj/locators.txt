@@ -1,5 +1,5 @@
 #Login page
-input.username = ".//input[@id='username7']"
+input.username = ".//input[@placeholder='Username']"
 input.password = ".//input[@placeholder='Password']"
 button.signin = ".//button[contains(text(), 'Sign In')]"
 
@@ -19,6 +19,7 @@ header.hello = ".//h2"
 input.title = ".//input[@id='post-title']"
 input.content = ".//textarea[@id='post-body']"
 button.saveNewPost = ".//button[@class='btn btn-primary']"
+massage.newPost = ".//div[contains(text(), 'New post')]"
 
 #Profile page
 item.post = ".//div[@class='list-group']"
@@ -31,6 +32,7 @@ button.delete = ".//button[@data-toggle='tooltip']"
 input.title = ".//input[@id='post-title']"
 input.content = ".//textarea[@id='post-body']"
 button.saveUpdates = ".//button[@class='btn btn-primary']"
+massage.updatedPost = ".//div[contains(text(), 'Post')]"
 
 #Search results modal
 modal.searchResults = ".//div[@class='list-group shadow-sm']"
