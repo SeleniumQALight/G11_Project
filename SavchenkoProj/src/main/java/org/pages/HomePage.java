@@ -58,7 +58,7 @@ public class HomePage extends ParentPage {
     }
 
     public void checkIsAllertVisible() {
-        Assert.assertTrue("Button Sign Out is not visible", isButtonSignInVisible());
+        Assert.assertTrue("Allert is not visible", isButtonSignInVisible());
     }
 
     private boolean isAllertVisible() {
