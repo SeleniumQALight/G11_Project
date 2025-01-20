@@ -53,7 +53,7 @@ Expected result
 3. user returns to his profile page without logging in again
 
 Post Condition
-User is continiously logged
+User is logged
 
 
 
@@ -73,7 +73,7 @@ Post Condition
 Sign In button is available on the top banner
 
 
-5. Test case unfollow one user in the followlist
+5. Test case unfollow one user from the followlist
 
 Precondition:
 1. the user is logged in;
