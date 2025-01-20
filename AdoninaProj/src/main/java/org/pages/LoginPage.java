@@ -31,7 +31,7 @@ public class LoginPage extends ParentPage {
 //    WebElement inputUserName = webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
     inputUserName.clear();
     inputUserName.sendKeys(login);
-    logger.info("qaauto was inputted into input UserName");
+    logger.info(login + " was inputted into input UserName");
   }
 
   public void enterTextIntoInputPassw0rd(String password) {
@@ -45,5 +45,4 @@ public class LoginPage extends ParentPage {
     buttonSignIn.click();
     logger.info("Button SingIn was clicked");
   }
-
 }
