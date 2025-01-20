@@ -25,6 +25,7 @@ text.onEmptyPageForNewUser = "//p[@class='lead text-muted']"
 
 #My Profile page
 link = "https://aqa-complexapp.onrender.com/profile/username"
+link.post = "//div[@class='list-group']//a//strong[text()='Welcome to our community of new users']"
 
 
 #Create new post page
@@ -35,5 +36,11 @@ button.SaveNewPost = "//button[@class='btn btn-primary']"
 
 
 #Publishing new post page
-alert.success = "//div[@class='alert alert-success text-center']"
+alert.successCreateNewPost = "//div[@class='alert alert-success text-center']"
 link = "https://aqa-complexapp.onrender.com/post/*"
+
+#Post
+link.editPost = "//a[@data-original-title='Edit']"
+button.SaveUpdates = "//button[@class='btn btn-primary']"
+alert.successUpdatePost = "//div[@class='alert alert-success text-center']"
+link.BackToPostPermalink = "//a[text()='« Back to post permalink']"
