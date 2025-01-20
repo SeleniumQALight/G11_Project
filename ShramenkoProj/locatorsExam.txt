@@ -1,0 +1,14 @@
+#Home page
+link = "https://www.lidl.de/"
+
+
+#Subscribe to the newsletter page
+link = "https://www.lidl.de/c/newsletter-anmeldeseite/s10005754"
+input.Vorname = "//input[@name='fc_Prename']"
+input.Nachname = "//input[@name='fc_Lastname']"
+input.Email = "//input[@name='fc_Email']"
+button.ZumNewsletterAnmelden = "//button[@name='btnZUM NEWSLETTER ANMELDEN']"
+
+#Success subscribe to newsletter page
+text = "//h2[text()='Eine sehr gute Entscheidung! Bestätige jetzt deine Anmeldung zum Lidl Newsletter!']"
+
