@@ -3,6 +3,7 @@ input.username = " .//input[@id='username-register'] "
 input.email =  " .//input[@id='email-register'] "
 input.password = " .//input[@id='password-register'] "
 button.sign_up = " .//button[@type='submit'] "
+name.username = " .//span[text()=' qatanyache']  "
 
 #Login page
 input.username.auth = " .//input[@name="username" and not (@id='username-register')] "
@@ -22,6 +23,7 @@ input.content = " .//textarea[@id='post-body'] "
 checkbox.post = " .//input[@type='checkbox' and @value='yes'] "
 button.save_post = " .//button[text()='Save New Post'] "
 message.of_created = " .//div[text()='New post successfully created.'] "
+post.added = " .//strong[text()='test post from Che'] "
 
 #Edit post page
 button.delete = " .//button[@data-original-title='Delete'] "
