@@ -1,5 +1,5 @@
 #Login page
-header.input.username = "//input[@id="username8"]"
+header.input.username = "//input[@placeholder="Username"]"
 input.username = "//input[@id="username-register"]"
 header.input.password = "//header//input[@name="password"]"
 input.password = "//input[@id="password-register"]"
@@ -11,6 +11,7 @@ button.signup = "//button[@type="submit"]"
 href.create_post = "//a[@href="/create-post"]"
 button.sign_out = "//button[text()="Sign Out"]"
 img.avatar = "//img[@data-original-title="My Profile"]"
+span.username = "//span[@class="text-white mr-2"]"
 
 #Create post page
 input.title = "//input[@id="post-title"]"
