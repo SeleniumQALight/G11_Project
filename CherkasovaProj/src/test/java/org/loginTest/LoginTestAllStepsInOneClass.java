@@ -75,7 +75,7 @@ public class LoginTestAllStepsInOneClass {
         webDriver.findElement(By.xpath("//button[text()='Sign In']")).click();
         logger.info("Button SignIn was clicked");
 
-        Assert.assertTrue("Button SignOut is visible", isButtonSignOutVisible());
+        Assert.assertFalse("Button SignOut is visible", isButtonSignOutVisible());
         Assert.assertTrue("Button SignIn is not visible", isButtonSignInVisible());
         Assert.assertTrue("Message 'Invalid username/password' is not visible", isMessageInvalidDataVisible());
 
@@ -111,7 +111,7 @@ public class LoginTestAllStepsInOneClass {
 
     private boolean isMessageInvalidDataVisible() {
         try {
-            boolean state = webDriver.findElement(By.xpath("div[contains(text(),'Invalid')]")).isDisplayed();
+            boolean state = webDriver.findElement(By.xpath("//div[contains(text(),'Invalid')]")).isDisplayed();
             logger.info("The 'Invalid username/password' message is visible");
             return state;
         } catch (Exception e) {
