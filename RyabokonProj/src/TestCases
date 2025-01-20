@@ -11,7 +11,7 @@ Step to reproduce
 
 Expected Result
 1. Login and password are recognised
-2. Users profile page is opened with the list of posts
+2. Users profile page is opened
 3. User's avatar is seen
 3. Sign out button is present
 
@@ -31,7 +31,7 @@ Steps to reproduce
 
 Expected Result
 
-Home page is loaded
+Home page with a text box "Remember Writing" is seen
 
 PostCondition
 Home page is loaded
@@ -49,8 +49,8 @@ Steps to reproduce
 
 Expected result
 1. Home page loads,
-2. user is logged,
-3. user returns to his profile page without logging in again
+2. The user is logged,
+3. The user returns to his profile page without logging in again
 
 Post Condition
 User is logged
@@ -73,7 +73,7 @@ Post Condition
 Sign In button is available on the top banner
 
 
-5. Test case unfollow one user from the followlist
+5. Test case unfollow one user in the followlist
 
 Precondition:
 1. the user is logged in;
@@ -90,3 +90,4 @@ The follower isn't on the list of "following"
 
 Post condition
 Follower is deleted
+

@@ -1,3 +1,4 @@
+
 1.  Valid user test case
 
    login xpath .//input[@name="username" and @placeholder="Username"]
@@ -20,8 +21,9 @@ Text on the home page .//h1[@class = 'display-3' and 'Remember Writing?']
 5. Test case unfollow one user in the followlist
 
 1.following .//a[@class = 'profile-nav-link nav-item nav-link active']
-2.user .//a[@href ='/profile/testuser' ]
+2.user .//a[@href ='/profile/testuser' ] or .//a[@class = "profile-nav-link nav-item nav-link active" ]
 3. stop following .//button[@class='btn btn-danger btn-sm'];
+
 
 
 
