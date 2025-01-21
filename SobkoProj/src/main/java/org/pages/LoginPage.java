@@ -17,6 +17,7 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = "//button[text()='Sign In']")
     private WebElement clickSignIn;
 
+
     public LoginPage(WebDriver webdriver) {
         super(webdriver);
     }
@@ -28,27 +29,21 @@ public class LoginPage extends ParentPage {
     }
 
     public void enterTextIntoInputLogin(String login) {
-
-        //WebElement inputUserName = webdriver.findElement(By.xpath("//input[@placeholder='Username']"));
-        inputUserName.clear();
-        inputUserName.sendKeys(login);
-        logger.info(login + "was inputted into input UserName");
-
+        clearAndEnterTextIntoElement(inputUserName, login);
 
     }
 
     public void enterTextIntoInputPassword(String password) {
         //WebElement inputPassword = webdriver.findElement(By.xpath("//input[@placeholder='Password']"));
-        inputPassword.clear();
-        inputPassword.sendKeys(password);
-        logger.info(password + "was inputted into input password");
+//        inputPassword.clear();
+//        inputPassword.sendKeys(password);
+//        logger.info(password + "was inputted into input password");
+        clearAndEnterTextIntoElement(inputPassword, password);
     }
 
     public void clickOnButtonSignIn() {
-       // WebElement clickButton = webdriver.findElement(By.xpath("//button[text()='Sign In']"));
-
-        clickSignIn.click();
-        logger.info("Button SignIn was clicked ");
+        clickOnElement(clickSignIn);
     }
+
 }
 
