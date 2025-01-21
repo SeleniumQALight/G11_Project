@@ -1,6 +1,7 @@
 package org.pages;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,27 +30,29 @@ public class LoginPage extends ParentPage{
     }
 
     public void enterTextIntoInputLogin(String login) {
-
-      //  WebElement inputUserName = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
+       /* WebElement inputUserName = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
         inputUserName.clear();
-        inputUserName.sendKeys("qaauto");
-        logger.info(login + "qaauto was input UserName");
+        inputUserName.sendKeys(login);
+        logger.info(login + "was input UserName");*/
+        clearAndEnterTextIntoElement(inputUserName, login);
 
-       //
+
     }
 
     public void enterTextIntoInputPassword(String password){
        // WebElement inputPassword = webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
-         inputPassword.clear();
+        /* inputPassword.clear();
         inputPassword.sendKeys(password);
-        logger.info(password + "password was input into input password");
+        logger.info(password + "password was input into input password");*/
 
 
+        clearAndEnterTextIntoElement(inputPassword, password);
     }
 
     public void clickOnButtonSignIn(){
-      //  webDriver.findElement(By.xpath("//button[text()='Sign In']")).click();
+    /*  //  webDriver.findElement(By.xpath("//button[text()='Sign In']")).click();
        buttonSignIn.click();
-        logger.info("Button SignIn was clicked");
+        logger.info("Button SignIn was clicked");*/
+        clickOnElement(buttonSignIn);
     }
 }
