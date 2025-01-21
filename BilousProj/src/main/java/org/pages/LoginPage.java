@@ -31,19 +31,14 @@ public class LoginPage extends ParantPage {
     }
 
     public void enterTextIntoInputLogin(String login) {
-        inputUserName.clear();
-        inputUserName.sendKeys(login);
-        logger.info(login + "was inputed into input username");
+        clearAndEnterTextInToElement(inputUserName, login);
     }
 
     public void enterTextIntoPassword(String password) {
-        inputPassword.clear();
-        inputPassword.sendKeys(password);
-        logger.info("password was inputed into Password");
+        clearAndEnterTextInToElement(inputPassword, password);
     }
 
     public void clickInButtomSignIn() {
-        buttonSignIn.click();
-        logger.info("Button SighIn was clicked");
+        clickOnElement(buttonSignIn);
     }
 }
