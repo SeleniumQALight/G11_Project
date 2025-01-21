@@ -1,13 +1,12 @@
 package org.pages;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginPage extends ParentPage{
+public class LoginPage extends ParentPage {
     private Logger logger = Logger.getLogger(getClass());
 
     @FindBy(xpath = "//input[@placeholder='Username']")
@@ -31,17 +30,16 @@ public class LoginPage extends ParentPage{
     }
 
     public void enterTextIntoInputLogin(String login) {
-      //  WebElement inputUserName = webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
-        inputUserName.clear();
-        inputUserName.sendKeys(login);
-        logger.info(login + " was inputted into input UserName");
+        //  WebElement inputUserName = webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
+//        inputUserName.clear();
+//        inputUserName.sendKeys(login);
+//        logger.info(login +
+        clearAndEnterTextToElement(inputUserName, login);
     }
 
     public void enterTextIntoInputPassword(String password) {
 //        WebElement inputPassword = webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
-        inputPassword.clear();
-        inputPassword.sendKeys(password);
-        logger.info("password was inputted into input password");
+        clearAndEnterTextToElement(inputPassword, password);
     }
 
     public void clickOnButtonSignIn() {
