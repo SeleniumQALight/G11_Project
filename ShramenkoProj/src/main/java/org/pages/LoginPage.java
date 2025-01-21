@@ -30,19 +30,17 @@ public class LoginPage extends ParentPage {
     }
 
     public void enterTextIntoInputLogin(String login) {
-        inputUserName.clear(); //почистити поле input
-        inputUserName.sendKeys(login);//посилаємо login
-        logger.info(login + " was inputted into input UserName");
+//        inputUserName.clear(); //почистити поле input
+//        inputUserName.sendKeys(login);//посилаємо login
+//        logger.info(login + " was inputted into input UserName");
+        clearAndEnterTextIntoElement(inputUserName, login);
     }
 
     public void enterTextIntoInputPassword(String password) {
-        inputPassword.clear();
-        inputPassword.sendKeys(password);
-        logger.info("Password was inputted into input password");
+        clearAndEnterTextIntoElement(inputPassword, password);
     }
 
     public void clickOnButtonSighIn() {
-        buttonSighIn.click();
-        logger.info("Button SighIn was clicked");
+        clickOnElement(buttonSighIn);
     }
 }
