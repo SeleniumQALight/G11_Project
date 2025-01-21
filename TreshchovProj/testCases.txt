@@ -45,6 +45,7 @@ Steps
 
 Expected result:
 Search Results page is shown .//div[@class='list-group-item active']
+Posts with text "Закарпаття" are shown .//strong[contains(text(),'Закарпаття')]
 
 Post condition:
 Delete created user
@@ -79,7 +80,7 @@ Steps
 
 Expected result:
 User is logged out
-Sign in button is shown ".//button[@class='btn btn-primary btn-sm']"
+Sign in button is shown ".//button[text()='Sign In']"
 
 Post condition:
 Delete created user
