@@ -15,7 +15,7 @@ public class CommonActionsWithElements {
         PageFactory.initElements(webDriver, this); // ініціалізує елементи, описані FindBy
     }
 
-    protected void enterTextInToElement(WebElement webElement, String text) {
+    protected void clearAndEnterTextIntoElement(WebElement webElement, String text) {
         try {
             webElement.clear();
             webElement.sendKeys(text);
@@ -51,6 +51,13 @@ public class CommonActionsWithElements {
 
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue("Element is not visible", isElementVisible(webElement));
+    }
+
+    //checkTextInElement
+    protected void checkTextInElement(WebElement webElement, String text) {
+            Assert.assertEquals("Text in element not expected", text, webElement.getText());
+            logger.info("Text in element is expected");
+
     }
 
     private void printErrorAndStopTest(Exception e) {
