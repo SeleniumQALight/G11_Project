@@ -24,18 +24,21 @@ public class LoginPage extends ParantPage {
         super(webDriver);
     }
 
-    public void openPage() {
+    public LoginPage openPage() {
         String baseUrl = "https://aqa-complexapp.onrender.com";
         webDriver.get(baseUrl);
         logger.info("Login Page was opened with url " + baseUrl);
+        return this;
     }
 
-    public void enterTextIntoInputLogin(String login) {
+    public LoginPage enterTextIntoInputLogin(String login) {
         clearAndEnterTextInToElement(inputUserName, login);
+        return this;
     }
 
-    public void enterTextIntoPassword(String password) {
+    public LoginPage enterTextIntoPassword(String password) {
         clearAndEnterTextInToElement(inputPassword, password);
+        return this;
     }
 
     public void clickInButtomSignIn() {
