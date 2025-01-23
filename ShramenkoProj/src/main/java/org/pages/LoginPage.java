@@ -23,21 +23,24 @@ public class LoginPage extends ParentPage {
         super(webDriver);
     }
 
-    public void openPage() {
+    public LoginPage openPage() {
         String baseUrl = "https://aqa-complexapp.onrender.com";
         webDriver.get(baseUrl);
         logger.info("Login page was opened with url " + baseUrl);
+        return this;
     }
 
-    public void enterTextIntoInputLogin(String login) {
+    public LoginPage enterTextIntoInputLogin(String login) {
 //        inputUserName.clear(); //почистити поле input
 //        inputUserName.sendKeys(login);//посилаємо login
 //        logger.info(login + " was inputted into input UserName");
         clearAndEnterTextIntoElement(inputUserName, login);
+        return this;
     }
 
-    public void enterTextIntoInputPassword(String password) {
+    public LoginPage enterTextIntoInputPassword(String password) {
         clearAndEnterTextIntoElement(inputPassword, password);
+        return this;
     }
 
     public void clickOnButtonSighIn() {
