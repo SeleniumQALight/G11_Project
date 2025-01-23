@@ -14,12 +14,26 @@ public class HomePage extends ParantPage {
 
     private Logger logger = Logger.getLogger(getClass());
 
+    @FindBy(xpath = "//a[@class='btn btn-sm btn-success mr-2']")
+    private WebElement buttonCreatePost;
+
     public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
 
     public void checkIsButtonSignOutVisible() {
         checkIsElementVisible(buttonSignOut);
+    }
+
+
+    public HomePage checkIsRedirectOnHomePage() {
+        checkIsButtonSignOutVisible();
+        //TODO check current url
+        return this;
+    }
+    public CreateNewPostPage clickOnButtonCreatePost() {
+        clickOnElement(buttonCreatePost);
+        return new CreateNewPostPage(webDriver);
     }
 
 

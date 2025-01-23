@@ -15,6 +15,7 @@ public class CommonActionsWithElements {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); // ініціалізує елементи описані FindBy
     }
+
     // method for cleaning and entering text into element
     protected void clearAndEnterTextInToElement(WebElement webElement, String text) {
         try {
@@ -25,7 +26,8 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
-// method for clicking on element
+
+    // method for clicking on element
     protected void clickOnElement(WebElement webElement) {
         try {
             webElement.click();
@@ -34,6 +36,7 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
+
     protected boolean isElementVisible(WebElement webElement) {
         try {
             boolean state = webElement.isDisplayed();
@@ -48,9 +51,18 @@ public class CommonActionsWithElements {
             return false;
         }
     }
+
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue("Element is not visible", isElementVisible(webElement));
     }
+
+    // checkTextInElement
+    protected void checkTextInElement(WebElement webElement, String text) {
+        Assert.assertEquals("Text in element not expected", text, webElement.getText());
+        logger.info("Text in element is expected");
+    }
+
+
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);
