@@ -16,6 +16,7 @@ public class CommonActionsWithElements {
         PageFactory.initElements(webDriver, this); //ініціалізує елементи, описані FindBy при створенні пейджі
         // (без цього кроку всі елементи будуть null, тобто ніколи не проініціалізуються)
         // кожного разу при зверненні до елементу його стан оновлюється
+        //@CashLookUp - кешуємо елементи, які вже знайшли, і більше не шукаємо їх
     }
 
     // method for cleaning and entering text into element
