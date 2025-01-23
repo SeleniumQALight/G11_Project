@@ -20,7 +20,7 @@ public class CommonActionsWithElements {
         try {
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + " was inputted into element " );
+            logger.info(text + " was inputted into element ");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -53,6 +53,12 @@ public class CommonActionsWithElements {
 
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue("Element is not visible", isElementVisible(webElement));
+    }
+
+    //checkTextInElement
+    protected void checkTextInElement(WebElement webElement, String text) {
+        Assert.assertEquals("Text in element is not expected", text, webElement.getText());
+        logger.info("Text in element is expected");
     }
 
 
