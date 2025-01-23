@@ -1,6 +1,7 @@
 package org.pages;
 
 import org.apache.log4j.Logger;
+import org.data.TestData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -45,5 +46,14 @@ public class LoginPage extends ParentPage {
 
     public void clickOnButtonSighIn() {
         clickOnElement(buttonSighIn);
+    }
+
+    public HomePage openLoginPageAndFillLoginWithValidCred() {
+        //method повертає об'єкт класу HomePage, тому що після login ми опинимося на HomePage
+        openPage();
+        this.enterTextIntoInputLogin(TestData.VALID_LOGIN);
+        this.enterTextIntoInputPassword(TestData.VALID_PASSWORD);
+        clickOnButtonSighIn();
+        return new HomePage(webDriver);
     }
 }
