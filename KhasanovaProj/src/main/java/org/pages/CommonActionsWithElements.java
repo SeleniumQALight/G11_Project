@@ -61,10 +61,14 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected void checkTextInElement(WebElement webElement, String text) {
+        Assert.assertEquals("Text in element is not as expected", text, webElement.getText());
+        logger.info("Text in element is as expected");
+    }
+
     private void printErrorAndStopTest(Exception e) {
         logger.error("Cannot work with element " + e);
         Assert.fail("Cannot work with element " + e);
     }
-
 
 }
