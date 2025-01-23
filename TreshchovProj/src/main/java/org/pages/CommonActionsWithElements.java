@@ -62,4 +62,9 @@ public class CommonActionsWithElements {
         Assert.assertTrue("Element is not visible", isElementVisible(element));
     }
 
+    protected void checkTextInElement(WebElement element, String text) {
+            Assert.assertEquals("Text in element is not expected", text, element.getText());
+            logger.info("Text in element is expected");
+    }
+
 }
