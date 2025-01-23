@@ -14,6 +14,10 @@ public class HomePage extends ParentPage{
     private WebElement buttonSignOut;
     private Logger logger1 = Logger.getLogger(getClass());
 
+
+
+    @FindBy(xpath = "//a[@class='btn btn-sm btn-success mr-2']")
+    private WebElement buttonCreatePost;
     public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -23,6 +27,19 @@ public class HomePage extends ParentPage{
      // Assert.assertTrue("Button Sign Out is not displayed", isElementVisible(buttonSignOut));
         checkIsElementVisible(buttonSignOut);
 
+    }
+
+    public HomePage checkIsRedirectOnHomePage() {
+        checkIsButtonSignOutVisible();
+        //TODO check current URL
+        return this;
+    }
+
+
+
+    public CreateNewPostPage clickOnButtonCreatePost() {
+        clickOnElement(buttonCreatePost);
+        return new CreateNewPostPage(webDriver);
     }
 /*    private boolean isButtonSighOutVisible() {
         try {
