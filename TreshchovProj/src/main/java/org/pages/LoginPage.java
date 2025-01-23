@@ -21,18 +21,21 @@ public class LoginPage extends ParentPage {
         super(webDriver);
     }
 
-    public void openPage() {
+    public LoginPage openPage() {
         String baseUrl = "https://aqa-complexapp.onrender.com/";
         webDriver.get(baseUrl);
         logger.info("Login page was opened with url " + baseUrl);
+        return this;
     }
 
-    public void enterTextIntoInputLogin(String login) {
+    public LoginPage enterTextIntoInputLogin(String login) {
         enterTextIntoInput(inputUserName, login);
+        return this;
     }
 
-    public void enterTextIntoInputPassword(String password) {
+    public LoginPage enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
+        return this;
     }
 
     public void clickOnButtonSignIn() {
