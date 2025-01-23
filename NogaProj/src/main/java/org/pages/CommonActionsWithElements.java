@@ -58,9 +58,16 @@ public class CommonActionsWithElements {
     }
 
 
+    //method for checking text in element
+    protected void checkTextInElement(WebElement webElement, String text) {
+        Assert.assertEquals("Text in element not expected", text, webElement.getText());
+        logger.info("Text in element is expected");
+    }
+
     private void printErrorAndStopTest(Exception e) {
         logger.error("Cannot work with element " + e);
         Assert.fail("Cannot work with element " + e);
     }
+
 
 }
