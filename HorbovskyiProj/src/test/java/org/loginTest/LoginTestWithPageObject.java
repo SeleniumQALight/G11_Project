@@ -1,4 +1,4 @@
-package org.example.loginTest;
+package org.loginTest;
 
 import org.baseTest.BaseTest;
 import org.data.TestData;
