@@ -11,6 +11,7 @@ public class CommonActionsWithElements {
 
     WebDriver webdriver;
     protected Logger logger = Logger.getLogger(getClass());
+
     public CommonActionsWithElements(WebDriver webdriver) {
 
         this.webdriver = webdriver;
@@ -19,24 +20,25 @@ public class CommonActionsWithElements {
 
     //method for clearing and entering text into element
     protected void clearAndEnterTextIntoElement(WebElement webElement, String text) {
-        try{
+        try {
 
             webElement.clear();
             webElement.sendKeys(text);
             logger.info(text + " was inputted into input field");
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("Cannot work with element " + e);
             Assert.fail("Cannot work with element " + e);
         }
 
     }
+
     //method for clicking on element
     protected void clickOnElement(WebElement webElement) {
-        try{
+        try {
             webElement.click();
             logger.info("Element was clicked");
-        }catch (Exception e){
-          printErrorAndStopTest(e);
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
         }
     }
 
@@ -44,7 +46,6 @@ public class CommonActionsWithElements {
         logger.error("Can not work with element ");
         Assert.fail("Can not work with element ");
     }
-
 
 
     protected boolean isElementVisible(WebElement webElement) {
@@ -61,9 +62,17 @@ public class CommonActionsWithElements {
             return false;
         }
     }
+
     // check if element is visible
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue("Element is not visible", isElementVisible(webElement));
+    }
+
+    protected void checkTextInElement(WebElement webElement, String text) {
+        logger.error("Text in element not expected");
+        Assert.assertEquals("Text in element not expected", text, webElement.getText());
+        logger.info("Text in element is expected");
+
     }
 
 

@@ -10,6 +10,9 @@ public class HomePage extends ParentPage {
     @FindBy(xpath = "//button[text()='Sign Out']")
     private WebElement buttonSignOut;
     private Logger logger = Logger.getLogger(getClass());
+
+    @FindBy(xpath = "//a[@class='btn btn-sm btn-success mr-2']")
+    private WebElement buttonCreatePost;
     public HomePage(WebDriver webdriver) {
         super(webdriver);
     }
@@ -17,15 +20,16 @@ public class HomePage extends ParentPage {
        checkIsElementVisible(buttonSignOut);
     }
 
-//
-//    private boolean isButtonSighOutVisible() {
-//        try {
-//            boolean state = webdriver.findElement(By.xpath("//button[text()='Sign Out']")).isDisplayed();
-//            return state;
-//        } catch (Exception e) {
-//            logger.info("Element is not found");
-//            return false;
-//        }
-//    }
+    public HomePage checkIsRedirectToHomePage() {
+        checkIsButtonSignOutVisible();
+        // TODO add current url
+        return this;
+    }
+
+    public CreateNewPostPage clickOnButtonCreatePost () {
+         clickOnElement(buttonCreatePost);
+         return new CreateNewPostPage(webdriver);
+
+    }
 
 }
