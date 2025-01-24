@@ -2,6 +2,7 @@ package org.loginTest;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.Logger;
+import org.baseTest.BaseTest;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -13,7 +14,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
 
-public class LoginTestAllStepsInOneClass {
+public class LoginTestAllStepsInOneClass extends BaseTest {
     private WebDriver webDriver;
     private Logger logger = Logger.getLogger(getClass());
 
@@ -55,9 +56,62 @@ public class LoginTestAllStepsInOneClass {
 
     }
 
+    @Test
+    public void T0002_invalidLogin() {
+        pageProvider.getLoginPage().openPage();
+        pageProvider.getLoginPage().enterTextIntoInputLogin("qaauto1");
+        pageProvider.getLoginPage().enterTextIntoInputPassword("123456qwerty");
+        pageProvider.getLoginPage().clickOnButtonSignIn();
+        checkIsButtonSignOutVisible();
+        checkIsButtonSignInVisible();
+        checkIsAllertVisible();
+    }
+
+    @Test
+    public void T0001_validLogin() {
+        pageProvider.getLoginPage().openPage();
+        pageProvider.getLoginPage().enterTextIntoInputLogin("qaauto");
+        pageProvider.getLoginPage().enterTextIntoInputPassword("123456qwerty");
+        pageProvider.getLoginPage().clickOnButtonSignIn();
+        checkIsButtonSignOutVisible();
+    }
+
+    public void checkIsButtonSignOutVisible() {
+        Assert.assertFalse("Button Sign Out is not visible", isButtonSignOutVisible());
+    }
     private boolean isButtonSignOutVisible() {
         try {
             boolean state = webDriver.findElement(By.xpath("//button[text()='Sign Out']")).isDisplayed();
+            logger.info(state + " is element visible");
+            return state;
+        } catch (Exception e) {
+            logger.info("Element is not found");
+            return false;
+        }
+    }
+
+    public void checkIsButtonSignInVisible() {
+        Assert.assertTrue("Button Sign Out is not visible", isButtonSignInVisible());
+    }
+
+    private boolean isButtonSignInVisible() {
+        try {
+            boolean state = webDriver.findElement(By.xpath("//button[text()='Sign In']")).isDisplayed();
+            logger.info(state + " is element visible");
+            return state;
+        } catch (Exception e) {
+            logger.info("Element is not found");
+            return false;
+        }
+    }
+
+    public void checkIsAllertVisible() {
+        Assert.assertTrue("Allert is not visible", isAllertVisible());
+    }
+
+    private boolean isAllertVisible() {
+        try {
+            boolean state = webDriver.findElement(By.xpath("//div[contains(@class, 'alert-danger') and contains(@class, 'text-center') and text()='Invalid username/password.']")).isDisplayed();
             logger.info(state + " is element visible");
             return state;
         } catch (Exception e) {
