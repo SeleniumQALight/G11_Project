@@ -5,7 +5,7 @@ Create password = .//input[@id="password-register"]
 Button SignUp = .//button[@type='submit']
 
 
-Input.username = .//input[@id='username6']
+Input.username = .//input[@class='form-control form-control-sm input-dark' and @name="username"]
 Input.password = .//input[@type="password" and not (@id)]
 Button SignIn = .//button[@class='btn btn-primary btn-sm']
 
@@ -28,10 +28,8 @@ Button SaveUpdates = .//button[@class='btn btn-primary']
 
 
 
-# Page after Create/Edit post
+# Reaction on post doing with elements.
 Text "Post successfully updated" = .//div[@class='alert alert-success text-center']
-Text "New post successfully created" =.//div[@class="alert alert-success text-center"]
-Text "Post successfully deleted" = .//div[@class='alert alert-success text-center']
 
 
 # Page Post which was selected
@@ -42,5 +40,5 @@ Delete post button = .//button[@class="delete-post-button text-danger"]
 
 # My profile
 list of posts(search for title) = .//strong[text()='New information about IT course']
-EditPost = .//a[@href='/post/6782bb3879a879004993b9f5/edit']
+EditPost = .//a[@class="text-primary mr-2"]
 DeletePost = .//button[@class='delete-post-button text-danger']
