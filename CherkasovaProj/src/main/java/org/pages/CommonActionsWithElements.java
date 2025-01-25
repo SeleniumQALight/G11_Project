@@ -53,6 +53,11 @@ public class CommonActionsWithElements {
 
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue("Element is not visible", isElementVisible(webElement));
+
+    }
+
+    protected void checkIsElementNotVisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible", isElementVisible(webElement));
     }
 
 //    checkTextInElement

@@ -25,6 +25,10 @@ public class HomePage extends ParentPage{
         checkIsElementVisible(buttonSignOut);
     }
 
+    public void checkIsButtonSignOutNotVisible() {
+        checkIsElementNotVisible(buttonSignOut);
+    }
+
     public HomePage checkIsRedirectToHomePage() {
         checkIsButtonSignOutVisible();
         //TODO check current URL
