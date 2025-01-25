@@ -66,6 +66,16 @@ public class CommonActionsWithElements {
             logger.info("Text in element is expected");
     }
 
+    protected void selectCheckbox(WebElement webElement) {
+        if (!webElement.isSelected()) {
+            webElement.click();
+            logger.info("Checkbox is selected");
+        } else {
+            logger.info("Checkbox is already selected");
+        }
+    }
+
+
 
     private void printErrorAndStopTest(Exception e) {
         logger.error("Cannot work with element " + e);
