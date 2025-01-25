@@ -14,7 +14,9 @@ public class CommonActionsWithElements {
     public CommonActionsWithElements(WebDriver webDriver) {
 
         this.webDriver = webDriver;
-        PageFactory.initElements(webDriver, this); //initializes element described in FindBy
+        PageFactory.initElements(webDriver, this); //initializes element described in FindBy, this allows flexibility
+        //if we come form login page to home page, or login page or profile page this will return the page we need
+        //and it allows us to reload the page and have an actual state of the page
     }
 
     //method for clearing and entering text into the element
