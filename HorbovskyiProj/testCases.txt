@@ -47,6 +47,7 @@ Steps:
 
 Expected result:
 - "New post successfully created" message is shown
+- Title field with unique data is shown on the Post page
 
 Post conditions:
 Delete created post
@@ -89,6 +90,7 @@ Steps:
 
 Expected result:
 - "Post successfully deleted." is shown
+- There is no post with the data from Title field of created post in the post list
 
 Post conditions:
 Delete created user
