@@ -1,6 +1,7 @@
 package org.pages;
 
 import org.apache.log4j.Logger;
+import org.data.TestData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,26 +24,36 @@ public class LoginPage extends ParentPage {
         super(webDriver);
     }
 
-    public void openPage() {
+    public LoginPage openPage() {
         String baseUrl = "https://aqa-complexapp.onrender.com";
         webDriver.get(baseUrl);
         logger.info("Login page was opened with url " + baseUrl);
+        return this;
     }
 
-    public void enterTextIntoInputLogin(String login) {
-        inputUserName.clear(); //почистити поле input
-        inputUserName.sendKeys(login);//посилаємо login
-        logger.info(login + " was inputted into input UserName");
+    public LoginPage enterTextIntoInputLogin(String login) {
+//        inputUserName.clear(); //почистити поле input
+//        inputUserName.sendKeys(login);//посилаємо login
+//        logger.info(login + " was inputted into input UserName");
+        clearAndEnterTextIntoElement(inputUserName, login);
+        return this;
     }
 
-    public void enterTextIntoInputPassword(String password) {
-        inputPassword.clear();
-        inputPassword.sendKeys(password);
-        logger.info("Password was inputted into input password");
+    public LoginPage enterTextIntoInputPassword(String password) {
+        clearAndEnterTextIntoElement(inputPassword, password);
+        return this;
     }
 
     public void clickOnButtonSighIn() {
-        buttonSighIn.click();
-        logger.info("Button SighIn was clicked");
+        clickOnElement(buttonSighIn);
+    }
+
+    public HomePage openLoginPageAndFillLoginWithValidCred() {
+        //method повертає об'єкт класу HomePage, тому що після login ми опинимося на HomePage
+        openPage();
+        this.enterTextIntoInputLogin(TestData.VALID_LOGIN);
+        this.enterTextIntoInputPassword(TestData.VALID_PASSWORD);
+        clickOnButtonSighIn();
+        return new HomePage(webDriver);
     }
 }

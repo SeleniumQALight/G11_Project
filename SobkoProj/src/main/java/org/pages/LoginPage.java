@@ -1,9 +1,12 @@
 package org.pages;
 
 import org.apache.log4j.Logger;
+import org.data.TestData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import static org.data.TestData.*;
 
 public class LoginPage extends ParentPage {
     Logger logger = Logger.getLogger(getClass());
@@ -17,38 +20,44 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = "//button[text()='Sign In']")
     private WebElement clickSignIn;
 
+
     public LoginPage(WebDriver webdriver) {
         super(webdriver);
     }
 
-    public void openPage() {
+    public LoginPage openPage() {
         String baseUrl = "https://aqa-complexapp.onrender.com/";
         webdriver.get(baseUrl);
         logger.info("Login Page was opened url " + baseUrl);
+        return this;
     }
 
-    public void enterTextIntoInputLogin(String login) {
-
-        //WebElement inputUserName = webdriver.findElement(By.xpath("//input[@placeholder='Username']"));
-        inputUserName.clear();
-        inputUserName.sendKeys(login);
-        logger.info(login + "was inputted into input UserName");
-
+    public LoginPage enterTextIntoInputLogin(String login) {
+        clearAndEnterTextIntoElement(inputUserName, login);
+        return this;
 
     }
 
-    public void enterTextIntoInputPassword(String password) {
+    public LoginPage enterTextIntoInputPassword(String password) {
         //WebElement inputPassword = webdriver.findElement(By.xpath("//input[@placeholder='Password']"));
-        inputPassword.clear();
-        inputPassword.sendKeys(password);
-        logger.info(password + "was inputted into input password");
+//        inputPassword.clear();
+//        inputPassword.sendKeys(password);
+//        logger.info(password + "was inputted into input password");
+        clearAndEnterTextIntoElement(inputPassword, password);
+        return this;
     }
 
     public void clickOnButtonSignIn() {
-       // WebElement clickButton = webdriver.findElement(By.xpath("//button[text()='Sign In']"));
+        clickOnElement(clickSignIn);
+    }
 
-        clickSignIn.click();
-        logger.info("Button SignIn was clicked ");
+    public HomePage openLoginPageAndLoginFormWithValidCreds() {
+        this.openPage();
+        this.enterTextIntoInputLogin(VALID_LOGIN);
+        this.enterTextIntoInputPassword(VALID_PASSWORD);
+        this.clickOnButtonSignIn();
+        return new HomePage(webdriver);
+
     }
 }
 
