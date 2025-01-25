@@ -74,6 +74,14 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    public void checkIsInputLoginNotVisible() {
+        checkIsElementNotVisible(inputUserName);
+    }
+
+    public void checkIsInputPasswordNotVisible() {
+        checkIsElementNotVisible(inputPassword);
+    }
+
 
 
 
