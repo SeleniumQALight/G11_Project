@@ -60,10 +60,10 @@ public class CommonActionsWithElements {
         Assert.assertFalse("Element is visible", isElementVisible(webElement));
     }
 
-//    checkTextInElement
+    //    checkTextInElement
     protected void checkTextInElement(WebElement webElement, String text) {
-            Assert.assertEquals("Text in element is not expected", text, webElement.getText());
-            logger.info("Text in element is expected");
+        Assert.assertEquals("Text in element is not expected", text, webElement.getText());
+        logger.info("Text in element is expected");
     }
 
     protected void selectCheckbox(WebElement webElement) {
@@ -75,6 +75,14 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected void unselectCheckbox(WebElement webElement) {
+        if (webElement.isSelected()) {
+            webElement.click();
+            logger.info("Checkbox is unselected");
+        } else {
+            logger.info("Checkbox is already unselected");
+        }
+    }
 
 
     private void printErrorAndStopTest(Exception e) {
