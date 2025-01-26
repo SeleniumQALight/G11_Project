@@ -1,16 +1,44 @@
 # Login page
-input.username =
-button.sign in =
+input.username to SignUp =.//input[@id='username-register']
+input.email to SignUp = .//input[@id='username-register']
+Create password = .//input[@id="password-register"]
+Button SignUp = .//button[@type='submit']
+
+
+Input.username = .//input[@class='form-control form-control-sm input-dark' and @name="username"]
+Input.password = .//input[@type="password" and not (@id)]
+Button SignIn = .//button[@class='btn btn-primary btn-sm']
+
+
+# Page after logIn
+Avatar = .//img
+UserName on the right hand from Avatar = .//span[@class='text-white mr-2']
+Button CreatePost = .//a[@class='btn btn-sm btn-success mr-2']
+Button SignOut = .//button
 
 
 
+# Create Post / Edit Page
+Title field = .//input[@name='title']
+Body Content field = .//textarea
+Select value when create New post (загальнодоступне) = .//option[@value='All Users']
+Button SaveNewPost = .//button[@class='btn btn-primary']
+Select value then EditPost (общедоступное) = .//select
+Button SaveUpdates = .//button[@class='btn btn-primary']
 
 
-# Home page
+
+# Reaction on post doing with elements.
+Text "Post successfully updated" = .//div[@class='alert alert-success text-center']
+
+
+# Page Post which was selected
+Text in body content = .//p[text()='The course will start on Tuesday 19/10 at 00.00']
+Delete post button = .//button[@class="delete-post-button text-danger"]
 
 
 
-
-
-
-#
+# My profile
+list of posts(search for title) = .//strong[text()='New information about IT course']
+EditPost = .//a[@class="text-primary mr-2"]
+DeletePost = .//button[@class='delete-post-button text-danger']
