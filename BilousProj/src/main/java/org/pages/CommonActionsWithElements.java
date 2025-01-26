@@ -51,9 +51,12 @@ public class CommonActionsWithElements {
             return false;
         }
     }
-
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue("Element is not visible", isElementVisible(webElement));
+    }
+
+    protected void checkIsElementInvisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible", isElementVisible(webElement));
     }
 
     // checkTextInElement
@@ -61,6 +64,47 @@ public class CommonActionsWithElements {
         Assert.assertEquals("Text in element not expected", text, webElement.getText());
         logger.info("Text in element is expected");
     }
+
+    protected void selectCheckbox(WebElement checkbox) {
+        try {
+            if (!checkbox.isSelected()) {
+                clickOnElement(checkbox);
+                logger.info("Checkbox was selected");
+            } else {
+                logger.info("Checkbox is already selected");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void deselectCheckbox(WebElement checkbox) {
+        try {
+            if (checkbox.isSelected()) {
+                clickOnElement(checkbox);
+                logger.info("Checkbox was deselected");
+            } else {
+                logger.info("Checkbox is already deselected");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void setCheckboxState(WebElement checkbox, String state) {
+        try {
+            if ("check".equalsIgnoreCase(state)) {
+                selectCheckbox(checkbox);
+            } else if ("uncheck".equalsIgnoreCase(state)) {
+                deselectCheckbox(checkbox);
+            } else {
+                logger.error("Invalid state: " + state);
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
 
 
     private void printErrorAndStopTest(Exception e) {

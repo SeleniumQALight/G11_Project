@@ -25,6 +25,12 @@ public class HomePage extends ParantPage {
         checkIsElementVisible(buttonSignOut);
     }
 
+    public void checkIsButtonCreatePostIsVisible() {
+        checkIsElementVisible(buttonCreatePost);
+    }
+
+    public void checkIsButtonSignOutInvisible() { checkIsElementInvisible(buttonSignOut); }
+
 
     public HomePage checkIsRedirectOnHomePage() {
         checkIsButtonSignOutVisible();

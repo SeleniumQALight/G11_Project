@@ -16,6 +16,9 @@ public class CreateNewPostPage extends ParantPage {
     @FindBy(xpath = "//button[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
 
+    @FindBy(xpath = "//input [@type='checkbox']")
+    private WebElement checkboxIsPrivatePost;
+
     public CreateNewPostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -41,4 +44,13 @@ public class CreateNewPostPage extends ParantPage {
         clickOnElement(buttonSaveNewPost);
         return new PostPage(webDriver);
     }
+
+    public CreateNewPostPage setOnCheckBoxIsPrivatePost() {
+        setCheckboxState(checkboxIsPrivatePost, "check");
+        return this;
+    }
+
+
+
+
 }

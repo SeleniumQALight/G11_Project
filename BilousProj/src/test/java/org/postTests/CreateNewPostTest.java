@@ -13,10 +13,12 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectOnCreateNewPostPage()
                 .enterTextIntoInputTitle("Title of the post Bilous")
                 .enterTextIntoInputBody("Body of the post")
+                .setOnCheckBoxIsPrivatePost()
                 .clickOnButtonSavePost()
                 .checkIsRedirectOnPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
+
         ;
     }
 }

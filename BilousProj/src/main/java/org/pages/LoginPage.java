@@ -19,6 +19,8 @@ public class LoginPage extends ParantPage {
     @FindBy(xpath = "//button[text()='Sign In']")
     private WebElement buttonSignIn;
 
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement massageField;
 
 
     public LoginPage(WebDriver webDriver) {
@@ -42,8 +44,24 @@ public class LoginPage extends ParantPage {
         return this;
     }
 
-    public void clickInButtomSignIn() {
-        clickOnElement(buttonSignIn);
+    public void checkIsButtonSignInVisible() {
+        checkIsElementVisible(buttonSignIn);
+    }
+
+    public void isLoginFieldVisible() {
+        isElementVisible(inputUserName);
+    }
+
+    public void isPasswordFieldVisible() {
+        isElementVisible(inputPassword);
+    }
+
+
+
+
+
+    public void checkIsWarningMessageDisplayed() {
+        checkTextInElement(massageField, "Invalid username/password.");
     }
 
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
@@ -53,4 +71,9 @@ public class LoginPage extends ParantPage {
         clickInButtomSignIn();
         return new HomePage(webDriver);
     }
+
+    public void clickInButtomSignIn() {
+        clickOnElement(buttonSignIn);
+    }
+
 }
