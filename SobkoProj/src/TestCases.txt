@@ -1,0 +1,80 @@
+# Test Case 1 User Login
+Precondition:
+1. Sing up user with name (YuriiSobko+[4575214Natenu])
+
+Steps:
+1. Open login page url https://aqa-complexapp.onrender.com/
+2. Input user`s name: YuriiSobko.
+3. Input user`s password: 4575214Natenu.
+4. Click on button LogIn
+
+Expected result:
+1. Verify that user is Logged in:
+- image display on the page
+- button Sign Out is displayed on the page
+
+# Test Case 2 Create post
+Precondition:
+1. User is logged in
+Steps:
+1. Click on Create post button;
+2. Input title: First Post
+3. Input body: Some content
+4. Flag unique checkbox
+5. Click on Save New Post button
+Expected result:
+1. Verify Post is published:
+ - Correct body title displayed: First post
+ - Is post unique is displayed: yes
+ - Posted by displayed: yuriisobko
+ - Correct body content displayed: Some content
+
+# Test Case 3 Edit post
+Precondition::
+1. Post is created
+Steps:
+1. Click on MyProfile
+2. Select required Post
+3. Click on Edit button
+4. Change title: Edited post
+5. Change body: Edited content
+6. Uncheck unique checkbox
+7. Click on Save New Post button
+Expected result:
+1. Verify Post is published:
+ - Correct body title is displayed: Edited post
+ - Posted by displayed: yuriisobko
+ - Correct body content displayed: Edited content
+
+# Test Case 4 Delete post
+Precondition:
+1. Post is created
+Steps:
+1. Click on MyProfile
+2. Select required Post
+3. Click on Delete button
+Expected result:
+1. Verify Post is absent
+
+
+# Test Case 5 Add two posts and validate if they are present in profile
+1. User is logged in
+Steps:
+1. Click on Create post button;
+2. Input title: First post
+3. Input body: Some content
+4. Flag unique checkbox
+5. Click on Save New Post button
+6 Create one more Posts:
+    - Input title: Second post
+    - Input body: Second content
+    Select "Приватне"
+
+Expected result:
+1. Verify there are 2 Posts published:
+ - Correct body titles are displayed: First post, Second post
+ - Is post unique displayed: yes, no
+ - Posted by displayed: yuriisobko
+ - Correct body content displayed: Some content
+
+
