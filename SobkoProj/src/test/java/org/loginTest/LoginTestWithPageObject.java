@@ -1,5 +1,6 @@
-package baseTest;
+package org.loginTest;
 
+import org.baseTest.BaseTest;
 import org.junit.Test;
 
 public class LoginTestWithPageObject extends BaseTest {
