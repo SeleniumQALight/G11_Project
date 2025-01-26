@@ -1,6 +1,6 @@
 #Home page for guest
 
-input.username.auth = "//form[@action='/login']//input[@id='username1']"
+input.username.auth = "//form[@action='/login']//input[@name='username']"
 input.password = "//form[@action='/login']//input[@name='password']"
 button.signin = "//form[@action='/login']//button[text()='Sign In']"
 input.username.register = "//form[@action='/register']//input[@id='username-register']"
