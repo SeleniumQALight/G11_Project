@@ -1,6 +1,7 @@
 package org.pages;
 
 import org.apache.log4j.Logger;
+import org.data.TestData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,29 +20,32 @@ public class LoginPage extends ParentPage {
         super(webDriver);
     }
 
-    public void openPage() {
+    public LoginPage openPage() {
         String baseUrl = "https://aqa-complexapp.onrender.com";
         webDriver.get(baseUrl);
         logger.info("Login Page was opened with url" + baseUrl);
-
+        return this;
     }
 
-    public void enterTextIntoInputLogin(String login) {
-//        WebElement inputUserName = webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
-        inputUserName.clear();
-        inputUserName.sendKeys(login);
-        logger.info(login + "was inputted into input UserName");
+    public LoginPage enterTextIntoInputLogin(String login) {
+        clearAndEnterTextIntoElement(inputUserName, login);
+        return this;
     }
 
-    public void enterTextIntoInputPassword(String password) {
-//        WebElement inputPassword = webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
-        inputPassword.clear();
-        inputPassword.sendKeys(password);
-        logger.info(password + " was inputted into input password");
+    public LoginPage enterTextIntoInputPassword(String password) {
+        clearAndEnterTextIntoElement(inputPassword, password);
+        return this;
     }
 
     public void clickOnButtonSignIn() {
-       buttonSignIn.click();
-        logger.info("Button SignIn was clicked");
+        clickOnElement(buttonSignIn);
+    }
+
+    public HomePage openLoginPageAndFillLoginFormWithValidCred() {
+        openPage();
+        enterTextIntoInputLogin(TestData.VALID_LOGIN);
+        enterTextIntoInputPassword(TestData.VALID_PASSWORD);
+        clickOnButtonSignIn();
+        return new HomePage(webDriver);
     }
 }

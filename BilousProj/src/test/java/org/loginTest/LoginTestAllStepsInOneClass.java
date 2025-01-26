@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
 import java.util.concurrent.TimeUnit;
 
 public class LoginTestAllStepsInOneClass {
@@ -39,7 +40,7 @@ public class LoginTestAllStepsInOneClass {
 
         WebElement inputUserName = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
         inputUserName.clear();
-        inputUserName.sendKeys("qaauto");
+        inputUserName.sendKeys("qaauto111");
         logger.info("qaauto was inputed into input username");
 
         WebElement inputPassport = webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
@@ -52,30 +53,44 @@ public class LoginTestAllStepsInOneClass {
 
         Assert.assertTrue("Button SignOut is not visible", isButtonSighOutVisible());
 
+
     }
+    // testNoValidLogin
 
     @Test
-    public void invalidLogin() {
+    public void noValidLogin() {
         webDriver.get("https://aqa-complexapp.onrender.com");
         logger.info("Site was opened");
 
         WebElement inputUserName = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
         inputUserName.clear();
-        inputUserName.sendKeys("qaauto111");
-        logger.info("qaauto was inputed into input username");
+        inputUserName.sendKeys("qaauto222");
+        logger.info("qaauto222 was inputed into input username");
 
         WebElement inputPassport = webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
         inputPassport.clear();
-        inputPassport.sendKeys("123456qwerty111");
+        inputPassport.sendKeys("78910qwerty");
         logger.info("password was inputed into Password");
 
         webDriver.findElement(By.xpath("//button[text()='Sign In']")).click();
         logger.info("Button SighIn was clicked");
 
+        Assert.assertTrue("Button SignIn is invisible", isButtonSighInVisible());
         Assert.assertFalse("Button SignOut is visible", isButtonSighOutVisible());
-        Assert.assertTrue("Button SignIn is not visible", isButtonSignInVisible());
-        Assert.assertTrue("Warning message is not visible", isWarningMessageVisible());
+        Assert.assertTrue("Message  *** Invalid username/password.*** is visible", isMessageVisible());
 
+
+    }
+
+    private boolean isMessageVisible() {
+        try {
+            boolean state = webDriver.findElement(By.xpath(".//div[@class=\'alert alert-danger text-center\']")).isDisplayed();
+            logger.info(state + " Message is visible ");
+            return state;
+        } catch (Exception e) {
+            logger.info("Message is not found");
+            return false;
+        }
     }
 
     private boolean isButtonSighOutVisible() {
@@ -84,30 +99,21 @@ public class LoginTestAllStepsInOneClass {
             logger.info(state + " is element visible ");
             return state;
         } catch (Exception e) {
-            logger.info("Element is not found");
+            logger.info("SignOut is not found");
             return false;
         }
-    }
 
-    private boolean isButtonSignInVisible() {
+    }
+    private boolean isButtonSighInVisible() {
         try {
-            boolean state = webDriver.findElement(By.xpath("//button[text()='Sign In']")).isDisplayed();
-            logger.info(state + " is element visible ");
+            boolean state = webDriver.findElement(By.xpath("//button[@class='btn btn-primary btn-sm']")).isDisplayed();
+            logger.info(state + "SignIn is element visible ");
             return state;
         } catch (Exception e) {
-            logger.info("Element is not found");
-            return false;
-        }
-
-    }
-
-    private boolean isWarningMessageVisible() {
-        try {
-            boolean state = webDriver.findElement(By.xpath("//div[text()='Invalid username/password.']")).isDisplayed();
-            return state;
-        } catch (Exception e) {
-            logger.info("Element is not found");
+            logger.info("SignIn is found");
             return false;
         }
     }
+
+
 }
