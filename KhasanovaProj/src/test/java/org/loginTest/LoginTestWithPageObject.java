@@ -14,12 +14,18 @@ public class LoginTestWithPageObject extends BaseTest {
                 .openPage()
                 .enterTextIntoInputLogin(VALID_LOGIN)
                 .enterTextIntoInputPassword(VALID_PASSWORD)
-                .clickOnButtonSignIn();
+                .clickOnButtonSignIn()
+        ;
 //        pageProvider.getLoginPage().enterTextIntoInputLogin(VALID_LOGIN);
 //        pageProvider.getLoginPage().enterTextIntoInputPassword(VALID_PASSWORD);
 //        pageProvider.getLoginPage().clickOnButtonSignIn();
 
-        pageProvider.getHomePage().checkIsButtonSignOutVisible();
+        pageProvider.getHomePage()
+                .checkIsButtonCreatePostVisible()
+                .checkIsButtonSignOutVisible()
+                .checkIsUsernameInputInvisible()
+                .checkIsInputPasswordInvisible()
+        ;
 
     }
 
