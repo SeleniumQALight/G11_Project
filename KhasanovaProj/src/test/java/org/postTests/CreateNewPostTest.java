@@ -11,11 +11,14 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectToHomePage()
                 .clickOnButtonCreatePost()
                 .checkIsRedirectToCreateNewPostPage()
-                .enterTextIntoInputTitle("Title VA")
+                .enterTextIntoInputTitle("Title VA test")
                 .enterTextIntoInputBody("Body of the post")
+                .setNeededStateToCheckBox("Check")
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()
-                .checkTextInSuccessMessage("New post successfully created.");
+                .checkTextInSuccessMessage("New post successfully created.")
+                .checkIsPostUniqueCheckboxChecked("Is this post unique? : yes")
+        ;
     }
 }

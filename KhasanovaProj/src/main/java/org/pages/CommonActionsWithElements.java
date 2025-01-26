@@ -71,4 +71,23 @@ public class CommonActionsWithElements {
         Assert.fail("Cannot work with element " + e);
     }
 
+    // method for making checkbox checked
+    protected void makeCheckboxChecked (WebElement webElement) {
+        if (webElement.isSelected()) {
+            logger.info("Checkbox is already checked");
+        } else  {
+            clickOnElement(webElement);
+        }
+    }
+
+    //method for making checkbox unchecked
+    protected void makeCheckBoxUnchecked(WebElement webElement) {
+        if (webElement.isSelected()) {
+            clickOnElement(webElement);
+        } else {
+            logger.info("Checkbox is already unchecked");
+        }
+    }
+
+
 }
