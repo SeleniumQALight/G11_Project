@@ -1,6 +1,8 @@
 package org.pages;
 
 import org.apache.log4j.Logger;
+import org.data.TestData;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,35 +23,38 @@ public class LoginPage extends ParentPage{
         super(webDriver);
     }
 
-    public void openPage() {
+    public LoginPage openPage() {
         String baseUrl = "https://aqa-complexapp.onrender.com";
         webDriver.get(baseUrl);
         logger.info("Login Page was opened with url " + baseUrl);
-
+return this;
     }
 
-    public void enterTextIntoInputLogin(String login) {
-
-      //  WebElement inputUserName = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
+    public LoginPage enterTextIntoInputLogin(String login) {
+       /* WebElement inputUserName = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
         inputUserName.clear();
-        inputUserName.sendKeys("qaauto");
-        logger.info(login + "qaauto was input UserName");
+        inputUserName.sendKeys(login);
+        logger.info(login + "was input UserName");*/
+        clearAndEnterTextIntoElement(inputUserName, login);
+return this;
 
-       //
     }
 
-    public void enterTextIntoInputPassword(String password){
-       // WebElement inputPassword = webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
-         inputPassword.clear();
-        inputPassword.sendKeys(password);
-        logger.info(password + "password was input into input password");
-
-
+    public LoginPage enterTextIntoInputPassword(String password){
+        clearAndEnterTextIntoElement(inputPassword, password);
+        return this;
     }
 
     public void clickOnButtonSignIn(){
-      //  webDriver.findElement(By.xpath("//button[text()='Sign In']")).click();
-       buttonSignIn.click();
-        logger.info("Button SignIn was clicked");
+
+        clickOnElement(buttonSignIn);
+    }
+
+    public HomePage openLoginPageAndFillFormWithValidCred() {
+        openPage();
+        this.enterTextIntoInputLogin(TestData.VALID_LOGIN);
+        this.enterTextIntoInputPassword(TestData.VALID_PASSWORD);
+        clickOnButtonSignIn();
+        return new HomePage(webDriver);
     }
 }

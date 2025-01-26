@@ -1,5 +1,38 @@
 #Login page
-input.username = ".//input.."
-button.signin = ".//button"
+input.username = ".//input[@placeholder='Username']"
+input.password = ".//input[@placeholder='Password']"
+button.signin = ".//button[contains(text(), 'Sign In')]"
+
+input.signupUsername = ".//input[@id='username-register']"
+input.email = ".//input[@id='email-register']"
+input.signupPassword = ".//input[@id='password-register']"
+button.signup = ".//button[@type='submit']"
 
 #Home page
+button.search = ".//a[@href='#']"
+button.myProfile = ".//a[@class='mr-2']"
+button.createPost = ".//a[@href='/create-post']"
+button.signOut = ".//button[@class='btn btn-sm btn-secondary']"
+header.hello = ".//h2"
+
+#Create post page
+input.title = ".//input[@id='post-title']"
+input.content = ".//textarea[@id='post-body']"
+button.saveNewPost = ".//button[@class='btn btn-primary']"
+massage.newPost = ".//div[contains(text(), 'New post')]"
+
+#Profile page
+item.post = ".//div[@class='list-group']"
+
+#Post page
+button.edit = ".//a[@class='text-primary mr-2']"
+button.delete = ".//button[@data-toggle='tooltip']"
+
+#Edit page //це тіж самі локатори що і для Create post page
+input.title = ".//input[@id='post-title']"
+input.content = ".//textarea[@id='post-body']"
+button.saveUpdates = ".//button[@class='btn btn-primary']"
+massage.updatedPost = ".//div[contains(text(), 'Post')]"
+
+#Search results modal
+modal.searchResults = ".//div[@class='list-group shadow-sm']"
