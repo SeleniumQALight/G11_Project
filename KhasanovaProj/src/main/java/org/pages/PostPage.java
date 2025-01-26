@@ -31,7 +31,7 @@ public class PostPage extends ParentPage {
     }
 
     public PostPage checkIsPostUniqueCheckboxChecked(String expectedMessageText) {
-        checkTextInElement(messageIsUniqueCheckbox,expectedMessageText);
+        checkTextInElement(messageIsUniqueCheckbox, expectedMessageText);
         return this;
     }
 }

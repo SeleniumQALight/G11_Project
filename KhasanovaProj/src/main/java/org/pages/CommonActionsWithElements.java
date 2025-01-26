@@ -51,6 +51,11 @@ public class CommonActionsWithElements {
         Assert.assertTrue("Element is not visible", isElementVisible(webElement));
     }
 
+    //check if element is invisible
+    protected void checkIsElementInvisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible", isElementVisible(webElement));
+    }
+
     // method for clicking on element
     protected void clickOnElement(WebElement webElement) {
         try {
@@ -72,10 +77,10 @@ public class CommonActionsWithElements {
     }
 
     // method for making checkbox checked
-    protected void makeCheckboxChecked (WebElement webElement) {
+    protected void makeCheckboxChecked(WebElement webElement) {
         if (webElement.isSelected()) {
             logger.info("Checkbox is already checked");
-        } else  {
+        } else {
             clickOnElement(webElement);
         }
     }

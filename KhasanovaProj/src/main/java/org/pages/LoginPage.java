@@ -18,6 +18,12 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = "//button[text()='Sign In']")
     private WebElement buttonSignIn;
 
+    @FindBy(xpath = "//button[text()='Sign Out']")
+    private WebElement buttonSignOut;
+
+    @FindBy(xpath = "//div[@class=\"alert alert-danger text-center\"]")
+    private WebElement invalidLoginMessage;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -59,5 +65,20 @@ public class LoginPage extends ParentPage {
         enterTextIntoInputPassword(TestData.VALID_PASSWORD);
         clickOnButtonSignIn();
         return new HomePage(webDriver);
+    }
+
+    public LoginPage checkIsButtonSignInVisible() {
+        checkIsElementVisible(buttonSignIn);
+        return this;
+    }
+
+    public LoginPage checkIsButtonSignOutInvisible() {
+        checkIsElementInvisible(buttonSignOut);
+        return this;
+    }
+
+    public LoginPage checkTextInSuccessMessage(String expectedMessageText) {
+        checkTextInElement(invalidLoginMessage, expectedMessageText);
+        return this;
     }
 }
