@@ -13,10 +13,13 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectToCreateNewPostPage()
                 .enterTextIntoInputTitle("Title from TanyaChe")
                 .enterTextIntoInputBody("Body")
+                .setCheckboxState("check")
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
                 .checkIsSussesMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
+                .checkCheckboxState("yes")
+
 
         ;
     }
