@@ -2,7 +2,6 @@ package org.loginTest;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.Logger;
-import org.baseTest.BaseTest;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -14,7 +13,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
 
-public class LoginTestAllStepsInOneClass extends BaseTest {
+public class LoginTestAllStepsInOneClass {
     private WebDriver webDriver;
     private Logger logger = Logger.getLogger(getClass());
 
@@ -57,24 +56,29 @@ public class LoginTestAllStepsInOneClass extends BaseTest {
     }
 
     @Test
-    public void T0002_invalidLogin() {
-        pageProvider.getLoginPage().openPage();
-        pageProvider.getLoginPage().enterTextIntoInputLogin("qaauto1");
-        pageProvider.getLoginPage().enterTextIntoInputPassword("123456qwerty");
-        pageProvider.getLoginPage().clickOnButtonSignIn();
-        checkIsButtonSignOutVisible();
-        checkIsButtonSignInVisible();
-        checkIsAllertVisible();
+    public void invalidLogin() {
+        webDriver.get("https://aqa-complexapp.onrender.com");
+        logger.info("Site was opened");
+
+        WebElement inputUserName = webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
+        inputUserName.clear();
+        inputUserName.sendKeys("qaauto1");
+        logger.info("qaauto1 was inputted into input UserName");
+
+        WebElement inputPassword = webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
+        inputPassword.clear();
+        inputPassword.sendKeys("123456qwerty");
+        logger.info("password was inputted into input password");
+
+        webDriver.findElement(By.xpath("//button[text()='Sign In']")).click();
+        logger.info("Button SignIn was clicked");
+        Assert.assertFalse("Button SignOut is not visible", isButtonSignOutVisible());
+
+        Assert.assertTrue("Allert is visible", isAllertVisible());
+
     }
 
-    @Test
-    public void T0001_validLogin() {
-        pageProvider.getLoginPage().openPage();
-        pageProvider.getLoginPage().enterTextIntoInputLogin("qaauto");
-        pageProvider.getLoginPage().enterTextIntoInputPassword("123456qwerty");
-        pageProvider.getLoginPage().clickOnButtonSignIn();
-        checkIsButtonSignOutVisible();
-    }
+
 
     public void checkIsButtonSignOutVisible() {
         Assert.assertFalse("Button Sign Out is not visible", isButtonSignOutVisible());
