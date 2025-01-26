@@ -55,6 +55,7 @@ Post conditions:
      1. Check that a new post has been created:
          - there is no post creation form on the page
          - Message: New post successfully created.
+         - New post (Title: test+[date_time] is displayed on MyProfile page.
 
      Post conditions:
      1. Delete the post
@@ -125,6 +126,7 @@ Post conditions:
          - Message: Post successfully updated.
          - Post has new Title in My profile (test+[date_time]+test)
          - Post has new Body Content (Test test test test)
+         - An updated post (Title: test+[date_time]+test) is displayed on MyProfile page.
 
      Post conditions:
      1. Delete the post

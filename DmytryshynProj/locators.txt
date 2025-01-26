@@ -1,5 +1,36 @@
-#Login page
-input.username = ".//input.."
-button.sigin = ".//button"
+#Login Page
+input.usernameRegistration = " //input[@id='username-register'] "
+input.passwordRegistration = " //input[@id='password-register'] "
+button.registration = " //button[@class="py-3 mt-4 btn btn-lg btn-success btn-block"]"
+input.usernameSignIn = " //input[@id="username0"] "
+input.passwordSignIn = "//header//input[@name="password"] "
+button.SignIn = " //button[@class="btn btn-primary btn-sm"]
 
 #Home page
+button.SignOut = "//button[text()="Sign Out"]"
+img.avatar = "//img[@data-original-title="My Profile"]"
+text.username = " //span[@class='text-white mr-2'] "
+button.CreatePost = "//a[@href="/create-post"]"
+
+#My Profile Page
+postList = "//div[@class="list-group"]"
+link.posts_count = " //a[contains(@class, 'profile-nav-link') and contains(text(), 'Posts:')] "
+
+#Create New Post Page
+input.title = "//input[@id="post-title"]"
+textarea.bodyContent = "//textarea[@id="post-body"]"
+button.savePost = "//button[text()="Save New Post"]"
+
+#Created New Post preview page
+button.deletePost = "//button[@class="delete-post-button text-danger"]"
+button.editPost = "//a[@data-original-title="Edit"]"
+message.SuccessfullyCreated = "//div[text()="New post successfully created."]"
+newPostTitle.preview = "//div[@class="d-flex justify-content-between"]/h2"
+newPostBody.preview = "//div[@class='body-content']/p[not(i)]"
+
+#Edit page
+button.saveUpdates = "//button[text()="Save Updates"]"
+message.SuccessfullyUpdated = "//div[text()="Post successfully updated."]"
+
+#Post Deleted page
+message.SuccessfullyDeleted = "//div[text()="Post successfully deleted."]"
