@@ -1,0 +1,30 @@
+#Main/Registration page
+input.username = " .//input[@id='username-register'] "
+input.email =  " .//input[@id='email-register'] "
+input.password = " .//input[@id='password-register'] "
+button.sign_up = " .//button[@type='submit'] "
+name.username = " .//span[text()=' qatanyache']  "
+
+#Login page
+input.username.auth = " .//input[@name="username" and not (@id='username-register')] "
+input.password.auth = " .//input[@name='password' and not (@id='password-register')] "
+button.sign_in = " .//button[@type='submit'] "
+img.avatar = " .//img[@alt='My profile'] "
+
+#Home page
+button.sign_out = " .//button[text()='Sign Out'] "
+button.create_post = " .//a[@href='/create-post'] "
+img.avatar = " .//img[@alt='My profile'] "
+
+#Create new post page
+button.create_post = " .//a[@href='/create-post'] "
+input.title = " .//input[@id='post-title'] "
+input.content = " .//textarea[@id='post-body'] "
+checkbox.post = " .//input[@type='checkbox' and @value='yes'] "
+button.save_post = " .//button[text()='Save New Post'] "
+message.of_created = " .//div[text()='New post successfully created.'] "
+post.added = " .//strong[text()='test post from Che'] "
+
+#Edit post page
+button.delete = " .//button[@data-original-title='Delete'] "
+link.edit_post" .//a[@data-original-title='Edit'] "
