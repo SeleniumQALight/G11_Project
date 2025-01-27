@@ -15,6 +15,23 @@ public class LoginTestWithPageObject extends BaseTest {
             .enterTextIntoInputPassw0rd(VALID_PASSWORD)
             .clickOnButtonSignIn();
 
-    pageProvider.getHomePage().checkIsButtonSignOutVisible();
+    pageProvider.getHomePage().checkIsButtonSignOutVisible()
+            .checkIsButtonCreatePostVisible()
+            .checkIsInputUsernameNotVisible()
+            .checkIsInputPasswordNotVisible()
+    ;
+  }
+
+  @Test
+  public void T0002_invalidLogin() {
+    pageProvider.getLoginPage()
+            .openPage()
+            .enterTextIntoInputLogin("notValidLogin")
+            .enterTextIntoInputPassw0rd("notValidPassword")
+            .clickOnButtonSignIn()
+            .checkIsErrorMessageDisplayed("Invalid username/password.")
+            .checkIsSignOutButtonNotVisible()
+            .checkIsButtonSignInVisible()
+    ;
   }
 }

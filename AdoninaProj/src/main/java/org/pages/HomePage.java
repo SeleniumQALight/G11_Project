@@ -15,13 +15,20 @@ public class HomePage extends ParentPage {
   @FindBy(xpath = "//a[@href='/create-post']")
   private WebElement buttonCreatePost;
 
+  @FindBy(xpath = "//input[@placeholder='Username']")
+  private WebElement inputUsername;
+
+  @FindBy(xpath = "//input[@placeholder='Password']")
+  private WebElement inputPassword;
+
   public HomePage(WebDriver webDriver) {
     super(webDriver);
   }
 
-  public void checkIsButtonSignOutVisible() {
+  public HomePage checkIsButtonSignOutVisible() {
 //    Assert.assertTrue("Button Sign Out is not visible", isButtonSignOutVisible());
     checkIsElementVisible(buttonSignOut);
+    return this;
   }
 
   public HomePage checkIsRedirectOnHomePage() {
@@ -35,4 +42,18 @@ public class HomePage extends ParentPage {
     return new CreareNewPostPage(webDriver);
   }
 
+  public HomePage checkIsButtonCreatePostVisible() {
+    checkIsElementVisible(buttonCreatePost);
+    return this;
+  }
+
+  public HomePage checkIsInputUsernameNotVisible() {
+    checkIsElementNotVisible(inputUsername);
+    return this;
+  }
+
+  public HomePage checkIsInputPasswordNotVisible() {
+    checkIsElementNotVisible(inputPassword);
+    return this;
+  }
 }

@@ -26,4 +26,7 @@ public class PostPage extends ParentPage {
     checkTextInElement(successMessage, expectedText);
     return this;
   }
+
+
+
 }
