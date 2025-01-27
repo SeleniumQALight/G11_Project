@@ -23,6 +23,13 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getHomePage().checkIsButtonSignOutVisible();
     }
 
-
+/*@Test our homework
+    public void T002_invalidLogin() {
+    pageProvider.getLoginPage().openPage();
+    pageProvider.getLoginPage().enterTextIntoInputLogin("qaato1");
+    pageProvider.getLoginPage().enterTextIntoInputPassword("123456");
+    pageProvider.getLoginPage().clickOnButtonSignIn();
+    pageProvider.getHomePage().checkIsButtonSignOutVisible();
+}*/
 }
 

@@ -17,7 +17,7 @@ public class PostPage extends ParentPage {
         return this;
     }
 
-    public PostPage checkIsSuccessMessagePresent() {
+    public PostPage checkIsSuccessMessageDisplayed() {
         checkIsElementVisible(successMessage);
         return this;
     }

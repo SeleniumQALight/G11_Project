@@ -14,7 +14,8 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectOnCreateNewPostPage()
                 .enterTextIntoInputTitle("My Best life")
                 .enterTextIntoInputBody("Body**** of the ****post")
-                .clickOnSaveNewPostButton()
+                .clickOnSaveNewPostButton().checkIsRedirectOnPostPage()
+                .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
         ;
 

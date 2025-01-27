@@ -23,7 +23,7 @@ public class InvalidLoginInOneClass {
         WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();
         webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         logger.info("Browser was opened");
     }
 
@@ -34,7 +34,7 @@ public class InvalidLoginInOneClass {
     }
 
     @Test
-    public void validLogin() {
+    public void TR002_invalidLogin() {
         webDriver.get("https://aqa-complexapp.onrender.com");
         logger.info("Site was opened");
         WebElement inputUserName = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
@@ -74,7 +74,7 @@ public class InvalidLoginInOneClass {
         logger.info(state + " Sign In is visible");
         return state;
     } catch(Exception e) {
-        logger.info("Sign out button is not found");
+        logger.info("Sign in button is not found");
         return false;
     }
 }
