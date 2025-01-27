@@ -14,12 +14,13 @@ public class CreateNewPostTest extends BaseTest {
                 checkIsRedirectOnCreateNewPostPage()
                 .enterTextIntoInputTitle("Title of the post Horbovskyi")
                 .enterTextIntoInputBody("Body of the post Horbovskyi")
+                .selectUniquePostCheckbox()
                 .clickOnButtonSavePost()
                 .checkIsRedirectOnPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
+                .checkIfUniquePost()
         ;
-
     }
 
 }

@@ -62,4 +62,45 @@ public class LoginTestAllStepsInOneClass {
             return false;
         }
     }
+
+    private boolean isButtonSignInVisible() {
+        try {
+            boolean state = webDriver.findElement(By.xpath("//button[text()='Sign In']")).isDisplayed();
+            logger.info(state + " is element visible");
+            return state;
+        } catch (Exception e) {
+            logger.info("Element is not found");
+            return false;
+        }
+    }
+
+    private boolean isInvalidUsernamePasswordVisible() {
+        try {
+            boolean state = webDriver.findElement(By.xpath("//div[text()='Invalid username/password.']")).isDisplayed();
+            logger.info(state + " is element visible");
+            return state;
+        } catch (Exception e) {
+            logger.info("Element is not found");
+            return false;
+        }
+    }
+
+    @Test
+    public void invalidLogin() {
+        webDriver.get("https://aqa-complexapp.onrender.com/");
+
+        WebElement inputUserName = webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
+        inputUserName.clear();
+        inputUserName.sendKeys("qaauto");
+
+        WebElement inputPassword = webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
+        inputPassword.clear();
+        inputPassword.sendKeys("123456qwerty1");
+
+        webDriver.findElement(By.xpath("//button[text()='Sign In']")).click();
+
+        Assert.assertTrue("Button SignOut is not visible", !isButtonSignOutVisible());
+        Assert.assertTrue("Button SignIn is visible", isButtonSignInVisible());
+        Assert.assertTrue("Element with text 'Invalid username/password.' is visible", isInvalidUsernamePasswordVisible());
+    }
 }
