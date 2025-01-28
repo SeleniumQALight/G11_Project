@@ -68,6 +68,10 @@ public class CommonActionsWithElements {
         Assert.assertTrue("Element is not visible", isElementVisible(webElement));
     }
 
+    protected void checkIsElementNotVisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible", isElementVisible(webElement));
+    }
+
     protected void checkTextInElement(WebElement webElement, String text) {
         logger.error("Text in element not expected");
         Assert.assertEquals("Text in element not expected", text, webElement.getText());
@@ -75,5 +79,31 @@ public class CommonActionsWithElements {
 
     }
 
+    protected void setCheckedOrNotifyIfAlreadyChecked(WebElement webElement) {
+        try {
+            boolean state = webElement.isSelected();
+            if (state) {
+                logger.info("Checkbox has already been selected");
+            } else {
+                webElement.click();
+                logger.info("Checkbox is selected");
+            }
+        } catch (Exception e) {
+            logger.info("Element is not found");
+        }
+    }
+    protected void setUncheckedOrNotifyIfAlreadyClear(WebElement webElement) {
+        try {
+            boolean state = webElement.isSelected();
+            if (state) {
+                webElement.click();
+                logger.info("Checkbox is cleared");
+            } else {
+                logger.info("Checkbox is already cleared");
+            }
+        } catch (Exception e) {
+            logger.info("Element is not found");
+        }
+    }
 
 }
