@@ -62,9 +62,55 @@ public class CommonActionsWithElements {
         Assert.assertTrue("Element is not visible", isElementVisible(element));
     }
 
+    protected void checkIsElementNotVisible(WebElement element) {
+        Assert.assertFalse("Element is visible", isElementVisible(element));
+    }
+
     protected void checkTextInElement(WebElement element, String text) {
             Assert.assertEquals("Text in element is not expected", text, element.getText());
             logger.info("Text in element is expected");
     }
+
+    protected void checkBoxCheck(WebElement element) {
+        try {
+            boolean tempState = element.isSelected();
+            if (tempState) {
+                logger.info("Checkbox is now selected");
+            } else {
+                logger.info("Checkbox is selected");
+                element.click();
+            }
+        } catch (Exception e) {
+            logger.error("Cannot work with element " + e);
+            Assert.fail("Cannot work with element " + e);
+        }
+    }
+
+    protected void checkBoxUncheck(WebElement element) {
+        try {
+            boolean tempState = element.isSelected();
+            if (tempState) {
+                logger.info("Checkbox is now unselected");
+                element.click();
+            } else {
+                logger.info("Checkbox is not selected");
+            }
+        } catch (Exception e) {
+            logger.error("Cannot work with element " + e);
+            Assert.fail("Cannot work with element " + e);
+        }
+    }
+
+    protected void checkBoxSelect(WebElement element, String state){
+        boolean tempState = element.isSelected();
+        if (state.equals("check")){
+            checkBoxCheck(element);
+        } else if (state.equals("uncheck")){
+            checkBoxUncheck(element);
+        } else {
+            logger.info("State is not correct");
+        }
+    }
+
 
 }

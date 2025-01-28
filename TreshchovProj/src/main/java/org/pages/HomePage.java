@@ -20,8 +20,9 @@ public class HomePage extends ParentPage {
         super(webDriver);
     }
 
-    public void checkIsButtonSignOutVisible() {
+    public HomePage checkIsButtonSignOutVisible() {
         checkIsElementVisible(buttonSignOut);
+        return this;
     }
 
     public HomePage checkIsRedirectToHomePage() {
@@ -34,5 +35,16 @@ public class HomePage extends ParentPage {
     public CreateNewPostPage clickOnButtonCreatePost(){
         clickOnElement(buttonCreatePost);
         return new CreateNewPostPage(webDriver);
+    }
+
+    public HomePage checkIsButtonCreatePostVisible() {
+        checkIsElementVisible(buttonCreatePost);
+        return this;
+    }
+
+    public HomePage checkIsLoginPasswordFieldVisible(){
+        Assert.assertTrue("Login field is visible", isElementVisible(webDriver.findElement(By.xpath("//input[@placeholder='Username']"))));
+        Assert.assertTrue("Password field is visible", isElementVisible(webDriver.findElement(By.xpath("//input[@placeholder='Password']"))));
+        return this;
     }
 }
