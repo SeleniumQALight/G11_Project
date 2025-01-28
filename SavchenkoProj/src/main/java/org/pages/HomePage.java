@@ -12,6 +12,11 @@ public class HomePage extends ParentPage {
     private WebElement buttonSignOut;
     @FindBy(xpath = "//a[@class='btn btn-sm btn-success mr-2']")
     private WebElement buttonCreatePost;
+    @FindBy(xpath = "//input[@placeholder='Username']")
+    private WebElement inputUserName;
+
+    @FindBy(xpath = "//input[@placeholder='Password']")
+    private WebElement inputPassword;
 //    private Logger logger = Logger.getLogger(getClass());
 
     public HomePage(WebDriver webDriver) {
@@ -33,6 +38,17 @@ public class HomePage extends ParentPage {
     public CreateNewPostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
         return new CreateNewPostPage(webDriver);
+    }
+
+    public HomePage checkIsButtonCreatePostVisible() {
+        checkIsElementVisible(buttonCreatePost);
+        return this;
+    }
+
+    public HomePage checkIsInputLoginOrPasswordNotVisible() {
+        checkIsElementNotVisible(inputUserName);
+        checkIsElementNotVisible(inputPassword);
+        return this;
     }
 }
 
