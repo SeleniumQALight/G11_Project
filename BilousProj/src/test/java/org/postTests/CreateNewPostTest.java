@@ -1,6 +1,7 @@
 package org.postTests;
 
 import org.baseTest.BaseTest;
+import org.junit.After;
 import org.junit.Test;
 import org.utils.Utils_Custom;
 
@@ -30,5 +31,10 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectOnMyProfilePage()
                 .checkPostWithTitleIsPresent(POST_TITLE, 1)
         ;
+    }
+
+    @After
+    public void deletePost() {
+
     }
 }
