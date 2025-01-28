@@ -30,7 +30,6 @@ public class CommonActionsWithElements {
         }
     }
 
-
     protected boolean isElementVisible(WebElement webElement) {
         try {
             boolean state = webElement.isDisplayed();
