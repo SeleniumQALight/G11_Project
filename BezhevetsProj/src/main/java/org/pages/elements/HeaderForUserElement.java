@@ -8,7 +8,7 @@ import org.pages.CreateNewPostPage;
 import org.pages.MyProfilePage;
 
 public class HeaderForUserElement extends CommonActionsWithElements {
-    @FindBy(xpath = "//img[@alt='My Profile']")
+    @FindBy(xpath = "//img[@alt='My profile']")
     private WebElement buttonMyProfile;
 
     @FindBy(xpath = "//button[text()='Sign Out']")
