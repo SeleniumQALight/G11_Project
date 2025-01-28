@@ -29,8 +29,8 @@ public class LoginTestWithPageObject extends BaseTest {
 
         pageProvider.getLoginPage().openLoginPageAndFillLoginFormWithValidCred();
         pageProvider.getHomePage().checkIsButtonCreatePostIsVisible();
-        pageProvider.getLoginPage().isLoginFieldVisible();
-        pageProvider.getLoginPage().isPasswordFieldVisible();
+        pageProvider.getLoginPage().isLoginFieldInVisible();
+        pageProvider.getLoginPage().isPasswordFieldInVisible();
 
     }
 }

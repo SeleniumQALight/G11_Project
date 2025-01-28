@@ -48,12 +48,11 @@ public class LoginPage extends ParantPage {
         checkIsElementVisible(buttonSignIn);
     }
 
-    public void isLoginFieldVisible() {
-        isElementVisible(inputUserName);
-    }
+    public void isLoginFieldInVisible() {
+        checkIsElementInvisible(inputUserName); }
 
-    public void isPasswordFieldVisible() {
-        isElementVisible(inputPassword);
+    public void isPasswordFieldInVisible() {
+        checkIsElementInvisible(inputPassword);
     }
 
 

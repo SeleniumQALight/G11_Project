@@ -95,8 +95,10 @@ public class CommonActionsWithElements {
         try {
             if ("check".equalsIgnoreCase(state)) {
                 selectCheckbox(checkbox);
+                logger.info("This post is unique");
             } else if ("uncheck".equalsIgnoreCase(state)) {
                 deselectCheckbox(checkbox);
+                logger.info("This post is not unique");
             } else {
                 logger.error("Invalid state: " + state);
             }
