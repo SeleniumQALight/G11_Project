@@ -3,6 +3,7 @@ package org.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.pages.elements.HeaderForUserElement;
 
 public class PostPage extends ParentPage {
     @FindBy(xpath = "//*[@class='alert alert-success text-center']")
@@ -10,6 +11,10 @@ public class PostPage extends ParentPage {
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    public HeaderForUserElement getHeaderForUserElement() {
+        return new HeaderForUserElement(webDriver);
     }
 
     public PostPage checkIsRedirectToPostPage() {
@@ -26,4 +31,6 @@ public class PostPage extends ParentPage {
         checkTextInElement(successMessage, expectedMessageText);
         return this;
     }
+
+
 }
