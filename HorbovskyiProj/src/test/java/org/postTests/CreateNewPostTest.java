@@ -10,14 +10,16 @@ public class CreateNewPostTest extends BaseTest {
         pageProvider.getLoginPage().
                 openLoginPageAndFillLoginFormWithValidCred()
                 .checkIsRedirectOnHomePage()
-                .clickOnButtonCreatePost().
-                checkIsRedirectOnCreateNewPostPage()
+                .getHeaderElement().clickOnButtonCreatePost()
+                .checkIsRedirectOnCreateNewPostPage()
                 .enterTextIntoInputTitle("Title of the post Horbovskyi")
                 .enterTextIntoInputBody("Body of the post Horbovskyi")
                 .clickOnButtonSavePost()
                 .checkIsRedirectOnPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
+        ;
+        pageProvider.getPostPage().getHeaderElement().clickOnButtonMyProfile()
         ;
 
     }
