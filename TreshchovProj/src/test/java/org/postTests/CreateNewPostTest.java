@@ -9,6 +9,7 @@ public class CreateNewPostTest extends BaseTest {
         pageProvider.getLoginPage().
                 openLoginAndFillLoginFormWithValidData().
                 checkIsRedirectToHomePage().
+                getHeaderElement().
                 clickOnButtonCreatePost().
                 checkIsRedirectToCreateNewPostPage().
                 enterTextIntoInputTitle("Test123Treshchov").
@@ -17,6 +18,12 @@ public class CreateNewPostTest extends BaseTest {
                 checkIsRedirectToPostPage().
                 CheckIsAlertSuccessPresent().
                 checkTextInSuccessMessage("New post successfully created.")
+        ;
+
+        pageProvider.getPostPage().
+                getHeaderElement().
+                clickOnButtonMyProfile()
+
         ;
     }
 
