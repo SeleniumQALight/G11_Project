@@ -68,4 +68,48 @@ public class CommonActionsWithElements {
     logger.error("Can not work with element " + e);
     Assert.fail("Can not work with element " + e);
   }
+  public void selectCheckboxPrivatePost(WebElement webElement, WebElement checkbox) {
+    try {
+      boolean state = webElement.isSelected();
+      if (state) {
+        clickOnElement(checkbox);
+        logger.info("Checkbox was not selected and now is selected");
+      } else {
+        logger.info("Checkbox is already selected");
+      }
+    } catch (Exception e) {
+      logger.info("Element is not found");
+    }
+
+}
+  public void unselectCheckboxPrivatePost(WebElement webElement, WebElement checkbox) {
+    try {
+      boolean state = webElement.isEnabled();
+      if (state) {
+        clickOnElement(checkbox);
+        logger.info("Checkbox was selected and now is unselected");
+      } else {
+        logger.info("Checkbox is already unselected");
+      }
+    } catch (Exception e) {
+      logger.info("Element is not found");
+    }
+
+    public void setCheckboxState(WebElement checkbox, String state) {
+      boolean isChecked = state.equals("check");
+      try {
+        if (isChecked) {
+          selectCheckboxPrivatePost(checkbox, checkbox);
+        } else  {
+          unselectCheckboxPrivatePost(checkbox, checkbox);
+//        } else {
+//          logger.error("Invalid state: " + state);
+//          throw new IllegalArgumentException("State must be 'check' or 'uncheck'");
+//        }
+//      } catch (Exception e) {
+//        printErrorAndStopTest(e);
+//      }
+//    }
+
+  }
 }
