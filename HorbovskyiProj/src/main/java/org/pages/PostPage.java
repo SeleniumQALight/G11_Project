@@ -9,6 +9,9 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = "//*[@class='alert alert-success text-center']")
     private WebElement successMessage;
 
+    @FindBy(xpath = ".//p[text()='Is this post unique? : yes']")
+    private WebElement uniquePostMessage;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -25,6 +28,11 @@ public class PostPage extends ParentPage {
 
     public PostPage checkTextInSuccessMessage(String expectedMessageText) {
         checkTextInElement(successMessage, expectedMessageText);
+        return this;
+    }
+
+    public PostPage checkIfUniquePost() {
+        checkIsElementVisible(uniquePostMessage);
         return this;
     }
 
