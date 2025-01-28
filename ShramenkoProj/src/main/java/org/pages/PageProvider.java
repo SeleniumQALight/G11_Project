@@ -17,5 +17,4 @@ public class PageProvider {
         return new HomePage(webDriver);
     }
 
-
 }

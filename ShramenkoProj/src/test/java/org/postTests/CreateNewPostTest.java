@@ -13,12 +13,13 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectToHomePage()
                 .clickOnButtonCreatePost()
                 .checkIsRedirectToCreateNewPostPage()
-                .enterTextIntoInputTitle("Title of the post from Alla")
+                .enterTextIntoInputTitle("Post from Alla")
                 .enterTextIntoInputBody("Body of the post")
+                .checkboxUniqueState("uncheck")
                 .clickOnButtonSaveNewPost().checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
-        ;
+                .checkStateUniquePost();
     }
 
 }
