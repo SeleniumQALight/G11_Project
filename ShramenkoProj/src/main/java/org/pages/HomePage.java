@@ -20,6 +20,9 @@ public class HomePage extends ParentPage {
         checkIsElementVisible(buttonSighOut);
     }
 
+    public void checkIsButtonSighOutNotVisible() {
+        checkIsElementNotVisible(buttonSighOut);
+    }
 
     public HomePage checkIsRedirectToHomePage() {
         checkIsButtonSighOutVisible();

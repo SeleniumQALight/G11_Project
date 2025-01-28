@@ -2,6 +2,7 @@ package org.pages;
 
 import org.apache.log4j.Logger;
 import org.data.TestData;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,6 +19,9 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = "//button[text()='Sign In']")
     private WebElement buttonSighIn;
+
+    @FindBy(xpath = "//div[text()='Invalid username/password.']")
+    private WebElement alertIncorrectLoginPassword;
 
 
     public LoginPage(WebDriver webDriver) {
@@ -46,6 +50,14 @@ public class LoginPage extends ParentPage {
 
     public void clickOnButtonSighIn() {
         clickOnElement(buttonSighIn);
+    }
+
+    public void checkIsButtonSighInVisible(){
+        checkIsElementVisible(buttonSighIn);
+    }
+
+    public void checkIsAlertIncorrectLoginPasswordVisible(){
+        checkIsElementVisible(alertIncorrectLoginPassword);
     }
 
     public HomePage openLoginPageAndFillLoginWithValidCred() {
