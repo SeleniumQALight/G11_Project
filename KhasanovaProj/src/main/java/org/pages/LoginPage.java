@@ -25,13 +25,6 @@ public class LoginPage extends ParentPage {
         super(webDriver);
     }
 
-    public WebElement getInputUserName() {
-        return inputUserName;
-    }
-
-    public WebElement getInputPassword() {
-        return inputPassword;
-    }
 
     public LoginPage openPage() {
         String baseUrl = "https://aqa-complexapp.onrender.com/";
@@ -59,9 +52,10 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public void clickOnButtonSignIn() {
+    public HomePage clickOnButtonSignIn() {
 //        webDriver.findElement(By.xpath("//button[text()='Sign In']")).click();
         clickOnElement(buttonSignIn);
+        return new HomePage(webDriver);
     }
 
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
@@ -77,16 +71,19 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public LoginPage checkIsButtonSignOutInvisible() {
-        HomePage homePage = new HomePage(webDriver);
-        homePage.checkIsElementInvisible(homePage.getButtonSignOut());
-        return this;
-    }
-
     public LoginPage checkTextInSuccessMessage(String expectedMessageText) {
         checkTextInElement(invalidLoginMessage, expectedMessageText);
         return this;
     }
 
+    public LoginPage checkIsUsernameInputInvisible() {
+        checkIsElementInvisible(inputUserName);
+        return this;
+    }
+
+    public LoginPage checkIsInputPasswordInvisible() {
+        checkIsElementInvisible(inputPassword);
+        return this;
+    }
 
 }

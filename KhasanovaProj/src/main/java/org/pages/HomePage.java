@@ -18,10 +18,6 @@ public class HomePage extends ParentPage {
         super(webDriver);
     }
 
-    public WebElement getButtonSignOut() {
-        return buttonSignOut;
-    }
-
     public HomePage checkIsButtonSignOutVisible() {
 //        Assert.assertTrue("Button Sign Out is not visible", isButtonSignOutVisible());
         checkIsElementVisible(buttonSignOut);
@@ -54,18 +50,11 @@ public class HomePage extends ParentPage {
         clickOnElement(buttonCreatePost);
         return new CreateNewPostPage(webDriver);
     }
-
-    public HomePage checkIsUsernameInputInvisible() {
-        LoginPage loginPage = new LoginPage(webDriver);
-        loginPage.checkIsElementInvisible(loginPage.getInputUserName());
-        return this;
+    public void checkIsButtonSignOutInvisible() {
+        checkIsElementInvisible(buttonSignOut);
+        return;
     }
 
-    public HomePage checkIsInputPasswordInvisible() {
-        LoginPage loginPage = new LoginPage(webDriver);
-        loginPage.checkIsElementInvisible(loginPage.getInputPassword());
-        return this;
-    }
 
 
 }

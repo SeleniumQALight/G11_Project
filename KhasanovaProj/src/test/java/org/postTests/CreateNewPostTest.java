@@ -13,7 +13,7 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectToCreateNewPostPage()
                 .enterTextIntoInputTitle("Title VA test")
                 .enterTextIntoInputBody("Body of the post")
-                .setNeededStateToCheckBox("Check")
+                .setNeededStateToPostUniqueCheckBox("Check")
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()

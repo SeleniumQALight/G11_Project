@@ -82,6 +82,7 @@ public class CommonActionsWithElements {
             logger.info("Checkbox is already checked");
         } else {
             clickOnElement(webElement);
+            logger.info("Checkbox is checked");
         }
     }
 
@@ -89,8 +90,20 @@ public class CommonActionsWithElements {
     protected void makeCheckBoxUnchecked(WebElement webElement) {
         if (webElement.isSelected()) {
             clickOnElement(webElement);
+            logger.info("Checkbox is unchecked");
         } else {
             logger.info("Checkbox is already unchecked");
+        }
+    }
+
+    protected void setNeededStateToCheckBox(WebElement webElement, String neededState) {
+        if (neededState.equals("Check")) {
+            makeCheckboxChecked(webElement);
+        } else if (neededState.equals("Uncheck")) {
+            makeCheckBoxUnchecked(webElement);
+        }  else {
+            logger.error("State should be only 'Check' or 'Uncheck'");
+            Assert.fail("State should be only 'Check' or 'Uncheck'");
         }
     }
 
