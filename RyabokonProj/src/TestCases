@@ -48,12 +48,12 @@ Steps to reproduce
 3. Click back on the avatar to return to the profile's page
 
 Expected result
-1. Home page loads,
-2. The user is logged,
-3. The user returns to his profile page without logging in again
+1. The text box "Remember Writing" is seen.
+2. The user is logged.
+3. The user returns to his profile page without logging in again.
 
 Post Condition
-User is logged
+
 
 
 
@@ -89,5 +89,5 @@ Expected result
 The follower isn't on the list of "following"
 
 Post condition
-Follower is deleted
+
 

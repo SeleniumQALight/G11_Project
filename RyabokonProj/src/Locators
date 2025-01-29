@@ -14,14 +14,16 @@ Text on the home page .//h1[@class = 'display-3' and 'Remember Writing?']
 
 1.  logo of the app .//*[@href = '/'  and @class = 'text-white']
 2.user's avatar .//img[@src = 'https://gravatar.com/avatar/8ac2c3d00fdbb12f80dd9ee98d2bdc9f?s=128' and @alt='My profile'  ]
+3. Text on the home page .//h1[@class = 'display-3' and 'Remember Writing?']
+4. //button[@type="submit"]
 
 4. Test Case Valid User Sign Out
-.//button
+.//button[@class="btn btn-primary btn-sm"]
 
 5. Test case unfollow one user in the followlist
 
-1.following .//a[@class = 'profile-nav-link nav-item nav-link active']
-2.user .//a[@href ='/profile/testuser' ] or .//a[@class = "profile-nav-link nav-item nav-link active" ]
+1.following .//a[@class  = 'profile-nav-link nav-item nav-link active']
+2.user .//a[@href ='/profile/testuser' ] or .//a[@class="list-group-item list-group-item-action" ]
 3. stop following .//button[@class='btn btn-danger btn-sm'];
 
 
