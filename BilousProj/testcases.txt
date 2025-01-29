@@ -1,21 +1,148 @@
 #001 Test valid login
 
 Precondition:
-To log in the user with unique name (drbilous + [date_time])
+Register the user with unique name (drbilous + [date_time]; mail: bilous01@mail.com; parole: 1234567891011)
 
 Steps:
-1.  Open login page httpf//.
-2.  To input login input login user
-3. To input parole input
-4. Click to logIn button
+1. Open login page https://aqa-complexapp.onrender.com/.
+2. Input login user in Username
+3. Input password to Password
+4. Click to SignIn button
 
 Expected result
 
 1.  Check the log in user:
 -  avatar is visible on the page
+-  login on the right side from avatar should be visible and equal login
 -  button Sign in is unvisible
 
-Postcondition
-1.  Delate the user
+Post-condition
+1.  Delete the user
 
-#002 Next test case
+
+
+
+#002 Test SignOut
+
+Precondition:
+To log in the user with unique name (drbilous + [date_time]; mail: bilous02@mail.com; parole: 1234567891011)
+
+Steps:
+1. Open login page https://aqa-complexapp.onrender.com/.
+2. Input login user in Username
+3. Input password to Password
+4. Click to SignIn button
+5. Click SignOut button
+
+Expected result
+
+1.  Will see the Sign in page:
+-  Field Username is visible
+-  Field email is visible
+-  Field password is visible
+-  button Sign up is visible (only one is ok)
+
+Post-condition
+1.  Delete the user
+
+
+
+
+
+#003 Test create post
+
+Precondition:
+1. Register the user with unique name (drbilous + [date_time]; mail: bilous03@mail.com; parole: 1234567891011)
+2.  Open login page https://aqa-complexapp.onrender.com/.
+3.  Input login user in Username
+4.  Input password to Password
+5.  Click to SignIn button
+
+Steps:
+
+1.  Click the button CreatePost
+2.  Input text in Title (New information about IT course)
+3.  Input text in Body Content (The course will start on Monday 19/10 at 19.30)
+4.  Select from drop line value (Загальнодоступне)
+5.  Click on the SaveNewPost button
+6. Click on the avatar button (MyProfile)
+
+Expected result
+
+1.  Text: New post successfully created;
+2.  In my profiles post contain Title of the post
+
+Post-condition
+1.  Delete the post
+2.  Delete the user
+
+
+
+
+#004 Test Edit post
+
+Precondition:
+1.  Register the user with unique name (drbilous + [date_time]; mail: bilous04@mail.com; parole: 1234567891011)
+2.  Open login page https://aqa-complexapp.onrender.com/.
+3.  Input login user in Username
+4.  Input password to Password
+5.  Click to SignIn button
+6.  Click the button CreatePost
+7.  Input text in Title (New information about IT course!!!)
+8.  Input text in Body Content (The course will start on Monday 19/10 at 19.30)
+9.  Select from drop line value (Загальнодоступне)
+10.  Click on the SaveNewPost button
+11. Validate the message "New post successfully created"
+Steps:
+
+1. Click on the avatar button (MyProfile)
+2. Click on the post which contain Title
+3. Click on the EditIcon
+4. Input text in title (New information about IT course G11)
+5.  Input text in Body Content (The course will start on Tuesday 19/10 at 00.00)
+6. Select from drop line value (Загальнодоступне)
+7. Click on the button SaveUpdates.
+8. Click on the avatar button (MyProfile)
+9. Search a post for edited title (New information about IT course G11)
+10. Click the post
+11. Compare text which were inputted in body content
+
+Expected result
+
+1.  Validate a message after SaveUpdate click button: Post successfully updated;
+2.  In my profiles post contain Title equal input text
+3.  In the body content text equal input text
+
+Post-condition
+1.  Delete the post
+2.  Delete the user
+
+#005 Test delete post
+
+Precondition:
+To log in the user with unique name (drbilous + [date_time]; mail: bilous05@mail.com; parole: 1234567891011)
+
+Steps:
+1.  Open login page https://aqa-complexapp.onrender.com/.
+2.  Input login user in Username
+3.  Input password to Password
+4.  Click to SignIn button
+5.  Click the button CreatePost
+6.  Input text in Title (New information about IT course G11+)
+7.  Input text in Body Content (The course will start in July of 15th on Monday at 19.30)
+8.  Select from drop line value (Загальнодоступне)
+9.  Click on the SaveNewPost button
+10. Click on the avatar button (MyProfile)
+11. Search a post for inputted title (New information about IT course G11+)
+12. Click the post
+13. Click delete button
+14. Search a post for inputted title (New information about IT course G11+)
+
+Expected result
+
+1.  Text: Post successfully deleted;
+2.  In my profiles post don't contain Title of the post
+
+Post-condition
+1.  Delete the user
+

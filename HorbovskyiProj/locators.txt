@@ -1,0 +1,20 @@
+# Login Page
+input.username = "//input[@placeholder="Username"]"
+input.password = "//input[@placeholder='Password']"
+button.signIn = "//button[text()='Sign In']"
+
+#Registration form
+input.pickUsername = "//input[@placeholder="Pick a username"]"
+input.email = "//input[@placeholder="you@example.com"]"
+input.createPassword = "//input[@placeholder="Create a password"]"
+button.submit = "//button[@type="submit"]"
+
+#Homepage
+button.signOut = "//button[text()='Sign Out']"
+button.createPost = "//a[@href="/create-post"]"
+button.search = "//a[@data-original-title="Search"]"
+input.search = "//input[placeholder="What are you interested in?"]"
+button.firstSearchResult = "//div[@class="list-group shadow-sm"]//a[1][@class="list-group-item list-group-item-action"]"
+
+#Post page
+button.deletePost = "//button[@data-original-title="Delete"]"

@@ -1,10 +1,38 @@
 #Login page
-input.username = ""
-button.signin = ""
-
-
-
-
-
+header.input.username = "//input[@placeholder="Username"]"
+input.username = "//input[@id="username-register"]"
+header.input.password = "//header//input[@name="password"]"
+input.password = "//input[@id="password-register"]"
+button.signin = "//button[text()="Sign In"]"
+input.email = "//input[@id="email-register"]"
+button.signup = "//button[@type="submit"]"
 
 #Home page
+href.create_post = "//a[@href="/create-post"]"
+button.sign_out = "//button[text()="Sign Out"]"
+img.avatar = "//img[@data-original-title="My Profile"]"
+span.username = "//span[@class="text-white mr-2"]"
+
+#Create post page
+input.title = "//input[@id="post-title"]"
+textarea.body_content = "//textarea[@id="post-body"]"
+button.save_post = "//button[text()="Save New Post"]"
+
+#Post preview page
+button.delete = "//button[@class="delete-post-button text-danger"]"
+href.edit = "//a[@data-original-title="Edit"]"
+div.create_message = "//div[text()="New post successfully created."]"
+h2.title = "//div[@class="d-flex justify-content-between"]/h2"
+div.body_content = "//div[@class='body-content']/p[not(i)]"
+
+#Edit page
+input.title = "//input[@id="post-title"]"
+textarea.body_content = "//textarea[@id="post-body"]"
+button.save_updates = "//button[text()="Save Updates"]"
+div.edit_message = "//div[text()="Post successfully updated."]"
+
+#My Profile
+list = "//div[@class="list-group"]"
+div.delete_message = "//div[text()="Post successfully deleted."]"
+
+
