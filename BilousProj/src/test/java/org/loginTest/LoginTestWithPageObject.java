@@ -13,7 +13,7 @@ public class LoginTestWithPageObject extends BaseTest {
                 .enterTextIntoInputLogin(VALID_LOGIN)
                 .enterTextIntoPassword(VALID_PASSWORD)
                 .clickInButtomSignIn();
-        pageProvider.getHomePage().checkIsButtonSignOutVisible();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
 
     }
     @Test
@@ -25,10 +25,10 @@ public class LoginTestWithPageObject extends BaseTest {
 
         pageProvider.getLoginPage().checkIsButtonSignInVisible();
         pageProvider.getLoginPage().checkIsWarningMessageDisplayed();
-        pageProvider.getHomePage().checkIsButtonSignOutInvisible();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutInvisible();
 
         pageProvider.getLoginPage().openLoginPageAndFillLoginFormWithValidCred();
-        pageProvider.getHomePage().checkIsButtonCreatePostIsVisible();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonCreatePostIsVisible();
         pageProvider.getLoginPage().isLoginFieldInVisible();
         pageProvider.getLoginPage().isPasswordFieldInVisible();
 
