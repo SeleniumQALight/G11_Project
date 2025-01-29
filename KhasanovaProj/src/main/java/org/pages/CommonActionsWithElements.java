@@ -50,6 +50,11 @@ public class CommonActionsWithElements {
         Assert.assertTrue("Element is not visible", isElementVisible(webElement));
     }
 
+    //check if element is invisible
+    protected void checkIsElementInvisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible", isElementVisible(webElement));
+    }
+
     // method for clicking on element
     protected void clickOnElement(WebElement webElement) {
         try {
@@ -69,5 +74,37 @@ public class CommonActionsWithElements {
         logger.error("Cannot work with element " + e);
         Assert.fail("Cannot work with element " + e);
     }
+
+    // method for making checkbox checked
+    protected void makeCheckboxChecked(WebElement webElement) {
+        if (webElement.isSelected()) {
+            logger.info("Checkbox is already checked");
+        } else {
+            clickOnElement(webElement);
+            logger.info("Checkbox is checked");
+        }
+    }
+
+    //method for making checkbox unchecked
+    protected void makeCheckBoxUnchecked(WebElement webElement) {
+        if (webElement.isSelected()) {
+            clickOnElement(webElement);
+            logger.info("Checkbox is unchecked");
+        } else {
+            logger.info("Checkbox is already unchecked");
+        }
+    }
+
+    protected void setNeededStateToCheckBox(WebElement webElement, String neededState) {
+        if (neededState.equals("Check")) {
+            makeCheckboxChecked(webElement);
+        } else if (neededState.equals("Uncheck")) {
+            makeCheckBoxUnchecked(webElement);
+        }  else {
+            logger.error("State should be only 'Check' or 'Uncheck'");
+            Assert.fail("State should be only 'Check' or 'Uncheck'");
+        }
+    }
+
 
 }
