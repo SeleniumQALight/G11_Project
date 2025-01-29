@@ -1,6 +1,6 @@
 #Login page
 link = "https://aqa-complexapp.onrender.com/"
-input.login = "//input[@id='username2']"
+input.login = "//input[@placeholder='Username']"
 input.password = "//input[@placeholder='Password']"
 button.signIn = "//button[text()='Sign In']"
 

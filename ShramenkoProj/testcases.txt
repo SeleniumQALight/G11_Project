@@ -100,6 +100,7 @@ Expected result:
 Перевірка:
 - є попередження про успішне створення нового посту
 - адреса сторінки зміниться с /create-post на /post
+- перейти на сторінку MyProfile і перевірити, що пост з'явився в списку
 
 Postcondition:
 1. Видалити щойно створеного користувача.
@@ -115,15 +116,14 @@ Precondition:
 - password ("123456qwerty")
 2. В браузері Chrome відкрити login page https://aqa-complexapp.onrender.com.
 3. Зробити розмір вікна maximize.
-4. Знайти input login, очистити, ввести логін зареєстрованого користувача.
-5. Знайти input password, очистити, ввести пароль для цього користувача.
-6. Знайти і клікнути кнопку SighIn.
-7. Знайти і натиснути кнопку/посилання Create Post
-8. Знайти input для заголовка Post і ввести текст ("Welcome to our community of new users")
-9. Знайти textarea для тексту і ввести текст ("Tell us a little about yourself.
+4. Залогінитися користувачем (login "allash+[date_time]", password "123456qwerty")
+5. Знайти і клікнути кнопку SighIn.
+6. Знайти і натиснути кнопку/посилання Create Post
+7. Знайти input для заголовка Post і ввести текст ("Welcome to our community of new users")
+8. Знайти textarea для тексту і ввести текст ("Tell us a little about yourself.
 What city are you from, what languages do you speak, and what are your interests?")
-10. Знайти і натиснути кнопку Save New Post
-11. Зробити так само ще один пост, але з іншим текстом
+9. Знайти і натиснути кнопку Save New Post
+10. Зробити так само ще один пост, але з іншим текстом
 
 Steps:
 1. На сторінці Home page знайти і натиснути посилання My Profile
@@ -137,7 +137,7 @@ Expected result:
 Перевірка:
 - є попередження про успішне редагування посту
 - натиснути на link '« Back to post permalink' и перейти на сторінку Post
-- заголовок змінився
+- заголовок змінився на ("Welcome to our community of new users - Alla")
 
 Postcondition:
 1. Видалити щойно створеного користувача.
