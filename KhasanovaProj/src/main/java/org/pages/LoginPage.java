@@ -18,9 +18,13 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = "//button[text()='Sign In']")
     private WebElement buttonSignIn;
 
+    @FindBy(xpath = "//div[@class=\"alert alert-danger text-center\"]")
+    private WebElement invalidLoginMessage;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
+
 
     public LoginPage openPage() {
         String baseUrl = "https://aqa-complexapp.onrender.com/";
@@ -48,11 +52,6 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public void clickOnButtonSignIn() {
-//        webDriver.findElement(By.xpath("//button[text()='Sign In']")).click();
-        clickOnElement(buttonSignIn);
-    }
-
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN);
@@ -60,4 +59,30 @@ public class LoginPage extends ParentPage {
         clickOnButtonSignIn();
         return new HomePage(webDriver);
     }
+
+    public LoginPage checkTextInSuccessMessage(String expectedMessageText) {
+        checkTextInElement(invalidLoginMessage, expectedMessageText);
+        return this;
+    }
+
+    public LoginPage checkIsUsernameInputInvisible() {
+        checkIsElementInvisible(inputUserName);
+        return this;
+    }
+
+    public LoginPage checkIsInputPasswordInvisible() {
+        checkIsElementInvisible(inputPassword);
+        return this;
+    }
+
+    public void checkIsButtonSignInVisible() {
+        checkIsElementVisible(buttonSignIn);
+    }
+
+    public HomePage clickOnButtonSignIn() {
+//        webDriver.findElement(By.xpath("//button[text()='Sign In']")).click();
+        clickOnElement(buttonSignIn);
+        return new HomePage(webDriver);
+    }
+
 }

@@ -1,0 +1,22 @@
+#Login page
+    inputUserName = "//input[@placeholder='Username']"
+    inputPassword = "//input[@placeholder='Password']")
+    buttonSignIn = "//button[text()='Sign In']"
+
+#Home page
+    buttonSignOut = "//button[text()='Sign Out']"
+    buttonCreatePost = "//a[@class='btn btn-sm btn-success mr-2']")
+
+#Create post page
+    inputTitle = "//input[@id='post-title']"
+    inputBody = "//textarea[@id='post-body']"
+    buttonSaveNewPost = "//button[text()='Save New Post']"
+
+#Post page
+    buttonEdit = //a[@data-original-title='Edit']
+    buttonDelete = "//button[@class='delete-post-button text-danger']"
+
+#Edit page
+    buttonSaveUpdates = "//button[text()='Save Updates']"
+    inputTitle = "//input[@id='post-title']"
+    inputBody = "//textarea[@id='post-body']"

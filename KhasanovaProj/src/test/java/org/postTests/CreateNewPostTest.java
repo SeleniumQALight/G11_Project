@@ -19,10 +19,13 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectToCreateNewPostPage()
                 .enterTextIntoInputTitle(POST_TITLE)
                 .enterTextIntoInputBody("Body of the post")
+                .setNeededStateToPostUniqueCheckBox("Check")
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()
-                .checkTextInSuccessMessage("New post successfully created.");
+                .checkTextInSuccessMessage("New post successfully created.")
+                .checkIsPostUniqueCheckboxChecked("Is this post unique? : yes")
+        ;
 
         pageProvider.getPostPage().getHeaderForUserElement().clickOnButtonMyProfile()
                 .checkIsRedirectToProfilePage()
