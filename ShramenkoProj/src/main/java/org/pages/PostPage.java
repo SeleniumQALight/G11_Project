@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.apache.log4j.Logger;
+import org.pages.elements.HeaderForUserElement;
 
 public class PostPage extends ParentPage {
 
@@ -20,6 +21,11 @@ Logger logger = Logger.getLogger(getClass());
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    //отримати доступ до всіх елементів з хедеру
+    public HeaderForUserElement getHeaderElement() {
+        return new HeaderForUserElement(webDriver);
     }
 
     public PostPage checkIsRedirectToPostPage() {

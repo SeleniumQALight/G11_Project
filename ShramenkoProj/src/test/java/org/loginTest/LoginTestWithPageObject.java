@@ -16,7 +16,7 @@ public class LoginTestWithPageObject extends BaseTest {
                 .clickOnButtonSighIn();
 
         //а тепер обов'язкова перевірка, чи все вийшло
-        pageProvider.getHomePage().checkIsButtonSighOutVisible();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSighOutVisible();
 
     }
 
