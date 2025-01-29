@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 
 public class CommonActionsWithElements {
-    WebDriver webDriver;
+    protected WebDriver webDriver;
     private Logger logger = Logger.getLogger(getClass());
 
     public CommonActionsWithElements(WebDriver webDriver) {
@@ -29,7 +29,6 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
-
 
     protected boolean isElementVisible(WebElement webElement) {
         try {
