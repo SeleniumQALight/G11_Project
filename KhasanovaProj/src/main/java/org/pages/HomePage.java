@@ -2,17 +2,10 @@ package org.pages;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.pages.elements.HeaderForUserElement;
 
 public class HomePage extends ParentPage {
     private Logger logger = Logger.getLogger(getClass());
-
-    @FindBy(xpath = "//button[text()='Sign Out']")
-    private WebElement buttonSignOut;
-
-    @FindBy(xpath = "//a[@class='btn btn-sm btn-success mr-2']")
-    private WebElement buttonCreatePost;
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
@@ -22,6 +15,8 @@ public class HomePage extends ParentPage {
 //        Assert.assertTrue("Button Sign Out is not visible", isButtonSignOutVisible());
         checkIsElementVisible(buttonSignOut);
         return this;
+    public HeaderForUserElement getHeaderForUserElement() {
+        return new HeaderForUserElement(webDriver);
     }
 
     public HomePage checkIsButtonCreatePostVisible() {
@@ -41,7 +36,7 @@ public class HomePage extends ParentPage {
 //    }
 
     public HomePage checkIsRedirectToHomePage() {
-        checkIsButtonSignOutVisible();
+        getHeaderForUserElement().checkIsButtonSignOutVisible();
         //TODO check current URL
         return this;
     }
