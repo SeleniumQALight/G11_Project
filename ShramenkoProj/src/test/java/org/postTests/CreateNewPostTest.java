@@ -23,13 +23,11 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectToCreateNewPostPage()
                 .enterTextIntoInputTitle(POST_TITLE)
                 .enterTextIntoInputBody("Body of the post")
-                .checkboxUniqueState("uncheck")
+                .checkboxUniqueState("check")
                 .clickOnButtonSaveNewPost().checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
                 .checkStateUniquePost();
-
-        ;
 
         pageProvider.getPostPage().getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
