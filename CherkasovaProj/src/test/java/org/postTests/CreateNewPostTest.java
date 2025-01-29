@@ -2,8 +2,12 @@ package org.postTests;
 
 import org.baseTest.BaseTest;
 import org.junit.Test;
+import org.utils.Utils_Custom;
 
 public class CreateNewPostTest extends BaseTest {
+//    GUID
+
+    final String POST_TITLE = "TR003_TanyaChe_" + Utils_Custom.getDateAndTimeFormatted();
     @Test
     public void TR_createNewPost() {
         pageProvider.getLoginPage()
@@ -11,7 +15,7 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectToHomePage()
                 .getHeaderElement().clickOnButtonCreatePost()
                 .checkIsRedirectToCreateNewPostPage()
-                .enterTextIntoInputTitle("Title from TanyaChe")
+                .enterTextIntoInputTitle(POST_TITLE)
                 .enterTextIntoInputBody("Body")
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
@@ -21,6 +25,8 @@ public class CreateNewPostTest extends BaseTest {
         ;
 
         pageProvider.getPostPage().getHeaderElement().clickOnMyProfileButton()
+                .checkIsRedirectToProfilePage()
+                .checkIsPostWithTitleIsPresent(POST_TITLE, 1)
         ;
     }
 }
