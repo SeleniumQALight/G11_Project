@@ -26,7 +26,6 @@ public class CreateNewPostTest extends BaseTest {
                 .checkTextInSuccessMessage("New post successfully created.")
                 .checkIsPostUniqueCheckboxChecked("Is this post unique? : yes")
         ;
-                .checkTextInSuccessMessage("New post successfully created.");
 
         pageProvider.getPostPage().getHeaderForUserElement().clickOnButtonMyProfile()
                 .checkIsRedirectToProfilePage()

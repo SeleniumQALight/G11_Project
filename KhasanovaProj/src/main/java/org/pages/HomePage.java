@@ -11,17 +11,8 @@ public class HomePage extends ParentPage {
         super(webDriver);
     }
 
-    public HomePage checkIsButtonSignOutVisible() {
-//        Assert.assertTrue("Button Sign Out is not visible", isButtonSignOutVisible());
-        checkIsElementVisible(buttonSignOut);
-        return this;
     public HeaderForUserElement getHeaderForUserElement() {
         return new HeaderForUserElement(webDriver);
-    }
-
-    public HomePage checkIsButtonCreatePostVisible() {
-        checkIsElementVisible(buttonCreatePost);
-        return this;
     }
 
 //    private boolean isButtonSignOutVisible() {
@@ -40,16 +31,6 @@ public class HomePage extends ParentPage {
         //TODO check current URL
         return this;
     }
-
-    public CreateNewPostPage clickOnButtonCreatePost() {
-        clickOnElement(buttonCreatePost);
-        return new CreateNewPostPage(webDriver);
-    }
-    public void checkIsButtonSignOutInvisible() {
-        checkIsElementInvisible(buttonSignOut);
-        return;
-    }
-
 
 
 }

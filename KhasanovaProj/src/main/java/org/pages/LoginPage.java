@@ -52,23 +52,12 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public HomePage clickOnButtonSignIn() {
-//        webDriver.findElement(By.xpath("//button[text()='Sign In']")).click();
-        clickOnElement(buttonSignIn);
-        return new HomePage(webDriver);
-    }
-
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN);
         enterTextIntoInputPassword(TestData.VALID_PASSWORD);
         clickOnButtonSignIn();
         return new HomePage(webDriver);
-    }
-
-    public LoginPage checkIsButtonSignInVisible() {
-        checkIsElementVisible(buttonSignIn);
-        return this;
     }
 
     public LoginPage checkTextInSuccessMessage(String expectedMessageText) {
@@ -84,6 +73,16 @@ public class LoginPage extends ParentPage {
     public LoginPage checkIsInputPasswordInvisible() {
         checkIsElementInvisible(inputPassword);
         return this;
+    }
+
+    public void checkIsButtonSignInVisible() {
+        checkIsElementVisible(buttonSignIn);
+    }
+
+    public HomePage clickOnButtonSignIn() {
+//        webDriver.findElement(By.xpath("//button[text()='Sign In']")).click();
+        clickOnElement(buttonSignIn);
+        return new HomePage(webDriver);
     }
 
 }
