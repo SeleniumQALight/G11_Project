@@ -2,7 +2,6 @@ package org.postTest;
 
 import org.baseTest.BaseTest;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.utils.Utils_Custom;
 
@@ -26,7 +25,7 @@ public class CreateNewPostTest extends BaseTest {
                 .checkTextInSuccessMessage("New post successfully created.")
         ;
 
-        pageProvider.getPostPage().getHeaderElement().clickOnButtonMyProfile()
+        pageProvider.getPostPage().getHeaderElement().ClickOnMyProfileButton()
                 .checkIsRedirectOnMyProfilePage()
                 .checkPostWithTitleIsPresent(POST_TITLE, 1)
         ;

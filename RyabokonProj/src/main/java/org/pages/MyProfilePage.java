@@ -9,12 +9,12 @@ import java.util.List;
 
 public class MyProfilePage extends ParentPage{
 
-    private String postWithTitleLocator = "//*[text() ='%s']";
-
-
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
+
+    private String postWithTitleLocator = "//*[text() ='%s']";
+
 
     private List<WebElement> postsWithTitle(String postTitle) {
         return webDriver.findElements(
