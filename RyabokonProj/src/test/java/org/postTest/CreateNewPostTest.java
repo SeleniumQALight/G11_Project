@@ -8,7 +8,7 @@ import org.utils.Utils_Custom;
 public class CreateNewPostTest extends BaseTest {
     //GUID = 1b1b1b1b-1b1b-1b1b-1b1b-1b1b1b1b1b1b
 
-    final String POST_TITLE = "TR003 My Best life" + Utils_Custom.getDateAndTimeFormatted();
+    final String POST_TITLE = "TR003 *** Ryabokon" + Utils_Custom.getDateAndTimeFormatted();
 
     @Test
     public void TR003_createNewPost() {
