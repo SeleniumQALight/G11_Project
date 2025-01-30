@@ -35,4 +35,13 @@ public class HeaderForUserElement extends CommonActionsWithElements {
         clickOnElement(buttonCreatePost);
         return new CreateNewPostPage(webDriver);
     }
+
+    public void checkIsButtonCreatePostVisible() {
+        checkIsElementVisible(buttonCreatePost);
+    }
+
+
+    public void checkIsButtonSignOutNotVisible() {
+        checkIsElementNotVisible(buttonSignOut);
+    }
 }
