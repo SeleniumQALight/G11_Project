@@ -15,7 +15,7 @@ public class MyProfilePage extends ParentPage {
     private Logger logger = Logger.getLogger(getClass());
 
     private String postWithTitleLocator = "//*[text()='%s']";
-    @FindBy(xpath = "//*[text()='Post successfully deleted']")
+    @FindBy(xpath = "//*[text()='Post successfully deleted.']")
     private WebElement successMessageDelete;
 
     public MyProfilePage(WebDriver webDriver) {
