@@ -17,12 +17,8 @@ public class HomePage extends ParentPage {
         super(webdriver);
     }
 
-    public void checkIsButtonSignOutVisible() {
-       checkIsElementVisible(buttonSignOut);
-    }
-
-    public void checkIsButtonSignOutNotVisible() {
-        checkIsElementNotVisible(buttonSignOut);
+    public HeaderForUserElement getHeaderElement() {
+        return new HeaderForUserElement(webdriver);
     }
 
     public HomePage checkIsRedirectToHomePage() {
@@ -30,12 +26,7 @@ public class HomePage extends ParentPage {
         // TODO add current url
         return this;
     }
-    public void checkIsButtonCreatePostVisible() {
-        checkIsElementVisible(buttonCreatePost);
-    }
-    public CreateNewPostPage clickOnButtonCreatePost () {
-         clickOnElement(buttonCreatePost);
-         return new CreateNewPostPage(webdriver);
+
 
     }
 

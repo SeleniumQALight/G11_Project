@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 public class CommonActionsWithElements {
-    WebDriver webDriver;
+    protected WebDriver webDriver;
     private Logger logger = Logger.getLogger(getClass());
 
     public CommonActionsWithElements(WebDriver webDriver) {
@@ -58,6 +58,11 @@ public class CommonActionsWithElements {
     //check if element is visible
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue("Element isn't visible", isElementVisible(webElement));
+    }
+
+    //check if element is not visible
+    protected void checkIsElementNotVisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible", isElementVisible(webElement));
     }
 
     protected void checkTextInElement(WebElement webElement, String text) {

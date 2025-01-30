@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class CommonActionsWithElements {
 
-    WebDriver webdriver;
+    protected WebDriver webdriver;
     protected Logger logger = Logger.getLogger(getClass());
 
     public CommonActionsWithElements(WebDriver webdriver) {

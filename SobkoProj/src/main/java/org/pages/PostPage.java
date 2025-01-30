@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.pages.elements.HeaderForUserElement;
 
 
 public class PostPage extends ParentPage {
@@ -21,6 +22,9 @@ public class PostPage extends ParentPage {
         super(webdriver);
     }
 
+     public HeaderForUserElement getHeaderElement() {
+         return new HeaderForUserElement(webdriver);
+     }
     public PostPage checkIsRedirectToPostPage() {
         // TODO check url
         return this;
@@ -34,18 +38,5 @@ public class PostPage extends ParentPage {
         checkTextInElement(successMessage, expectedMessageText);
         return this;
     }
-
-    public PostPage checkIsPostUniqueCorrectState(String stateYesOrNo) {
-        if (stateYesOrNo.equals("yes")) {
-            Assert.assertTrue("State of unique post is not correct", isElementVisible(stateYesOfUniquePost));
-        } else if (stateYesOrNo.equals("no")) {
-            Assert.assertTrue("State of unique post is not correct", isElementVisible(stateNoOfUniquePost));
-        } else {
-            logger.error("Required state is not correct");
-            Assert.fail("Required state is not correct");
-        }
-        return this;
-    }
-
 
 }
