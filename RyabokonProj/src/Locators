@@ -10,7 +10,7 @@
 logo xpath .//*[@href = '/'  and @class = 'text-white']
 Text on the home page .//h1[@class = 'display-3' and 'Remember Writing?']
 
-3. Test Case the user is logged and the session is opened when leaving the user's page
+3. Test Case the user is logged out, log in page main loads with message "Remember writing"
 
 1. sign in button .//button[@class='btn btn-primary btn-sm']
 3. Text on the home page .//h1[@class = 'display-3' and 'Remember Writing?']
