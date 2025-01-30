@@ -1,7 +1,7 @@
 #Login Page
 input.usernameRegistration = " //input[@id='username-register'] "
 input.passwordRegistration = " //input[@id='password-register'] "
-button.registration = " //button[@class="py-3 mt-4 btn btn-lg btn-success btn-block"]"
+button.registration = " //button[contains(text(), 'Sign up')]"
 input.usernameSignIn = " //input[@id="username0"] "
 input.passwordSignIn = "//header//input[@name="password"] "
 button.SignIn = " //button[@class="btn btn-primary btn-sm"]
