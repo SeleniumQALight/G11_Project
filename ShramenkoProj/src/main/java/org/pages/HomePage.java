@@ -16,6 +16,7 @@ public class HomePage extends ParentPage {
     public HomePage checkIsRedirectToHomePage() {
         getHeaderElement().checkIsButtonSighOutVisible();
         //TODO check current url
+        //TODO check is button Sigh In isn't visible
         return this;
     }
 
