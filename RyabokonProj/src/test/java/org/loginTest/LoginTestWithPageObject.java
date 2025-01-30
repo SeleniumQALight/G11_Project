@@ -27,7 +27,7 @@ public class LoginTestWithPageObject extends BaseTest {
     pageProvider.getLoginPage().enterTextIntoInputLogin("qaato1");
     pageProvider.getLoginPage().enterTextIntoInputPassword("123456");
     pageProvider.getLoginPage().clickOnButtonSignIn();
-    pageProvider.getHomePage().checkIsButtonSignOutVisible();
+    pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
 }
 }
 

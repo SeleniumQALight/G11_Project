@@ -21,7 +21,7 @@ public class CreateNewPostTest extends BaseTest {
                 .enterTextIntoInputBody("Body**** of the ****post")
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectOnPostPage()
-                .checkIsSuccessMessagePresent()
+                .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
         ;
 
