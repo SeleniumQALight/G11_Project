@@ -14,8 +14,7 @@ public class LoginPage extends ParentPage {
     private WebElement inputPassword;
     @FindBy(xpath = "//button[text()='Sign In']")
     private WebElement buttonSignIn;
-    @FindBy(xpath = "//button[text()='Sign Out']")
-    private WebElement buttonSignOut;
+
 
     @FindBy(xpath = "//div[text()='Invalid username/password.']")
     private WebElement invalidLoginOrPasswordMessage;
