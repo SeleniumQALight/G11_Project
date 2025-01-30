@@ -34,6 +34,13 @@ public class CreateNewPostTest extends BaseTest {
 
     @After
     public void deletePosts() {
+        final String POST_TITLE = "TR003_savchenko_" + Utils_Custom.getDateAndTimeFormatted();
+        pageProvider.getHomePage()
+                .openHomePageAndLoginIfNeed()
+                .getHeaderElement().clickOnButtonMyProfile()
+                .checkIsRedirectToProfilePage()
+                .deletePostsTillPresent(POST_TITLE)
+                ;
 
     }
 }
