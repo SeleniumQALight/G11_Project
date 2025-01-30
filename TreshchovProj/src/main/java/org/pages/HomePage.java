@@ -1,13 +1,13 @@
 package org.pages;
 
-import org.apache.log4j.Logger;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.pages.elements.HeaderForUserElement;
 
 public class HomePage extends ParentPage {
-  //  Logger logger = Logger.getLogger(getClass());
+
 
 
 
@@ -17,9 +17,10 @@ public class HomePage extends ParentPage {
 
     public HeaderForUserElement getHeaderElement() {
         return new HeaderForUserElement(webDriver);
+    }
 
     public HomePage checkIsButtonSignOutVisible() {
-
+    getHeaderElement().checkIsButtonSignOutVisible();
         return this;
     }
 
@@ -30,10 +31,10 @@ public class HomePage extends ParentPage {
         return this;
     }
 
-    }
+
 
     public HomePage checkIsButtonCreatePostVisible() {
-        checkIsElementVisible(buttonCreatePost);
+        getHeaderElement().checkIsButtonCreatePostVisible();
         return this;
     }
 
