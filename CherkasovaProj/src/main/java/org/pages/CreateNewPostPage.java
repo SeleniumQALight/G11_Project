@@ -48,10 +48,6 @@ public class CreateNewPostPage extends ParentPage {
         return this;
     }
 
-//    public CreateNewPostPage checkCheckboxState(String expectedState) {
-//        checkStateCheckbox(checkbox, expectedState);
-//        return this;
-//    }
 
 }
 
