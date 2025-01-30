@@ -3,6 +3,7 @@ package org.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.pages.elements.HeaderForUserElement;
 
 
 public class PostPage extends ParentPage {
@@ -14,6 +15,9 @@ public class PostPage extends ParentPage {
         super(webdriver);
     }
 
+     public HeaderForUserElement getHeaderElement() {
+         return new HeaderForUserElement(webdriver);
+     }
     public PostPage checkIsRedirectToPostPage() {
         // TODO check url
         return this;
@@ -27,5 +31,6 @@ public class PostPage extends ParentPage {
         checkTextInElement(successMessage, expectedMessageText);
         return this;
     }
+
 
 }
