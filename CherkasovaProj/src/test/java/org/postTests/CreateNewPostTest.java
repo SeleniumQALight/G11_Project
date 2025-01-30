@@ -23,7 +23,6 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectToPostPage()
                 .checkIsSussesMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
-//                .checkCheckboxState()
                 .checkMessageUnique()
 
 
