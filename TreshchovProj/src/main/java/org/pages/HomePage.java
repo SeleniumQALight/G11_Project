@@ -1,10 +1,13 @@
 package org.pages;
 
+
+import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.pages.elements.HeaderForUserElement;
 
 public class HomePage extends ParentPage {
-  //  Logger logger = Logger.getLogger(getClass());
+
 
 
 
@@ -16,6 +19,11 @@ public class HomePage extends ParentPage {
         return new HeaderForUserElement(webDriver);
     }
 
+    public HomePage checkIsButtonSignOutVisible() {
+    getHeaderElement().checkIsButtonSignOutVisible();
+        return this;
+    }
+
     public HomePage checkIsRedirectToHomePage() {
         getHeaderElement().checkIsButtonSignOutVisible();
         //TODO check current URL
@@ -23,5 +31,17 @@ public class HomePage extends ParentPage {
         return this;
     }
 
+
+
+    public HomePage checkIsButtonCreatePostVisible() {
+        getHeaderElement().checkIsButtonCreatePostVisible();
+        return this;
+    }
+
+    public HomePage checkIsLoginPasswordFieldVisible(){
+        Assert.assertTrue("Login field is visible", isElementVisible(webDriver.findElement(By.xpath("//input[@placeholder='Username']"))));
+        Assert.assertTrue("Password field is visible", isElementVisible(webDriver.findElement(By.xpath("//input[@placeholder='Password']"))));
+        return this;
+    }
 
 }
