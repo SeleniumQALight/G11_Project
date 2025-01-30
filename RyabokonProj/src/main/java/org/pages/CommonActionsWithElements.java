@@ -14,18 +14,19 @@ public class CommonActionsWithElements {
     public CommonActionsWithElements(WebDriver webDriver) {
 
         this.webDriver = webDriver;
-        PageFactory.initElements(webDriver, this); //initializes element described in FindBy
+        PageFactory.initElements(webDriver, this); //initializes element described in FindBy, this allows flexibility
+        //if we come form login page to home page, or login page or profile page this will return the page we need
+        //and it allows us to reload the page and have an actual state of the page
     }
 
     //method for clearing and entering text into the element
-    protected void clearAndEnterTextIntoElement(WebElement webElementelement, String text) {
+    protected void clearAndEnterTextIntoElement(WebElement webElement, String text) {
         try {
-            webElementelement.clear();
-            webElementelement.sendKeys(text);
-            System.out.println(text + " was input into element");
+            webElement.clear();
+            webElement.sendKeys(text);
+            logger.info(text + " was input into element");
         } catch (Exception e) {
-            System.out.println("Cannot work with element " + webElementelement);
-            Assert.fail("Cannot work with element " + webElementelement);
+            printErrorAndStopTest(e);
         }
     }
 
@@ -36,10 +37,11 @@ public class CommonActionsWithElements {
             webElement.click();
             logger.info("Element was clicked");
         } catch (Exception e) {
-            logger.error("Cannot work with element " + e);
-            Assert.fail("Cannot work with element " + e);
+            printErrorAndStopTest(e);
         }
     }
+
+
 
     //isElementVisible method
 
@@ -75,7 +77,6 @@ public class CommonActionsWithElements {
         logger.error("Cannot work with element " + e);
         Assert.fail("Cannot work with element " + e);
     }
-
 
 }
 

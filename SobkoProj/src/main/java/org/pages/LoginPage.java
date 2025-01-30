@@ -1,7 +1,7 @@
 package org.pages;
 
 import org.apache.log4j.Logger;
-import org.data.TestData;
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,6 +15,9 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = "//input[@placeholder='Password']")
     private WebElement inputPassword;
+
+    @FindBy(xpath = "//*[text()='Invalid username/password.']")
+    private WebElement warningMessage;
 
 
     @FindBy(xpath = "//button[text()='Sign In']")
@@ -37,15 +40,14 @@ public class LoginPage extends ParentPage {
         return this;
 
     }
-
+    public void checkIsButtonSignInVisible() {
+        checkIsElementVisible(clickSignIn);
+    }
     public LoginPage enterTextIntoInputPassword(String password) {
-        //WebElement inputPassword = webdriver.findElement(By.xpath("//input[@placeholder='Password']"));
-//        inputPassword.clear();
-//        inputPassword.sendKeys(password);
-//        logger.info(password + "was inputted into input password");
         clearAndEnterTextIntoElement(inputPassword, password);
         return this;
     }
+
 
     public void clickOnButtonSignIn() {
         clickOnElement(clickSignIn);
@@ -58,6 +60,17 @@ public class LoginPage extends ParentPage {
         this.clickOnButtonSignIn();
         return new HomePage(webdriver);
 
+    }
+
+    public void checkWarningMessageInvalidLoginPassword() {
+        Assert.assertTrue("Warning message is not displayed", isElementVisible(warningMessage));
+    }
+
+    public void checkIsInputLoginNotVisible() {
+        checkIsElementNotVisible(inputUserName);
+    }
+    public void checkIsInputPasswordNotVisible() {
+        checkIsElementNotVisible(inputPassword);
     }
 }
 
