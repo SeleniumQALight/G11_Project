@@ -18,24 +18,12 @@ public class HomePage extends ParentPage{
 
 
 
-
-    public void checkIsButtonSignOutNotVisible() {
-        checkIsElementNotVisible(buttonSignOut);
-    }
-
     public HomePage checkIsRedirectToHomePage() {
         getHeaderElement().checkIsButtonSignOutVisible();
         //TODO check current URL
         return this;
     }
 
-    public void checkIsButtonCreatePostVisible() {
-        checkIsElementVisible(buttonCreatePost);
-    }
 
-    public CreateNewPostPage clickOnButtonCreatePost() {
-        clickOnElement(buttonCreatePost);
-        return new CreateNewPostPage(webDriver);
-    }
 
 }
