@@ -48,7 +48,7 @@ public class CommonActionsWithElements {
     }
 
     // method for checking visibility of element
-    private boolean isElementVisible(WebElement webElement) {
+    public boolean isElementVisible(WebElement webElement) {
         try {
             boolean state = webElement.isDisplayed();
             if (state) {

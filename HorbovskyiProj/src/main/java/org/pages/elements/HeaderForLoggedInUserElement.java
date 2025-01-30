@@ -31,6 +31,10 @@ public class HeaderForLoggedInUserElement extends CommonActionsWithElements {
         checkIsElementVisible(buttonSignOut);
     }
 
+    public boolean isButtonSignOutVisible() {
+        return isElementVisible(buttonSignOut);
+    }
+
     public CreateNewPostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
         return new CreateNewPostPage(webDriver);
