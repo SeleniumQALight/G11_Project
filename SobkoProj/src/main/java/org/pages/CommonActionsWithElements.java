@@ -24,7 +24,7 @@ public class CommonActionsWithElements {
 
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + " was inputted into input field");
+            logger.info(text + " was inputted into input field" + getElementName(webElement));
         } catch (Exception e) {
             logger.error("Cannot work with element " + e);
             Assert.fail("Cannot work with element " + e);
@@ -32,11 +32,33 @@ public class CommonActionsWithElements {
 
     }
 
+    private String getElementName(WebElement webElement) {
+        String elementName;
+        try {
+            elementName = webElement.getAccessibleName();
+
+        } catch (Exception e) {
+            elementName = "";
+        }
+
+        return elementName;
+    }
+
     //method for clicking on element
     protected void clickOnElement(WebElement webElement) {
         try {
+            String elementName = getElementName(webElement);
             webElement.click();
-            logger.info("Element was clicked");
+            logger.info(elementName + "Element was clicked");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+    protected void clickOnElement(WebElement webElement, String elementName) {
+        try {
+            elementName = getElementName(webElement);
+            webElement.click();
+            logger.info(elementName + "Element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -52,7 +74,7 @@ public class CommonActionsWithElements {
         try {
             boolean state = webElement.isDisplayed();
             if (state) {
-                logger.info("Element is displayed");
+                logger.info(getElementName(webElement) + "Element is displayed");
             } else {
                 logger.info("Element is not displayed");
             }
@@ -73,7 +95,7 @@ public class CommonActionsWithElements {
     }
 
     protected void checkTextInElement(WebElement webElement, String text) {
-        logger.error("Text in element not expected");
+        logger.error("Text in element not expected" + getElementName(webElement));
         Assert.assertEquals("Text in element not expected", text, webElement.getText());
         logger.info("Text in element is expected");
 
@@ -83,7 +105,7 @@ public class CommonActionsWithElements {
         try {
             boolean state = webElement.isSelected();
             if (state) {
-                logger.info("Checkbox has already been selected");
+                logger.info("Checkbox has already been selected" + getElementName(webElement));
             } else {
                 webElement.click();
                 logger.info("Checkbox is selected");
@@ -92,6 +114,7 @@ public class CommonActionsWithElements {
             logger.info("Element is not found");
         }
     }
+
     protected void setUncheckedOrNotifyIfAlreadyClear(WebElement webElement) {
         try {
             boolean state = webElement.isSelected();
