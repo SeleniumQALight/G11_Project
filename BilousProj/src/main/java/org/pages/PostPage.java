@@ -39,7 +39,7 @@ public class PostPage extends ParantPage {
 
 
     public MyProfilePage clickOnDeleteButton() {
-        clickOnElement(buttonDeletePost);
+        clickOnElement(buttonDeletePost, "Delete post button");
         return new MyProfilePage(webDriver);
     }
 }
