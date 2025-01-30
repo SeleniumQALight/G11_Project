@@ -47,7 +47,7 @@ public class MyProfilePage extends ParentPage {
                     .checkIsRedirectToPostPage()
                     .clickOnDeleteButton()
                     .checkIsRedirectToProfilePage()
-                    .checkIsIsMessageSuccessDeletePresent();
+                    .checkIsMessageSuccessDeletePresent();
             logger.info("Post with title " + postTitle + " was deleted");
             postsList = getPostsList(postTitle);
             counter++;
@@ -58,7 +58,7 @@ public class MyProfilePage extends ParentPage {
         return this;
     }
 
-    private MyProfilePage checkIsIsMessageSuccessDeletePresent() {
+    private MyProfilePage checkIsMessageSuccessDeletePresent() {
         checkIsElementVisible(successMessageDelete);
         return this;
     }
