@@ -38,21 +38,19 @@ Home page is loaded
 
 
 
-3. Test Case the user is logged and the session is opened when leaving the user's page
+3. Test Case. When the user the user logs out, log in page main loads
+with message "Remember writing"
 
-Precondition: User is logged, session is opened
+Precondition: User is logged, home page is opened
 
 Steps to reproduce
-1. Click on the logo on the top banner
-2. Wait till the home page loads
-3. Click back on the avatar to return to the profile's page
+1. Click on the log out button on the top banner
+
 
 Expected result
 1. The text box "Remember Writing" is seen.
-2. The user is logged.
-3. The user returns to his profile page without logging in again.
-
-Post Condition
+2. The user is logged out.
+3. button Sign Out is displayed.
 
 
 
