@@ -26,6 +26,11 @@ public class HeaderForUserElement extends CommonActionsWithElements {
         checkIsElementVisible(buttonSighOut);
     }
 
+    public void checkIsButtonSighOutNotVisible() {
+        checkIsElementNotVisible(buttonSighOut);
+    }
+
+
     public MyProfilePage clickOnMyProfileButton() {
         clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
@@ -34,5 +39,13 @@ public class HeaderForUserElement extends CommonActionsWithElements {
     public CreateNewPostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
         return new CreateNewPostPage(webDriver);
+    }
+
+    public void checkIsButtonCreatePostNotVisible() {
+        checkIsElementNotVisible(buttonCreatePost);
+    }
+
+    public void checkIsButtonCreatePostVisible() {
+        checkIsElementVisible(buttonCreatePost);
     }
 }
