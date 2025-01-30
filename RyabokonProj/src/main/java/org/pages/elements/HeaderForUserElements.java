@@ -35,8 +35,12 @@ public class HeaderForUserElements  extends CommonActionsWithElements {
         return new CreateNewPostPage(webDriver);
     }
 
-    public MyProfilePage ClickOnMyProfileButton() {
+    public MyProfilePage ClickOnButtonMyProfile() {
         clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
+    }
+
+    public boolean isButtonSignOutVisible() {
+        return isElementVisible(buttonSignOut);
     }
 }

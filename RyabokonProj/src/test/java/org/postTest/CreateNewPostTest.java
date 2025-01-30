@@ -25,8 +25,8 @@ public class CreateNewPostTest extends BaseTest {
                 .checkTextInSuccessMessage("New post successfully created.")
         ;
 
-        pageProvider.getPostPage().getHeaderElement().ClickOnMyProfileButton()
-                .checkIsRedirectOnMyProfilePage()
+        pageProvider.getPostPage().getHeaderElement().ClickOnButtonMyProfile()
+                .checkIsRedirectToProfilePage()
                 .checkPostWithTitleIsPresent(POST_TITLE, 1)
         ;
     }
@@ -34,6 +34,12 @@ public class CreateNewPostTest extends BaseTest {
 
     @After
     public void deletePost() {
+pageProvider.getHomePage().openHomePageAndLoginIfNeeded()
+        .getHeaderElement().ClickOnButtonMyProfile()
+        .checkIsRedirectToProfilePage()
+        .deletePostsTillPresent(POST_TITLE)
+
+        ;
 
     }
 }
