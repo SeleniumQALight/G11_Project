@@ -27,7 +27,7 @@ public class CreateNewPostTest extends BaseTest {
                 .clickOnButtonSaveNewPost().checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
-                .checkStateUniquePost();
+                .checkStateUniquePost("yes");
 
         pageProvider.getPostPage().getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()

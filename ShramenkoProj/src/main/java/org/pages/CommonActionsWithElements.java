@@ -96,23 +96,11 @@ public class CommonActionsWithElements {
     protected void checkboxState(WebElement webElement, String neededState) {
         switch (neededState) {
             case "check":
-                if (webElement.isSelected()) {
-                    logger.info("Checkbox is already checked");
-                } else {
-                    webElement.click();
-                    logger.info("Checkbox is checked");
-                }
+                makeCheckBoxSelected(webElement);
                 break;
             case "uncheck":
-                if (webElement.isSelected()) {
-                    webElement.click();
-                    logger.info("Checkbox is unchecked");
-                } else {
-                    logger.info("Checkbox isn't already selected");
-                }
+                makeCheckBoxNotSelected(webElement);
                 break;
-            default:
-                logger.info("Checkbox state was not changed");
         }
     }
 

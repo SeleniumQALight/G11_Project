@@ -1,21 +1,27 @@
 package org.pages;
 
+import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.apache.log4j.Logger;
 import org.pages.elements.HeaderForUserElement;
 
+import java.util.List;
+
 public class PostPage extends ParentPage {
 
 @FindBy(xpath ="//*[contains(@class,'alert-success')]")
 private WebElement successMessage;
 
-@FindBy(xpath = "//p[text()='Is this post unique? : yes']")
-private WebElement checkboxUniquePostYes;
+//@FindBy(xpath = "//p[text()='Is this post unique? : yes']")
+//private WebElement checkboxUniquePostYes;
+//
+//@FindBy(xpath = "//p[text()='Is this post unique? : no']")
+//private WebElement checkboxUniquePostNo;
 
-@FindBy(xpath = "//p[text()='Is this post unique? : no']")
-private WebElement checkboxUniquePostNo;
+private String checkboxUniquePostLocator = "//p[text()='Is this post unique? : %s']";
 
 Logger logger = Logger.getLogger(getClass());
 
@@ -43,15 +49,17 @@ Logger logger = Logger.getLogger(getClass());
         return this;
     }
 
-    public void checkStateUniquePost(){
+    public boolean checkStateUniquePost(String state) {
         try {
-            if (checkboxUniquePostYes.isDisplayed()) {
-                logger.info("It's unique post");
-            }
+            WebElement checkboxUniquePost = webDriver.findElement(
+                    By.xpath(
+                            String.format(checkboxUniquePostLocator, state)
+                    ));
+            return isElementVisible(checkboxUniquePost);
         } catch (Exception e) {
-            logger.info("It's not unique post");
+            logger.error("Element not found");
+            return false;
         }
     }
-
 
 }
