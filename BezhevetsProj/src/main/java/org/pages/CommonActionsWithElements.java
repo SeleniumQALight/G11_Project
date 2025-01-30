@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 public class CommonActionsWithElements {
-    WebDriver webDriver;
+    protected WebDriver webDriver;
     private Logger logger = Logger.getLogger(getClass());
 
     public CommonActionsWithElements(WebDriver webDriver) {
@@ -55,8 +55,8 @@ public class CommonActionsWithElements {
 
     //checkTextInElement
     protected void checkTextInElement(WebElement webElement, String text) {
-            Assert.assertEquals("Text in element is not expected", text, webElement.getText());
-            logger.info("Text in element is expected");
+        Assert.assertEquals("Text in element is not expected", text, webElement.getText());
+        logger.info("Text in element is expected");
     }
 
     private void printErrorAndStopTest(Exception e) {

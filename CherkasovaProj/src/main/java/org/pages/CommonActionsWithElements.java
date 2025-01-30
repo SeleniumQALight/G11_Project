@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 public class CommonActionsWithElements {
-    WebDriver webDriver;
+    protected WebDriver webDriver;
     private Logger logger = Logger.getLogger(getClass());
 
     public CommonActionsWithElements(WebDriver webDriver) {
@@ -53,13 +53,48 @@ public class CommonActionsWithElements {
 
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue("Element is not visible", isElementVisible(webElement));
+
     }
 
-//    checkTextInElement
-    protected void checkTextInElement(WebElement webElement, String text) {
-            Assert.assertEquals("Text in element is not expected", text, webElement.getText());
-            logger.info("Text in element is expected");
+    protected void checkIsElementNotVisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible", isElementVisible(webElement));
     }
+
+    //    checkTextInElement
+    protected void checkTextInElement(WebElement webElement, String text) {
+        Assert.assertEquals("Text in element is not expected", text, webElement.getText());
+        logger.info("Text in element is expected");
+    }
+
+    protected void selectCheckbox(WebElement webElement) {
+        if (!webElement.isSelected()) {
+            webElement.click();
+            logger.info("Checkbox is selected");
+        } else {
+            logger.info("Checkbox is already selected");
+        }
+    }
+
+    protected void unselectCheckbox(WebElement webElement) {
+        if (webElement.isSelected()) {
+            webElement.click();
+            logger.info("Checkbox is unselected");
+        } else {
+            logger.info("Checkbox is already unselected");
+        }
+    }
+
+    protected void setStateToCheckbox(WebElement webElement, String state) {
+        if (state.equalsIgnoreCase("check")) {
+            selectCheckbox(webElement);
+        } else if (state.equalsIgnoreCase("uncheck")) {
+            unselectCheckbox(webElement);
+        } else {
+            logger.error("State should be 'check' or 'uncheck'");
+        }
+    }
+
+
 
 
     private void printErrorAndStopTest(Exception e) {
