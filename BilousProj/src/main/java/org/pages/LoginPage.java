@@ -1,6 +1,7 @@
 package org.pages;
 
 import org.apache.log4j.Logger;
+import org.data.TestData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,32 +19,60 @@ public class LoginPage extends ParantPage {
     @FindBy(xpath = "//button[text()='Sign In']")
     private WebElement buttonSignIn;
 
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement massageField;
 
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public void openPage() {
+    public LoginPage openPage() {
         String baseUrl = "https://aqa-complexapp.onrender.com";
         webDriver.get(baseUrl);
         logger.info("Login Page was opened with url " + baseUrl);
+        return this;
     }
 
-    public void enterTextIntoInputLogin(String login) {
-        inputUserName.clear();
-        inputUserName.sendKeys(login);
-        logger.info(login + "was inputed into input username");
+    public LoginPage enterTextIntoInputLogin(String login) {
+        clearAndEnterTextInToElement(inputUserName, login);
+        return this;
     }
 
-    public void enterTextIntoPassword(String password) {
-        inputPassword.clear();
-        inputPassword.sendKeys(password);
-        logger.info("password was inputed into Password");
+    public LoginPage enterTextIntoPassword(String password) {
+        clearAndEnterTextInToElement(inputPassword, password);
+        return this;
+    }
+
+    public void checkIsButtonSignInVisible() {
+        checkIsElementVisible(buttonSignIn);
+    }
+
+    public void isLoginFieldInVisible() {
+        checkIsElementInvisible(inputUserName); }
+
+    public void isPasswordFieldInVisible() {
+        checkIsElementInvisible(inputPassword);
+    }
+
+
+
+
+
+    public void checkIsWarningMessageDisplayed() {
+        checkTextInElement(massageField, "Invalid username/password.");
+    }
+
+    public HomePage openLoginPageAndFillLoginFormWithValidCred() {
+        openPage();
+        enterTextIntoInputLogin(TestData.VALID_LOGIN);
+        enterTextIntoPassword(TestData.VALID_PASSWORD);
+        clickInButtomSignIn();
+        return new HomePage(webDriver);
     }
 
     public void clickInButtomSignIn() {
-        buttonSignIn.click();
-        logger.info("Button SighIn was clicked");
+        clickOnElement(buttonSignIn);
     }
+
 }

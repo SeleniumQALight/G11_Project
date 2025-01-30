@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class CreateNewPostPage extends ParentPage {
     @FindBy(xpath = "//*[@name='title']")
+    //@FindBy(name = "title") as an example of another way to find an element
     private WebElement inputTitle;
 
     @FindBy(xpath = "//*[@id='post-body']")

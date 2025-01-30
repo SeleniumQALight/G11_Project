@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class CreateNewPostPage extends ParentPage {
-//    @FindBy(xpath = "//*[@name='title']")
+    //    @FindBy(xpath = "//*[@name='title']")
     @FindBy(name = "title")
     private WebElement inputTitle;
 
@@ -14,6 +14,9 @@ public class CreateNewPostPage extends ParentPage {
 
     @FindBy(xpath = "//button[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
+
+    @FindBy(xpath = ".//input[@name='uniquePost']")
+    private WebElement checkbox;
 
     public CreateNewPostPage(WebDriver webDriver) {
         super(webDriver);
@@ -39,4 +42,12 @@ public class CreateNewPostPage extends ParentPage {
         clickOnElement(buttonSaveNewPost);
         return new PostPage(webDriver);
     }
+
+    public CreateNewPostPage setCheckboxState(String state) {
+        setStateToCheckbox(checkbox, state);
+        return this;
+    }
+
+
 }
+

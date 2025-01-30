@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 public class CommonActionsWithElements {
-    WebDriver webDriver; //create constructor
+    protected WebDriver webDriver; //create constructor
     private Logger logger = Logger.getLogger(getClass());
 
     public CommonActionsWithElements(WebDriver webDriver) {

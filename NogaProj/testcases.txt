@@ -1,0 +1,74 @@
+TC001 Sign In
+Precondition:
+1. Open login page https://aqa-complexapp.onrender.com/.
+2. Sigh Out if user is logged in
+
+Steps:
+1. Input valid login user in Username
+2. Input valid password to Password
+3. Click to Sign In button
+4. Find Sign Out button
+
+Expected result:
+Page has button Sign Out
+
+
+TC002 Sign Out
+Precondition:
+User is logged in
+
+Steps:
+1. Click Sign Out button
+
+Expected result:
+Page has button Sign In
+
+TC003 Create Post
+Precondition:
+User is logged in
+
+Steps:
+1. Click to Create Post button
+2. Input text to Title
+3. Input text to Body Content
+4. Click to Save New Post button
+
+Expected result:
+Page has message "New post successfully created."
+Page shows post with Title and Body Content
+
+Post-condition:
+Delete Post
+
+
+TC004 Edit Post
+Precondition:
+1. Create Post
+2. Open post by id
+
+Steps:
+1. Click on Edit icon
+2. Change Title
+3. Change Body Content
+4. Click to Save Updates button
+5. Open post by id
+
+Expected result:
+1. Post has new Title
+2. Post has new Body Content
+
+Post-condition:
+Delete Post
+
+TC005 Delete Post
+Precondition:
+1. User is logged in
+2. Create Post
+3. Open post by id
+
+Steps:
+1. Click on Delete icon
+
+Expected result:
+Page has message "Post was deleted."
+Page url is https://aqa-complexapp.onrender.com/profile/qaauto
