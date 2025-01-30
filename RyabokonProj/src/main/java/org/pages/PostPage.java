@@ -1,8 +1,10 @@
 package org.pages;
 
+import org.apache.hc.core5.http.HeaderElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.pages.elements.HeaderForUserElements;
 
 public class PostPage extends ParentPage {
     //"//*[contains(@class,'alert-success')]"
@@ -12,6 +14,9 @@ public class PostPage extends ParentPage {
         super(webDriver);
     }
 
+    public HeaderForUserElements getHeaderElement() {
+        return new HeaderForUserElements(webDriver);
+    }
     public PostPage checkIsRedirectOnPostPage() {
         //TODO checkURL();
         return this;
