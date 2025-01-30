@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 
 public class CommonActionsWithElements {
-    WebDriver webDriver;
+    protected WebDriver webDriver;
     private Logger logger = Logger.getLogger(getClass());
 
     public CommonActionsWithElements(WebDriver webDriver) {
@@ -30,7 +30,6 @@ public class CommonActionsWithElements {
         }
     }
 
-
     protected boolean isElementVisible(WebElement webElement) {
         try {
             boolean state = webElement.isDisplayed();
@@ -49,6 +48,11 @@ public class CommonActionsWithElements {
     //check if element is visible
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue("Element is not visible", isElementVisible(webElement));
+    }
+
+    //check if element is invisible
+    protected void checkIsElementInvisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible", isElementVisible(webElement));
     }
 
     // method for clicking on element
@@ -70,5 +74,37 @@ public class CommonActionsWithElements {
         logger.error("Cannot work with element " + e);
         Assert.fail("Cannot work with element " + e);
     }
+
+    // method for making checkbox checked
+    protected void makeCheckboxChecked(WebElement webElement) {
+        if (webElement.isSelected()) {
+            logger.info("Checkbox is already checked");
+        } else {
+            clickOnElement(webElement);
+            logger.info("Checkbox is checked");
+        }
+    }
+
+    //method for making checkbox unchecked
+    protected void makeCheckBoxUnchecked(WebElement webElement) {
+        if (webElement.isSelected()) {
+            clickOnElement(webElement);
+            logger.info("Checkbox is unchecked");
+        } else {
+            logger.info("Checkbox is already unchecked");
+        }
+    }
+
+    protected void setNeededStateToCheckBox(WebElement webElement, String neededState) {
+        if (neededState.equals("Check")) {
+            makeCheckboxChecked(webElement);
+        } else if (neededState.equals("Uncheck")) {
+            makeCheckBoxUnchecked(webElement);
+        }  else {
+            logger.error("State should be only 'Check' or 'Uncheck'");
+            Assert.fail("State should be only 'Check' or 'Uncheck'");
+        }
+    }
+
 
 }
