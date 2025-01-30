@@ -39,4 +39,17 @@ public class PostPage extends ParentPage {
         return this;
     }
 
+    public PostPage checkIsPostUniqueCorrectState(String isUnique) {
+        if (isUnique.equals("yes")) {
+            checkIsElementVisible(stateYesOfUniquePost);
+            checkIsElementNotVisible(stateNoOfUniquePost);
+        } else if (isUnique.equals("no")) {
+            checkIsElementVisible(stateNoOfUniquePost);
+            checkIsElementNotVisible(stateYesOfUniquePost);
+        } else {
+            Assert.fail("State should be only 'yes' or 'no'");
+        }
+        return this;
+
+    }
 }

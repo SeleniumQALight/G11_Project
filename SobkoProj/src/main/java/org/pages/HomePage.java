@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.pages.elements.HeaderForUserElement;
 
 
 public class HomePage extends ParentPage {
@@ -22,12 +23,9 @@ public class HomePage extends ParentPage {
     }
 
     public HomePage checkIsRedirectToHomePage() {
-        checkIsButtonSignOutVisible();
-        // TODO add current url
+        getHeaderElement().checkIsButtonSignOutVisible();
         return this;
     }
 
-
-    }
 
 }
