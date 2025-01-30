@@ -15,6 +15,7 @@ public class HomePage extends ParentPage {
     @FindBy(xpath = "//input[@placeholder='Username']")
     private WebElement inputUserName;
 
+
     @FindBy(xpath = "//input[@placeholder='Password']")
     private WebElement inputPassword;
 //    private Logger logger = Logger.getLogger(getClass());

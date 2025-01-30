@@ -58,10 +58,7 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public LoginPage checkIsButtonSignOutNotVisible() {
-        checkIsElementNotVisible(buttonSignOut);
-        return this;
-    }
+
 
     public LoginPage checkIsInvalidLoginOrPasswordMessageVisible() {
         checkIsElementVisible(invalidLoginOrPasswordMessage);

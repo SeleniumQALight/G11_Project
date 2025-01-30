@@ -89,8 +89,7 @@ public class CommonActionsWithElements {
     }
 
     protected void setCheckboxState(WebElement webElement, String neededState) {
-        boolean currentState = webElement.isSelected();
-        if (neededState.equals("check")) {
+        if (neededState.equalsIgnoreCase("check")) {
             selectCheckbox(webElement);
         } else if (neededState.equals("uncheck")) {
             unselectCheckbox(webElement);

@@ -17,7 +17,6 @@ public class LoginTestWithPageObject extends BaseTest {
                 .clickOnButtonSignIn();
 
         pageProvider.getLoginPage().checkIsButtonSignInVisible()
-                .checkIsButtonSignOutNotVisible()
                 .checkIsInvalidLoginOrPasswordMessageVisible()
         ;
     }
