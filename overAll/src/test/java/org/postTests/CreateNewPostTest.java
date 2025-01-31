@@ -8,7 +8,7 @@ import org.utils.Utils_Custom;
 public class CreateNewPostTest extends BaseTest {
     // GUID = 1b1b1b1b-1b1b-1b1b-1b1b-1b1b1b1b1b1b
 
-    final String POST_TITLE = "TR003_bereska_" + Utils_Custom.getDateAndTimeFormatted();
+    final String POST_TITLE = "TR003_taras_" + Utils_Custom.getDateAndTimeFormatted();
     @Test
     public void TR003_createNewPost() {
         pageProvider.getLoginPage()
@@ -37,6 +37,7 @@ public class CreateNewPostTest extends BaseTest {
                 .getHeaderElement().clickOnButtonMyProfile()
                 .checkIsRedirectToProfilePage()
                 .deletePostsTillPresent(POST_TITLE)
+
         ;
 
     }
