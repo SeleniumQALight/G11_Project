@@ -30,6 +30,10 @@ public class HeaderForUserElement extends CommonActionsWithElements {
         return this;
     }
 
+    public HeaderForUserElement checkIsButtonCreatePostVisible() {
+        checkIsElementVisible(buttonCreatePost);
+        return this;
+    }
 
     public CreateNewPostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);

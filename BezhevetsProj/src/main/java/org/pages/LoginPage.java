@@ -31,6 +31,16 @@ public class LoginPage extends ParrentPage {
         checkIsElementVisible(alertInvalidLoginOrPassword);
     }
 
+    public LoginPage checkIsUsernameFieldVisible() {
+        checkIsElementNotVisible(inputUserName);
+        return this;
+    }
+
+    public LoginPage checkIsPasswordFieldVisible() {
+        checkIsElementNotVisible(inputPassword);
+        return this;
+    }
+
     public HeaderForUserElement getHeaderElement() {
         return new HeaderForUserElement(webDriver);
     }
