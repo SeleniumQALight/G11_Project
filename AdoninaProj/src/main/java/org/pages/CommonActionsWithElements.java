@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
+import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.elementName;
+
 public class CommonActionsWithElements {
   protected WebDriver webDriver;
   private Logger logger = Logger.getLogger(getClass());
@@ -19,18 +21,39 @@ public class CommonActionsWithElements {
     try {
       webElement.clear();
       webElement.sendKeys(text);
-      logger.info(text + " was inputted into input");
+      logger.info(text + " was inputted into element " + getElementName(webElement));
     } catch (Exception e) {
       printErrorAndStopTest(e);
 
     }
   }
 
+  private String getElementName(WebElement webElement) {
+    String elementName;
+    try {
+      elementName = webElement.getAccessibleName();
+    } catch (Exception e) {
+      elementName = "";
+    }
+    return elementName;
+  }
+
   protected void clickOnElement(WebElement webElement) {
     try {
+      String elementName = getElementName(webElement);
       webElement.click();
-      logger.info("Element was clicked");
+      logger.info(elementName + " was clicked");
     } catch (Exception e) {
+      printErrorAndStopTest(e);
+    }
+  }
+
+  protected void clickOnElement(WebElement webElement, String elementName) {
+    try {
+      webElement.click();
+      logger.info(elementName + " was clicked");
+    } catch (Exception e) {
+      logger.error("Can not work with element " + elementName);
       printErrorAndStopTest(e);
     }
   }
@@ -39,9 +62,9 @@ public class CommonActionsWithElements {
     try {
       boolean state = webElement.isDisplayed();
       if (state) {
-        logger.info("Element is visible");
+        logger.info(getElementName(webElement) + " is visible");
       } else {
-        logger.info("Element is not visible");
+        logger.info(getElementName(webElement) + " is not visible");
       }
       return state;
     } catch (Exception e) {
@@ -56,8 +79,8 @@ public class CommonActionsWithElements {
 
   //checkTextInElement
   protected void checkTextInElement(WebElement webElement, String text) {
-    Assert.assertEquals("Text in element not expected", text, webElement.getText());
-    logger.info("Text in element is expected");
+    Assert.assertEquals("Text in element " + getElementName(webElement) + "not expected", text, webElement.getText());
+    logger.info("Text in element" + getElementName(webElement) + " is expected");
   }
 
   private void printErrorAndStopTest(Exception e) {
