@@ -5,12 +5,13 @@
    PW  xpath .//input[@name = 'password' and @placeholder = 'Password']
    button sign in xpath .//button[@class='btn btn-primary btn-sm']
 
-2. Test Case return on the home page with the logo on the top banner
+2. Test Case Use Search Icon to Search for Posts with valid odata
 
-logo xpath .//*[@href = '/'  and @class = 'text-white']
-Text on the home page .//h1[@class = 'display-3' and 'Remember Writing?']
+search icon .//*[@class="text-white mr-2 header-search-icon"]
+search field .//input[@id="live-search-field"]
+Sign out button .//button[@class='btn btn-sm btn-secondary']
 
-3. Test Case the user is logged out, log in page main loads with message "Remember writing"
+3. Test Case when the user is logged out, log in page main loads with message "Remember writing"
 
 1. sign in button .//button[@class='btn btn-primary btn-sm']
 3. Text on the home page .//h1[@class = 'display-3' and 'Remember Writing?']

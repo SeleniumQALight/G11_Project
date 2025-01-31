@@ -17,28 +17,28 @@ Expected Result
 
 
 Post conditions
-User's profile is updated
+Log out the user
 
 
 
-2. Test case go to the home page clicking on the logo
+2. Test case Use the search icon to search for posts when the user is logged in
 
 Precondition
-Users profile page
+The user is logged in, the home page is opened, button sign out is displayed
 
 Steps to reproduce
-1. Click on the logo on the upper banner
+1. Click on the search icon on the upper banner
+2. Enter a valid data "tester" in the search field
 
 Expected Result
 
-Home page with a text box "Remember Writing" is seen
+List of posts with the word "tester" is displayed
 
 PostCondition
-Home page is loaded
+Clear the search field
 
 
-
-3. Test Case. When the user the user logs out, log in page main loads
+3. Test Case. When the user the user logs out, log in page loads
 with message "Remember writing"
 
 Precondition: User is logged, home page is opened
@@ -55,7 +55,7 @@ Expected result
 
 
 
-4. Test Case Valid User Sign Out
+4. Test Case Valid User Signed Out
 
 Precondition
 Valid user Signed In
@@ -86,6 +86,6 @@ Steps to reproduce:
 Expected result
 The follower isn't on the list of "following"
 
-Post condition
+
 
 
