@@ -34,6 +34,7 @@ public class CreateNewPostTest extends BaseTest {
 
     @After
     public void deletePosts(){
+        pageProvider.getHomePage().openHomePageAndLoginIfNeeded().getHeaderElement().clickOnButtonMyProfile().checkIsRedirectToMyProfilePage().deletePostsTillPresent(TITLE);
 
     }
 

@@ -7,8 +7,11 @@ import org.pages.elements.HeaderForUserElement;
 
 public class PostPage extends ParentPage {
 
-@FindBy(xpath ="//*[contains(@class,'alert-success')]")
-private WebElement successMessage;
+    @FindBy(xpath = "//*[contains(@class,'alert-success')]")
+    private WebElement successMessage;
+
+    @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
+    private WebElement deleteButton;
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -32,5 +35,10 @@ private WebElement successMessage;
     public PostPage checkTextInSuccessMessage(String expectedMessageText) {
         checkTextInElement(successMessage, expectedMessageText);
         return this;
+    }
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(deleteButton, "Delete post button");
+        return new MyProfilePage(webDriver);
     }
 }
