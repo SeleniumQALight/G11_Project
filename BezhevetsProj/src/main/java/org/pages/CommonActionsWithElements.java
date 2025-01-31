@@ -47,7 +47,7 @@ public class CommonActionsWithElements {
     protected void clickOnElement(WebElement webElement, String elementName) {
         try {
             webElement.click();
-            logger.info(elementName + " Element was clicked");
+            logger.info(elementName + " element was clicked");
         } catch (Exception e) {
             logger.error("Can not work with element " + elementName);
             printErrorAndStopTest(e);
@@ -83,4 +83,33 @@ public class CommonActionsWithElements {
         logger.error("Can not work with element " + e);
         Assert.fail("Can't work with element " + e);
     }
+
+    protected void setCheckboxAsChecked(WebElement webElement) {
+        if (!webElement.isSelected()) {
+            clickOnElement(webElement, "Unique post checkbox");
+        } else {
+            logger.info("Checkbox is already checked");
+        }
+    }
+
+    protected void setCheckboxAsUnchecked(WebElement webElement) {
+        if (webElement.isSelected()) {
+            clickOnElement(webElement, "Unique post checkbox");
+        } else {
+            logger.info("Checkbox is already unchecked");
+        }
+    }
+
+    protected void setCheckboxState(WebElement webElement, String state) {
+        if (state.equalsIgnoreCase("check")) {
+            setCheckboxAsChecked(webElement);
+        } else if (state.equalsIgnoreCase("uncheck")) {
+            setCheckboxAsUnchecked(webElement);
+        } else {
+            logger.error("State should be 'check' or 'uncheck'");
+            Assert.fail("State should be 'check' or 'uncheck'");
+        }
+    }
+
+
 }
