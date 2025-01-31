@@ -11,6 +11,9 @@ public class PostPage extends ParantPage {
     @FindBy(xpath = "//*[@class='alert alert-success text-center']")
     private WebElement successMessage;
 
+    @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDeletePost;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -35,4 +38,8 @@ public class PostPage extends ParantPage {
     }
 
 
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDeletePost, "Delete post button");
+        return new MyProfilePage(webDriver);
+    }
 }
