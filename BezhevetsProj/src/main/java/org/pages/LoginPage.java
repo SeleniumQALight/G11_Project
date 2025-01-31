@@ -5,6 +5,7 @@ import org.data.TestData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.pages.elements.HeaderForUserElement;
 
 public class LoginPage extends ParrentPage {
     private Logger logger = Logger.getLogger(getClass());
@@ -18,10 +19,32 @@ public class LoginPage extends ParrentPage {
     @FindBy(xpath = "//button[text()='Sign In']")
     private WebElement buttonSignIn;
 
+    @FindBy(xpath = "//div[@class=\'alert alert-danger text-center\']")
+    private WebElement alertInvalidLoginOrPassword;
+
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
+
+    public void isAlertInvalidLoginOrPasswordDisplayed() {
+        checkIsElementVisible(alertInvalidLoginOrPassword);
+    }
+
+    public LoginPage checkIsUsernameFieldVisible() {
+        checkIsElementNotVisible(inputUserName);
+        return this;
+    }
+
+    public LoginPage checkIsPasswordFieldVisible() {
+        checkIsElementNotVisible(inputPassword);
+        return this;
+    }
+
+    public HeaderForUserElement getHeaderElement() {
+        return new HeaderForUserElement(webDriver);
+    }
+
 
     public LoginPage openPage() {
         String baseUrl = "https://aqa-complexapp.onrender.com";
@@ -51,4 +74,5 @@ public class LoginPage extends ParrentPage {
         clickOnButtonSignIn();
         return new HomePage(webDriver);
     }
+
 }

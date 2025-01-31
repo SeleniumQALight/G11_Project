@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.pages.CommonActionsWithElements;
 import org.pages.CreateNewPostPage;
+import org.pages.LoginPage;
 import org.pages.MyProfilePage;
 
 public class HeaderForUserElement extends CommonActionsWithElements {
@@ -17,8 +18,21 @@ public class HeaderForUserElement extends CommonActionsWithElements {
     @FindBy(xpath = "//a[@class='btn btn-sm btn-success mr-2']")
     private WebElement buttonCreatePost;
 
+    @FindBy(xpath = "//button[text()='Sign In']")
+    private WebElement buttonSignIn;
+
     public void checkIsButtonSignOutVisible() {
         checkIsElementVisible(buttonSignOut);
+    }
+
+    public HeaderForUserElement checkIsButtonSignOutNotVisible() {
+        checkIsElementNotVisible(buttonSignOut);
+        return this;
+    }
+
+    public HeaderForUserElement checkIsButtonCreatePostVisible() {
+        checkIsElementVisible(buttonCreatePost);
+        return this;
     }
 
     public CreateNewPostPage clickOnButtonCreatePost() {
@@ -28,6 +42,11 @@ public class HeaderForUserElement extends CommonActionsWithElements {
 
     public HeaderForUserElement(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    public LoginPage checkIsButtonSignInVisible() {
+        checkIsElementVisible(buttonSignIn);
+        return new LoginPage(webDriver);
     }
 
     public MyProfilePage clickOnMyProfileButton() {
