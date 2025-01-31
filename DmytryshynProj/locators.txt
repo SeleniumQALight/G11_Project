@@ -2,7 +2,7 @@
 input.usernameRegistration = " //input[@id='username-register'] "
 input.passwordRegistration = " //input[@id='password-register'] "
 button.registration = " //button[contains(text(), 'Sign up')]"
-input.usernameSignIn = " //input[@id="username0"] "
+input.usernameSignIn = " //input[@placeholder='Username'] "
 input.passwordSignIn = "//header//input[@name="password"] "
 button.SignIn = " //button[@class="btn btn-primary btn-sm"]
 
