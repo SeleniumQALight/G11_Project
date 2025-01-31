@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends ParentPage {
-    private Logger logger = Logger.getLogger(getClass());
 
     @FindBy(xpath = "//input[@placeholder='Username']")
     private WebElement inputUserName;
@@ -19,6 +18,10 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = "//button[text()='Sign In']")
     private WebElement buttonSighIn;
 
+    @FindBy(xpath = "//div[text()='Invalid username/password.']")
+    private WebElement alertIncorrectLoginPassword;
+
+    private Logger logger = Logger.getLogger(getClass());
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -48,6 +51,18 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonSighIn);
     }
 
+    public void checkIsButtonSighInVisible(){
+        checkIsElementVisible(buttonSighIn);
+    }
+
+    public void checkIsButtonSighInNotVisible(){
+        checkIsElementNotVisible(buttonSighIn);
+    }
+
+    public void checkIsAlertIncorrectLoginPasswordVisible(){
+        checkIsElementVisible(alertIncorrectLoginPassword);
+    }
+
     public HomePage openLoginPageAndFillLoginWithValidCred() {
         //method повертає об'єкт класу HomePage, тому що після login ми опинимося на HomePage
         openPage();
@@ -55,5 +70,17 @@ public class LoginPage extends ParentPage {
         this.enterTextIntoInputPassword(TestData.VALID_PASSWORD);
         clickOnButtonSighIn();
         return new HomePage(webDriver);
+    }
+
+    public void openLoginPageAndFillLoginWithInvalidCred() {
+        openPage();
+        this.enterTextIntoInputLogin(TestData.INVALID_LOGIN);
+        this.enterTextIntoInputPassword(TestData.INVALID_PASSWORD);
+        clickOnButtonSighIn();
+    }
+
+    public void checkIsInputLoginAndPasswordNotVisible(){
+        checkIsElementNotVisible(inputUserName);
+        checkIsElementNotVisible(inputPassword);
     }
 }

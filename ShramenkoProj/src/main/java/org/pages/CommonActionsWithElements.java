@@ -24,18 +24,41 @@ public class CommonActionsWithElements {
         try {
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + " was inputted into element");
+            logger.info(text + " was inputted into element " + getElementName(webElement));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
+    //це метод для logger, щоб записи були більш зрозумілі, якщо на сайті присутнє ім'я елементу
+
+    private String getElementName(WebElement webElement) {
+        String elementName = "";
+        try {
+            elementName = webElement.getAccessibleName();
+        } catch (Exception e) {
+            elementName = "";
+        }
+        return elementName;
+    }
+
     //method for clicking on the element
     protected void clickOnElement(WebElement webElement) {
         try {
+            String elementName = getElementName(webElement);
             webElement.click();
-            logger.info("Element was clicked");
+            logger.info(elementName + " element was clicked");
         } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void clickOnElement(WebElement webElement, String elementName) {
+        try {
+            webElement.click();
+            logger.info(elementName + " element was clicked");
+        } catch (Exception e) {
+            logger.error("Can not work with element " + elementName);
             printErrorAndStopTest(e);
         }
     }
@@ -44,9 +67,9 @@ public class CommonActionsWithElements {
         try {
             boolean state = webElement.isDisplayed();
             if (state) {
-                logger.info("Element is displayed");
+                logger.info(getElementName(webElement) + " Element is displayed");
             } else {
-                logger.info("Element isn't displayed");
+                logger.info(getElementName(webElement) + " Element isn't displayed");
             }
             return state;
         } catch (Exception e) {
@@ -57,12 +80,17 @@ public class CommonActionsWithElements {
 
     //check if element is visible
     protected void checkIsElementVisible(WebElement webElement) {
-        Assert.assertTrue("Element isn't visible", isElementVisible(webElement));
+        Assert.assertTrue(getElementName(webElement) + " Element isn't visible", isElementVisible(webElement));
+    }
+
+    //check if element is not visible
+    protected void checkIsElementNotVisible(WebElement webElement) {
+        Assert.assertFalse(getElementName(webElement) + " Element is visible", isElementVisible(webElement));
     }
 
     protected void checkTextInElement(WebElement webElement, String text) {
-        Assert.assertEquals("Text in element is not expected", text, webElement.getText());
-        logger.info("Text in element is expected");
+        Assert.assertEquals("Text in element " +getElementName(webElement) + " is not expected", text, webElement.getText());
+        logger.info("Text in element " + getElementName(webElement) + " is expected");
     }
 
     private void printErrorAndStopTest(Exception e) {

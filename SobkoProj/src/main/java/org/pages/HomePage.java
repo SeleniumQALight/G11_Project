@@ -2,13 +2,18 @@ package org.pages;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.pages.elements.HeaderForUserElement;
 
 
 public class HomePage extends ParentPage {
-
+    @FindBy(xpath = "//button[text()='Sign Out']")
+    private WebElement buttonSignOut;
     private Logger logger = Logger.getLogger(getClass());
 
+    @FindBy(xpath = "//a[@class='btn btn-sm btn-success mr-2']")
+    private WebElement buttonCreatePost;
     public HomePage(WebDriver webdriver) {
         super(webdriver);
     }
@@ -19,10 +24,8 @@ public class HomePage extends ParentPage {
 
     public HomePage checkIsRedirectToHomePage() {
         getHeaderElement().checkIsButtonSignOutVisible();
-        // TODO add current url
         return this;
     }
-
 
 
 }

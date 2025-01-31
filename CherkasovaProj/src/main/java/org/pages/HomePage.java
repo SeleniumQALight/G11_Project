@@ -18,7 +18,6 @@ public class HomePage extends ParentPage{
 
 
 
-
     public HomePage checkIsRedirectToHomePage() {
         getHeaderElement().checkIsButtonSignOutVisible();
         //TODO check current URL

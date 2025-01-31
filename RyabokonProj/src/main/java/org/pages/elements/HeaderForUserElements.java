@@ -7,41 +7,36 @@ import org.pages.CommonActionsWithElements;
 import org.pages.CreateNewPostPage;
 import org.pages.MyProfilePage;
 
-public class HeaderForUserElement extends CommonActionsWithElements {
-    @FindBy(xpath = "//img[@alt='My profile']")
+public class HeaderForUserElements  extends CommonActionsWithElements {
+
+    public HeaderForUserElements(WebDriver webDriver) {
+        super(webDriver);
+    }
+
+    @FindBy(xpath = ".//img[@alt ='My profile']")
     private WebElement buttonMyProfile;
 
     @FindBy(xpath = "//button[text()='Sign Out']")
     private WebElement buttonSignOut;
 
+
     @FindBy(xpath = "//a[@class='btn btn-sm btn-success mr-2']")
     private WebElement buttonCreatePost;
 
-    public HeaderForUserElement(WebDriver webDriver) {
-        super(webDriver);
-    }
 
-    public MyProfilePage clickOnMyProfileButton() {
-        clickOnElement(buttonMyProfile);
-        return new MyProfilePage(webDriver);
-
-    }
 
     public void checkIsButtonSignOutVisible() {
+        // Assert.assertTrue("Button Sign Out is not displayed", isElementVisible(buttonSignOut));
         checkIsElementVisible(buttonSignOut);
     }
 
-    public CreateNewPostPage clickOnButtonCreatePost() {
+   public CreateNewPostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
         return new CreateNewPostPage(webDriver);
     }
 
-    public void checkIsButtonCreatePostVisible() {
-        checkIsElementVisible(buttonCreatePost);
-    }
-
-
-    public void checkIsButtonSignOutNotVisible() {
-        checkIsElementNotVisible(buttonSignOut);
+    public MyProfilePage ClickOnMyProfileButton() {
+        clickOnElement(buttonMyProfile);
+        return new MyProfilePage(webDriver);
     }
 }

@@ -1,18 +1,27 @@
 package org.pages;
 
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
 public class MyProfilePage extends ParentPage {
     private String postWithTitleLocator = "//*[text()='%s']";
 
+    @FindBy(xpath = "//*[text()='Post successfully deleted.']")
+    private WebElement successMessageDelete;
+
+    private Logger logger = Logger.getLogger(getClass());
+
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
     }
+
+
 
     private List<WebElement> getPostsList(String postTitle) {
         return webDriver.findElements(
@@ -28,6 +37,33 @@ public class MyProfilePage extends ParentPage {
     public MyProfilePage checkPostWithTitlePresent(String title, int numberOfPosts) {
         Assert.assertEquals("Number of posts with title " + title,
                 numberOfPosts, getPostsList(title).size());
+        return this;
+    }
+
+    public MyProfilePage deletePostsTillPresent(String title) {
+        List<WebElement> postsList = getPostsList(title);
+        final int MAX_POST_COUNT = 100;
+        int count = 0;
+        while (!postsList.isEmpty() && count < MAX_POST_COUNT) {
+            clickOnElement(postsList.get(0));
+            new PostPage(webDriver).checkIsRedirectToPostPage()
+                    .clickOnDeleteButton()
+                    .checkIsRedirectToMyProfilePage().checkIsMessageSuccessDeletePresent();
+            logger.info("Post with title " + title + " was deleted");
+            postsList = getPostsList(title);
+            count++;
+
+        }
+
+        if (count >= MAX_POST_COUNT){
+            logger.error("There are more than " + MAX_POST_COUNT + " posts with title " + title);
+        }
+
+        return this;
+    }
+
+    private MyProfilePage checkIsMessageSuccessDeletePresent() {
+        checkIsElementVisible(successMessageDelete);
         return this;
     }
 }
