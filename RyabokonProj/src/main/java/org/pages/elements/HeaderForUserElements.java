@@ -35,7 +35,7 @@ public class HeaderForUserElements  extends CommonActionsWithElements {
         return new CreateNewPostPage(webDriver);
     }
 
-    public MyProfilePage ClickOnButtonMyProfile() {
+    public MyProfilePage clickOnButtonMyProfile() {
         clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
     }
