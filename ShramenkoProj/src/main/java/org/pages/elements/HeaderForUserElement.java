@@ -48,4 +48,8 @@ public class HeaderForUserElement extends CommonActionsWithElements {
     public void checkIsButtonCreatePostVisible() {
         checkIsElementVisible(buttonCreatePost);
     }
+
+    public boolean isButtonSighOutVisible() {
+        return isElementVisible(buttonSighOut);
+    }
 }

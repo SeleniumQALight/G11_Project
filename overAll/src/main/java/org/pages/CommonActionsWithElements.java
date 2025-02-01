@@ -20,17 +20,38 @@ public class CommonActionsWithElements {
         try {
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + " was inputted into element ");
+            logger.info(text + " was inputted into element " + getElementName(webElement));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
+    private String getElementName(WebElement webElement) {
+        String elementName ;
+        try {
+            elementName = webElement.getAccessibleName();
+        } catch (Exception e) {
+           elementName = "";
+        }
+        return elementName;
+    }
+
     protected void clickOnElement(WebElement webElement) {
         try {
+            String elementName = getElementName(webElement);
             webElement.click();
-            logger.info("Element was clicked");
+            logger.info(elementName + " Element was clicked");
         } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void clickOnElement(WebElement webElement, String elementName) {
+        try {
+            webElement.click();
+            logger.info(elementName + " Element was clicked");
+        } catch (Exception e) {
+            logger.error("Can not work with element " + elementName);
             printErrorAndStopTest(e);
         }
     }
@@ -40,9 +61,9 @@ public class CommonActionsWithElements {
         try {
             boolean state = webElement.isDisplayed();
             if (state) {
-                logger.info("Element is displayed");
+                logger.info(getElementName(webElement) + " Element is displayed");
             } else {
-                logger.info("Element is not displayed");
+                logger.info(getElementName(webElement) + " Element is not displayed");
             }
             return state;
         } catch (Exception e) {
@@ -57,8 +78,8 @@ public class CommonActionsWithElements {
 
     //checkTextInElement
     protected void checkTextInElement(WebElement webElement, String text) {
-        Assert.assertEquals("Text in element is not expected", text, webElement.getText());
-        logger.info("Text in element is expected");
+        Assert.assertEquals("Text in element "+getElementName(webElement)+" is not expected", text, webElement.getText());
+        logger.info("Text in element "+getElementName(webElement)+" is expected");
     }
 
 

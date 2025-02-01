@@ -20,17 +20,37 @@ public class CommonActionsWithElements {
         try {
             element.clear();
             element.sendKeys(text);
-            logger.info(text + " was inputted into input");
+            logger.info(text + " was inputted into element " +getElementName(element));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
+    private String getElementName(WebElement element) {
+        String elementName;
+        try {
+            elementName = element.getAccessibleName();
+        } catch (Exception e) {
+            elementName = "";
+        }
+        return elementName;
+    }
+
 
     protected void clickOnElement(WebElement element) {
         try {
+            String elementName = getElementName(element);
             element.click();
-            logger.info("Element was clicked");
+            logger.info(elementName + " Element was clicked");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void clickOnElement(WebElement element,String elementName) {
+        try {
+            element.click();
+            logger.info(elementName + " Element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -46,9 +66,9 @@ public class CommonActionsWithElements {
         try {
             boolean tempState = element.isDisplayed();
             if (tempState) {
-                logger.info("Element is visible");
+                logger.info(getElementName(element) + " Element is visible");
             } else {
-                logger.info("Element is not visible");
+                logger.info(getElementName(element) + " Element is not visible");
             }
             return tempState;
         } catch (Exception e) {
@@ -59,12 +79,12 @@ public class CommonActionsWithElements {
 
 
     protected void checkIsElementVisible(WebElement element) {
-        Assert.assertTrue("Element is not visible", isElementVisible(element));
+        Assert.assertTrue(getElementName(element) + " Element is not visible", isElementVisible(element));
     }
 
     protected void checkTextInElement(WebElement element, String text) {
-            Assert.assertEquals("Text in element is not expected", text, element.getText());
-            logger.info("Text in element is expected");
+            Assert.assertEquals("Text in " + getElementName(element) +  " element is not expected", text, element.getText());
+            logger.info("Text in " + getElementName(element) + " element is expected");
     }
 
 }
