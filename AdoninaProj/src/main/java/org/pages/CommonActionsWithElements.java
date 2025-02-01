@@ -95,14 +95,14 @@ public class CommonActionsWithElements {
       logger.info("Element is not found");
     }
 
-    public void setCheckboxState(WebElement checkbox, String state) {
-      boolean isChecked = state.equals("check");
-      try {
-        if (isChecked) {
-          selectCheckboxPrivatePost(checkbox, checkbox);
-        } else  {
-          unselectCheckboxPrivatePost(checkbox, checkbox);
-//        } else {
+//    public void setCheckboxState(WebElement checkbox, String state) {
+//      boolean isChecked = state.equals("check");
+//      try {
+//        if (isChecked) {
+//          selectCheckboxPrivatePost(checkbox, checkbox);
+//        } else  {
+//          unselectCheckboxPrivatePost(checkbox, checkbox);
+////        } else {
 //          logger.error("Invalid state: " + state);
 //          throw new IllegalArgumentException("State must be 'check' or 'uncheck'");
 //        }
