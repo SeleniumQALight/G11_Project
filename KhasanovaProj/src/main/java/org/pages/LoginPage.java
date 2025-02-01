@@ -5,6 +5,7 @@ import org.data.TestData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.pages.elements.HeaderForUserElement;
 
 public class LoginPage extends ParentPage {
     private Logger logger = Logger.getLogger(getClass());
@@ -24,7 +25,6 @@ public class LoginPage extends ParentPage {
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
-
 
     public LoginPage openPage() {
         String baseUrl = "https://aqa-complexapp.onrender.com/";
@@ -70,8 +70,18 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    public LoginPage checkIsUsernameInputIsVisible() {
+        checkIsElementVisible(inputUserName);
+        return this;
+    }
+
     public LoginPage checkIsInputPasswordInvisible() {
         checkIsElementInvisible(inputPassword);
+        return this;
+    }
+
+    public LoginPage checkIsInputPasswordIsVisible() {
+        checkIsElementVisible(inputPassword);
         return this;
     }
 

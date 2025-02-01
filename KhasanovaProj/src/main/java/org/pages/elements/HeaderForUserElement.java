@@ -15,6 +15,12 @@ public class HeaderForUserElement extends CommonActionsWithElements {
     @FindBy(xpath = "//a[@class='btn btn-sm btn-success mr-2']")
     private WebElement buttonCreatePost;
 
+    @FindBy(xpath = "//a[@data-original-title='Search']")
+    private WebElement buttonSearch;
+
+    @FindBy(xpath = "//span[@class=\"text-white mr-2 header-chat-icon\"]")
+    private WebElement buttonChat;
+
     public HeaderForUserElement(WebDriver webDriver) {
         super(webDriver);
     }
@@ -22,6 +28,14 @@ public class HeaderForUserElement extends CommonActionsWithElements {
     public MyProfilePage clickOnButtonMyProfile() {
         clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
+    }
+
+    public void checkIsButtonMyProfileVisible() {
+        checkIsElementVisible(buttonMyProfile);
+    }
+
+    public void checkIsButtonMyProfileInvisible() {
+        checkIsElementInvisible(buttonMyProfile);
     }
 
     public void checkIsButtonSignOutVisible() {
@@ -38,6 +52,10 @@ public class HeaderForUserElement extends CommonActionsWithElements {
         checkIsElementVisible(buttonCreatePost);
     }
 
+    public void checkIsButtonCreatePostInvisible() {
+        checkIsElementInvisible(buttonCreatePost);
+    }
+
     public void checkIsButtonSignOutInvisible() {
         checkIsElementInvisible(buttonSignOut);
     }
@@ -47,5 +65,24 @@ public class HeaderForUserElement extends CommonActionsWithElements {
 
     }
 
+    public LoginPage clickOnSignOutButton() {
+        clickOnElement(buttonSignOut);
+        return new LoginPage(webDriver);
+    }
 
+    public void checkIsButtonSearchIsVisible() {
+        checkIsElementVisible(buttonSearch);
+    }
+
+    public void checkIsButtonSearchInvisible() {
+        checkIsElementInvisible(buttonSearch);
+    }
+
+    public void checkIsButtonChatIsVisible() {
+        checkIsElementVisible(buttonChat);
+    }
+
+    public void checkIsButtonChatInvisible() {
+        checkIsElementInvisible(buttonChat);
+    }
 }

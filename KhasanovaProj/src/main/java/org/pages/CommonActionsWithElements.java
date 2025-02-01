@@ -50,7 +50,7 @@ public class CommonActionsWithElements {
             }
             return state;
         } catch (Exception e) {
-            logger.info("Element is not found");
+            logger.info(getElementName(webElement) + " Element is not found");
             return false;
         }
     }
