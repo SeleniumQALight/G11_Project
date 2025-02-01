@@ -56,7 +56,6 @@ public class CommonActionsWithElements {
     }
     protected void clickOnElement(WebElement webElement, String elementName) {
         try {
-            elementName = getElementName(webElement);
             webElement.click();
             logger.info(elementName + "Element was clicked");
         } catch (Exception e) {
