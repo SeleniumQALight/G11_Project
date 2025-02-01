@@ -44,8 +44,8 @@ public class CreateNewPostPage extends ParentPage {
         return new PostPage(webDriver);
     }
 
-    public CreateNewPostPage selectUniquePostCheckbox (){
-        setCheckboxState(uniquePostCheckbox, "check");
+    public CreateNewPostPage selectUniquePostCheckbox (String neededState) {
+        setCheckboxState(uniquePostCheckbox, neededState);
         return this;
     }
 

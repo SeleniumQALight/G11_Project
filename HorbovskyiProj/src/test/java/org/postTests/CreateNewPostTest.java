@@ -15,14 +15,14 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectOnHomePage()
                 .getHeaderElement().clickOnButtonCreatePost()
                 .checkIsRedirectOnCreateNewPostPage()
-                .enterTextIntoInputTitle("Title of the post Horbovskyi")
+                .enterTextIntoInputTitle(POST_TITLE)
                 .enterTextIntoInputBody("Body of the post Horbovskyi")
+                .selectUniquePostCheckbox("check")
                 .clickOnButtonSavePost()
                 .checkIsRedirectOnPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
-        ;
-        pageProvider.getPostPage().getHeaderElement().clickOnButtonMyProfile()
+                .checkIfUniquePost().getHeaderElement().clickOnButtonMyProfile()
                 .checkIsRedirectToMyProfilePage()
                 .checkIsPostWithTitleWereAdded(POST_TITLE, 1)
         ;

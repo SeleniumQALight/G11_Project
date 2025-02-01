@@ -14,7 +14,7 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = ".//p[text()='Is this post unique? : yes']")
     private WebElement uniquePostMessage;
 
-    @FindBy(xpath = "//*[@class='btn btn-danger']")
+    @FindBy(xpath = "//*[@class='delete-post-button text-danger']")
     private WebElement buttonDeletePost;
 
     public HeaderForLoggedInUserElement getHeaderElement() {
