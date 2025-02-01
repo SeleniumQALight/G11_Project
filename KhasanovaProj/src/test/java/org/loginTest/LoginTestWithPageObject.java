@@ -14,13 +14,36 @@ public class LoginTestWithPageObject extends BaseTest {
                 .openPage()
                 .enterTextIntoInputLogin(VALID_LOGIN)
                 .enterTextIntoInputPassword(VALID_PASSWORD)
-                .clickOnButtonSignIn();
+                .clickOnButtonSignIn()
+        ;
 //        pageProvider.getLoginPage().enterTextIntoInputLogin(VALID_LOGIN);
 //        pageProvider.getLoginPage().enterTextIntoInputPassword(VALID_PASSWORD);
 //        pageProvider.getLoginPage().clickOnButtonSignIn();
+        pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonSignOutVisible();
 
-        pageProvider.getHomePage().checkIsButtonSignOutVisible();
+        pageProvider.getHomePage().getHeaderForUserElement()
+                .checkIsButtonCreatePostVisible();
+        pageProvider.getLoginPage()
+                .checkIsUsernameInputInvisible()
+                .checkIsInputPasswordInvisible()
+        ;
 
+    }
+
+    @Test
+    public void T0002_invalidLogin() {
+        pageProvider.getLoginPage()
+                .openPage()
+                .enterTextIntoInputLogin("invalidLogin")
+                .enterTextIntoInputPassword("invalidPassword")
+                .clickOnButtonSignIn()
+                .getHeaderForUserElement()
+                .checkIsButtonSignOutInvisible();
+
+        pageProvider.getLoginPage()
+                .checkTextInSuccessMessage("Invalid username/password.")
+                .checkIsButtonSignInVisible()
+        ;
     }
 
 }

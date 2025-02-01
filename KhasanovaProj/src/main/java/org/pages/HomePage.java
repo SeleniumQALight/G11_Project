@@ -1,28 +1,20 @@
 package org.pages;
 
 import org.apache.log4j.Logger;
+import org.data.TestData;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.pages.elements.HeaderForUserElement;
 
 public class HomePage extends ParentPage {
     private Logger logger = Logger.getLogger(getClass());
-
-    @FindBy(xpath = "//button[text()='Sign Out']")
-    private WebElement buttonSignOut;
-
-    @FindBy(xpath = "//a[@class='btn btn-sm btn-success mr-2']")
-    private WebElement buttonCreatePost;
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public void checkIsButtonSignOutVisible() {
-//        Assert.assertTrue("Button Sign Out is not visible", isButtonSignOutVisible());
-        checkIsElementVisible(buttonSignOut);
+    public HeaderForUserElement getHeaderForUserElement() {
+        return new HeaderForUserElement(webDriver);
     }
-
 
 //    private boolean isButtonSignOutVisible() {
 //        try {
@@ -36,13 +28,24 @@ public class HomePage extends ParentPage {
 //    }
 
     public HomePage checkIsRedirectToHomePage() {
-        checkIsButtonSignOutVisible();
+        getHeaderForUserElement().checkIsButtonSignOutVisible();
         //TODO check current URL
         return this;
     }
 
-    public CreateNewPostPage clickOnButtonCreatePost() {
-        clickOnElement(buttonCreatePost);
-        return new CreateNewPostPage(webDriver);
+
+    public HomePage openHomePageAndLoginIfNeeded() {
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openPage();
+        if (getHeaderForUserElement().isButtonSignOutVisible()) {
+            logger.info("User is already logged in");
+        } else {
+            loginPage.enterTextIntoInputLogin(TestData.VALID_LOGIN);
+            loginPage.enterTextIntoInputPassword(TestData.VALID_PASSWORD);
+            loginPage.clickOnButtonSignIn();
+            checkIsRedirectToHomePage();
+            logger.info("User was logged in");
+        }
+        return this;
     }
 }

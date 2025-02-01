@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 public class CommonActionsWithElements {
-    WebDriver webDriver;
+    protected WebDriver webDriver;
     private Logger logger = Logger.getLogger(getClass());
 
     public CommonActionsWithElements(WebDriver webDriver) {
@@ -20,17 +20,37 @@ public class CommonActionsWithElements {
         try {
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + " was entered into element");
+            logger.info(text + " was entered into element" + getElementName(webElement));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
+    private String getElementName(WebElement webElement) {
+        String elementName;
+        try {
+            elementName = webElement.getAccessibleName();
+        } catch (Exception e) {
+            elementName = "";
+        }
+        return elementName;
+    }
+
     // method for clicking on element
     protected void clickOnElement(WebElement webElement) {
         try {
+            String elementName = getElementName(webElement);
             webElement.click();
-            logger.info("Element was clicked");
+            logger.info("Element " + elementName + " was clicked");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void clickOnElement(WebElement webElement, String elementName) {
+        try {
+            webElement.click();
+            logger.info("Element " + elementName + " was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -48,13 +68,13 @@ public class CommonActionsWithElements {
     }
 
     // method for checking visibility of element
-    private boolean isElementVisible(WebElement webElement) {
+    public boolean isElementVisible(WebElement webElement) {
         try {
             boolean state = webElement.isDisplayed();
             if (state) {
-                logger.info("Element is visible");
+                logger.info("Element " + getElementName(webElement) + " is visible");
             } else {
-                logger.info("Element is not visible");
+                logger.info("Element " + getElementName(webElement) + " is not visible");
             }
             return state;
         } catch (Exception e) {
@@ -65,7 +85,7 @@ public class CommonActionsWithElements {
 
     // method for checking visibility of element
     protected void checkIsElementVisible(WebElement webElement) {
-        Assert.assertTrue("Element is not visible", isElementVisible(webElement));
+        Assert.assertTrue("Element " + getElementName(webElement) + " is not visible", isElementVisible(webElement));
     }
 
     protected void checkIsElementNotVisible(WebElement webElement) {

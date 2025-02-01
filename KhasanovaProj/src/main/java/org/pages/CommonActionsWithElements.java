@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 
 public class CommonActionsWithElements {
-    WebDriver webDriver;
+    protected WebDriver webDriver;
     private Logger logger = Logger.getLogger(getClass());
 
     public CommonActionsWithElements(WebDriver webDriver) {
@@ -24,20 +24,29 @@ public class CommonActionsWithElements {
         try {
             webElement.clear();
             webElement.sendKeys(text);
-            logger.info(text + " was inputed into element");
+            logger.info(text + " was inputed into element " + getElementName(webElement));
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
+    private String getElementName(WebElement webElement) {
+        String elementName;
+        try {
+            elementName = webElement.getAccessibleName();
+        } catch (Exception e) {
+            elementName = "";
+        }
+        return elementName;
+    }
 
     protected boolean isElementVisible(WebElement webElement) {
         try {
             boolean state = webElement.isDisplayed();
             if (state) {
-                logger.info("Element is displayed");
+                logger.info(getElementName(webElement) + " Element is displayed");
             } else {
-                logger.info("Element is not displayed");
+                logger.info(getElementName(webElement) + " Element is not displayed");
             }
             return state;
         } catch (Exception e) {
@@ -51,24 +60,73 @@ public class CommonActionsWithElements {
         Assert.assertTrue("Element is not visible", isElementVisible(webElement));
     }
 
+    //check if element is invisible
+    protected void checkIsElementInvisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible", isElementVisible(webElement));
+    }
+
     // method for clicking on element
     protected void clickOnElement(WebElement webElement) {
         try {
+            String elementName = getElementName(webElement);
             webElement.click();
-            logger.info("Element was clicked");
+            logger.info(elementName + " Element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
+    // method for clicking on element with setting name
+    protected void clickOnElement(WebElement webElement, String elementName) {
+        try {
+            webElement.click();
+            logger.info(elementName + " Element was clicked");
+        } catch (Exception e) {
+            logger.error("Cannot work with element " + elementName);
+            printErrorAndStopTest(e);
+        }
+    }
+
     protected void checkTextInElement(WebElement webElement, String text) {
-        Assert.assertEquals("Text in element is not as expected", text, webElement.getText());
-        logger.info("Text in element is as expected");
+        Assert.assertEquals("Text in element " + getElementName(webElement) + " is not as expected", text, webElement.getText());
+        logger.info("Text in element " + getElementName(webElement) + " is as expected");
     }
 
     private void printErrorAndStopTest(Exception e) {
         logger.error("Cannot work with element " + e);
         Assert.fail("Cannot work with element " + e);
     }
+
+    // method for making checkbox checked
+    protected void makeCheckboxChecked(WebElement webElement) {
+        if (webElement.isSelected()) {
+            logger.info("Checkbox is already checked");
+        } else {
+            clickOnElement(webElement);
+            logger.info("Checkbox is checked");
+        }
+    }
+
+    //method for making checkbox unchecked
+    protected void makeCheckBoxUnchecked(WebElement webElement) {
+        if (webElement.isSelected()) {
+            clickOnElement(webElement);
+            logger.info("Checkbox is unchecked");
+        } else {
+            logger.info("Checkbox is already unchecked");
+        }
+    }
+
+    protected void setNeededStateToCheckBox(WebElement webElement, String neededState) {
+        if (neededState.equals("Check")) {
+            makeCheckboxChecked(webElement);
+        } else if (neededState.equals("Uncheck")) {
+            makeCheckBoxUnchecked(webElement);
+        } else {
+            logger.error("State should be only 'Check' or 'Uncheck'");
+            Assert.fail("State should be only 'Check' or 'Uncheck'");
+        }
+    }
+
 
 }
