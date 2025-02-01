@@ -26,14 +26,18 @@ public class CreateNewPostTest extends BaseTest {
 
         pageProvider.getPostPage().getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
-                .checkPostWithTitleIsPresent(POST_TITLE, 1)
-
-
-        ;
+                .checkPostWithTitleIsPresent(POST_TITLE, 1);
     }
 
     @After
-    public void deletePost() {
+    public void deletePosts() {
+        pageProvider.getHomePage()
+                .openHomePageAndLoginIfNeed()
+                .getHeaderElement().clickOnMyProfileButton()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostsTillPresent(POST_TITLE)
+        ;
+
 
     }
 
