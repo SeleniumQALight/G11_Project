@@ -68,48 +68,46 @@ public class CommonActionsWithElements {
     logger.error("Can not work with element " + e);
     Assert.fail("Can not work with element " + e);
   }
-  public void selectCheckboxPrivatePost(WebElement webElement, WebElement checkbox) {
+
+  protected void selectCheckboxPrivatePost(WebElement checkbox) {
     try {
-      boolean state = webElement.isSelected();
-      if (state) {
+      if (!checkbox.isSelected()) {
         clickOnElement(checkbox);
-        logger.info("Checkbox was not selected and now is selected");
+        logger.info("Checkbox was selected");
       } else {
         logger.info("Checkbox is already selected");
       }
     } catch (Exception e) {
-      logger.info("Element is not found");
+      printErrorAndStopTest(e);
     }
+  }
 
-}
-  public void unselectCheckboxPrivatePost(WebElement webElement, WebElement checkbox) {
+  protected void unselectCheckboxPrivatePost(WebElement checkbox) {
     try {
-      boolean state = webElement.isEnabled();
-      if (state) {
+      if (checkbox.isSelected()) {
         clickOnElement(checkbox);
-        logger.info("Checkbox was selected and now is unselected");
+        logger.info("Checkbox was deselected");
       } else {
-        logger.info("Checkbox is already unselected");
+        logger.info("Checkbox is already deselected");
       }
     } catch (Exception e) {
-      logger.info("Element is not found");
+      printErrorAndStopTest(e);
     }
+  }
 
-//    public void setCheckboxState(WebElement checkbox, String state) {
-//      boolean isChecked = state.equals("check");
-//      try {
-//        if (isChecked) {
-//          selectCheckboxPrivatePost(checkbox, checkbox);
-//        } else  {
-//          unselectCheckboxPrivatePost(checkbox, checkbox);
-////        } else {
-//          logger.error("Invalid state: " + state);
-//          throw new IllegalArgumentException("State must be 'check' or 'uncheck'");
-//        }
-//      } catch (Exception e) {
-//        printErrorAndStopTest(e);
-//      }
-//    }
-
+  public void setCheckboxState(WebElement checkbox, String state) {
+    try {
+      if ("check".equalsIgnoreCase(state)) {
+        selectCheckboxPrivatePost(checkbox);
+        logger.info("This post is unique");
+      } else if ("uncheck".equalsIgnoreCase(state)) {
+        selectCheckboxPrivatePost(checkbox);
+        logger.info("This post is not unique");
+      } else {
+        logger.error("Invalid state: " + state);
+      }
+    } catch (Exception e) {
+      printErrorAndStopTest(e);
+    }
   }
 }
