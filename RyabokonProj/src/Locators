@@ -1,0 +1,31 @@
+
+1.  Valid user test case
+
+   login xpath .//input[@name="username" and @placeholder="Username"]
+   PW  xpath .//input[@name = 'password' and @placeholder = 'Password']
+   button sign in xpath .//button[@class='btn btn-primary btn-sm']
+
+2. Test Case Use Search Icon to Search for Posts with valid odata
+
+search icon .//*[@class="text-white mr-2 header-search-icon"]
+search field .//input[@id="live-search-field"]
+Sign out button .//button[@class='btn btn-sm btn-secondary']
+
+3. Test Case when the user is logged out, log in page main loads with message "Remember writing"
+
+1. sign in button .//button[@class='btn btn-primary btn-sm']
+3. Text on the home page .//h1[@class = 'display-3' and 'Remember Writing?']
+4. Sign out button .//button[@class='btn btn-sm btn-secondary']
+
+4. Test Case Valid User Sign Out
+.//button[@class='btn btn-sm btn-secondary']
+
+5. Test case unfollow one user in the followlist
+
+1.following .//a[@class  = 'profile-nav-link nav-item nav-link active']
+2.user .//a[@href ='/profile/testuser' ] or .//a[@class="list-group-item list-group-item-action" ]
+3. stop following .//button[@class='btn btn-danger btn-sm'];
+
+
+
+
