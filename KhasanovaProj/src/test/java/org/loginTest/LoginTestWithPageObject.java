@@ -59,9 +59,7 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonChatIsVisible();
         pageProvider.getHomePage().getHeaderForUserElement()
                 .clickOnSignOutButton()
-                .checkIsInputPasswordIsVisible()
-                .checkIsUsernameInputIsVisible()
-                .checkIsButtonSignInVisible();
+                .checkIsRedirectToLoginPage();
         pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonSignOutInvisible();
         pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonCreatePostInvisible();
         pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonMyProfileInvisible();

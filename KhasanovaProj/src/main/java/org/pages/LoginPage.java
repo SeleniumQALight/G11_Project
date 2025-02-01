@@ -5,7 +5,6 @@ import org.data.TestData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.pages.elements.HeaderForUserElement;
 
 public class LoginPage extends ParentPage {
     private Logger logger = Logger.getLogger(getClass());
@@ -95,4 +94,11 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    public LoginPage checkIsRedirectToLoginPage() {
+        checkIsElementVisible(buttonSignIn);
+        checkIsUsernameInputIsVisible();
+        checkIsInputPasswordIsVisible();
+        //TODO check current URL
+        return this;
+    }
 }
