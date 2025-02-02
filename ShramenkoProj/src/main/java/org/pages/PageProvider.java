@@ -17,5 +17,13 @@ public class PageProvider {
         return new HomePage(webDriver);
     }
 
+    public PostPage getPostPage() {
+        return new PostPage(webDriver);
+    }
+
+    public MyProfilePage getMyProfilePage() {
+        return new MyProfilePage(webDriver);
+    }
+
 
 }

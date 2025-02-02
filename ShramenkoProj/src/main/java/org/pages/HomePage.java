@@ -1,35 +1,42 @@
 package org.pages;
 
+import org.data.TestData;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.pages.elements.HeaderForUserElement;
+import org.apache.log4j.Logger;
 
 public class HomePage extends ParentPage {
 
-    @FindBy(xpath = "//button[text()='Sign Out']")
-    private WebElement buttonSighOut;
-
-    @FindBy(xpath = "//a[@href='/create-post']")
-    private WebElement buttonCreatePost;
+    private Logger logger = Logger.getLogger(getClass());
 
     public HomePage(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public void checkIsButtonSighOutVisible() {
-        checkIsElementVisible(buttonSighOut);
+    public HeaderForUserElement getHeaderElement() {
+        return new HeaderForUserElement(webDriver);
     }
 
-
     public HomePage checkIsRedirectToHomePage() {
-        checkIsButtonSighOutVisible();
+        getHeaderElement().checkIsButtonSighOutVisible();
         //TODO check current url
         //TODO check is button Sigh In isn't visible
         return this;
     }
 
-    public CreateNewPostPage clickOnButtonCreatePost() {
-        clickOnElement(buttonCreatePost);
-        return new CreateNewPostPage(webDriver);
+
+    public HomePage openHomePageAndLoginIfNeeded() {
+        LoginPage loginPage = new LoginPage(webDriver);
+        loginPage.openPage();
+        if (getHeaderElement().isButtonSighOutVisible()) {
+            logger.info("User is already logged in");
+        } else {
+            loginPage.enterTextIntoInputLogin(TestData.VALID_LOGIN)
+                    .enterTextIntoInputPassword(TestData.VALID_PASSWORD)
+                    .clickOnButtonSighIn();
+            checkIsRedirectToHomePage();
+            logger.info("User was logged in");
+        }
+        return this;
     }
 }
