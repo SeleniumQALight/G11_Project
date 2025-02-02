@@ -36,7 +36,7 @@ public class LoginTestWithPageObject extends BaseTest {
                 .enterTextIntoInputLogin(VALID_LOGIN)
                 .enterTextIntoInputPassword(VALID_PASSWORD)
                 .clickOnButtonSignIn();
-        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
+        pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonSignOutVisible();
 
     }
 
