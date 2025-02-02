@@ -44,4 +44,8 @@ public class HeaderForUserElement extends CommonActionsWithElements {
     public void checkIsButtonSignOutNotVisible() {
         checkIsElementNotVisible(buttonSignOut);
     }
+
+    public boolean isButtonSignOutVisible() {
+        return isElementVisible(buttonSignOut);
+    }
 }
