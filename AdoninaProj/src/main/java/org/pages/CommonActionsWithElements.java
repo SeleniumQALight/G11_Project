@@ -90,7 +90,7 @@ public class CommonActionsWithElements {
     Assert.fail("Can not work with element " + e);
   }
 
-  protected void selectCheckboxPrivatePost(WebElement checkbox) {
+  protected void selectCheckbox(WebElement checkbox) {
     try {
       if (!checkbox.isSelected()) {
         clickOnElement(checkbox);
@@ -103,7 +103,7 @@ public class CommonActionsWithElements {
     }
   }
 
-  protected void unselectCheckboxPrivatePost(WebElement checkbox) {
+  protected void unselectCheckbox(WebElement checkbox) {
     try {
       if (checkbox.isSelected()) {
         clickOnElement(checkbox);
@@ -119,11 +119,9 @@ public class CommonActionsWithElements {
   public void setCheckboxState(WebElement checkbox, String state) {
     try {
       if ("check".equalsIgnoreCase(state)) {
-        selectCheckboxPrivatePost(checkbox);
-        logger.info("This post is unique");
+        selectCheckbox(checkbox);
       } else if ("uncheck".equalsIgnoreCase(state)) {
-        selectCheckboxPrivatePost(checkbox);
-        logger.info("This post is not unique");
+        selectCheckbox(checkbox);
       } else {
         logger.error("Invalid state: " + state);
       }
