@@ -20,7 +20,9 @@ public class MyProfilePage extends ParentPage {
         super(webdriver);
     }
 
-
+    private WebElement getPost(String postTitle) {
+        return webdriver.findElement(By.xpath(String.format(postWithTitleLocator, postTitle)));
+    }
     private List<WebElement> getPostList(String postTitle) {
         return webdriver.findElements(By.xpath(String.format(postWithTitleLocator, postTitle)));
     }
@@ -54,6 +56,12 @@ public class MyProfilePage extends ParentPage {
         }
         return this;
     }
+    public PostPage openPost(String postTitle) {
+        WebElement postName = getPost(postTitle);
+        clickOnElement(postName);
+        return new PostPage(webdriver);
+    }
+
 
 
 

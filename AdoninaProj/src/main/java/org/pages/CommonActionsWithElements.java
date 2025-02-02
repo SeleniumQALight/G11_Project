@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.elementName;
+  import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.elementName;
 
 public class CommonActionsWithElements {
   protected WebDriver webDriver;
