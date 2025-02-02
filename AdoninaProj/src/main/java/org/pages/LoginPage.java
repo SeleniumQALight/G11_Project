@@ -21,8 +21,6 @@ public class LoginPage extends ParentPage {
   @FindBy(xpath = "//*[@class='alert alert-danger text-center']")
   private WebElement errorMessage;
 
-  @FindBy(xpath = "//button[text()='Sign Out']")
-  private WebElement buttonSignOut;
 
   public LoginPage(WebDriver webDriver) {
     super(webDriver);
@@ -76,8 +74,14 @@ public class LoginPage extends ParentPage {
     return this;
   }
 
-  public LoginPage checkIsSignOutButtonNotVisible() {
-    checkIsElementNotVisible(buttonSignOut);
+
+  public LoginPage checkIsInputUsernameNotVisible() {
+    checkIsElementNotVisible(inputUserName);
+    return this;
+  }
+
+  public LoginPage checkIsInputPasswordNotVisible() {
+    checkIsElementNotVisible(inputPassword);
     return this;
   }
 }

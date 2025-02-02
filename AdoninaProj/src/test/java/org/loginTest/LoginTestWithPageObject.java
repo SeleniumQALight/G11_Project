@@ -18,8 +18,9 @@ public class LoginTestWithPageObject extends BaseTest {
             .clickOnButtonSignIn();
 
     pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
-    pageProvider.getHomePage().checkIsButtonSignOutVisible()
-            .checkIsButtonCreatePostVisible()
+    pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible()
+            .checkIsButtonCreatePostVisible();
+    pageProvider.getLoginPage()
             .checkIsInputUsernameNotVisible()
             .checkIsInputPasswordNotVisible()
     ;
@@ -33,8 +34,8 @@ public class LoginTestWithPageObject extends BaseTest {
             .enterTextIntoInputPassw0rd(INVALID_PASSWORD)
             .clickOnButtonSignIn()
             .checkIsErrorMessageDisplayed("Invalid username/password.")
-            .checkIsSignOutButtonNotVisible()
-            .checkIsButtonSignInVisible()
+            .checkIsButtonSignInVisible();
+    pageProvider.getHomePage().getHeaderElement().checkIsSignOutButtonNotVisible()
     ;
   }
 }
