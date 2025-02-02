@@ -43,8 +43,8 @@ public class CreareNewPostPage extends ParentPage {
     return new PostPage(webDriver);
   }
 
-  public CreareNewPostPage setOnCheckBoxIsPrivatePost() {
-    setCheckboxState(checkboxIsPrivatePost, "check");
+  public CreareNewPostPage setOnCheckBoxIsPrivatePost(String needState) {
+    setCheckboxState(checkboxIsPrivatePost, needState);
     return this;
   }
 }

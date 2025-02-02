@@ -19,11 +19,12 @@ public class CreateNewPostTest extends BaseTest {
             .checkIsRedirectToCreateNewPostPage()
             .enterTextIntoInputTitle(POST_TITLE)
             .enterTextIntoInputBody("Body of the post")
-            .setOnCheckBoxIsPrivatePost()
+            .setOnCheckBoxIsPrivatePost("check")
             .clickOnButtonSaveNewPost()
             .checkIsRedirectToPostPage()
             .checkIsSuccessMessageDisplayed()
             .checkTextInSuccessMessage("New post successfully created.")
+            .checkIfUniquePost().getHeaderElement().clickOnButtonMyProfile()
     ;
 
     pageProvider.getPostPage().getHeaderElement().clickOnButtonMyProfile()
