@@ -75,14 +75,14 @@ public class CommonActionsWithElements {
             }
             return state;
         } catch (Exception e) {
-            logger.info("Element either is not found");
+            logger.info( getElementName(webElement) + "Element is not found");
             return false;
         }
     }
 
     //check if the element is visible
     protected void checkIsElementVisible(WebElement webElement) {
-        Assert.assertTrue(getElementName(webElement) + "Element is not visible", isElementVisible(webElement));
+        Assert.assertTrue(getElementName(webElement) + " Element is not visible", isElementVisible(webElement));
     }
 
 //check Text in Element
