@@ -2,6 +2,7 @@ package org.loginTest;
 
 import org.baseTest.BaseTest;
 import org.junit.Test;
+import org.pages.elements.HeaderForUserElement;
 
 import static org.data.TestData.VALID_LOGIN;
 import static org.data.TestData.VALID_PASSWORD;
@@ -38,4 +39,7 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
 
     }
+
+
+
 }

@@ -14,6 +14,11 @@ public class HeaderForUserElement extends CommonActionsWithElements {
     private WebElement buttonSignOut;
     @FindBy(xpath = "//a[@class='btn btn-sm btn-success mr-2']")
     private WebElement buttonCreatePost;
+    @FindBy(xpath = "//a[@data-original-title='Search']")
+    private WebElement buttonSearch;
+
+    @FindBy(xpath = "//span[@class=\"text-white mr-2 header-chat-icon\"]")
+    private WebElement buttonChat;
 
 
     public  HeaderForUserElement(WebDriver driver) {

@@ -16,7 +16,7 @@ public class CreateNewPostTest extends BaseTest {
         pageProvider.getLoginPage()
                 .openLoginPageAndFillLoginFormWithValidCred()
                 .checkIsRedirectToHomePage()
-                .getHeaderElement().clickOnButtonCreatePost()
+                .getHeaderForUserElement().clickOnButtonCreatePost()
                 .checkIsRedirectToCreateNewPostPage()
                 .enterTextIntoInputTitle(POST_TITLE)
                 .enterTextIntoInputBody("Body")
@@ -37,7 +37,7 @@ public class CreateNewPostTest extends BaseTest {
     public void deletePosts() {
         pageProvider.getHomePage()
                 .openHomePageAndLoginIfNeed()
-                .getHeaderElement().clickOnButtonMyProfile()
+                .getHeaderForUserElement().clickOnButtonMyProfile()
                 .checkIsRedirectToProfilePage()
                 .deletePostsTillPresent(POST_TITLE)
                 ;
