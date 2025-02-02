@@ -21,7 +21,6 @@ public class LoginPage extends ParentPage {
   @FindBy(xpath = "//*[@class='alert alert-danger text-center']")
   private WebElement errorMessage;
 
-
   public LoginPage(WebDriver webDriver) {
     super(webDriver);
   }
@@ -65,15 +64,10 @@ public class LoginPage extends ParentPage {
     return new HomePage(webDriver);
   }
 
-  public void checkIsButtonSignInVisible() {
-    checkIsElementVisible(buttonSignIn);
-  }
-
   public LoginPage checkIsErrorMessageDisplayed(String expectedText) {
     checkTextInElement(errorMessage, expectedText);
     return this;
   }
-
 
   public LoginPage checkIsInputUsernameNotVisible() {
     checkIsElementNotVisible(inputUserName);
