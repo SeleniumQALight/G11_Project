@@ -6,8 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-  import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.elementName;
-
 public class CommonActionsWithElements {
   protected WebDriver webDriver;
   private Logger logger = Logger.getLogger(getClass());
@@ -77,6 +75,10 @@ public class CommonActionsWithElements {
     Assert.assertTrue("Element is not visible", isElementVisible(webElement));
   }
 
+  protected void checkIsElementNotVisible(WebElement webElement) {
+    Assert.assertFalse("Element is visible", isElementVisible(webElement));
+  }
+
   //checkTextInElement
   protected void checkTextInElement(WebElement webElement, String text) {
     Assert.assertEquals("Text in element " + getElementName(webElement) + "not expected", text, webElement.getText());
@@ -86,5 +88,45 @@ public class CommonActionsWithElements {
   private void printErrorAndStopTest(Exception e) {
     logger.error("Can not work with element " + e);
     Assert.fail("Can not work with element " + e);
+  }
+
+  protected void selectCheckbox(WebElement checkbox) {
+    try {
+      if (!checkbox.isSelected()) {
+        clickOnElement(checkbox);
+        logger.info("Checkbox was selected");
+      } else {
+        logger.info("Checkbox is already selected");
+      }
+    } catch (Exception e) {
+      printErrorAndStopTest(e);
+    }
+  }
+
+  protected void unselectCheckbox(WebElement checkbox) {
+    try {
+      if (checkbox.isSelected()) {
+        clickOnElement(checkbox);
+        logger.info("Checkbox was deselected");
+      } else {
+        logger.info("Checkbox is already deselected");
+      }
+    } catch (Exception e) {
+      printErrorAndStopTest(e);
+    }
+  }
+
+  public void setCheckboxState(WebElement checkbox, String state) {
+    try {
+      if ("check".equalsIgnoreCase(state)) {
+        selectCheckbox(checkbox);
+      } else if ("uncheck".equalsIgnoreCase(state)) {
+        selectCheckbox(checkbox);
+      } else {
+        logger.error("Invalid state: " + state);
+      }
+    } catch (Exception e) {
+      printErrorAndStopTest(e);
+    }
   }
 }

@@ -6,11 +6,12 @@ import org.junit.Test;
 import org.utils.Utils_Custom;
 
 public class CreateNewPostTest extends BaseTest {
+    final String POST_TITLE = "TR003_savchenko_" + Utils_Custom.getDateAndTimeFormatted();
     //GUID =
     @Test
     public void TR003_createNewPost() {
 
-        final String POST_TITLE = "TR003_savchenko_" + Utils_Custom.getDateAndTimeFormatted();
+
 
         pageProvider.getLoginPage()
                 .openLoginPageAndFillLoginFormWithValidCred()
@@ -19,6 +20,8 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectToCreateNewPostPage()
                 .enterTextIntoInputTitle(POST_TITLE)
                 .enterTextIntoInputBody("Body")
+                .checkIfUniquePost()
+                .selectUniquePostCheckbox("check")
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()
@@ -34,6 +37,12 @@ public class CreateNewPostTest extends BaseTest {
 
     @After
     public void deletePosts() {
+        pageProvider.getHomePage()
+                .openHomePageAndLoginIfNeed()
+                .getHeaderElement().clickOnButtonMyProfile()
+                .checkIsRedirectToProfilePage()
+                .deletePostsTillPresent(POST_TITLE)
+                ;
 
     }
 }

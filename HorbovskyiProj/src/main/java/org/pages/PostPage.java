@@ -11,7 +11,10 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = "//*[@class='alert alert-success text-center']")
     private WebElement successMessage;
 
-    @FindBy(xpath = "//*[@class='btn btn-danger']")
+    @FindBy(xpath = ".//p[text()='Is this post unique? : yes']")
+    private WebElement uniquePostMessage;
+
+    @FindBy(xpath = "//*[@class='delete-post-button text-danger']")
     private WebElement buttonDeletePost;
 
     public HeaderForLoggedInUserElement getHeaderElement() {
@@ -34,6 +37,11 @@ public class PostPage extends ParentPage {
 
     public PostPage checkTextInSuccessMessage(String expectedMessageText) {
         checkTextInElement(successMessage, expectedMessageText);
+        return this;
+    }
+
+    public PostPage checkIfUniquePost() {
+        checkIsElementVisible(uniquePostMessage);
         return this;
     }
 
