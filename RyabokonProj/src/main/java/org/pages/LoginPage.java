@@ -19,6 +19,9 @@ public class LoginPage extends ParentPage{
     @FindBy(xpath = "//button[text()='Sign In'] ")
     private WebElement buttonSignIn;
 
+    @FindBy(xpath = ".//div[@class = 'alert alert-danger text-center' ]")
+    private WebElement messageInvalidLoginOrPassword;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -57,5 +60,9 @@ return this;
         this.enterTextIntoInputPassword(TestData.VALID_PASSWORD);
         clickOnButtonSignIn();
         return new HomePage(webDriver);
+    }
+
+    public boolean checkIfMessageInvalidLoginPasswordVisible() {
+        return isElementVisible(messageInvalidLoginOrPassword);
     }
 }
