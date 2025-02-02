@@ -43,4 +43,9 @@ return new PostPage(webDriver);
         setCheckboxState(uniquePostCheckbox, check);
         return this;
     }
+
+    public CreateNewPostPage checkIfUniquePost() {
+        checkIsElementVisible(uniquePostCheckbox);
+        return this;
+    }
 }

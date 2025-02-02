@@ -20,6 +20,7 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectToCreateNewPostPage()
                 .enterTextIntoInputTitle(POST_TITLE)
                 .enterTextIntoInputBody("Body")
+                .checkIfUniquePost()
                 .selectUniquePostCheckbox("check")
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
