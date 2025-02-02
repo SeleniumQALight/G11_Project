@@ -19,6 +19,15 @@ public class LoginPage extends ParentPage {
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
+    public LoginPage checkIsUsernameInputIsVisible() {
+        checkIsElementVisible(inputUserName);
+        return this;
+    }
+
+    public LoginPage checkIsInputPasswordIsVisible() {
+        checkIsElementVisible(inputPassword);
+        return this;
+    }
 
     public LoginPage openPage() {
         String baseUrl = "https://aqa-complexapp.onrender.com";
@@ -47,5 +56,13 @@ public class LoginPage extends ParentPage {
         enterTextIntoInputPassword(TestData.VALID_PASSWORD);
         clickOnButtonSignIn();
         return new HomePage(webDriver);
+    }
+
+    public LoginPage checkIsRedirectToLoginPage() {
+        checkIsElementVisible(buttonSignIn);
+        checkIsUsernameInputIsVisible();
+        checkIsInputPasswordIsVisible();
+        //TODO check current URL
+        return this;
     }
 }

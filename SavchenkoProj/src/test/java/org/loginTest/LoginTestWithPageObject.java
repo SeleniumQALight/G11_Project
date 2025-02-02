@@ -40,6 +40,27 @@ public class LoginTestWithPageObject extends BaseTest {
 
     }
 
+    @Test
+    public void T0004_validSignOut() {
+        pageProvider.getLoginPage()
+                .openLoginPageAndFillLoginFormWithValidCred()
+                .checkIsRedirectToHomePage()
+                .getHeaderForUserElement()
+                .checkIsButtonCreatePostVisible();
+        pageProvider.getHomePage().getHeaderForUserElement()
+                .checkIsButtonMyProfileVisible();
+        pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonSearchIsVisible();
+        pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonChatIsVisible();
+        pageProvider.getHomePage().getHeaderForUserElement()
+                .clickOnSignOutButton();
+        pageProvider.getLoginPage()
+                .checkIsRedirectToLoginPage();
+        pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonSignOutInvisible();
+        pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonCreatePostInvisible();
+        pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonMyProfileInvisible();
+        pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonSearchInvisible();
+        pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonChatInvisible();
+    }
 
 
 }

@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.pages.CommonActionsWithElements;
 import org.pages.CreateNewPostPage;
+import org.pages.LoginPage;
 
 public class HeaderForUserElement extends CommonActionsWithElements {
 
@@ -41,5 +42,46 @@ public class HeaderForUserElement extends CommonActionsWithElements {
 
     public boolean isButtonSignOutVisible() {
         return isElementVisible(buttonSignOut);
+    }
+
+    public void checkIsButtonCreatePostVisible() {
+        checkIsElementVisible(buttonCreatePost);
+    }
+
+    public void checkIsButtonMyProfileVisible() {
+        checkIsElementVisible(buttonMyProfile);
+    }
+
+    public void checkIsButtonSearchIsVisible() {
+        checkIsElementVisible(buttonSearch);
+    }
+
+    public void checkIsButtonChatInvisible() {
+        checkIsElementInvisible(buttonChat);
+    }
+
+    protected void checkIsElementInvisible(WebElement buttonChat) {
+    }
+
+    public void checkIsButtonChatIsVisible() {
+        checkIsElementVisible(buttonChat);
+    }
+
+    public LoginPage clickOnSignOutButton() {
+        clickOnElement(buttonSignOut);
+        return new LoginPage(webDriver);
+    }
+
+    public void checkIsButtonSignOutInvisible() {
+        checkIsElementInvisible(buttonSignOut);
+    }
+    public void checkIsButtonCreatePostInvisible() {
+        checkIsElementInvisible(buttonCreatePost);
+    }
+    public void checkIsButtonMyProfileInvisible() {
+        checkIsElementInvisible(buttonMyProfile);
+    }
+    public void checkIsButtonSearchInvisible() {
+        checkIsElementInvisible(buttonSearch);
     }
 }
