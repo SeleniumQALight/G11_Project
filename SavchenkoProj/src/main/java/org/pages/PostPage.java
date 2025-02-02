@@ -9,6 +9,8 @@ import org.pages.elements.MyProfilePage;
 public class PostPage extends ParentPage {
     @FindBy(xpath = "//div[contains(@class, 'alert-success') and contains(text(), 'New post successfully created.')]")
     private WebElement successMessage;
+    @FindBy(xpath = ".//p[text()='Is this post unique? : yes']")
+    private WebElement uniquePostMessage;
     @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
     private WebElement buttonDeletePost;
 
@@ -31,6 +33,10 @@ public class PostPage extends ParentPage {
 
     public PostPage checkTextInSuccessMessage(String expectedText) {
         checkTextInElement(successMessage, expectedText);
+        return this;
+    }
+    public PostPage checkIfUniquePost() {
+        checkIsElementVisible(uniquePostMessage);
         return this;
     }
 
