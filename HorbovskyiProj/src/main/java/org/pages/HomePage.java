@@ -11,8 +11,7 @@ import org.pages.elements.HeaderForLoggedInUserElement;
 public class HomePage extends ParentPage {
     private Logger logger = Logger.getLogger(getClass());
 
-    @FindBy(xpath = "//button[text()='Sign Out']")
-    private WebElement buttonSignOut;
+
 
     @FindBy(xpath = "//a[@class='btn btn-sm btn-success mr-2']")
     private WebElement buttonCreatePost;
@@ -22,10 +21,7 @@ public class HomePage extends ParentPage {
         super(webDriver);
     }
 
-    public HomePage checkIsButtonSignOutVisible() {
-        checkIsElementVisible(buttonSignOut);
-        return this;
-    }
+
 
     public HeaderForLoggedInUserElement getHeaderElement() {
         return new HeaderForLoggedInUserElement(webDriver);
@@ -53,10 +49,7 @@ public class HomePage extends ParentPage {
         return this;
     }
 
-    public LoginPage checkIsButtonSignOutNotVisible() {
-        checkIsElementNotVisible(buttonSignOut);
-        return new LoginPage(webDriver);
-    }
+
 
     public HomePage checkIsButtonCreatePostVisible() {
         checkIsElementVisible(buttonCreatePost);
