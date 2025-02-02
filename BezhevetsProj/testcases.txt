@@ -1,24 +1,117 @@
-#001 Valid login test
+ #001 New user creation
 
 Precondition:
-1. New user with unique name is created (qavlad + [date_time])
+ 1. There is no created user with such credentials
+ username: qavlad + [date_time]
+ email:tesvladqaG11+1@gmail.com
+ password: qwerty12345678
 
 Steps:
-1. Open the login page of the site (https://aqa-complexapp.onrender.com)
-2. Enter the username of the created user in the "Username" field
-3. Enter the password of the created user in the "Password" field
-4. Click on the "Sign in" button
+ 1. Open the sign up page of the site (https://aqa-complexapp.onrender.com)
+ 2. Enter the username of the new user in the "Username" field
+ 3. Enter the email of the new user in the "Email" field
+ 3. Enter the password of the new user in the "Password" field
+ 4. Click on the "Sign up for OurApp" button
 
 Expected result:
-1. Check that the user is signed in
- - the user avatar is displayed on the page
- - the "Sing in" button and the "Username", "Password" fields are not displayed on the page
+ 1. Check that the user is created
+  - new user is signed in
+  - the user avatar, the "Create Post" and "Sign out" buttons are displayed on the page
+  - the "Hello qavlad1201, ..." page is opened
 
- Post condition:
+Post condition:
  1. Delete the created user
 
+------------------------------------------------------------------------------------------------
 
- #002 ...
+ #002 Valid login test
 
+Precondition:
+ 1. New user with unique name is created (qavlad + [date_time])
+
+Steps:
+ 1. Open the login page of the site (https://aqa-complexapp.onrender.com)
+ 2. Enter the username of the created user in the "Username" field
+ 3. Enter the password of the created user in the "Password" field
+ 4. Click on the "Sign in" button
+
+Expected result:
+ 1. Check that the user is signed in
+  - the user avatar is displayed on the page
+  - the "Sing in" button, the "Username" and "Password" fields are not displayed on the page
+
+Post condition:
+ 1. Delete the created user
+
+------------------------------------------------------------------------------------------------
+
+ #003 New unique, public post creating
+
+Precondition:
+ 1. New user with unique name is created (qavlad + [date_time])
+ 2. The user is signed in
+
+Steps:
+ 1. Open the home page of the site (https://aqa-complexapp.onrender.com)
+ 2. Click on the "Create Post" button
+ 3. Enter a tile (e.g. test title + [date_time]) of the post in the "Title" field
+ 4. Enter some text (e.g. test text for the body of the post + [date_time]) in the "Body Content" field
+ 5. Check the "Is this post unique?" checkbox
+ 6. Select the "Загальнодоступне" value in the "Select value" dropdown
+ 7. Click on the "Save new post" button
+
+Expected result:
+ 1. Check that the new post is created
+  - The page of the new post is opened (the edit post icon is displayed)
+  - The "New post successfully created." banner is displayed on the page
+  - The new post is displayed in the "Posts" tab of the user profile (new post can be found by its title)
+
+Post condition:
+ 1. Delete the created post
+ 2. Delete the created user
+
+------------------------------------------------------------------------------------------------
+
+ #004 An existing post deleting
+
+Precondition:
+ 1. New user with unique name is created (qavlad + [date_time])
+ 2. The user is signed in
+ 3. New post (e.g. "Post for removing") is created by the user
+
+Steps:
+ 1. Open the home page of the site (https://aqa-complexapp.onrender.com)
+ 2. Navigate to the user profile page by clicking on the user avatar
+ 3. Open the post for removing in the list of posts
+ 4. Click on the garbage icon
+
+Expected result:
+ 1. Check that the post is deleted
+  - the "Post successfully deleted." banner is displayed on the page
+  - the post is not displayed in the list of existing posts
+
+Post condition:
+ 1. Delete the created user
+
+------------------------------------------------------------------------------------------------
+
+ #005 Possibility to send a message in th chat
+
+Precondition:
+ 1. New user with unique name is created (qavlad + [date_time])
+ 2. The user is signed in
+
+Steps:
+ 1. Open the home page of the site (https://aqa-complexapp.onrender.com)
+ 2. Click on the "Chat" icon next to the user avatar
+ 3. Enter a text (e.g. test message + [date_time]) in the "Type a message" input field of the "Chat" popup
+ 4. Click on the Enter
+
+Expected result:
+ 1. Check that the new message is sent to the chat
+  - the message is displayed as sent next to the user avatar in the Chat
+
+Post condition:
+ 1. Delete the created user
 
 

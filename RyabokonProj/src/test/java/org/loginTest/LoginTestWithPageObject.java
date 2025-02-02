@@ -2,7 +2,6 @@ package org.loginTest;
 
 
 import org.baseTest.BaseTest;
-import org.data.TestData;
 import org.junit.Test;
 
 import static org.data.TestData.VALID_LOGIN;
@@ -19,10 +18,16 @@ public class LoginTestWithPageObject extends BaseTest {
                 .enterTextIntoInputLogin(VALID_LOGIN)
                 .enterTextIntoInputPassword(VALID_PASSWORD)
                 .clickOnButtonSignIn();
-
-        pageProvider.getHomePage().checkIsButtonSignOutVisible();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
     }
 
-
+@Test
+    public void T002a_invalidLogin() {
+    pageProvider.getLoginPage().openPage();
+    pageProvider.getLoginPage().enterTextIntoInputLogin("qaato1");
+    pageProvider.getLoginPage().enterTextIntoInputPassword("123456");
+    pageProvider.getLoginPage().clickOnButtonSignIn();
+    pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
+}
 }
 
