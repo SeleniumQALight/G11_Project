@@ -32,7 +32,7 @@ public class CommonActionsWithElements {
         } catch (Exception e) {
             elementName = "";
         }
-        return null;
+        return elementName;
     }
 
     protected void clickOnElement(WebElement webElement) {
