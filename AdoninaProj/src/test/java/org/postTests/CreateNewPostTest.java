@@ -19,10 +19,12 @@ public class CreateNewPostTest extends BaseTest {
             .checkIsRedirectToCreateNewPostPage()
             .enterTextIntoInputTitle(POST_TITLE)
             .enterTextIntoInputBody("Body of the post")
+            .setOnCheckBoxIsPrivatePost("check")
             .clickOnButtonSaveNewPost()
             .checkIsRedirectToPostPage()
             .checkIsSuccessMessageDisplayed()
             .checkTextInSuccessMessage("New post successfully created.")
+            .checkIfUniquePost().getHeaderElement().clickOnButtonMyProfile()
     ;
 
     pageProvider.getPostPage().getHeaderElement().clickOnButtonMyProfile()
@@ -33,6 +35,13 @@ public class CreateNewPostTest extends BaseTest {
 
   @After
   public void deletePost() {
+    pageProvider.getHomePage()
+            .openHomePageAndLoginIfNeeded()
+            .getHeaderElement().clickOnButtonMyProfile()
+            .checkIsRedirectToMyProfilePage()
+            .deletePostsTitlePresent(POST_TITLE)
+    ;
+
 
   }
 

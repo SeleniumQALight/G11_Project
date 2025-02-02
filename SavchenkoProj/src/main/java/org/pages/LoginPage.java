@@ -16,6 +16,10 @@ public class LoginPage extends ParentPage {
     private WebElement buttonSignIn;
 
 
+    @FindBy(xpath = "//div[text()='Invalid username/password.']")
+    private WebElement invalidLoginOrPasswordMessage;
+
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -47,5 +51,21 @@ public class LoginPage extends ParentPage {
         enterTextIntoInputPassword(TestData.VALID_PASSWORD);
         clickOnButtonSignIn();
         return new HomePage(webDriver);
+    }
+    public LoginPage checkIsButtonSignInVisible() {
+        checkIsElementVisible(buttonSignIn);
+        return this;
+    }
+
+
+
+    public LoginPage checkIsInvalidLoginOrPasswordMessageVisible() {
+        checkIsElementVisible(invalidLoginOrPasswordMessage);
+        return this;
+    }
+
+    public void checkIsInputLoginOrPasswordNotVisible() {
+        checkIsElementNotVisible(inputUserName);
+        checkIsElementNotVisible(inputPassword);
     }
 }
