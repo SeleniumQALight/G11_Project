@@ -1,6 +1,7 @@
 package org.pages;
 
 import org.openqa.selenium.WebDriver;
+import org.pages.elements.HeaderForUserElement;
 
 public class PageProvider {
 
