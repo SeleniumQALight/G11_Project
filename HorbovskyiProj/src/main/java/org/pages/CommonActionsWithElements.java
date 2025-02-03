@@ -88,5 +88,40 @@ public class CommonActionsWithElements {
         Assert.assertTrue("Element " + getElementName(webElement) + " is not visible", isElementVisible(webElement));
     }
 
+    protected void checkIsElementNotVisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible", isElementVisible(webElement));
+    }
+
+    protected void selectCheckbox(WebElement webElement) {
+        if (webElement.isSelected() == false) {
+            webElement.click();
+            logger.info("Checkbox is selected");
+        } else {
+            logger.info("Checkbox is already selected");
+        }
+    }
+
+    protected void unselectCheckbox(WebElement webElement) {
+        if (webElement.isSelected() == true) {
+            webElement.click();
+            logger.info("Checkbox is unselected");
+        } else {
+            logger.info("Checkbox is already unselected");
+        }
+    }
+
+    protected void setCheckboxState(WebElement webElement, String neededState) {
+        boolean currentState = webElement.isSelected();
+        if (neededState.equals("check")) {
+            selectCheckbox(webElement);
+        } else if (neededState.equals("uncheck")) {
+            unselectCheckbox(webElement);
+        } else {
+            logger.error("State should be 'check' or 'uncheck'");
+        }
+    }
+
+
+
 
 }
