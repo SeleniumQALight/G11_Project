@@ -5,7 +5,6 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.pages.elements.HeaderForUserElement;
 
 import static org.data.TestData.*;
 
@@ -23,10 +22,6 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = "//button[text()='Sign In']")
     private WebElement clickSignIn;
-
-    public HeaderForUserElement getHeaderElement() {
-        return new HeaderForUserElement(webdriver);
-    }
 
     public LoginPage(WebDriver webdriver) {
         super(webdriver);
