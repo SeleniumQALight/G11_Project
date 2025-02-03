@@ -60,8 +60,4 @@ public class PostPage extends ParentPage {
         return new PostPage(webDriver);
     }
 
-    public PostPage checkIsRedirectToEditPostPage() {
-        //TODO checkUrl();
-        return this;
-    }
 }

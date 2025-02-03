@@ -29,8 +29,8 @@ public class EditPostTest extends BaseTest {
                 .checkPostWithTitleIsPresent(POST_TITLE_UNIQUE, 1)
                 .clickOnPostWithTitle(POST_TITLE_UNIQUE)
                 .checkIsRedirectToPostPage()
-                .clickOnEditPostButton()
-                .checkIsRedirectToEditPostPage();
+                .clickOnEditPostButton();
+        pageProvider.getEditPostPage().checkIsRedirectToEditPostPage();
         pageProvider.getCreateNewPostPage()
                 .enterTextIntoInputTitle(POST_TITLE_EDITED);
 

@@ -30,8 +30,9 @@ public class HeaderForUserElement extends CommonActionsWithElements {
         return new MyProfilePage(webDriver);
     }
 
-    public void checkIsButtonMyProfileVisible() {
+    public HeaderForUserElement checkIsButtonMyProfileVisible() {
         checkIsElementVisible(buttonMyProfile);
+        return new HeaderForUserElement(webDriver);
     }
 
     public void checkIsButtonMyProfileInvisible() {
@@ -48,8 +49,9 @@ public class HeaderForUserElement extends CommonActionsWithElements {
         return new CreateNewPostPage(webDriver);
     }
 
-    public void checkIsButtonCreatePostVisible() {
+    public HeaderForUserElement checkIsButtonCreatePostVisible() {
         checkIsElementVisible(buttonCreatePost);
+        return new HeaderForUserElement(webDriver);
     }
 
     public void checkIsButtonCreatePostInvisible() {
@@ -70,16 +72,18 @@ public class HeaderForUserElement extends CommonActionsWithElements {
         return new LoginPage(webDriver);
     }
 
-    public void checkIsButtonSearchIsVisible() {
+    public HeaderForUserElement checkIsButtonSearchIsVisible() {
         checkIsElementVisible(buttonSearch);
+        return new HeaderForUserElement(webDriver);
     }
 
     public void checkIsButtonSearchInvisible() {
         checkIsElementInvisible(buttonSearch);
     }
 
-    public void checkIsButtonChatIsVisible() {
+    public HeaderForUserElement checkIsButtonChatIsVisible() {
         checkIsElementVisible(buttonChat);
+        return new HeaderForUserElement(webDriver);
     }
 
     public void checkIsButtonChatInvisible() {

@@ -52,11 +52,10 @@ public class LoginTestWithPageObject extends BaseTest {
                 .openLoginPageAndFillLoginFormWithValidCred()
                 .checkIsRedirectToHomePage()
                 .getHeaderForUserElement()
-                .checkIsButtonCreatePostVisible();
-        pageProvider.getHomePage().getHeaderForUserElement()
-                .checkIsButtonMyProfileVisible();
-        pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonSearchIsVisible();
-        pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonChatIsVisible();
+                .checkIsButtonCreatePostVisible()
+                .checkIsButtonMyProfileVisible()
+                .checkIsButtonSearchIsVisible()
+                .checkIsButtonChatIsVisible();
         pageProvider.getHomePage().getHeaderForUserElement()
                 .clickOnSignOutButton()
                 .checkIsRedirectToLoginPage();

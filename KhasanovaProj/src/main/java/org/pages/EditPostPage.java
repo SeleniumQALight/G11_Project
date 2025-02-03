@@ -31,4 +31,9 @@ public class EditPostPage extends ParentPage {
     public void checkTextInSuccessUpdateMessage(String expectedMessageText) {
         checkTextInElement(successUpdateMessage, expectedMessageText);
     }
+
+    public EditPostPage checkIsRedirectToEditPostPage() {
+        //TODO checkUrl();
+        return this;
+    }
 }
