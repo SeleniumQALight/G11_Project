@@ -19,6 +19,9 @@ public class CreateNewPostPage extends ParentPage {
     @FindBy(xpath = "//input[@name='uniquePost']")
     private WebElement uniquePostCheckbox;
 
+    @FindBy(xpath = "//select")
+    private WebElement dropdown;
+
 
     public CreateNewPostPage(WebDriver webDriver) {
         super(webDriver);
@@ -26,6 +29,11 @@ public class CreateNewPostPage extends ParentPage {
 
     public CreateNewPostPage checkIsRedirectOnCreateNewPostPage() {
         //TODO checkUrl();
+        return this;
+    }
+
+    public CreateNewPostPage selectValueInDropdownAccess(String value) {
+        selectValueInDropdown(dropdown, value);
         return this;
     }
 
