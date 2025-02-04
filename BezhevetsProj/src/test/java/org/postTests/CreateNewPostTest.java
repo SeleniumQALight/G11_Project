@@ -24,6 +24,7 @@ public class CreateNewPostTest extends BaseTest {
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()
+                .checkIsPostIsUnique()
                 .checkTextInSuccessMessage("New post successfully created.")
         ;
 
