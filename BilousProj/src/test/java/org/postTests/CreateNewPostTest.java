@@ -18,11 +18,13 @@ public class CreateNewPostTest extends BaseTest {
                 .getHeaderElement().clickOnButtonCreatePost()
                 .checkIsRedirectOnCreateNewPostPage()
                 .enterTextIntoInputTitle(POST_TITLE)
+                .selectValueInDropdownAccess("One Person")
                 .enterTextIntoInputBody("Body of the post")
                 .setOnCheckBoxIsPrivatePost()
                 .clickOnButtonSavePost()
                 .checkIsRedirectOnPostPage()
                 .checkIsSuccessMessageDisplayed()
+                .checkTextThisPostWasWrittenIsVisible("One Person")
                 .checkTextInSuccessMessage("New post successfully created.")
 
         ;

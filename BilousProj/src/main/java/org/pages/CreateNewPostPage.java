@@ -19,6 +19,9 @@ public class CreateNewPostPage extends ParantPage {
     @FindBy(xpath = "//input [@type='checkbox']")
     private WebElement checkboxIsPrivatePost;
 
+    @FindBy(xpath = "//select")
+    private WebElement dropdownAccess;
+
     public CreateNewPostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -27,6 +30,11 @@ public class CreateNewPostPage extends ParantPage {
     // check is redirect on CreateNewPostPage
     public CreateNewPostPage checkIsRedirectOnCreateNewPostPage() {
         //TODO check url
+        return this;
+    }
+
+    public CreateNewPostPage selectValueInDropdownAccess(String valueForSelect) {
+        selectValueInDD(dropdownAccess, valueForSelect);
         return this;
     }
 
