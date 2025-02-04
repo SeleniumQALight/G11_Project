@@ -10,6 +10,7 @@ public class PostPage extends ParentPage {
     //"//*[contains(@class,'alert-success')]"
     @FindBy(xpath = "//*[@class='alert alert-success text-center']")
     private WebElement successMessage;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -17,9 +18,12 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
     private WebElement buttonDeletePost;
 
+
+
     public HeaderForUserElements getHeaderElement() {
         return new HeaderForUserElements(webDriver);
     }
+
     public PostPage checkIsRedirectOnPostPage() {
         //TODO checkURL();
         return this;
@@ -43,4 +47,6 @@ public class PostPage extends ParentPage {
         clickOnElement(buttonDeletePost, "Delete post button");
         return new MyProfilePage(webDriver);
     }
+
+
 }

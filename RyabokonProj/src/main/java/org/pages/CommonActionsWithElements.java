@@ -34,8 +34,8 @@ public class CommonActionsWithElements {
         String elementName = "";
         try {
             elementName = webElement.getAccessibleName();
-        }catch (Exception e){
-           elementName = "";
+        } catch (Exception e) {
+            elementName = "";
         }
         return elementName;
     }
@@ -75,7 +75,7 @@ public class CommonActionsWithElements {
             }
             return state;
         } catch (Exception e) {
-            logger.info( getElementName(webElement) + "Element is not found");
+            logger.info(getElementName(webElement) + "Element is not found");
             return false;
         }
     }
@@ -96,8 +96,37 @@ public class CommonActionsWithElements {
     private void printErrorAndStopTest(Exception e) {
         logger.error("Cannot work with element " + e);
         Assert.fail("Cannot work with element " + e);
+
     }
 
+    public void selectCheckBox(WebElement checkbox) {
+        if (!checkbox.isSelected()) {
+            clickOnElement(checkbox);
+            logger.info("Checkbox is selected");
+        } else {
+            logger.info("Checkbox was already selected");
+
+        }
+    }
+
+    public void unselectCheckbox(WebElement checkbox) {
+        if (checkbox.isSelected()) {
+            clickOnElement(checkbox);
+            logger.info("Checkbox is unselected");
+        } else {
+            logger.info("Checkbox was already unselected");
+        }
+    }
+
+    public void setCheckboxState(WebElement checkbox, String state) {
+        if (state.equalsIgnoreCase("check")) {
+            selectCheckBox(checkbox);
+        } else if (state.equalsIgnoreCase("uncheck")) {
+            unselectCheckbox(checkbox);
+        } else {
+            logger.error("Invalid state: " + state);
+        }
+    }
 }
 
 
