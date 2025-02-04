@@ -21,11 +21,15 @@ public class PostPage extends ParentPage {
         super(webDriver);
     }
 
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
+    }
+
     public HeaderForUserElement  getHeaderElement() {
         return new HeaderForUserElement(webDriver);
     }
     public PostPage checkIsRedirectToPostPage() {
-        //TODO checkUrl();
+        checkUrlWithPattern();
         return this;
     }
 
