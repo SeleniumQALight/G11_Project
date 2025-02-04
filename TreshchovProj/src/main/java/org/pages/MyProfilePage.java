@@ -62,6 +62,18 @@ public class MyProfilePage extends ParentPage {
         return this;
     }
 
+    public MyProfilePage EditPostWithNewTitle(String currentTitle, String NewTitle){
+        List<WebElement> postsList = getPostsList(currentTitle);
+        clickOnElement(postsList.get(0));
+        new PostPage(webDriver).checkIsRedirectToPostPage()
+                    .clickOnEditButton()
+                    .enterTextIntoInputTitle(NewTitle)
+                    .clickOnButtonSaveUpdates()
+                    .getHeaderElement().clickOnButtonMyProfile();
+        logger.info("Post with title " + currentTitle + " was edited");
+        return new MyProfilePage(webDriver);
+    }
+
     private MyProfilePage checkIsMessageSuccessDeletePresent() {
         checkIsElementVisible(successMessageDelete);
         return this;
