@@ -1,0 +1,91 @@
+1. Test case valid user Sign In
+
+Precondition
+Register a valid user
+
+Step to reproduce
+1. Open the page https://aqa-complexapp.onrender.com/
+2. Enter a valid login
+3. Enter a valid password
+4. Click a button Sign in
+
+Expected Result
+1. Login and password are recognised
+2. Users profile page is opened
+3. User's avatar is seen
+3. Sign out button is present
+
+
+Post conditions
+Log out the user
+
+
+
+2. Test case Use the search icon to search for posts when the user is logged in
+
+Precondition
+The user is logged in, the home page is opened, button sign out is displayed
+
+Steps to reproduce
+1. Click on the search icon on the upper banner
+2. Enter a valid data "tester" in the search field
+
+Expected Result
+
+List of posts with the word "tester" is displayed
+
+PostCondition
+Clear the search field
+
+
+3. Test Case. When the user the user logs out, log in page loads
+with message "Remember writing"
+
+Precondition: User is logged, home page is opened
+
+Steps to reproduce
+1. Click on the log out button on the top banner
+
+
+Expected result
+1. The text box "Remember Writing" is seen.
+2. The user is logged out.
+3. button Sign Out is displayed.
+
+
+
+
+4. Test Case Valid User Signed Out
+
+Precondition
+Valid user Signed In
+
+Steps to Reproduce
+1. From My Profile page click the button Sign Out on the upper banner
+
+Expected result
+1. User is logged out
+2. Sign In button is available on the top banner
+
+Post Condition
+Sign In button is available on the top banner
+
+
+5. Test case unfollow one user in the followlist
+
+Precondition:
+1. the user is logged in;
+2. session is opened on the "My profile page";
+3. the user has at list one account on the list of "following";
+
+Steps to reproduce:
+1. Click on the button "following";
+2. Click on the first account in the list
+3.Click on the button "Stop following";
+
+Expected result
+The follower isn't on the list of "following"
+
+
+
+

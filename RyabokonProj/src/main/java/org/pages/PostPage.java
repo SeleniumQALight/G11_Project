@@ -14,6 +14,9 @@ public class PostPage extends ParentPage {
         super(webDriver);
     }
 
+    @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDeletePost;
+
     public HeaderForUserElements getHeaderElement() {
         return new HeaderForUserElements(webDriver);
     }
@@ -30,5 +33,14 @@ public class PostPage extends ParentPage {
     public PostPage checkTextInSuccessMessage(String expectedMessageText) {
         checkTextInElement(successMessage, expectedMessageText);
         return this;
+    }
+
+    public PostPage checkIsRedirectToPostPage() {
+        return this;
+    }
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDeletePost, "Delete post button");
+        return new MyProfilePage(webDriver);
     }
 }

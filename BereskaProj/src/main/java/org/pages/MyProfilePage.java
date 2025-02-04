@@ -10,9 +10,9 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 public class MyProfilePage extends ParentPage {
-
     private Logger logger = Logger.getLogger(getClass());
-    private String postWithTitleLocator = ".//*[text()='%s']";
+
+    private String postWithTitleLocator = "//*[text()='%s']";
 
     @FindBy(xpath = "//*[text()='Post successfully deleted.']")
     private WebElement successMessageDelete;
@@ -22,26 +22,25 @@ public class MyProfilePage extends ParentPage {
     }
 
     private List<WebElement> getPostsList(String postTitle) {
-        return webDriver.findElements(
-                By.xpath(String.format(postWithTitleLocator, postTitle)));
+        return webDriver.findElements(By.xpath(String.format(postWithTitleLocator, postTitle)
+        ));
     }
 
     public MyProfilePage checkIsRedirectToProfilePage() {
-        //TODO check current URL
+        //TODO checkUrl();
         return this;
     }
 
     public MyProfilePage checkPostWithTitleIsPresent(String postTitle, int numberOfPosts) {
-        Assert.assertEquals("Number of posts with title " + postTitle,
-                numberOfPosts, getPostsList(postTitle).size());
+        Assert.assertEquals("Number of posts with title " + postTitle, numberOfPosts, getPostsList(postTitle).size());
         return this;
     }
 
-    public MyProfilePage deletePostTillPresent(String postTitle) {
+    public MyProfilePage deletePostsTillPresent(String postTitle) {
         List<WebElement> postsList = getPostsList(postTitle);
-        final int MAX_POST_COUNT = 100;
+        final int MAX_POST_COUNT = 100;  // postsList.size()
         int counter = 0;
-        while ((!postsList.isEmpty()) && (counter < MAX_POST_COUNT)) {
+        while (!postsList.isEmpty() && (counter < MAX_POST_COUNT)) {
             clickOnElement(postsList.get(0));
             new PostPage(webDriver)
                     .checkIsRedirectToPostPage()
@@ -51,10 +50,10 @@ public class MyProfilePage extends ParentPage {
             logger.info("Post with title " + postTitle + " was deleted");
             postsList = getPostsList(postTitle);
             counter++;
-        }
 
+        }
         if (counter >= MAX_POST_COUNT) {
-            logger.info("Number of posts with title " + postTitle + " more than " + MAX_POST_COUNT);
+            logger.error("Number of posts with title " + postTitle + " more than " + MAX_POST_COUNT);
         }
         return this;
     }

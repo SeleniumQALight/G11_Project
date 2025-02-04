@@ -20,29 +20,18 @@ public class HeaderForUserElement extends CommonActionsWithElements {
     public HeaderForUserElement(WebDriver webDriver) {
         super(webDriver);
     }
-
-    public MyProfilePage clickOnMyProfileButton() {
+    public MyProfilePage clickOnButtonMyProfile() {
         clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
-
     }
-
     public void checkIsButtonSignOutVisible() {
+//        Assert.assertTrue("Button Sign Out is not visible" , isButtonSighOutVisible());
         checkIsElementVisible(buttonSignOut);
     }
 
     public CreateNewPostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
         return new CreateNewPostPage(webDriver);
-    }
-
-    public void checkIsButtonCreatePostVisible() {
-        checkIsElementVisible(buttonCreatePost);
-    }
-
-
-    public void checkIsButtonSignOutNotVisible() {
-        checkIsElementNotVisible(buttonSignOut);
     }
 
     public boolean isButtonSignOutVisible() {

@@ -1,22 +1,155 @@
-#001 Тест на валідний логін
+#001 Valid login test
 
-Прекондішн:
-1. Зареєструвати користувача з унікальним іменем (qamariana+[date_time])
+Preconditions:
+1. Register a user with a unique name (qamariana+[date_time])
 
-Степи:
-1. Відкрити логін пейдж https://aqa-complexapp.onrender.com.
-2. В інпут логін ввести логін зареєстрованого користувача
-3. В інпут пароль ввести пароль зареєстрованого користувача
-4. Клікнути на кнопку Sign In
+Steps:
+1. Open the login page https://aqa-complexapp.onrender.com.
+2. Enter the login of the registered user in the login input field
+3. Enter the password of the registered user in the password input field.
+4. Click on the Sign In button
 
-Очікуваний результат:
-1. Перевірити, що користувач залогінений:
-    - аватар (візібл) присутній на сторінці
-    - кнопка Sign In не присутня на сторінці
+Expected result:
+1. Check that the user is logged in:
+    - avatar is visible on the page
+    - there is no Sign In button on the page
 
-Пост кондішн:
-1. видалити створеного користувача
+Post conditions:
+1. Delete the user
 
 
-#002
+#002 Test for valid Sign Out
 
+     Preconditions:
+     1. Register a user with a unique name (qamariana+[date_time])
+     2. Log in
+     3. Make sure that the logged-in user's page is open - the popup on the right side has the username (qamariana+[date_time])
+
+     Steps:
+     1. Open the page https://aqa-complexapp.onrender.com/.
+     2. Click the button Sign Out
+
+     Expected result:
+     1. Check that the user is logged out:
+         - there is a login page with a registration form and a login form.
+         - there is no Sign Out button on the page
+         - avatar and username are not visible on the page
+
+     Post conditions:
+     1. Delete the user
+
+
+#003 New post creation test
+
+     Preconditions:
+     1. Register a user with a unique name (qamariana+[date_time])
+     2. Log in
+
+     Steps:
+     1. Open the page https://aqa-complexapp.onrender.com/.
+     2. Click the button Create Post
+     3. Create a new post (Title: test+[date_time], Body Content: Test test test)
+     4. Click the button Save New Post
+
+     Expected result:
+     1. Check that a new post has been created:
+         - there is no post creation form on the page
+         - Message: New post successfully created.
+         - New post (Title: test+[date_time] is displayed on MyProfile page.
+
+     Post conditions:
+     1. Delete the post
+     2. Delete the user
+
+#004 Test for correct display numbers of total posts on My Profile after creating a new post
+
+     Preconditions:
+     1. Register a user with a unique name (qamariana+[date_time])
+     2. Log in
+     3. Create a new post (Title: test+[date_time], Body Content: Test test test)
+
+     Steps:
+     1. Open the page https://aqa-complexapp.onrender.com/.
+     2. Click the button My profile
+
+     Expected result:
+     1. Check that the new post is displayed in My profile:
+         - Number of posts increased by 1 (Posts:х+1)
+         - New post at the top of the list
+
+     Post conditions:
+     1. Delete the post
+     2. Delete the user
+
+#005 Test for correct display of information about a new post after its creation
+
+     Preconditions:
+     1. Register a user with a unique name (qamariana+[date_time])
+     2. Log in
+
+
+     Steps:
+     1. Open the page https://aqa-complexapp.onrender.com/.
+     2. Click the button Create Post
+     3. Create a new post (Title: test+[date_time], Body Content: Test test test)
+     4. Click the button Save New Post
+
+     Expected result:
+     1. Check that the page displays all information about the new post:
+         - Title: test+[date_time]
+         - Posted by (logined username) on (actual date)
+         - Note: This post was written for (our choise)
+         - Is this post unique? : (our choise)
+         - Body Content: Test test test
+
+     Post conditions:
+     1. Delete the post
+     2. Delete the user
+
+#006 Test to edit Post
+
+     Preconditions:
+     1. Register a user with a unique name (qamariana+[date_time])
+     2. Log in
+     3. Create a new post (Title: test+[date_time], Body Content: Test test test)
+
+     Steps:
+     1. Open the page https://aqa-complexapp.onrender.com/.
+     2. Click My profile button
+     3. Click on post
+     4. Click Edit button
+     5. Change post (Title: test+[date_time]+test, Body Content: Test test test test)
+     6. Click Save Updates button
+
+     Expected result:
+     1. Check that the post is changed:
+         - Message: Post successfully updated.
+         - Post has new Title in My profile (test+[date_time]+test)
+         - Post has new Body Content (Test test test test)
+         - An updated post (Title: test+[date_time]+test) is displayed on MyProfile page.
+
+     Post conditions:
+     1. Delete the post
+     2. Delete the user
+
+
+#007 Test to delete the Post
+
+     Preconditions:
+     1. Register a user with a unique name (qamariana+[date_time])
+     2. Log in
+     3. Create a new post (Title: test+[date_time], Body Content: Test test test)
+
+     Steps:
+     1. Open the page https://aqa-complexapp.onrender.com/.
+     2. Click My profile button
+     3. Click on post
+     4. Click Delete button
+
+     Expected result:
+     1. Check that the post is deleted:
+         - Message: Post successfully deleted.
+         - There are no posts in My profile page
+
+     Post conditions:
+     1. Delete the user
