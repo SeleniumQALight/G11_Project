@@ -18,6 +18,12 @@ public class CreateNewPostPage extends ParentPage {
         super(webdriver);
 
     }
+
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
+    }
+
     @FindBy(name="title")
     private WebElement inputTitle;
     @FindBy(id="post-body")
@@ -29,8 +35,8 @@ public class CreateNewPostPage extends ParentPage {
     }
     //check is redirect to CreateNewPostPage
     public CreateNewPostPage checkIsRedirectToCreateNewPostPage() {
-        // TODO check url
-        return this;
+       checkUrlWithPattern();
+       return this;
     }
 
     public CreateNewPostPage enterTextIntoInputTitle(String title) {
@@ -43,9 +49,9 @@ public class CreateNewPostPage extends ParentPage {
         return this;
     }
 
-    public CreateNewPostPage clickOnSaveNewPostButton() {
+    public PostPage clickOnSaveNewPostButton() {
         clickOnElement(buttonSaveNewPost);
-        return this;
+        return new PostPage(webdriver);
     }
 
     public CreateNewPostPage setUniquePostCheckboxState (String requiredState) {
@@ -60,7 +66,4 @@ public class CreateNewPostPage extends ParentPage {
     }
 
 
-    public PostPage checkIsRedirectToPostPage() {
-        return new PostPage(webdriver);
-    }
 }

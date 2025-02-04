@@ -26,11 +26,16 @@ public class PostPage extends ParentPage {
         super(webdriver);
     }
 
-     public HeaderForUserElement getHeaderElement() {
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
+    }
+
+    public HeaderForUserElement getHeaderElement() {
          return new HeaderForUserElement(webdriver);
      }
     public PostPage checkIsRedirectToPostPage() {
-        // TODO check url
+        checkUrlWithPattern();
         return this;
     }
     public PostPage checkIsSuccessMessageDisplayed() {
