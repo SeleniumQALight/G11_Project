@@ -11,7 +11,7 @@ public class EditPostPage extends ParentPage {
     @FindBy(xpath = "//button[text()='Save Updates']")
     private WebElement buttonSaveUpdates;
 
-    @FindBy(xpath = "//div[text()='Post successfully updated.']")
+    @FindBy(xpath = "//div[text()='']")
     private WebElement successUpdateMessage;
 
     public EditPostPage(WebDriver webDriver) {
