@@ -2,9 +2,11 @@ package org.pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
@@ -13,6 +15,28 @@ public class CommonActionsWithElements {
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); // ініціалізує елементи, описані FindBy
+    }
+
+    //method for select visible text in dropDown
+    protected void selectTextInDropDown(WebElement dropDownElement, String textForSelect) {
+        try {
+            Select optionsFromDropDown = new Select(dropDownElement);
+            optionsFromDropDown.selectByVisibleText(textForSelect);
+            logger.info(textForSelect + " was selected in DropDown " + getElementName(dropDownElement));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    //select value in DropDown
+    protected void selectValueInDropDown(WebElement dropDownElement, String valueInDD) {
+        try {
+            Select optionsFromDropDown = new Select(dropDownElement);
+            optionsFromDropDown.selectByValue(valueInDD);
+            logger.info(valueInDD + "value was selected in DropDown " + getElementName(dropDownElement));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
     }
 
     protected void clearAndEnterTextIntoElement(WebElement webElement, String text) {
@@ -54,6 +78,16 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
+
+    protected boolean isElementVisible(String locator) {
+        try {
+            return isElementVisible(webDriver.findElement(By.xpath(locator)));
+        } catch (Exception e) {
+            logger.info("Element is not found");
+            return false;
+        }
+    }
+
     protected boolean isElementVisible(WebElement webElement) {
         try {
             boolean state = webElement.isDisplayed();
@@ -75,6 +109,10 @@ public class CommonActionsWithElements {
     }
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue("Element is not visible", isElementVisible(webElement));
+    }
+
+    protected void checkIsElementVisible(String locator) {
+        Assert.assertTrue("Element is not visible", isElementVisible(locator));
     }
 
     //checkTextInElement

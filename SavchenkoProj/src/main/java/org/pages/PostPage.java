@@ -1,5 +1,6 @@
 package org.pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +14,8 @@ public class PostPage extends ParentPage {
     private WebElement uniquePostMessage;
     @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
     private WebElement buttonDeletePost;
+
+    private String locatorForTextThisPostWasWritten = "//*[contains(text(), '%s')]";
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -43,5 +46,10 @@ public class PostPage extends ParentPage {
     public MyProfilePage clickOnDeleteButton() {
         clickOnElement(buttonDeletePost, "Delete post button");
         return new MyProfilePage(webDriver);
+    }
+
+    public PostPage checkTextInThisPostWasWrittenIsVisible(String text) {
+        checkIsElementVisible(String.format(locatorForTextThisPostWasWritten, text));
+        return this;
     }
 }

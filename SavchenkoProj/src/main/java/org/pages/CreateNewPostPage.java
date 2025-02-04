@@ -14,6 +14,8 @@ public class CreateNewPostPage extends ParentPage {
     private WebElement buttonSaveNewPost;
     @FindBy(xpath = "//input[@name='uniquePost']")
     private WebElement uniquePostCheckbox;
+    @FindBy(xpath = "//select")
+    private WebElement dropDownAccess;
 
     public CreateNewPostPage(WebDriver webDriver) {
         super(webDriver);
@@ -21,6 +23,11 @@ public class CreateNewPostPage extends ParentPage {
 
     public CreateNewPostPage checkIsRedirectToCreateNewPostPage() {
         //TODO checkUrl();
+        return this;
+    }
+
+    public CreateNewPostPage selectValueInDropDownAccess(String valueInDD) {
+        selectValueInDropDown(dropDownAccess, valueInDD);
         return this;
     }
 
