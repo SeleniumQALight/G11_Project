@@ -21,11 +21,18 @@ public class CreateNewPostPage extends ParentPage{
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/create-post";
+    }
+
     //checkisredirrect to this page
     public CreateNewPostPage checkIsRedirectToCreateNewPostPage() {
-      //TODO  checkCurrentUrl("create-post");
+        checkUrl();
         return this;
     }
+
+
 
     public CreateNewPostPage selectValueInDD(String value) {
         selectValueInDD(dropDownAccess, value);
