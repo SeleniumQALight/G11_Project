@@ -20,6 +20,7 @@ public class PostPage extends ParentPage {
 
     @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
     private WebElement buttonDeletePost;
+    private String locatorForText = "//*[contains(text(),'%s')]";
 
     public PostPage(WebDriver webdriver) {
         super(webdriver);
@@ -59,5 +60,10 @@ public class PostPage extends ParentPage {
     public MyProfilePage clickOnDeleteButton() {
        clickOnElement(buttonDeletePost, "Delete post button");
         return new MyProfilePage(webdriver);
+    }
+
+    public PostPage checkTextThisPostWasWrittenAndVisible(String text) {
+     checkIsElementVisible(String.format(locatorForText, text));
+        return this;
     }
 }
