@@ -1,10 +1,12 @@
 package org.pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
@@ -18,6 +20,31 @@ public class CommonActionsWithElements {
         //інакше вони будуть Null
         //і вони також оновляться в той момент, коли до них буде звертання
     }
+
+    //method for select visible text in dropdown
+    protected void selectTextInDD(WebElement dropDownElement, String textForSelect) {
+        try {
+            Select optionsFromDD = new Select(dropDownElement);
+            optionsFromDD.selectByVisibleText(textForSelect);
+            logger.info(textForSelect + " was selected in DropDown "
+                    + getElementName(dropDownElement));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    // method for select value in dropdown
+    protected void selectValueInDD(WebElement dropDownElement, String valueInDD) {
+        try {
+            Select optionsFromDD = new Select(dropDownElement);
+            optionsFromDD.selectByValue(valueInDD);
+            logger.info(valueInDD + " value was selected in DropDown "
+                    + getElementName(dropDownElement));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
 
     //method for clearing and entering text into the element
     protected void clearAndEnterTextIntoElement(WebElement webElement, String text) {
@@ -78,9 +105,21 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected boolean isElementVisible(String locator) {
+        try {
+            return  isElementVisible(webDriver.findElement(By.xpath(locator)));
+        } catch (Exception e) {
+            logger.info("Element is not found");
+            return false;
+        }
+    }
+
     //check if element is visible
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue(getElementName(webElement) + " Element isn't visible", isElementVisible(webElement));
+    }
+    protected void checkIsElementVisible(String locator) {
+        Assert.assertTrue("Element isn't visible", isElementVisible(locator));
     }
 
     //check if element is not visible
@@ -89,7 +128,7 @@ public class CommonActionsWithElements {
     }
 
     protected void checkTextInElement(WebElement webElement, String text) {
-        Assert.assertEquals("Text in element " +getElementName(webElement) + " is not expected", text, webElement.getText());
+        Assert.assertEquals("Text in element " + getElementName(webElement) + " is not expected", text, webElement.getText());
         logger.info("Text in element " + getElementName(webElement) + " is expected");
     }
 
@@ -97,7 +136,6 @@ public class CommonActionsWithElements {
         logger.error("Can not work with element " + e);
         Assert.fail("Can not work with element " + e);
     }
-
 
 
 }
