@@ -9,7 +9,6 @@ import org.pages.elements.HeaderForUserElement;
 public class HomePage extends ParentPage {
   private Logger logger = Logger.getLogger(getClass());
 
-
   public HomePage(WebDriver webDriver) {
     super(webDriver);
   }

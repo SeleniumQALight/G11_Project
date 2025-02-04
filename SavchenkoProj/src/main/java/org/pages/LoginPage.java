@@ -16,6 +16,10 @@ public class LoginPage extends ParentPage {
     private WebElement buttonSignIn;
 
 
+    @FindBy(xpath = "//div[text()='Invalid username/password.']")
+    private WebElement invalidLoginOrPasswordMessage;
+
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
