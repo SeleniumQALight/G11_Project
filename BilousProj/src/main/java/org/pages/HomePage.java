@@ -15,12 +15,18 @@ public class HomePage extends ParantPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
     public HeaderForUserElement getHeaderElement() {
         return new HeaderForUserElement(webDriver);
     }
+
     public HomePage checkIsRedirectOnHomePage() {
         getHeaderElement().checkIsButtonSignOutVisible();;
-        //TODO check current url
+        checkUrl();
         return this;
     }
 

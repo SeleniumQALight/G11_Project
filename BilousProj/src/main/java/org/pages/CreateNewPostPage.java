@@ -26,10 +26,15 @@ public class CreateNewPostPage extends ParantPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/create-post";
+    }
+
 
     // check is redirect on CreateNewPostPage
     public CreateNewPostPage checkIsRedirectOnCreateNewPostPage() {
-        //TODO check url
+        checkUrl();
         return this;
     }
 

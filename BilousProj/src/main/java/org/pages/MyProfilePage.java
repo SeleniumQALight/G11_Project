@@ -21,13 +21,18 @@ public class MyProfilePage extends ParantPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/profile/[a-zA-Z0-9]*";
+    }
+
     private List<WebElement> getPostsList(String postTitle) {
         return webDriver.findElements(By.xpath(String.format(postWithTitleLocator, postTitle)));
     }
 
 
     public MyProfilePage checkIsRedirectOnMyProfilePage() {
-        //TODO check url
+        checkUrlWithPattern();
         return this;
     }
 
