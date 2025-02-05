@@ -14,8 +14,15 @@ public class PostPage extends ParantPage {
     @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
     private WebElement buttonDeletePost;
 
+    private String locatorForTextThisPostWasWritten = "//*[contains(text(),'%s')]";
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
     }
 
     public HeaderForUserElement getHeaderElement() {
@@ -23,7 +30,7 @@ public class PostPage extends ParantPage {
     }
 
     public PostPage checkIsRedirectOnPostPage() {
-        //TODO check url
+        checkUrlWithPattern();
         return this;
     }
 
@@ -41,5 +48,10 @@ public class PostPage extends ParantPage {
     public MyProfilePage clickOnDeleteButton() {
         clickOnElement(buttonDeletePost, "Delete post button");
         return new MyProfilePage(webDriver);
+    }
+
+    public PostPage checkTextThisPostWasWrittenIsVisible(String text) {
+        checkIsElementVisible(String.format(locatorForTextThisPostWasWritten, text));
+        return this;
     }
 }

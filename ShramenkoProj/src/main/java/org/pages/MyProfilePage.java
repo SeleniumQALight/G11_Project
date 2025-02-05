@@ -22,6 +22,11 @@ public class MyProfilePage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/profile/[a-zA-Z0-9]*"; //регулярний вираз [a-zA-Z0-9]* - будь-яка послідовність букв і цифр
+    }
+
     //findElements знайде всі елементи за таким локатором і поверне List (повний або пустий):
 
     private List<WebElement> getPostsList(String postTitle) {
@@ -32,7 +37,7 @@ public class MyProfilePage extends ParentPage {
     }
 
     public MyProfilePage checkIsRedirectToMyProfilePage() {
-        //TODO checkUrl();
+        checkUrlWithPattern();
         return this;
     }
 
