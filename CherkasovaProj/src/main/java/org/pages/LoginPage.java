@@ -25,8 +25,13 @@ public class LoginPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
     public LoginPage openPage() {
-        String baseUrl = "https://aqa-complexapp.onrender.com";
+
         webDriver.get(baseUrl);
         logger.info("Login Page was opened with url " + baseUrl);
         return this;
