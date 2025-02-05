@@ -25,15 +25,21 @@ public class CreareNewPostPage extends ParentPage {
     super(webDriver);
   }
 
+  @Override
+  protected String getRelativeUrl() {
+    return "/create-post";
+  }
+
   //check is redirect to CreateNewPostPage
   public CreareNewPostPage checkIsRedirectToCreateNewPostPage() {
-    //TODO check current URL();
+    checkUrlWithPattern();
     return this;
   }
-    public CreareNewPostPage selectValueDDCategory(String valueForSelect) {
-        selectValueInDD(dropDownSelectCategory, valueForSelect);
-        return this;
-    }
+
+  public CreareNewPostPage selectValueDDCategory(String valueForSelect) {
+    selectValueInDD(dropDownSelectCategory, valueForSelect);
+    return this;
+  }
 
   public CreareNewPostPage enterTextIntoInputTitle(String title) {
     clearAndEnterTextIntoInput(inputTitle, title);
