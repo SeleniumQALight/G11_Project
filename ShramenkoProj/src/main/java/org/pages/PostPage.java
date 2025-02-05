@@ -1,9 +1,14 @@
 package org.pages;
 
+import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.apache.log4j.Logger;
 import org.pages.elements.HeaderForUserElement;
+
+import java.util.List;
 
 public class PostPage extends ParentPage {
 
@@ -14,6 +19,16 @@ public class PostPage extends ParentPage {
     private WebElement deleteButton;
 
     private String locatorForTextThisPostWasWritten = "//*[contains(text(),'%s')]";
+
+//@FindBy(xpath = "//p[text()='Is this post unique? : yes']")
+//private WebElement checkboxUniquePostYes;
+//
+//@FindBy(xpath = "//p[text()='Is this post unique? : no']")
+//private WebElement checkboxUniquePostNo;
+
+private String checkboxUniquePostLocator = "//p[text()='Is this post unique? : %s']";
+
+Logger logger = Logger.getLogger(getClass());
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -53,4 +68,18 @@ public class PostPage extends ParentPage {
         checkIsElementVisible(String.format(locatorForTextThisPostWasWritten, text));
         return this;
     }
+
+    public boolean checkStateUniquePost(String state) {
+        try {
+            WebElement checkboxUniquePost = webDriver.findElement(
+                    By.xpath(
+                            String.format(checkboxUniquePostLocator, state)
+                    ));
+            return isElementVisible(checkboxUniquePost);
+        } catch (Exception e) {
+            logger.error("Element not found");
+            return false;
+        }
+    }
+
 }

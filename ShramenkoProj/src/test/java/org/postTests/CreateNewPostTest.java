@@ -24,11 +24,12 @@ public class CreateNewPostTest extends BaseTest {
                 .enterTextIntoInputTitle(POST_TITLE)
                 .selectValueInDropDownAccess("One Person")
                 .enterTextIntoInputBody("Body of the post")
+                .checkboxUniqueState("check")
                 .clickOnButtonSaveNewPost().checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTestThisPostWasWrittenIsVisible("One Person")
                 .checkTextInSuccessMessage("New post successfully created.")
-        ;
+                .checkStateUniquePost("yes");
 
         pageProvider.getPostPage().getHeaderElement().clickOnMyProfileButton()
                 .checkIsRedirectToMyProfilePage()
