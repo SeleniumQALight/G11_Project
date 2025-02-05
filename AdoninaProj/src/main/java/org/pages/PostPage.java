@@ -12,11 +12,18 @@ public class PostPage extends ParentPage {
   @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
   private WebElement buttonDeletePost;
 
-  @FindBy(xpath = ".//p[text()='Is this post unique? : yes']")
+  @FindBy(xpath = "//p[text()='Is this post unique? : yes']")
   private WebElement uniquePostMessage;
+
+  private String locatorForTextThisPostWasWritten = "//*[contains(text(),'%s')]";
 
   public PostPage(WebDriver webDriver) {
     super(webDriver);
+  }
+
+  @Override
+  protected String getRelativeUrl() {
+    return "/post/[a-zA-Z0-9]*";
   }
 
   public HeaderForUserElement getHeaderElement() {
@@ -24,7 +31,7 @@ public class PostPage extends ParentPage {
   }
 
   public PostPage checkIsRedirectToPostPage() {
-    //TODO check current URL();
+    checkUrlWithPattern();
     return this;
   }
 
@@ -45,6 +52,11 @@ public class PostPage extends ParentPage {
 
   public PostPage checkIfUniquePost() {
     checkIsElementVisible(uniquePostMessage);
+    return this;
+  }
+
+  public PostPage checkTextThisPostWasWrittenIsVisible(String text) {
+    checkIsElementVisible(String.format(locatorForTextThisPostWasWritten, text));
     return this;
   }
 }
