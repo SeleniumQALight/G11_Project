@@ -47,20 +47,24 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public void clickOnButtonSighIn() {
+    public HomePage clickOnButtonSighIn() {
         clickOnElement(buttonSighIn);
+        return new HomePage(webDriver);
     }
 
-    public void checkIsButtonSighInVisible(){
+    public LoginPage checkIsButtonSighInVisible(){
         checkIsElementVisible(buttonSighIn);
+        return this;
     }
 
-    public void checkIsButtonSighInNotVisible(){
+    public LoginPage checkIsButtonSighInNotVisible(){
         checkIsElementNotVisible(buttonSighIn);
+        return this;
     }
 
-    public void checkIsAlertIncorrectLoginPasswordVisible(){
+    public LoginPage checkIsAlertIncorrectLoginPasswordVisible(){
         checkIsElementVisible(alertIncorrectLoginPassword);
+        return this;
     }
 
     public HomePage openLoginPageAndFillLoginWithValidCred() {
@@ -79,8 +83,19 @@ public class LoginPage extends ParentPage {
         clickOnButtonSighIn();
     }
 
+    public LoginPage checkIsInputLoginAndPasswordVisible(){
+        checkIsElementVisible(inputUserName);
+        checkIsElementVisible(inputPassword);
+        return this;
+    }
     public void checkIsInputLoginAndPasswordNotVisible(){
         checkIsElementNotVisible(inputUserName);
         checkIsElementNotVisible(inputPassword);
+    }
+
+    public LoginPage checkIsRedirectToLoginPage() {
+        checkIsButtonSighInVisible();
+        //checkUrl();
+        return this;
     }
 }
