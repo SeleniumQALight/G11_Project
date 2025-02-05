@@ -119,9 +119,9 @@ public class CommonActionsWithElements {
     }
 
     public void setCheckboxState(WebElement checkbox, String state) {
-        if (state.equalsIgnoreCase("check")) {
+        if (state.equals("check")) {
             selectCheckBox(checkbox);
-        } else if (state.equalsIgnoreCase("uncheck")) {
+        } else if (state.equals("uncheck")) {
             unselectCheckbox(checkbox);
         } else {
             logger.error("Invalid state: " + state);
