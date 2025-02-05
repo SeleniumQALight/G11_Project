@@ -1,0 +1,17 @@
+inputName: //input[@placeholder='Username']
+inputPassword: //input[@placeholder='Password']
+signInButton: //button[text()='Sign In']
+signOutButton: //button[text()='Sign Out']
+myProfileButton: //img[@data-original-title='My Profile']
+createPostButton //a[@class='btn btn-sm btn-success mr-2'
+saveNewPostButton: //button[@class='btn btn-primary']
+myPost: //strong[text()='New Post'], //strong[text()='Second Post']
+postTitle: //input[@id='post-title']
+postBody: //textarea[@id='post-body']']
+numberOfPosts: count(//div[@class='list-group']/a)
+postedWithAuthor: //a[text()='yuriisobko']
+postedWithTitle: //h2[text()='First Post']
+postedWithBody //p[text()='First Body']
+uniquePostCheckbox: //input[@name='uniquePost']
+editPostButton //a[@data-original-title='Edit']
+deletePostButton //button[@data-original-title='Delete']

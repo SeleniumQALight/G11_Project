@@ -8,6 +8,9 @@ public class CreateNewPostPage extends ParentPage {
     @FindBy(xpath = "//button[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
 
+    @FindBy(xpath = "//input[@name='uniquePost']")
+    private WebElement uniquePostCheckbox;
+
     public CreateNewPostPage(WebDriver webdriver) {
         super(webdriver);
 
@@ -37,6 +40,18 @@ public class CreateNewPostPage extends ParentPage {
         clickOnElement(buttonSaveNewPost);
         return this;
     }
+
+    public CreateNewPostPage setUniquePostCheckboxState (String requiredState) {
+        if (requiredState.equals("check")) {
+            setCheckedOrNotifyIfAlreadyChecked(uniquePostCheckbox);
+        } else if (requiredState.equals("uncheck")) {
+            setUncheckedOrNotifyIfAlreadyClear(uniquePostCheckbox);
+        } else {
+            logger.error("Required state is not correct");
+        }
+        return this;
+    }
+
 
     public PostPage checkIsRedirectToPostPage() {
         return new PostPage(webdriver);

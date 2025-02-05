@@ -1,6 +1,7 @@
 package org.pages;
 
 import org.apache.log4j.Logger;
+import org.data.TestData;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,4 +29,18 @@ public class HomePage extends ParentPage {
     }
 
 
+    public HomePage openHomePageAndLoginIfNeeded() {
+            LoginPage loginPage = new LoginPage(webDriver);
+            loginPage.openPage();
+            if (getHeaderElement().isButtonSignOutVisible()) {
+                logger.info("User is already logged in");
+        } else {
+            loginPage.enterTextIntoInputLogin(TestData.VALID_LOGIN);
+            loginPage.enterTextIntoInputPassword(TestData.VALID_PASSWORD);
+            loginPage.clickOnButtonSignIn();
+            checkIsRedirectOnHomePage();
+            logger.info("User was logged in");
+        }
+        return this;
+    }
 }

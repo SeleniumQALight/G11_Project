@@ -23,18 +23,18 @@ public class LoginPage extends ParentPage{
         super(webDriver);
     }
 
-    public LoginPage openPage() {
+    public LoginPage openPage() {//result of openPage is LoginPage
         String baseUrl = "https://aqa-complexapp.onrender.com";
         webDriver.get(baseUrl);
         logger.info("Login Page was opened with url " + baseUrl);
-return this;
+return this; //returning LoginPage
     }
 
     public LoginPage enterTextIntoInputLogin(String login) {
        /* WebElement inputUserName = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
         inputUserName.clear();
         inputUserName.sendKeys(login);
-        logger.info(login + "was input UserName");*/
+        logger.info(login + "was input UserName");*  !!!!!!!! we have described it in @FindBy*/
         clearAndEnterTextIntoElement(inputUserName, login);
 return this;
 
@@ -46,6 +46,7 @@ return this;
     }
 
     public void clickOnButtonSignIn(){
+        //buttonSignIn.click(); ** before we have created method CommonActionsWithElements
 
         clickOnElement(buttonSignIn);
     }

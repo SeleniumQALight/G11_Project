@@ -19,18 +19,39 @@ public class CommonActionsWithElements {
     try {
       webElement.clear();
       webElement.sendKeys(text);
-      logger.info(text + " was inputted into input");
+      logger.info(text + " was inputted into element " + getElementName(webElement));
     } catch (Exception e) {
       printErrorAndStopTest(e);
 
     }
   }
 
+  private String getElementName(WebElement webElement) {
+    String elementName;
+    try {
+      elementName = webElement.getAccessibleName();
+    } catch (Exception e) {
+      elementName = "";
+    }
+    return elementName;
+  }
+
   protected void clickOnElement(WebElement webElement) {
     try {
+      String elementName = getElementName(webElement);
       webElement.click();
-      logger.info("Element was clicked");
+      logger.info(elementName + " was clicked");
     } catch (Exception e) {
+      printErrorAndStopTest(e);
+    }
+  }
+
+  protected void clickOnElement(WebElement webElement, String elementName) {
+    try {
+      webElement.click();
+      logger.info(elementName + " was clicked");
+    } catch (Exception e) {
+      logger.error("Can not work with element " + elementName);
       printErrorAndStopTest(e);
     }
   }
@@ -39,9 +60,9 @@ public class CommonActionsWithElements {
     try {
       boolean state = webElement.isDisplayed();
       if (state) {
-        logger.info("Element is visible");
+        logger.info(getElementName(webElement) + " is visible");
       } else {
-        logger.info("Element is not visible");
+        logger.info(getElementName(webElement) + " is not visible");
       }
       return state;
     } catch (Exception e) {
@@ -54,14 +75,58 @@ public class CommonActionsWithElements {
     Assert.assertTrue("Element is not visible", isElementVisible(webElement));
   }
 
+  protected void checkIsElementNotVisible(WebElement webElement) {
+    Assert.assertFalse("Element is visible", isElementVisible(webElement));
+  }
+
   //checkTextInElement
   protected void checkTextInElement(WebElement webElement, String text) {
-    Assert.assertEquals("Text in element not expected", text, webElement.getText());
-    logger.info("Text in element is expected");
+    Assert.assertEquals("Text in element " + getElementName(webElement) + "not expected", text, webElement.getText());
+    logger.info("Text in element" + getElementName(webElement) + " is expected");
   }
 
   private void printErrorAndStopTest(Exception e) {
     logger.error("Can not work with element " + e);
     Assert.fail("Can not work with element " + e);
+  }
+
+  protected void selectCheckbox(WebElement checkbox) {
+    try {
+      if (!checkbox.isSelected()) {
+        clickOnElement(checkbox);
+        logger.info("Checkbox was selected");
+      } else {
+        logger.info("Checkbox is already selected");
+      }
+    } catch (Exception e) {
+      printErrorAndStopTest(e);
+    }
+  }
+
+  protected void unselectCheckbox(WebElement checkbox) {
+    try {
+      if (checkbox.isSelected()) {
+        clickOnElement(checkbox);
+        logger.info("Checkbox was deselected");
+      } else {
+        logger.info("Checkbox is already deselected");
+      }
+    } catch (Exception e) {
+      printErrorAndStopTest(e);
+    }
+  }
+
+  public void setCheckboxState(WebElement checkbox, String state) {
+    try {
+      if ("check".equalsIgnoreCase(state)) {
+        selectCheckbox(checkbox);
+      } else if ("uncheck".equalsIgnoreCase(state)) {
+        selectCheckbox(checkbox);
+      } else {
+        logger.error("Invalid state: " + state);
+      }
+    } catch (Exception e) {
+      printErrorAndStopTest(e);
+    }
   }
 }

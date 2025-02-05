@@ -15,6 +15,9 @@ public class CreateNewPostPage extends ParentPage {
     @FindBy(xpath = "//button[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
 
+    @FindBy(xpath = "//select")
+    private WebElement dropDownAccess;
+
     @FindBy(xpath = "//input[@name='uniquePost']")
     private WebElement checkboxUniquePost;
 
@@ -22,8 +25,18 @@ public class CreateNewPostPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/create-post";
+    }
+
     public CreateNewPostPage checkIsRedirectToCreateNewPostPage() {
-        //TODO check current url
+        checkUrl();
+        return this;
+    }
+
+    public CreateNewPostPage selectValueInDropDownAccess(String valueForSelect) {
+        selectValueInDD(dropDownAccess, valueForSelect);
         return this;
     }
 

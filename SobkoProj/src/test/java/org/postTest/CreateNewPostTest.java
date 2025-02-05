@@ -1,8 +1,12 @@
 package org.postTest;
 
 import org.baseTest.BaseTest;
+import org.junit.After;
 import org.utils.Utils_Custom;
 import org.junit.Test;
+import static org.data.TestData.CHECK;
+import static org.data.TestData.YES;
+
 
 
 
@@ -18,8 +22,10 @@ public class CreateNewPostTest extends BaseTest {
                 .getHeaderElement().clickOnButtonCreatePost()
                 .enterTextIntoInputTitle(POST_TITLE)
                 .enterTextIntoInputBody("Body YS")
+                .setUniquePostCheckboxState(CHECK)
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
+                .checkIsPostUniqueCorrectState(YES)
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("New post successfully created.")
 
@@ -30,6 +36,14 @@ public class CreateNewPostTest extends BaseTest {
                 .checkPostWithTitleIsPresent(POST_TITLE, 1)
 
                   ;
+
+    }
+    @After
+    public void deletePost() {
+     pageProvider.getHomePage().openHomePageAndLoginIfNeeded()
+             .getHeaderElement().clickOnButtonMyProfile()
+             .checkIsRedirectToMyProfilePage()
+             .deletePostTillPresent(POST_TITLE);
 
     }
 }

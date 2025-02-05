@@ -12,8 +12,13 @@ import java.util.List;
 
 public class PostPage extends ParentPage {
 
-@FindBy(xpath ="//*[contains(@class,'alert-success')]")
-private WebElement successMessage;
+    @FindBy(xpath = "//*[contains(@class,'alert-success')]")
+    private WebElement successMessage;
+
+    @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
+    private WebElement deleteButton;
+
+    private String locatorForTextThisPostWasWritten = "//*[contains(text(),'%s')]";
 
 //@FindBy(xpath = "//p[text()='Is this post unique? : yes']")
 //private WebElement checkboxUniquePostYes;
@@ -29,13 +34,18 @@ Logger logger = Logger.getLogger(getClass());
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*"; //регулярний вираз [a-zA-Z0-9]* - будь-яка послідовність і кількість цифр і букв
+    }
+
     //отримати доступ до всіх елементів з хедеру
     public HeaderForUserElement getHeaderElement() {
         return new HeaderForUserElement(webDriver);
     }
 
     public PostPage checkIsRedirectToPostPage() {
-        //TODO check current url
+        checkUrlWithPattern();
         return this;
     }
 
@@ -46,6 +56,16 @@ Logger logger = Logger.getLogger(getClass());
 
     public PostPage checkTextInSuccessMessage(String expectedMessageText) {
         checkTextInElement(successMessage, expectedMessageText);
+        return this;
+    }
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(deleteButton, "Delete post button");
+        return new MyProfilePage(webDriver);
+    }
+
+    public PostPage checkTestThisPostWasWrittenIsVisible(String text) {
+        checkIsElementVisible(String.format(locatorForTextThisPostWasWritten, text));
         return this;
     }
 
