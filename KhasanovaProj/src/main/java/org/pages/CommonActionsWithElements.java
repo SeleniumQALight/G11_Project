@@ -2,9 +2,11 @@ package org.pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 
 public class CommonActionsWithElements {
@@ -19,6 +21,28 @@ public class CommonActionsWithElements {
         //@CashLookUp - кешуємо елементи, які вже знайшли, і більше не шукаємо їх
     }
 
+    // method for select visible text in dropdown
+    protected void selectTextInDD(WebElement dropDownElement, String textForSelect) {
+        try {
+            Select optionsFromDD = new Select(dropDownElement);
+            optionsFromDD.selectByVisibleText(textForSelect);
+            logger.info(textForSelect + " was selected in DropDown");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    // method for select value in dropdown
+    protected void selectValueInDD(WebElement dropDownElement, String valueInDD) {
+        try {
+            Select optionsFromDD = new Select(dropDownElement);
+            optionsFromDD.selectByValue(valueInDD);
+            logger.info(valueInDD + " value is selected in DropDown " + getElementName(dropDownElement));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+    
     // method for cleaning and entering text into element
     protected void clearAndEnterTextIntoElement(WebElement webElement, String text) {
         try {
@@ -58,6 +82,19 @@ public class CommonActionsWithElements {
     //check if element is visible
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue("Element is not visible", isElementVisible(webElement));
+    }
+
+    protected void checkIsElementVisible(String locator) {
+        Assert.assertTrue("Element is not visible", isElementVisible(locator));
+    }
+
+    private boolean isElementVisible(String locator) {
+        try {
+            return isElementVisible(webDriver.findElement(By.xpath(locator)));
+        } catch (Exception e) {
+            logger.info("Element is not found");
+            return false;
+        }
     }
 
     //check if element is invisible
