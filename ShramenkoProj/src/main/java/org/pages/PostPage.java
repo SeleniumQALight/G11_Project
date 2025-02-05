@@ -1,14 +1,11 @@
 package org.pages;
 
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.apache.log4j.Logger;
 import org.pages.elements.HeaderForUserElement;
-
-import java.util.List;
 
 public class PostPage extends ParentPage {
 
@@ -20,15 +17,9 @@ public class PostPage extends ParentPage {
 
     private String locatorForTextThisPostWasWritten = "//*[contains(text(),'%s')]";
 
-//@FindBy(xpath = "//p[text()='Is this post unique? : yes']")
-//private WebElement checkboxUniquePostYes;
-//
-//@FindBy(xpath = "//p[text()='Is this post unique? : no']")
-//private WebElement checkboxUniquePostNo;
+    private String checkboxUniquePostLocator = "//p[text()='Is this post unique? : %s']";
 
-private String checkboxUniquePostLocator = "//p[text()='Is this post unique? : %s']";
-
-Logger logger = Logger.getLogger(getClass());
+    Logger logger = Logger.getLogger(getClass());
 
     @FindBy(xpath = "//a[@data-original-title='Edit']")
     private WebElement editButton;
@@ -103,8 +94,8 @@ Logger logger = Logger.getLogger(getClass());
         return new PostPage(webDriver);
     }
 
-    public PostPage clickOnSaveUpdatesButton(){
-        clickOnElement(saveUpdatesButton,"Save Updates button");
+    public PostPage clickOnSaveUpdatesButton() {
+        clickOnElement(saveUpdatesButton, "Save Updates button");
         return new PostPage(webDriver);
     }
 
