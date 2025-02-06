@@ -1,14 +1,12 @@
 package org.pages;
 
 
-
-
-
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -19,7 +17,7 @@ import java.time.Duration;
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
     private Logger logger = Logger.getLogger(getClass());
-protected WebDriverWait webDriverWait_10, webDriverWait_15;
+    protected WebDriverWait webDriverWait10, webDriverWait_15;
 
     public CommonActionsWithElements(WebDriver webDriver) {
 
@@ -27,7 +25,7 @@ protected WebDriverWait webDriverWait_10, webDriverWait_15;
         PageFactory.initElements(webDriver, this); //initializes element described in FindBy, this allows flexibility
         //if we come form login page to home page, or login page or profile page this will return the page we need
         //and it allows us to reload the page and have an actual state of the page
-        webDriverWait_10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
         webDriverWait_15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
     }
 
@@ -53,6 +51,7 @@ protected WebDriverWait webDriverWait_10, webDriverWait_15;
             printErrorAndStopTest(e);
         }
     }
+
     //method for clearing and entering text into the element
     protected void clearAndEnterTextIntoElement(WebElement webElement, String text) {
         try {
@@ -68,8 +67,8 @@ protected WebDriverWait webDriverWait_10, webDriverWait_15;
         String elementName = "";
         try {
             elementName = webElement.getAccessibleName();
-        }catch (Exception e){
-           elementName = "";
+        } catch (Exception e) {
+            elementName = "";
         }
         return elementName;
     }
@@ -78,7 +77,7 @@ protected WebDriverWait webDriverWait_10, webDriverWait_15;
     //method for clicking on the element
     protected void clickOnElement(WebElement webElement) {
         try {
-            webDriverWait_10.until(ExpectedConditions.elementToBeClickable(webElement));
+            webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
             String elementName = getElementName(webElement);
             webElement.click();
             logger.info(elementName + "Element was clicked");
@@ -90,7 +89,7 @@ protected WebDriverWait webDriverWait_10, webDriverWait_15;
     //method for clicking on the element
     protected void clickOnElement(WebElement webElement, String elementName) {
         try {
-            webDriverWait_10.until(ExpectedConditions.elementToBeClickable(webElement));
+            webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
             webElement.click();
             logger.info(elementName + "Element was clicked");
         } catch (Exception e) {
@@ -104,7 +103,7 @@ protected WebDriverWait webDriverWait_10, webDriverWait_15;
     protected boolean isElementVisible(String locator) {
         try {
             return isElementVisible(webDriver.findElement(By.xpath(locator)));
-        }catch (Exception e) {
+        } catch (Exception e) {
             logger.info("Element is not found");
             return false;
         }
@@ -130,7 +129,8 @@ protected WebDriverWait webDriverWait_10, webDriverWait_15;
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue(getElementName(webElement) + "Element is not visible", isElementVisible(webElement));
     }
-protected void checkIsElementVisible(String locator) {
+
+    protected void checkIsElementVisible(String locator) {
         Assert.assertTrue("Element is not visible", isElementVisible(locator));
     }
 //check Text in Element
@@ -140,6 +140,38 @@ protected void checkIsElementVisible(String locator) {
         logger.info("Text in element is expected");
     }
 
+    //acceptAlert
+    protected void acceptAlert() {
+        try {
+            webDriverWait10.until(ExpectedConditions.alertIsPresent());
+            webDriver.switchTo().alert().accept();
+            logger.info("Alert was accepted");
+        } catch (Exception e) {
+            logger.error("There is no alert");
+            printErrorAndStopTest(e);
+        }
+    }
+
+    //scroll to element using Actions
+    protected void scrollToElement(WebElement webElement) {
+        try {
+            Actions actions = new Actions(webDriver);
+            actions.moveToElement(webElement);
+            actions.perform();
+            logger.info("Scrolled to element " + getElementName(webElement));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+//open new tab using JS
+    protected void openNewTab() {
+        try {
+            ((org.openqa.selenium.JavascriptExecutor) webDriver).executeScript("window.open()");
+            logger.info("New tab was opened");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
 
     private void printErrorAndStopTest(Exception e) {
         logger.error("Cannot work with element " + e);
