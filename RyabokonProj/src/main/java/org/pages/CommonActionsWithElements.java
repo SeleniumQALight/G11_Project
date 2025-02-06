@@ -10,11 +10,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
     private Logger logger = Logger.getLogger(getClass());
+protected WebDriverWait webDriverWait_10, webDriverWait_15;
 
     public CommonActionsWithElements(WebDriver webDriver) {
 
@@ -22,7 +27,10 @@ public class CommonActionsWithElements {
         PageFactory.initElements(webDriver, this); //initializes element described in FindBy, this allows flexibility
         //if we come form login page to home page, or login page or profile page this will return the page we need
         //and it allows us to reload the page and have an actual state of the page
+        webDriverWait_10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        webDriverWait_15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
     }
+
     // method for select visible text in dropdown
     protected void selectTextInDD(WebElement dropDownElement, String textForSelect) {
         try {
@@ -70,6 +78,7 @@ public class CommonActionsWithElements {
     //method for clicking on the element
     protected void clickOnElement(WebElement webElement) {
         try {
+            webDriverWait_10.until(ExpectedConditions.elementToBeClickable(webElement));
             String elementName = getElementName(webElement);
             webElement.click();
             logger.info(elementName + "Element was clicked");
@@ -81,6 +90,7 @@ public class CommonActionsWithElements {
     //method for clicking on the element
     protected void clickOnElement(WebElement webElement, String elementName) {
         try {
+            webDriverWait_10.until(ExpectedConditions.elementToBeClickable(webElement));
             webElement.click();
             logger.info(elementName + "Element was clicked");
         } catch (Exception e) {
