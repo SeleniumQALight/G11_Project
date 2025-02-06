@@ -2,9 +2,13 @@ package org.pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+
+import java.nio.file.WatchEvent;
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
@@ -13,6 +17,28 @@ public class CommonActionsWithElements {
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); //ініціалізує елементи описані FindBy
+    }
+
+    //method for selecting text in dropdown
+    protected void selectTextInDropdown(WebElement dropdown, String text) {
+        try {
+            Select options = new Select(dropdown);
+            options.selectByVisibleText(text);
+            logger.info(text + " was selected in dropdown");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+        }
+
+        //select value in dropdown
+        public void selectValueInDropdown(WebElement dropdown, String value) {
+        try {
+            Select options = new Select(dropdown);
+            options.selectByValue(value);
+            logger.info(value + " was selected in dropdown " + getElementName(dropdown));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
     }
 
     //method for clearing and typing text in input
@@ -57,6 +83,15 @@ public class CommonActionsWithElements {
         }
     }
 
+    protected boolean isElementVisible(String locator) {
+        try {
+            return isElementVisible(webDriver.findElement(By.xpath(locator)));
+        } catch (Exception e) {
+            logger.info("Element is not found");
+            return false;
+        }
+    }
+
     //method for checking if element is displayed
     protected boolean isElementVisible(WebElement webElement) {
         try {
@@ -76,6 +111,10 @@ public class CommonActionsWithElements {
     //check if the element is visible and return result
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue("Element is not visible", isElementVisible(webElement));
+    }
+
+    protected void checkIsElementVisible(String locator) {
+        Assert.assertTrue("Element is not visible", isElementVisible(locator));
     }
 
 
