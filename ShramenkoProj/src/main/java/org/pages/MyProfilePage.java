@@ -78,4 +78,30 @@ public class MyProfilePage extends ParentPage {
     }
 
 
+    public MyProfilePage editPostsTillPresent(String oldTitle, String newTitle) {
+        List<WebElement> postsList = getPostsList(oldTitle);
+        final int MAX_POST_COUNT = 100;
+        int counter = 0;
+
+        while (!postsList.isEmpty() && (counter < MAX_POST_COUNT)) {
+            clickOnElement(postsList.get(0));
+            new PostPage(webDriver)
+                    .checkIsRedirectToPostPage()
+                    .clickOnEditButton()
+                    .editTextIntoInputTitle(newTitle)
+                    .clickOnSaveUpdatesButton()
+                    .checkTextInSuccessMessage("Post successfully updated.")
+                    .clickOnBackToMyProfilePage().checkIsRedirectToMyProfilePage()
+            ;
+            logger.info("\nPost with title " + oldTitle + "\nhas been chanced to " + newTitle);
+            postsList = getPostsList(oldTitle);
+            counter++;
+        }
+        if (counter >= MAX_POST_COUNT) {
+            logger.warn("Number of posts with title " + oldTitle + " more than " + MAX_POST_COUNT);
+        }
+        return this;
+    }
+
+
 }

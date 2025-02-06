@@ -21,6 +21,8 @@ link.createPost = "//a[@href='/create-post']"  //виглядає як кноп�
 profile.avatar = "//img[@data-original-title='My Profile']"
 profile.link = "//a[@class='mr-2']"
 text.onEmptyPageForNewUser = "//p[@class='lead text-muted']"
+buttonSearch = "//*[@data-original-title='Search']"
+buttonChat = "//*[@data-original-title='Chat']"
 
 
 #My Profile page
@@ -41,6 +43,7 @@ link = "https://aqa-complexapp.onrender.com/post/*"
 
 #Post
 link.editPost = "//a[@data-original-title='Edit']"
-button.SaveUpdates = "//button[@class='btn btn-primary']"
+button.SaveUpdates = "//button[text()='Save Updates']"
 alert.successUpdatePost = "//div[@class='alert alert-success text-center']"
+                message = "Post successfully updated."
 link.BackToPostPermalink = "//a[text()='« Back to post permalink']"
