@@ -16,6 +16,10 @@ public class PostPage extends ParantPage {
 
     private String locatorForTextThisPostWasWritten = "//*[contains(text(),'%s')]";
 
+    @FindBy(xpath = "//a[@data-placement='top']")
+    private WebElement buttonEditPost;
+
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -53,5 +57,10 @@ public class PostPage extends ParantPage {
     public PostPage checkTextThisPostWasWrittenIsVisible(String text) {
         checkIsElementVisible(String.format(locatorForTextThisPostWasWritten, text));
         return this;
+    }
+    public EditPostPage clickOnEditButton() {
+        clickOnElement(buttonEditPost);
+        return new EditPostPage(webDriver);
+
     }
 }

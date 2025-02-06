@@ -12,7 +12,7 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getLoginPage().openPage()
                 .enterTextIntoInputLogin(VALID_LOGIN)
                 .enterTextIntoPassword(VALID_PASSWORD)
-                .clickInButtomSignIn();
+                .clickInButtonSignIn();
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
 
     }
@@ -21,7 +21,7 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getLoginPage().openPage()
                 .enterTextIntoInputLogin("invalidLogin")
                 .enterTextIntoPassword("0000000000")
-                .clickInButtomSignIn();
+                .clickInButtonSignIn();
 
         pageProvider.getLoginPage().checkIsButtonSignInVisible();
         pageProvider.getLoginPage().checkIsWarningMessageDisplayed();
@@ -32,5 +32,12 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getLoginPage().isLoginFieldInVisible();
         pageProvider.getLoginPage().isPasswordFieldInVisible();
 
+    }
+    @Test
+    public void T0004_SignOut() {
+        pageProvider.getLoginPage().openLoginPageAndFillLoginFormWithValidCred();
+        pageProvider.getHomePage().getHeaderElement().checkAllElementsInHeaderIsVisible();
+        pageProvider.getHomePage().getHeaderElement().clickOnButtonSignOut();
+        pageProvider.getHomePage().getHeaderElement().checkAllElementsInHeaderIsInvisible();
     }
 }
