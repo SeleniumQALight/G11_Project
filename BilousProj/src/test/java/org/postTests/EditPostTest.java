@@ -32,33 +32,15 @@ public class EditPostTest extends BaseTest {
                 .clickOnPostWithTitle(POST_TITLE)
                 .clickOnEditButton()
                 .checkIsRedirectOnEditPostPage()
-//                .enterTextIntoInputTitle(POST_TITLE + "_edited")
-//                .enterTextIntoInputBody("Edited body of the post")
-//                .clickOnButtonSavePost()
-//                .checkIsRedirectOnPostPage()
-//                .checkIsSuccessMessageDisplayed()
-//                .checkTextInSuccessMessage("Post successfully updated.")
-
-
-
-
+                .getElementsForCreateEditPost().enterTextIntoInputTitle(POST_TITLE_EDITED)
+                .clickOnButtonSaveUpdatedPost()
+                .checkIsSuccessMessageDisplayed()
+                .checkTextInSuccessMessage("Post successfully updated.")
         ;
-//
-//        pageProvider.getMyProfilePage().clickOnPostWithTitle(POST_TITLE)
-//                .checkIsRedirectOnPostPage()
-//                .clickOnButtonEditPost()
-//                .checkIsRedirectOnEditPostPage()
-//                .enterTextIntoInputTitle(POST_TITLE + "_edited")
-//                .enterTextIntoInputBody("Edited body of the post")
-//                .clickOnButtonSavePost()
-//                .checkIsRedirectOnPostPage()
-//                .checkIsSuccessMessageDisplayed()
-//                .checkTextInSuccessMessage("Post successfully updated.")
-//        ;
-//
-//        pageProvider.getPostPage().getHeaderElement().clickOnButtomMyProfile()
-//                .checkIsRedirectOnMyProfilePage()
-//                .checkPostWithTitleIsPresent(POST_TITLE + "_edited", 1)
+        pageProvider.getHomePage().getHeaderElement().clickOnButtonMyProfile()
+                .checkIsRedirectOnMyProfilePage()
+                .checkPostWithTitleIsPresent(POST_TITLE_EDITED, 1);
+
     }
     @After
     public void deletePost() {
@@ -67,6 +49,7 @@ public class EditPostTest extends BaseTest {
                 .getHeaderElement().clickOnButtonMyProfile()
                 .checkIsRedirectOnMyProfilePage()
                 .deletePostTillPresent(POST_TITLE)
+                .deletePostTillPresent(POST_TITLE_EDITED)
         ;
 
     }
