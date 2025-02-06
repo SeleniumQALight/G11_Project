@@ -2,13 +2,16 @@ package org.pages;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
 
 public class CommonActionsWithElements {
@@ -116,7 +119,7 @@ public class CommonActionsWithElements {
 
     protected boolean isElementVisible(String locator) {
         try {
-            return  isElementVisible(webDriver.findElement(By.xpath(locator)));
+            return isElementVisible(webDriver.findElement(By.xpath(locator)));
         } catch (Exception e) {
             logger.info("Element is not found");
             return false;
@@ -127,6 +130,7 @@ public class CommonActionsWithElements {
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue(getElementName(webElement) + " Element isn't visible", isElementVisible(webElement));
     }
+
     protected void checkIsElementVisible(String locator) {
         Assert.assertTrue("Element isn't visible", isElementVisible(locator));
     }
@@ -172,6 +176,39 @@ public class CommonActionsWithElements {
             case "uncheck":
                 makeCheckBoxNotSelected(webElement);
                 break;
+        }
+    }
+
+    //acceptAlert
+    protected void acceptAlert() {
+        try {
+            webDriverWait10.until(ExpectedConditions.alertIsPresent());
+            webDriver.switchTo().alert().accept();
+            logger.info("Alert was accepted");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    //scroll to element using Actions
+    protected void scrollToElement(WebElement webElement) {
+        try {
+            Actions actions = new Actions(webDriver);
+            actions.moveToElement(webElement);
+            actions.perform();
+            logger.info("Scrolled to element " + getElementName(webElement));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    //open new tab using JS
+    protected void openNewTab() {
+        try {
+            ((JavascriptExecutor) webDriver).executeScript("window.open()");
+            logger.info("New tab was opened");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
         }
     }
 
