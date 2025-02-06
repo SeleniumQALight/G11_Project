@@ -74,6 +74,10 @@ public class LoginPage extends ParentPage {
         checkIsElementInvisible(inputUserName);
         return this;
     }
+    public LoginPage checkIsUsernameInputIsVisible() {
+        checkIsElementVisible(inputUserName);
+        return this;
+    }
 
     public LoginPage checkIsInputPasswordInvisible() {
         checkIsElementInvisible(inputPassword);
@@ -99,7 +103,7 @@ public class LoginPage extends ParentPage {
         checkIsElementVisible(buttonSignIn);
         checkIsUsernameInputIsVisible();
         checkIsInputPasswordIsVisible();
-        //TODO check current URL
+        checkUrl();
         return this;
     }
 }

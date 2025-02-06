@@ -18,7 +18,12 @@ public class EditPostPage extends ParentPage {
         super(webDriver);
     }
 
-   public EditPostPage clickOnSaveUpdatesButton() {
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*/edit";
+    }
+
+    public EditPostPage clickOnSaveUpdatesButton() {
         clickOnElement(buttonSaveUpdates);
         return new EditPostPage(webDriver);
     }
@@ -33,7 +38,7 @@ public class EditPostPage extends ParentPage {
     }
 
     public EditPostPage checkIsRedirectToEditPostPage() {
-        //TODO checkUrl();
+        checkUrlWithPattern();
         return this;
     }
 }
