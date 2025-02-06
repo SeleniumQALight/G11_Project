@@ -24,11 +24,11 @@ public class CreateNewPostPage extends ParentPage {
 
     @Override
     protected String getRelativeUrl() {
-        return "/  create-post";
+        return "/create-post";
     }
 
     public CreateNewPostPage checkIsRedirectToCreateNewPostPage() {
-        //TODO check current URL
+        checkUrl();
         return this;
     }
     public CreateNewPostPage selectTextInDropDownAccess(String valueForSelect) {
