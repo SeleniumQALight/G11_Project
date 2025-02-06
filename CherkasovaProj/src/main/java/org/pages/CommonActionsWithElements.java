@@ -6,15 +6,22 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
     private Logger logger = Logger.getLogger(getClass());
+    protected WebDriverWait webDriverWait_10, webDriverWait_15;
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); //ініціалізує елементи описані FindBy
+        webDriverWait_10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        webDriverWait_15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
     }
 
     // method for select visible text in dropdown
@@ -28,7 +35,7 @@ public class CommonActionsWithElements {
         }
     }
 
-     // select value is dropdown
+    // select value is dropdown
     protected void selectValueInDD(WebElement dropDownElement, String valueInDD) {
         try {
             Select optionsFromDD = new Select(dropDownElement);
@@ -38,7 +45,6 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
-
 
 
     protected void clearAndEnterTextIntoElement(WebElement webElement, String text) {
@@ -64,6 +70,7 @@ public class CommonActionsWithElements {
 
     protected void clickOnElement(WebElement webElement) {
         try {
+            webDriverWait_10.until(ExpectedConditions.elementToBeClickable(webElement));
             String elementName = getElementName(webElement);
             webElement.click();
             logger.info(elementName + " Element was clicked");
@@ -74,6 +81,7 @@ public class CommonActionsWithElements {
 
     protected void clickOnElement(WebElement webElement, String elementName) {
         try {
+            webDriverWait_10.until(ExpectedConditions.elementToBeClickable(webElement));
             webElement.click();
             logger.info(elementName + " Element was clicked");
         } catch (Exception e) {
