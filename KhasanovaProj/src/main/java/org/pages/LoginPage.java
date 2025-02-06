@@ -74,9 +74,18 @@ public class LoginPage extends ParentPage {
         checkIsElementInvisible(inputUserName);
         return this;
     }
+    public LoginPage checkIsUsernameInputIsVisible() {
+        checkIsElementVisible(inputUserName);
+        return this;
+    }
 
     public LoginPage checkIsInputPasswordInvisible() {
         checkIsElementInvisible(inputPassword);
+        return this;
+    }
+
+    public LoginPage checkIsInputPasswordIsVisible() {
+        checkIsElementVisible(inputPassword);
         return this;
     }
 
@@ -90,4 +99,11 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    public LoginPage checkIsRedirectToLoginPage() {
+        checkIsElementVisible(buttonSignIn);
+        checkIsUsernameInputIsVisible();
+        checkIsInputPasswordIsVisible();
+        checkUrl();
+        return this;
+    }
 }

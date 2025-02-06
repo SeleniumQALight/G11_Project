@@ -38,7 +38,6 @@ public class HomePage extends ParentPage {
         return this;
     }
 
-
     public HomePage openHomePageAndLoginIfNeeded() {
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.openPage();

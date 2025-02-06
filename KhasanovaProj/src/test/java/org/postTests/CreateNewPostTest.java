@@ -9,6 +9,7 @@ public class CreateNewPostTest extends BaseTest {
     //GUID = 1b1b1b1b-1b1b-1b1b-1b1b-1b1b1b1b1b1b
 
     final String POST_TITLE = "T0003_khasanova_" + Utils_Custom.getDateAndTimeFormatted();
+
     @Test
     public void T0003_createNewPost() {
         pageProvider.getLoginPage()

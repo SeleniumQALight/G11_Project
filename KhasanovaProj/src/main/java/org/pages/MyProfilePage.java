@@ -42,6 +42,12 @@ public class MyProfilePage extends ParentPage {
         return this;
     }
 
+    public PostPage clickOnPostWithTitle(String postTitle) {
+        clickOnElement(getPostsList(postTitle).get(0));
+        logger.info("Post with title " + postTitle + " was clicked");
+        return new PostPage(webDriver);
+    }
+
     public MyProfilePage deletePostsTillPresent(String postTitle) {
         List<WebElement> postsList = getPostsList(postTitle);
         final int MAX_POST_COUNT = 100; //postsList.size();
