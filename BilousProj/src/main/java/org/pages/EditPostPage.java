@@ -9,11 +9,11 @@ public class EditPostPage extends ParantPage {
     }
 
     protected String getRelativeUrl() {
-        return "/edit";
+        return "/post/[a-zA-Z0-9]*/edit";
     }
 
     public EditPostPage checkIsRedirectOnEditPostPage() {
-        checkUrl();
+        checkUrlWithPattern();
         return this;
     }
 }

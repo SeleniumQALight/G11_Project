@@ -19,8 +19,6 @@ public class PostPage extends ParantPage {
     @FindBy(xpath = "//a[@data-placement='top']")
     private WebElement buttonEditPost;
 
-    @FindBy(xpath = "//a[@data-placement='top']")
-    private WebElement buttonEditPost;
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -63,9 +61,6 @@ public class PostPage extends ParantPage {
     public EditPostPage clickOnEditButton() {
         clickOnElement(buttonEditPost);
         return new EditPostPage(webDriver);
-    }
-    public EditPostPage clickOnEditButton() {
-        clickOnElement(buttonEditPost);
-        return new EditPostPage(webDriver);
+
     }
 }

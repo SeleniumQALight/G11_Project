@@ -47,9 +47,6 @@ public class CreateNewPostPage extends ParantPage {
         selectValueInDD(dropdownAccess, valueForSelect);
         return this;
     }
-    public ElementsForCreateEditPost getElementsForCreateEditPost() {
-        return new ElementsForCreateEditPost(webDriver);
-    }
 
     public CreateNewPostPage enterTextIntoInputTitle(String title) {
         clearAndEnterTextInToElement(inputTitle, title);
