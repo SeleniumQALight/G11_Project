@@ -1,12 +1,20 @@
 package org.pages;
 
+import com.google.common.cache.AbstractCache;
 import org.apache.log4j.Logger;
+import org.assertj.core.api.SoftAssertions;
+import org.data.RegistrationValidationMessages;
 import org.data.TestData;
+import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class LoginPage extends ParentPage{
+import java.util.List;
+
+public class LoginPage extends ParentPage {
     private Logger logger = Logger.getLogger(getClass());
 
     @FindBy(xpath = "//input[@placeholder='Username']")
@@ -17,6 +25,19 @@ public class LoginPage extends ParentPage{
 
     @FindBy(xpath = "//button[text()='Sign In']")
     private WebElement buttonSignIn;
+
+    @FindBy(id = "username-register")
+    private WebElement inputUserNameRegistrationForm;
+
+    @FindBy(id = "password-register")
+    private WebElement inputPasswordRegistrationForm;
+
+    @FindBy(id = "email-register")
+    private WebElement inputEmailRegistrationForm;
+
+    final static String listErrorsMessagesLocator = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+    @FindBy(xpath = listErrorsMessagesLocator)
+    private List<WebElement> listOfActualMessages;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -43,7 +64,7 @@ public class LoginPage extends ParentPage{
     }
 
     public LoginPage enterTextIntoInputPassword(String password) {
- //       WebElement inputPassword = webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
+        //       WebElement inputPassword = webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
 //        inputPassword.clear();
 //        inputPassword.sendKeys(password);
 //        logger.info(password + " was inputted into input password");
@@ -52,8 +73,7 @@ public class LoginPage extends ParentPage{
     }
 
 
-
-    public void clickOnButtonSignIn(){
+    public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
 
@@ -63,5 +83,42 @@ public class LoginPage extends ParentPage{
         enterTextIntoInputPassword(TestData.VALID_PASSWORD);
         clickOnButtonSignIn();
         return new HomePage(webDriver);
+    }
+
+    public LoginPage enterTextIntoRegistrationUserNameField(String login) {
+        clearAndEnterTextIntoElement(inputUserNameRegistrationForm, login);
+        return this;
+    }
+
+    public LoginPage enterTextIntoRegistrationPasswordField(String password) {
+        clearAndEnterTextIntoElement(inputPasswordRegistrationForm, password);
+        return this;
+    }
+
+    public LoginPage enterTextIntoRegistrationEmailField(String email) {
+        clearAndEnterTextIntoElement(inputEmailRegistrationForm, email);
+        return this;
+    }
+
+    public LoginPage checkErrorMessages(String expectedErrors) {
+        //error1;error2;error3 -> [error1, error2, error3]
+        String[] messageArray = expectedErrors.split(RegistrationValidationMessages.SEMICOLON);
+
+        webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsMessagesLocator)
+                , messageArray.length));
+
+        Assert.assertEquals("Number of messages ", messageArray.length, listOfActualMessages.size());
+        SoftAssertions softAssertions = new SoftAssertions();
+
+        for (int i = 0; i < messageArray.length; i++) {
+            softAssertions
+                    .assertThat(listOfActualMessages.get(i).getText())
+                    .as("Message number" + i)
+                    .isIn(messageArray);
+
+        }
+
+        softAssertions.assertAll();
+        return this;
     }
 }
