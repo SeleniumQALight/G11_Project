@@ -6,4 +6,6 @@ public class TestData {
 
     public static final String INVALID_LOGIN = "qaauto" + System.currentTimeMillis();
     public static final String INVALID_PASSWORD = "123456qwerty" + System.currentTimeMillis();
+
+
 }
