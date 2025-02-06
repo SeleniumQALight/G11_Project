@@ -25,6 +25,12 @@ public class LoginPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
+
     public LoginPage openPage() {
         String baseUrl = "https://aqa-complexapp.onrender.com/";
         webDriver.get(baseUrl);
@@ -66,11 +72,6 @@ public class LoginPage extends ParentPage {
 
     public LoginPage checkIsUsernameInputInvisible() {
         checkIsElementInvisible(inputUserName);
-        return this;
-    }
-
-    public LoginPage checkIsUsernameInputIsVisible() {
-        checkIsElementVisible(inputUserName);
         return this;
     }
 

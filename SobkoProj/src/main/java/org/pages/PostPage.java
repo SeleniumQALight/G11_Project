@@ -20,16 +20,22 @@ public class PostPage extends ParentPage {
 
     @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
     private WebElement buttonDeletePost;
+    private String locatorForText = "//*[contains(text(),'%s')]";
 
     public PostPage(WebDriver webdriver) {
         super(webdriver);
     }
 
-     public HeaderForUserElement getHeaderElement() {
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
+    }
+
+    public HeaderForUserElement getHeaderElement() {
          return new HeaderForUserElement(webdriver);
      }
     public PostPage checkIsRedirectToPostPage() {
-        // TODO check url
+        checkUrlWithPattern();
         return this;
     }
     public PostPage checkIsSuccessMessageDisplayed() {
@@ -59,5 +65,10 @@ public class PostPage extends ParentPage {
     public MyProfilePage clickOnDeleteButton() {
        clickOnElement(buttonDeletePost, "Delete post button");
         return new MyProfilePage(webdriver);
+    }
+
+    public PostPage checkTextThisPostWasWrittenAndVisible(String text) {
+     checkIsElementVisible(String.format(locatorForText, text));
+        return this;
     }
 }
