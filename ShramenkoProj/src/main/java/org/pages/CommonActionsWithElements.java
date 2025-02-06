@@ -2,15 +2,22 @@ package org.pages;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
     private Logger logger = Logger.getLogger(getClass());
+    protected WebDriverWait webDriverWait10, webDriverWait15;
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -19,6 +26,9 @@ public class CommonActionsWithElements {
         //ініціалізує елементи, описані FindBy
         //інакше вони будуть Null
         //і вони також оновляться в той момент, коли до них буде звертання
+
+        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
     }
 
     //method for select visible text in dropdown
@@ -72,6 +82,7 @@ public class CommonActionsWithElements {
     //method for clicking on the element
     protected void clickOnElement(WebElement webElement) {
         try {
+            webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
             String elementName = getElementName(webElement);
             webElement.click();
             logger.info(elementName + " element was clicked");
@@ -82,6 +93,7 @@ public class CommonActionsWithElements {
 
     protected void clickOnElement(WebElement webElement, String elementName) {
         try {
+            webDriverWait10.until(ExpectedConditions.elementToBeClickable(webElement));
             webElement.click();
             logger.info(elementName + " element was clicked");
         } catch (Exception e) {
@@ -107,7 +119,7 @@ public class CommonActionsWithElements {
 
     protected boolean isElementVisible(String locator) {
         try {
-            return  isElementVisible(webDriver.findElement(By.xpath(locator)));
+            return isElementVisible(webDriver.findElement(By.xpath(locator)));
         } catch (Exception e) {
             logger.info("Element is not found");
             return false;
@@ -118,6 +130,7 @@ public class CommonActionsWithElements {
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue(getElementName(webElement) + " Element isn't visible", isElementVisible(webElement));
     }
+
     protected void checkIsElementVisible(String locator) {
         Assert.assertTrue("Element isn't visible", isElementVisible(locator));
     }
@@ -163,6 +176,39 @@ public class CommonActionsWithElements {
             case "uncheck":
                 makeCheckBoxNotSelected(webElement);
                 break;
+        }
+    }
+
+    //acceptAlert
+    protected void acceptAlert() {
+        try {
+            webDriverWait10.until(ExpectedConditions.alertIsPresent());
+            webDriver.switchTo().alert().accept();
+            logger.info("Alert was accepted");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    //scroll to element using Actions
+    protected void scrollToElement(WebElement webElement) {
+        try {
+            Actions actions = new Actions(webDriver);
+            actions.moveToElement(webElement);
+            actions.perform();
+            logger.info("Scrolled to element " + getElementName(webElement));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    //open new tab using JS
+    protected void openNewTab() {
+        try {
+            ((JavascriptExecutor) webDriver).executeScript("window.open()");
+            logger.info("New tab was opened");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
         }
     }
 

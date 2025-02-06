@@ -1,10 +1,17 @@
 package org.pages;
 
 import org.apache.log4j.Logger;
+import org.assertj.core.api.SoftAssertions;
+import org.data.RegistrationValidationMessages;
 import org.data.TestData;
+import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.List;
 
 public class LoginPage extends ParentPage {
 
@@ -20,6 +27,19 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = "//div[text()='Invalid username/password.']")
     private WebElement alertIncorrectLoginPassword;
+
+    @FindBy(id = "username-register")
+    private WebElement inputUserNameRegistrationForm;
+
+    @FindBy(id = "password-register")
+    private WebElement inputPasswordRegistrationForm;
+
+    @FindBy(id = "email-register")
+    private WebElement inputEmailRegistrationForm;
+
+    final static String listErrorsMessagesLocator = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+    @FindBy(xpath = listErrorsMessagesLocator)
+    private List<WebElement> listOfActualMessages;
 
     private Logger logger = Logger.getLogger(getClass());
 
@@ -55,15 +75,15 @@ public class LoginPage extends ParentPage {
         clickOnElement(buttonSighIn);
     }
 
-    public void checkIsButtonSighInVisible(){
+    public void checkIsButtonSighInVisible() {
         checkIsElementVisible(buttonSighIn);
     }
 
-    public void checkIsButtonSighInNotVisible(){
+    public void checkIsButtonSighInNotVisible() {
         checkIsElementNotVisible(buttonSighIn);
     }
 
-    public void checkIsAlertIncorrectLoginPasswordVisible(){
+    public void checkIsAlertIncorrectLoginPasswordVisible() {
         checkIsElementVisible(alertIncorrectLoginPassword);
     }
 
@@ -83,8 +103,50 @@ public class LoginPage extends ParentPage {
         clickOnButtonSighIn();
     }
 
-    public void checkIsInputLoginAndPasswordNotVisible(){
+    public void checkIsInputLoginAndPasswordNotVisible() {
         checkIsElementNotVisible(inputUserName);
         checkIsElementNotVisible(inputPassword);
+    }
+
+    public LoginPage enterTextIntoRegistrationUserNameField(String login) {
+        clearAndEnterTextIntoElement(inputUserNameRegistrationForm, login);
+        return this;
+    }
+
+    public LoginPage enterTextIntoRegistrationEmailField(String email) {
+        clearAndEnterTextIntoElement(inputEmailRegistrationForm, email);
+        return this;
+    }
+
+    public LoginPage enterTextIntoRegistrationPasswordField(String password) {
+        clearAndEnterTextIntoElement(inputPasswordRegistrationForm, password);
+        return this;
+    }
+
+    public LoginPage checkErrorsMessages(String expectedErrors) {
+        //error1;error2;error3 -> [error1, error2, error3]
+        String[] messagesArray = expectedErrors.split(RegistrationValidationMessages.SEMICOLON);
+
+        webDriverWait10.until(ExpectedConditions
+                .numberOfElementsToBe(By.xpath(listErrorsMessagesLocator)
+                        , messagesArray.length));
+
+        Assert.assertEquals("Number of messages "
+                , messagesArray.length, listOfActualMessages.size()); //якщо кількість повідомлень різна, то впадемо тут
+
+        SoftAssertions softAssertions = new SoftAssertions(); //тут будемо накопичувати наші перевірки
+        for (int i = 0; i < messagesArray.length; i++) {
+            softAssertions
+                    .assertThat(listOfActualMessages.get(0).getText()) //чи є цей текст
+                    .as("Message number " + i)
+                    .isIn(messagesArray); //в цьому списку
+        }
+
+        softAssertions.assertAll();
+        //це обов'язковий рядочок!!!! без нього тест завжди буде зелений
+        //а це сама перевірка
+        //виведе всі перевірки, які не пройшли, коли тест впаде
+
+        return this;
     }
 }
