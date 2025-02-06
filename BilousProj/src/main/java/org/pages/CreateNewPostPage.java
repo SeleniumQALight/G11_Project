@@ -3,6 +3,8 @@ package org.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.pages.elements.ElementsForCreateEditPost;
+import org.pages.elements.HeaderForUserElement;
 
 public class CreateNewPostPage extends ParantPage {
 
@@ -37,10 +39,16 @@ public class CreateNewPostPage extends ParantPage {
         checkUrl();
         return this;
     }
+    public ElementsForCreateEditPost getElementsForCreateEditPost() {
+        return new ElementsForCreateEditPost(webDriver);
+    }
 
     public CreateNewPostPage selectValueInDropdownAccess(String valueForSelect) {
         selectValueInDD(dropdownAccess, valueForSelect);
         return this;
+    }
+    public ElementsForCreateEditPost getElementsForCreateEditPost() {
+        return new ElementsForCreateEditPost(webDriver);
     }
 
     public CreateNewPostPage enterTextIntoInputTitle(String title) {
