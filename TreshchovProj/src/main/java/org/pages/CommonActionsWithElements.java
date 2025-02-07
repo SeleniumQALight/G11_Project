@@ -3,8 +3,10 @@ package org.pages;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -131,5 +133,39 @@ public class CommonActionsWithElements {
             Assert.assertEquals("Text in " + getElementName(element) +  " element is not expected", text, element.getText());
             logger.info("Text in " + getElementName(element) + " element is expected");
     }
+
+
+    protected void acceptAlert() {
+        try {
+            webDriver.switchTo().alert().accept();
+            logger.info("Alert was accepted");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    //scroll to element using Actions
+    protected void scrollToElement(WebElement element) {
+        try {
+            Actions actions = new Actions(webDriver);
+            actions.moveToElement(element);
+            actions.perform();
+            logger.info("Scrolled to element " + getElementName(element));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void openNewTab() {
+        try {
+            ((JavascriptExecutor) webDriver).executeScript("window.open()");
+            logger.info("New tab was opened");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+
+
 
 }
