@@ -39,7 +39,7 @@ public class HomePage extends ParantPage {
         } else {
             loginPage.enterTextIntoInputLogin(TestData.VALID_LOGIN)
                     .enterTextIntoPassword(TestData.VALID_PASSWORD)
-                    .clickInButtomSignIn();
+                    .clickInButtonSignIn();
             this.checkIsRedirectOnHomePage();
             logger.info("User was logined in")
             ;

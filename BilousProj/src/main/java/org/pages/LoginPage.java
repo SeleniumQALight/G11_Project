@@ -94,11 +94,11 @@ public class LoginPage extends ParantPage {
         openPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN);
         enterTextIntoPassword(TestData.VALID_PASSWORD);
-        clickInButtomSignIn();
+        clickInButtonSignIn();
         return new HomePage(webDriver);
     }
 
-    public void clickInButtomSignIn() {
+    public void clickInButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
 

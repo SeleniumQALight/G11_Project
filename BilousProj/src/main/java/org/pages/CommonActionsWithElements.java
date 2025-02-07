@@ -112,10 +112,11 @@ public class CommonActionsWithElements {
             }
             return state;
         } catch (Exception e) {
-            logger.info("Element is not found");
+            logger.info("Element  is not found");
             return false;
         }
     }
+
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue("Element is not visible", isElementVisible(webElement));
     }
