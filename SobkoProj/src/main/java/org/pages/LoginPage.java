@@ -62,7 +62,7 @@ public class LoginPage extends ParentPage {
 
     }
 
-    public void checkIsButtonSignInVisible() {
+    public LoginPage checkIsButtonSignInVisible() {
         checkIsElementVisible(clickSignIn);
         return this;
     }

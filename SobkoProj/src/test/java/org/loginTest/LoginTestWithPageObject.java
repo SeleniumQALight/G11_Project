@@ -45,7 +45,7 @@ public class LoginTestWithPageObject extends BaseTest {
                 .checkIsRedirectToHomePage()
                 .getHeaderElement().checkAllHeaderElementsVisible()
                 .clickOnButtonSignOut()
-                .getHeaderElement().checkHeaderElementsNotVisible();
+                .checkHeaderElementsNotVisible();
         pageProvider.getLoginPage().checkIsButtonSignInVisible()
                 .checkIsInputLoginVisible()
                 .checkIsInputPasswordVisible();
