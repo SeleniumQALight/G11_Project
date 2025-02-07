@@ -1,11 +1,17 @@
 package org.pages;
 
 import org.apache.log4j.Logger;
+import org.assertj.core.api.SoftAssertions;
+import org.data.RegistrationValidationMessages;
 import org.data.TestData;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.List;
 
 public class LoginPage extends ParentPage{
 
@@ -19,12 +25,30 @@ public class LoginPage extends ParentPage{
     @FindBy(xpath = "//button[text()='Sign In'] ")
     private WebElement buttonSignIn;
 
+    @FindBy(id = "username-register")//id=xpath = //input[@id='username-register']
+    private WebElement inputUserNameRegistrationForm;
+
+    @FindBy(id = "email-register")
+    private WebElement inputEmailRegistrationForm;
+
+    @FindBy(id = "password-register")
+    private WebElement inputPasswordRegistrationForm;
+
+    final static String listErrorMessagesLocator = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+    @FindBy(xpath = listErrorMessagesLocator)
+    private List<WebElement> listOfActualMessages;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
     public LoginPage openPage() {//result of openPage is LoginPage
-        String baseUrl = "https://aqa-complexapp.onrender.com";
+
         webDriver.get(baseUrl);
         logger.info("Login Page was opened with url " + baseUrl);
 return this; //returning LoginPage
@@ -57,5 +81,36 @@ return this;
         this.enterTextIntoInputPassword(TestData.VALID_PASSWORD);
         clickOnButtonSignIn();
         return new HomePage(webDriver);
+    }
+
+    public LoginPage enterTextIntoRegistrationUsernameField(String login) {
+        clearAndEnterTextIntoElement(inputUserNameRegistrationForm, login);
+        return this;
+    }
+    public LoginPage enterTextIntoRegistrationEmailField(String email) {
+        clearAndEnterTextIntoElement(inputEmailRegistrationForm, email);
+        return this;
+    }
+    public LoginPage enterTextIntoRegistrationPasswordField(String password) {
+        clearAndEnterTextIntoElement(inputPasswordRegistrationForm, password);
+        return this;
+    }
+
+    public LoginPage checkErrorsMessages(String expectedErrors) {
+//error1;error2;error3 -> [error1, error2, error3]
+        String[] messagesArray = expectedErrors.split(RegistrationValidationMessages.SEMICOLON);
+
+        webDriverWait10.until((ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorMessagesLocator), messagesArray.length)));
+
+        Assert.assertEquals("Number of Messages",messagesArray.length, listOfActualMessages.size());
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (int i = 0; i < messagesArray.length; i++) {
+            softAssertions.assertThat(listOfActualMessages.get(i).getText())
+                    .as("Message number " + i)
+                    .isIn(messagesArray);
+
+        }
+        softAssertions.assertAll(); //відразу пишeмо після methood SoftAssertions softAssertions = new SoftAssertions();
+        return this;
     }
 }

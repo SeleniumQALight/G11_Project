@@ -15,12 +15,18 @@ public class HomePage extends ParantPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
     public HeaderForUserElement getHeaderElement() {
         return new HeaderForUserElement(webDriver);
     }
+
     public HomePage checkIsRedirectOnHomePage() {
         getHeaderElement().checkIsButtonSignOutVisible();;
-        //TODO check current url
+        checkUrl();
         return this;
     }
 
@@ -33,7 +39,7 @@ public class HomePage extends ParantPage {
         } else {
             loginPage.enterTextIntoInputLogin(TestData.VALID_LOGIN)
                     .enterTextIntoPassword(TestData.VALID_PASSWORD)
-                    .clickInButtomSignIn();
+                    .clickInButtonSignIn();
             this.checkIsRedirectOnHomePage();
             logger.info("User was logined in")
             ;
