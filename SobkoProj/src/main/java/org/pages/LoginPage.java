@@ -50,6 +50,7 @@ public class LoginPage extends ParentPage {
     }
 
     public LoginPage openPage() {
+        String baseUrl = "https://aqa-complexapp.onrender.com/";
         webdriver.get(baseUrl);
         logger.info("Login Page was opened url " + baseUrl);
         return this;
@@ -61,8 +62,18 @@ public class LoginPage extends ParentPage {
 
     }
 
-    public void checkIsButtonSignInVisible() {
+    public LoginPage checkIsButtonSignInVisible() {
         checkIsElementVisible(clickSignIn);
+        return this;
+    }
+
+    public LoginPage checkIsInputLoginVisible() {
+        checkIsElementVisible(inputUserName);
+        return this;
+    }
+    public LoginPage checkIsInputPasswordVisible() {
+        checkIsElementVisible(inputUserName);
+        return this;
     }
 
     public LoginPage enterTextIntoInputPassword(String password) {

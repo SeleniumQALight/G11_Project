@@ -20,6 +20,9 @@ public class MyProfilePage extends ParentPage {
         super(webdriver);
     }
 
+    private WebElement getPost(String postTitle) {
+        return webdriver.findElement(By.xpath(String.format(postWithTitleLocator, postTitle)));
+    }
     @Override
     protected String getRelativeUrl() {
         return "/profile/[a-zA-z0-9]*";
@@ -59,6 +62,12 @@ public class MyProfilePage extends ParentPage {
         }
         return this;
     }
+    public PostPage openPost(String postTitle) {
+        WebElement postName = getPost(postTitle);
+        clickOnElement(postName);
+        return new PostPage(webdriver);
+    }
+
 
 
 
