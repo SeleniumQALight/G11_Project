@@ -46,4 +46,39 @@ public class LoginTestWithPageObject extends BaseTest {
         ;
     }
 
+    @Test
+    public void TC006_StayLoggedInNewTabTest() {
+        pageProvider.getLoginPage()
+                .openLoginPageAndFillLoginFormWithValidCred()
+                .checkIsRedirectToHomePage();
+
+        pageProvider.getHomePage().openNewTab();
+        pageProvider.getLoginPage().switchToNewTab();
+        pageProvider.getLoginPage().openPage();
+        pageProvider.getHomePage().checkIsRedirectToHomePage();
+
+        pageProvider.getHomePage().switchToTheFirstTab();
+        pageProvider.getHomePage().checkIsRedirectToHomePage();
+
+        pageProvider.getHomePage().switchToNewTab();
+        pageProvider.getHomePage().closeCurrentTab();
+
+        pageProvider.getHomePage().switchToTheFirstTab();
+        pageProvider.getHomePage().checkIsRedirectToHomePage();
+
+    }
+
+    @Test
+    public void TC007_InputFieldsAreClearedAfterRefreshTest() {
+        pageProvider.getLoginPage()
+                .openPage()
+                .enterTextIntoInputLogin(VALID_LOGIN)
+                .enterTextIntoInputPassword(VALID_PASSWORD)
+                .refreshPage();
+        pageProvider.getLoginPage()
+                .clickOnButtonSignIn()
+                .getHeaderForUserElement()
+                .checkIsButtonSignOutInvisible();
+    }
+
 }

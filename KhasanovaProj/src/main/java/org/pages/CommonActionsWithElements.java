@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
 
 
 public class CommonActionsWithElements {
@@ -139,7 +140,7 @@ public class CommonActionsWithElements {
         logger.info("Text in element " + getElementName(webElement) + " is as expected");
     }
 
-    private void printErrorAndStopTest(Exception e) {
+    protected void printErrorAndStopTest(Exception e) {
         logger.error("Cannot work with element " + e);
         Assert.fail("Cannot work with element " + e);
     }
@@ -197,16 +198,6 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
 
-    }
-
-    // open new tab using JS
-    protected void openNewTab() {
-        try {
-            ((org.openqa.selenium.JavascriptExecutor) webDriver).executeScript("window.open()");
-            logger.info("New tab was opened");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
     }
 
 }

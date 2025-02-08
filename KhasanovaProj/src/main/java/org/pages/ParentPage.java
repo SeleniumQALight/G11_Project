@@ -1,10 +1,14 @@
 package org.pages;
 
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
+import java.util.ArrayList;
+
 abstract public class ParentPage extends CommonActionsWithElements {
     protected String baseUrl = "https://aqa-complexapp.onrender.com";
+    private Logger logger = Logger.getLogger(getClass());
 
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
@@ -30,5 +34,55 @@ abstract public class ParentPage extends CommonActionsWithElements {
                         "Expected url: " + baseUrl + getRelativeUrl() +
                         "\n Actual url: " + webDriver.getCurrentUrl(),
                 webDriver.getCurrentUrl().matches(baseUrl + getRelativeUrl()));
+    }
+
+    // open new tab using JS
+    public void openNewTab() {
+        try {
+            ((org.openqa.selenium.JavascriptExecutor) webDriver).executeScript("window.open()");
+            logger.info("New tab was opened");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    // switch to new tab
+    public void switchToNewTab() {
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(1));
+            logger.info("Switched to new tab");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void switchToTheFirstTab() {
+        try {
+            webDriver.switchTo().window((String) webDriver.getWindowHandles().toArray()[0]);
+            logger.info("Switched to the first tab");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    // Close current tab
+    public void closeCurrentTab() {
+        try {
+            webDriver.close();
+            logger.info("Current tab was closed");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    // method for page refresh
+    public void refreshPage() {
+        try {
+            webDriver.navigate().refresh();
+            logger.info("Page was refreshed");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
     }
 }
