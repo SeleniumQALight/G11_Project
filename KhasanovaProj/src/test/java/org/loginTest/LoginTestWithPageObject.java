@@ -47,6 +47,26 @@ public class LoginTestWithPageObject extends BaseTest {
     }
 
     @Test
+    public void T0004_validSignOut() {
+        pageProvider.getLoginPage()
+                .openLoginPageAndFillLoginFormWithValidCred()
+                .checkIsRedirectToHomePage()
+                .getHeaderForUserElement()
+                .checkIsButtonCreatePostVisible()
+                .checkIsButtonMyProfileVisible()
+                .checkIsButtonSearchIsVisible()
+                .checkIsButtonChatIsVisible();
+        pageProvider.getHomePage().getHeaderForUserElement()
+                .clickOnSignOutButton()
+                .checkIsRedirectToLoginPage();
+        pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonSignOutInvisible();
+        pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonCreatePostInvisible();
+        pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonMyProfileInvisible();
+        pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonSearchInvisible();
+        pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonChatInvisible();
+    }
+
+    @Test
     public void TC006_stayLoggedInNewTabTest() {
         pageProvider.getLoginPage()
                 .openLoginPageAndFillLoginFormWithValidCred()
