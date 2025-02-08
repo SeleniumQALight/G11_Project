@@ -19,7 +19,7 @@ public class EditPostTest extends BaseTest {
                 .checkIsRedirectToCreateNewPostPage()
                 .enterTextIntoInputTitle(POST_TITLE_UNIQUE)
                 .enterTextIntoInputBody("Body of the post")
-                .setNeededStateToPostUniqueCheckBox("Check")
+                .setNeededStateToUniquePostCheckbox("Check")
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage();
                 pageProvider.getPostPage().getHeaderElement().clickOnButtonMyProfile()
