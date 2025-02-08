@@ -145,7 +145,7 @@ public class CommonActionsWithElements {
     }
 
     //open new tab using JS
-    protected void openNewTab() {
+    public void openNewTab() {
         try {
             ((JavascriptExecutor) webDriver).executeScript("window.open()");
             logger.info("New tab was opened");
@@ -202,4 +202,41 @@ public class CommonActionsWithElements {
     }
 
 
+    public void switchToNewTab() {
+        try {
+            for (String winHandle : webDriver.getWindowHandles()) {
+                webDriver.switchTo().window(winHandle);
+            }
+            logger.info("Switched to new tab");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void switchToFirstTab() {
+        try {
+            webDriver.switchTo().defaultContent();
+            logger.info("Switched to first tab");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void closeNewTab() {
+        try {
+            webDriver.close();
+            logger.info("New tab was closed");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void refreshPage() {
+        try {
+            webDriver.navigate().refresh();
+            logger.info("Page was refreshed");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
 }
