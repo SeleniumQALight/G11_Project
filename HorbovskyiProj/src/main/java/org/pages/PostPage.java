@@ -1,6 +1,7 @@
 package org.pages;
 
 import org.apache.hc.core5.http.HeaderElement;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,6 +18,8 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = "//*[@class='delete-post-button text-danger']")
     private WebElement buttonDeletePost;
 
+    private String locatorForTextThisPostWasWritten = "//*[contains(text(),'%s')]";
+
     public HeaderForLoggedInUserElement getHeaderElement() {
         return new HeaderForLoggedInUserElement(webDriver);
     }
@@ -25,8 +28,13 @@ public class PostPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
+    }
+
     public PostPage checkIsRedirectOnPostPage() {
-        //TODO checkUrl();
+        checkUrlWithPattern();
         return this;
     }
 
@@ -48,5 +56,10 @@ public class PostPage extends ParentPage {
     public MyProfilePage clickOnDeleteButton() {
         clickOnElement(buttonDeletePost, "Delete post button");
         return new MyProfilePage(webDriver);
+    }
+
+    public PostPage checkTextThisPostWasWrittenIsVisible(String text) {
+        checkIsElementVisible(String.format(locatorForTextThisPostWasWritten, text));
+        return this;
     }
 }

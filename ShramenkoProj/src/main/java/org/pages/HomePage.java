@@ -13,14 +13,18 @@ public class HomePage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
     public HeaderForUserElement getHeaderElement() {
         return new HeaderForUserElement(webDriver);
     }
 
     public HomePage checkIsRedirectToHomePage() {
         getHeaderElement().checkIsButtonSighOutVisible();
-        //TODO check current url
-        //TODO check is button Sigh In isn't visible
+        checkUrl();
         return this;
     }
 

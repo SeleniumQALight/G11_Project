@@ -21,13 +21,18 @@ public class MyProfilePage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/profile/[a-zA-Z0-9]*";
+    }
+
     private List<WebElement> getPostsList(String postTitle) {
         return webDriver.findElements
                 (By.xpath(String.format(postWithTitleLocator, postTitle)));
     }
 
     public MyProfilePage checkIsRedirectToProfilePage() {
-        //TODO checkUrl();
+        checkUrlWithPattern();
         return this;
     }
 
@@ -35,6 +40,12 @@ public class MyProfilePage extends ParentPage {
         Assert.assertEquals("Number of posts with title " + postTitle,
                 numberOfPosts, getPostsList(postTitle).size());
         return this;
+    }
+
+    public PostPage clickOnPostWithTitle(String postTitle) {
+        clickOnElement(getPostsList(postTitle).get(0));
+        logger.info("Post with title " + postTitle + " was clicked");
+        return new PostPage(webDriver);
     }
 
     public MyProfilePage deletePostsTillPresent(String postTitle) {
