@@ -1,7 +1,6 @@
 package org.pages;
 
 import org.apache.log4j.Logger;
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -33,7 +32,7 @@ public class PostPage extends ParentPage {
     public HeaderForUserElement  getHeaderElement() {
         return new HeaderForUserElement(webDriver);
     }
-    public PostPage checkIsRedirectToPostPage() {
+    public PostPage checkIsRedirectToEditPostPage() {
         checkUrlWithPattern();
         return this;
     }
@@ -49,10 +48,7 @@ public class PostPage extends ParentPage {
         return new PostPage(webDriver);
     }
 
-    public PostPage checkIsRedirectToEditPostPage() {
-        //TODO checkUrl();
-        return this;
-    }
+
 
     public PostPage checkTextInSuccessMessage(String expectedText) {
         checkTextInElement(successMessage, expectedText);

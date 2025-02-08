@@ -24,7 +24,7 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIfUniquePost()
                 .selectUniquePostCheckbox("check")
                 .clickOnSaveNewPostButton()
-                .checkIsRedirectToPostPage()
+                .checkIsRedirectToEditPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInThisPostWasWrittenIsVisible("One Person")
                 .checkTextInSuccessMessage("New post successfully created.")

@@ -36,4 +36,8 @@ public class EditPostPage extends ParentPage {
     public void checkTextInSuccessUpdateMessage(String expectedMessageText) {
         checkTextInElement(successUpdateMessage, expectedMessageText);
     }
+    public PostPage checkIsRedirectToPostPage() {
+        checkUrlWithPattern();
+        return new PostPage(webDriver);
+    }
 }

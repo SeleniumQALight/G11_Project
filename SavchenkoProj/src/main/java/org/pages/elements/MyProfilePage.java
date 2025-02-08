@@ -54,7 +54,7 @@ public class MyProfilePage extends ParentPage {
         while (!postsList.isEmpty() && counter < MAX_POST_COUNT ) {
             clickOnElement(postsList.get(0));
             new PostPage(webDriver)
-                    .checkIsRedirectToPostPage()
+                    .checkIsRedirectToEditPostPage()
                     .clickOnDeleteButton()
                     .checkIsMessageSuccessDeletePresent();
             logger.info("Post with title " + postTitle + " was deleted");

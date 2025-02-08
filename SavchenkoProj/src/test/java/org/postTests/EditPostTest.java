@@ -21,11 +21,11 @@ public class EditPostTest extends BaseTest {
                 .enterTextIntoInputBody("Body of the post")
                 .setNeededStateToUniquePostCheckbox("Check")
                 .clickOnSaveNewPostButton()
-                .checkIsRedirectToPostPage();
+                .checkIsRedirectToEditPostPage();
                 pageProvider.getPostPage().getHeaderElement().clickOnButtonMyProfile()
                 .checkIsRedirectToProfilePage()
                 .clickOnPostWithTitle(POST_TITLE_UNIQUE)
-                .checkIsRedirectToPostPage()
+                .checkIsRedirectToEditPostPage()
                 .clickOnEditPostButton()
                 .checkIsRedirectToEditPostPage();
         pageProvider.getCreateNewPostPage()
