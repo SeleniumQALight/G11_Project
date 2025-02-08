@@ -3,6 +3,7 @@ package org.pages.elements;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.pages.*;
 
 public class HeaderForUserElement extends CommonActionsWithElements {
@@ -22,6 +23,11 @@ public class HeaderForUserElement extends CommonActionsWithElements {
     public MyProfilePage clickOnButtonMyProfile() {
         clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
+    }
+
+    public LoginPage clickOnButtonSignOut() {
+        clickOnElement(buttonSignOut);
+        return new LoginPage(webDriver);
     }
 
     public void checkIsButtonSignOutVisible() {

@@ -9,7 +9,7 @@ import static org.data.TestData.VALID_PASSWORD;
 public class LoginTestWithPageObject extends BaseTest {
 
     @Test
-    public void T0001_validLogin() {
+    public void T0001_validLoginTest() {
         pageProvider.getLoginPage()
                 .openPage()
                 .enterTextIntoInputLogin(VALID_LOGIN)
@@ -31,7 +31,7 @@ public class LoginTestWithPageObject extends BaseTest {
     }
 
     @Test
-    public void T0002_invalidLogin() {
+    public void T0002_invalidLoginTest() {
         pageProvider.getLoginPage()
                 .openPage()
                 .enterTextIntoInputLogin("invalidLogin")
@@ -47,7 +47,7 @@ public class LoginTestWithPageObject extends BaseTest {
     }
 
     @Test
-    public void TC006_StayLoggedInNewTabTest() {
+    public void TC006_stayLoggedInNewTabTest() {
         pageProvider.getLoginPage()
                 .openLoginPageAndFillLoginFormWithValidCred()
                 .checkIsRedirectToHomePage();
@@ -69,7 +69,7 @@ public class LoginTestWithPageObject extends BaseTest {
     }
 
     @Test
-    public void TC007_InputFieldsAreClearedAfterRefreshTest() {
+    public void TC007_inputFieldsAreClearedAfterRefreshTest() {
         pageProvider.getLoginPage()
                 .openPage()
                 .enterTextIntoInputLogin(VALID_LOGIN)
