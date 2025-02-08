@@ -11,11 +11,16 @@ public class EditPostPage extends ParentPage {
     @FindBy(xpath = "//button[text()='Save Updates']")
     private WebElement buttonSaveUpdates;
 
-    @FindBy(xpath = "//div[text()='']")
+    @FindBy(xpath = "//div[@class='alert alert-success text-center']")
     private WebElement successUpdateMessage;
 
     public EditPostPage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    @Override
+    protected String getRelativeUrl() {
+        return "";
     }
 
     public EditPostPage clickOnSaveUpdatesButton() {
