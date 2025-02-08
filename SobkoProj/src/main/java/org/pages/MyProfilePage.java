@@ -20,13 +20,21 @@ public class MyProfilePage extends ParentPage {
         super(webdriver);
     }
 
+    private WebElement getPost(String postTitle) {
+        return webdriver.findElement(By.xpath(String.format(postWithTitleLocator, postTitle)));
+    }
+    @Override
+    protected String getRelativeUrl() {
+        return "/profile/[a-zA-z0-9]*";
+    }
+
 
     private List<WebElement> getPostList(String postTitle) {
         return webdriver.findElements(By.xpath(String.format(postWithTitleLocator, postTitle)));
     }
 
     public MyProfilePage checkIsRedirectToMyProfilePage() {
-
+        checkUrlWithPattern();
         return this;
     }
 
@@ -54,6 +62,12 @@ public class MyProfilePage extends ParentPage {
         }
         return this;
     }
+    public PostPage openPost(String postTitle) {
+        WebElement postName = getPost(postTitle);
+        clickOnElement(postName);
+        return new PostPage(webdriver);
+    }
+
 
 
 

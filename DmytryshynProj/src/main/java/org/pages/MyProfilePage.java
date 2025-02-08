@@ -21,6 +21,11 @@ public class MyProfilePage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/profile/[a-zA-Z0-9]*";
+    }
+
     private List<WebElement> getPostsList(String postTitle) {
         return webDriver.findElements(
                 By.xpath(
@@ -29,7 +34,7 @@ public class MyProfilePage extends ParentPage {
     }
 
     public MyProfilePage checkIsRedirectToMyProfilePage() {
-        //TODO check current url
+        checkUrlWithPattern();
         return this;
     }
 

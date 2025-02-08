@@ -8,22 +8,41 @@ public class CreateNewPostPage extends ParentPage {
     @FindBy(xpath = "//button[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
 
+    @FindBy(xpath = "//button[text()='Save Updates']")
+    private WebElement buttonSaveUpdatedPost;
+
     @FindBy(xpath = "//input[@name='uniquePost']")
     private WebElement uniquePostCheckbox;
+    @FindBy(xpath = "//select")
+    private WebElement dropdownAccess;
+
+
+    @FindBy(xpath = "//*[text()='Post successfully updated.']")
+    private WebElement successUpdateMessage;
 
     public CreateNewPostPage(WebDriver webdriver) {
         super(webdriver);
 
     }
+
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
+    }
+
     @FindBy(name="title")
     private WebElement inputTitle;
     @FindBy(id="post-body")
     private WebElement inputBody;
 
+    public CreateNewPostPage selectValueInDropDownAccess(String valueForSelect) {
+        selectValueInDD(dropdownAccess, valueForSelect);
+        return this;
+    }
     //check is redirect to CreateNewPostPage
     public CreateNewPostPage checkIsRedirectToCreateNewPostPage() {
-        // TODO check url
-        return this;
+       checkUrlWithPattern();
+       return this;
     }
 
     public CreateNewPostPage enterTextIntoInputTitle(String title) {
@@ -36,8 +55,16 @@ public class CreateNewPostPage extends ParentPage {
         return this;
     }
 
-    public CreateNewPostPage clickOnSaveNewPostButton() {
+    public PostPage clickOnSaveNewPostButton() {
         clickOnElement(buttonSaveNewPost);
+        return new PostPage(webdriver);
+    }
+    public CreateNewPostPage clickOnSaveUpdatedButton() {
+        clickOnElement(buttonSaveUpdatedPost);
+        return this;
+    }
+    public CreateNewPostPage checkTextInUpdateMessage(String expectedMessageText) {
+        checkTextInElement(successUpdateMessage, expectedMessageText);
         return this;
     }
 
@@ -53,7 +80,4 @@ public class CreateNewPostPage extends ParentPage {
     }
 
 
-    public PostPage checkIsRedirectToPostPage() {
-        return new PostPage(webdriver);
-    }
 }

@@ -2,17 +2,48 @@ package org.pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
     private Logger logger = Logger.getLogger(getClass());
+    protected WebDriverWait webDriverWait_10, webDriverWait_15;
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); // ініціалізує елементи описані FindBy
+        webDriverWait_10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        webDriverWait_15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+    }
+
+    // method for select visible text in dropdown
+    protected void selectTextInDropdown(WebElement dropdown, String text) {
+        try {
+            Select optionsFromDropdown = new Select(dropdown);
+            optionsFromDropdown.selectByVisibleText(text);
+            logger.info(text + " was selected in dropdown " + getElementName(dropdown));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void selectValueInDropdown(WebElement dropdown, String valueDD) {
+        try {
+            Select optionsFromDropdown = new Select(dropdown);
+            optionsFromDropdown.selectByValue(valueDD);
+            logger.info(valueDD + " was selected in dropdown " + getElementName(dropdown));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
     }
 
     // method for cleaning and entering text into element
@@ -39,6 +70,7 @@ public class CommonActionsWithElements {
     // method for clicking on element
     protected void clickOnElement(WebElement webElement) {
         try {
+            webDriverWait_10.until(ExpectedConditions.elementToBeClickable(webElement));
             String elementName = getElementName(webElement);
             webElement.click();
             logger.info("Element " + elementName + " was clicked");
@@ -49,6 +81,7 @@ public class CommonActionsWithElements {
 
     protected void clickOnElement(WebElement webElement, String elementName) {
         try {
+            webDriverWait_10.until(ExpectedConditions.elementToBeClickable(webElement));
             webElement.click();
             logger.info("Element " + elementName + " was clicked");
         } catch (Exception e) {
@@ -65,6 +98,15 @@ public class CommonActionsWithElements {
     private void printErrorAndStopTest(Exception e) {
         logger.error("Cannot work with element " + e);
         Assert.fail("Cannot work with element " + e);
+    }
+
+    public boolean isElementVisible(String locator) {
+        try {
+            return isElementVisible(webDriver.findElement(By.xpath(locator)));
+        } catch (Exception e) {
+            logger.info("Element is not found");
+            return false;
+        }
     }
 
     // method for checking visibility of element
@@ -86,6 +128,10 @@ public class CommonActionsWithElements {
     // method for checking visibility of element
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue("Element " + getElementName(webElement) + " is not visible", isElementVisible(webElement));
+    }
+
+    protected void checkIsElementVisible(String locator) {
+        Assert.assertTrue("Element is not visible", isElementVisible(locator));
     }
 
     protected void checkIsElementNotVisible(WebElement webElement) {
@@ -121,7 +167,38 @@ public class CommonActionsWithElements {
         }
     }
 
+    //acceptAlert
+    protected void acceptAlert() {
+        try {
+            webDriverWait_10.until(ExpectedConditions.alertIsPresent());
+            webDriver.switchTo().alert().accept();
+            logger.info("Alert was accepted");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
 
+    // scroll to element using Actions
+    protected void scrollToElement(WebElement webElement) {
+        try {
+            Actions actions = new Actions(webDriver);
+            actions.moveToElement(webElement);
+            actions.perform();
+            logger.info("Scrolled to element " + getElementName(webElement));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
 
+    }
+
+    // open new tab using JS
+    protected void openNewTab() {
+        try {
+            ((org.openqa.selenium.JavascriptExecutor) webDriver).executeScript("window.open()");
+            logger.info("New tab was opened");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
 
 }

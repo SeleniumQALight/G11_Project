@@ -23,8 +23,12 @@ public class LoginPage extends ParrentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
     public LoginPage openPage() {
-        String baseUrl = "https://aqa-complexapp.onrender.com";
         webDriver.get(baseUrl);
         logger.info("Login page was opened with the URL: " + baseUrl);
         return this;

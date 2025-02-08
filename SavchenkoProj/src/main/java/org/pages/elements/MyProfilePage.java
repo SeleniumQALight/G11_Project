@@ -22,12 +22,16 @@ public class MyProfilePage extends ParentPage {
         super(webDriver);
     }
 
+    protected String getRelativeUrl() {
+        return "/profile/[a-zA-Z0-9]*";
+    }
+
     private List<WebElement> getPostsList(String postTitle) {
         return webDriver.findElements(By.xpath(String.format(postWithTitleLocator, postTitle)));
     }
 
     public MyProfilePage checkIsRedirectToProfilePage() {
-        //TODO checkUrl();
+        checkUrlWithPattern();
         return this;
     }
 
