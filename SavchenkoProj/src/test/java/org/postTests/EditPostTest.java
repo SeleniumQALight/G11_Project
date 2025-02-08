@@ -6,8 +6,8 @@ import org.junit.Test;
 import org.utils.Utils_Custom;
 
 public class EditPostTest extends BaseTest {
-    final String POST_TITLE_UNIQUE = "T0005_khasanova_" + Utils_Custom.getDateAndTimeFormatted();
-    final String POST_TITLE_EDITED = "T0005_khasanova_edited_" + Utils_Custom.getDateAndTimeFormatted();
+    final String POST_TITLE_UNIQUE = "T0005_savchenko_" + Utils_Custom.getDateAndTimeFormatted();
+    final String POST_TITLE_EDITED = "T0005_savchenko_edited_" + Utils_Custom.getDateAndTimeFormatted();
 
     @Test
     public void T0005_editPost() {
