@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.pages.elements.HeaderForUserElement;
 
 import java.util.List;
 
@@ -33,6 +34,9 @@ public class LoginPage extends ParentPage { //create constructor
 
     @FindBy(id = "password-register")
     private WebElement inputPasswordInRegistrationForm;
+
+    @FindBy(xpath = "//div[text()='Invalid username/password.']")
+    private WebElement invalidUsernamePasswordMessage;
 
     final static String listErrorsMessagesLocator = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
     @FindBy(xpath = listErrorsMessagesLocator)
@@ -115,6 +119,30 @@ public class LoginPage extends ParentPage { //create constructor
                     .isIn(messagesArray);
         }
         softAssertions.assertAll();
+        return this;
+    }
+
+    public LoginPage checkIsInvalidUsernamePasswordMessageVisible() {
+        checkIsElementVisible(invalidUsernamePasswordMessage);
+        return this;
+    }
+
+    public LoginPage checkIsButtonSignInVisible() {
+        checkIsElementVisible(buttonSignIn);
+        return this;
+    }
+
+    public HeaderForUserElement getHeaderElement() {
+        return new HeaderForUserElement(webDriver);
+    }
+
+    public LoginPage checkIsInputUserNameRegistrationFormNotVisible() {
+        checkIsElementNotVisible(inputUserNameRegistrationForm);
+        return this;
+    }
+
+    public LoginPage checkIsInputEmailInRegistrationFormNotVisible() {
+        checkIsElementNotVisible(inputEmailInRegistrationForm);
         return this;
     }
 }
