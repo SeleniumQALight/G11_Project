@@ -221,4 +221,8 @@ public class CommonActionsWithElements {
         }
     }
 
+   public void sendKeysUsingActions(String text) {
+       actions.sendKeys(text).perform();
+   }
+
 }

@@ -87,11 +87,12 @@ public class LoginTestWithPageObject extends BaseTest {
                 .openPage()
                 .pressTabButton();
         pageProvider.getLoginPage().pressTabButton();
-        pageProvider.getLoginPage().enterLogin(VALID_LOGIN).pressTabButton();
-        pageProvider.getLoginPage().enterPassword(VALID_PASSWORD);
+        pageProvider.getLoginPage().
+                sendKeysUsingActions(VALID_LOGIN);
+        pageProvider.getLoginPage().pressTabButton();
+        pageProvider.getLoginPage().sendKeysUsingActions(VALID_PASSWORD);
         pageProvider.getLoginPage().pressEnterButton();
         pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonSignOutVisible();
-
     }
 
 
