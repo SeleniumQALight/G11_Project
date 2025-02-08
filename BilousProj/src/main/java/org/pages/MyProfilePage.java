@@ -66,4 +66,9 @@ public class MyProfilePage extends ParantPage {
         checkIsElementVisible(successMessageDelete);
         return this;
     }
+
+    public PostPage clickOnPostWithTitle(String postTitle) {
+        clickOnElement(getPostsList(postTitle).get(0));
+        return new PostPage(webDriver);
+    }
 }

@@ -8,11 +8,17 @@ public class CreateNewPostPage extends ParentPage {
     @FindBy(xpath = "//button[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
 
+    @FindBy(xpath = "//button[text()='Save Updates']")
+    private WebElement buttonSaveUpdatedPost;
+
     @FindBy(xpath = "//input[@name='uniquePost']")
     private WebElement uniquePostCheckbox;
     @FindBy(xpath = "//select")
     private WebElement dropdownAccess;
 
+
+    @FindBy(xpath = "//*[text()='Post successfully updated.']")
+    private WebElement successUpdateMessage;
 
     public CreateNewPostPage(WebDriver webdriver) {
         super(webdriver);
@@ -52,6 +58,14 @@ public class CreateNewPostPage extends ParentPage {
     public PostPage clickOnSaveNewPostButton() {
         clickOnElement(buttonSaveNewPost);
         return new PostPage(webdriver);
+    }
+    public CreateNewPostPage clickOnSaveUpdatedButton() {
+        clickOnElement(buttonSaveUpdatedPost);
+        return this;
+    }
+    public CreateNewPostPage checkTextInUpdateMessage(String expectedMessageText) {
+        checkTextInElement(successUpdateMessage, expectedMessageText);
+        return this;
     }
 
     public CreateNewPostPage setUniquePostCheckboxState (String requiredState) {

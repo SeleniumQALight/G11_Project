@@ -22,6 +22,9 @@ public class PostPage extends ParentPage {
     private WebElement buttonDeletePost;
     private String locatorForText = "//*[contains(text(),'%s')]";
 
+    @FindBy(xpath = "//a[@data-original-title='Edit']")
+    private WebElement buttonEditPost;
+
     public PostPage(WebDriver webdriver) {
         super(webdriver);
     }
@@ -34,6 +37,8 @@ public class PostPage extends ParentPage {
     public HeaderForUserElement getHeaderElement() {
          return new HeaderForUserElement(webdriver);
      }
+
+
     public PostPage checkIsRedirectToPostPage() {
         checkUrlWithPattern();
         return this;
@@ -63,8 +68,13 @@ public class PostPage extends ParentPage {
     }
 
     public MyProfilePage clickOnDeleteButton() {
-       clickOnElement(buttonDeletePost, "Delete post button");
+        clickOnElement(buttonDeletePost, "Delete post button");
         return new MyProfilePage(webdriver);
+    }
+
+    public CreateNewPostPage clickOnEditButton() {
+        clickOnElement(buttonEditPost, "Edit post button");
+        return new CreateNewPostPage(webdriver);
     }
 
     public PostPage checkTextThisPostWasWrittenAndVisible(String text) {

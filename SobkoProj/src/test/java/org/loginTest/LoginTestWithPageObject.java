@@ -2,13 +2,15 @@ package org.loginTest;
 
 import org.baseTest.BaseTest;
 import org.junit.Test;
+
 import static org.data.TestData.VALID_LOGIN;
 import static org.data.TestData.VALID_PASSWORD;
 
 
 public class LoginTestWithPageObject extends BaseTest {
     public final static String INVALID_LOGIN = "qaau1to";
-    public final static String INVALID_PASSWORD="123456qwert1y";
+    public final static String INVALID_PASSWORD = "123456qwert1y";
+
     //test case for valid login
     @Test
     public void T0001_validLogin() {
@@ -36,4 +38,18 @@ public class LoginTestWithPageObject extends BaseTest {
 
     }
 
+    @Test
+    public void T0003_signOut() {
+        pageProvider.getLoginPage()
+                .openLoginPageAndLoginFormWithValidCreds()
+                .checkIsRedirectToHomePage()
+                .getHeaderElement().checkAllHeaderElementsVisible()
+                .clickOnButtonSignOut()
+                .checkHeaderElementsNotVisible();
+        pageProvider.getLoginPage().checkIsButtonSignInVisible()
+                .checkIsInputLoginVisible()
+                .checkIsInputPasswordVisible();
+
+
+    }
 }
