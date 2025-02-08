@@ -81,4 +81,18 @@ public class LoginTestWithPageObject extends BaseTest {
                 .checkIsButtonSignOutInvisible();
     }
 
+    @Test
+    public void TC009_validLoginWithTabAndEnterTest() {
+        pageProvider.getLoginPage()
+                .openPage()
+                .pressTabButton();
+        pageProvider.getLoginPage().pressTabButton();
+        pageProvider.getLoginPage().enterLogin(VALID_LOGIN).pressTabButton();
+        pageProvider.getLoginPage().enterPassword(VALID_PASSWORD);
+        pageProvider.getLoginPage().pressEnterButton();
+        pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonSignOutVisible();
+
+    }
+
+
 }

@@ -155,4 +155,15 @@ public class LoginPage extends ParentPage {
 
         return this;
     }
+
+    public LoginPage enterLogin (String validUsername) {
+        actions.moveToElement(inputUserName).click().sendKeys(validUsername).perform();
+        logger.info(validUsername + " was inputted into input UserName");
+        return this;
+    }
+
+    public void enterPassword(String validPassword) {
+        actions.moveToElement(inputPassword).click().sendKeys(validPassword).perform();
+        logger.info(validPassword + " was inputted into input password");
+    }
 }

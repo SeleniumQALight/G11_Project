@@ -3,6 +3,7 @@ package org.pages;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -12,13 +13,13 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.ArrayList;
 
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
     private Logger logger = Logger.getLogger(getClass());
     protected WebDriverWait webDriverWait10, webDriverWait15;
+    protected Actions actions;
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -28,6 +29,7 @@ public class CommonActionsWithElements {
         //@CashLookUp - кешуємо елементи, які вже знайшли, і більше не шукаємо їх
         webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
         webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        actions = new Actions(webDriver);
     }
 
     // method for select visible text in dropdown
@@ -199,6 +201,24 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
 
+    }
+
+    public void pressEnterButton() {
+        try {
+            actions.sendKeys(Keys.ENTER).perform();
+            logger.info("Enter button was pressed");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    public void pressTabButton() {
+        try {
+            actions.sendKeys(Keys.TAB).perform();
+            logger.info("Tab button was pressed");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
     }
 
 }
