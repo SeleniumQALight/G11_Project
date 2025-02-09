@@ -18,13 +18,25 @@ public class CreateNewPostPage extends ParentPage {
     @FindBy(xpath = "//input[@type = 'checkbox' and @value='yes']")
     private WebElement checkbox;
 
+    @FindBy(xpath = "//select")
+    private WebElement dropDownAccess;
+
     public CreateNewPostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/create-post";
+    }
+
+    public CreateNewPostPage selectValueInDropDownAccess(String valueForSelect) {
+        selectValueInDD(dropDownAccess, valueForSelect);
+        return this;
+    }
 
     public CreateNewPostPage checkIsRedirectOnCreateNewPostPage() {
-        //TODO checkURL();
+       checkURL();
         return this;
     }
 

@@ -15,17 +15,21 @@ public class PostPage extends ParentPage {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
+    }
+
     @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
     private WebElement buttonDeletePost;
 
-
+    private String locatorForTextThisPostWasWritten  = "//*[contains(text(),'%s')]";
 
     public HeaderForUserElements getHeaderElement() {
         return new HeaderForUserElements(webDriver);
     }
-
     public PostPage checkIsRedirectOnPostPage() {
-        //TODO checkURL();
+        checkUrlWithPattern();
         return this;
     }
 
@@ -48,5 +52,9 @@ public class PostPage extends ParentPage {
         return new MyProfilePage(webDriver);
     }
 
-
+    public PostPage checkTextThisPostWasWrittenIsVisible(String text) {
+    checkIsElementVisible(String.format(locatorForTextThisPostWasWritten, text));
+        //TODO
+        return this;
+    }
 }

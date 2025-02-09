@@ -15,12 +15,24 @@ public class CreateNewPostPage extends ParentPage {
     @FindBy(xpath = "//button[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
 
+    @FindBy(xpath = "//select")
+    private WebElement dropdownAcess;
+
     public CreateNewPostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/create-post";
+    }
+
     public CreateNewPostPage checkIsRedirectToCreateNewPostPage() {
-        //TODO check current URL
+        checkUrl();
+        return this;
+    }
+    public CreateNewPostPage selectTextInDropDownAccess(String valueForSelect) {
+        selectValueInDropdown(dropdownAcess, valueForSelect);
         return this;
     }
 

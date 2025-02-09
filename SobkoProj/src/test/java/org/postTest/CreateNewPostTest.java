@@ -15,18 +15,20 @@ public class CreateNewPostTest extends BaseTest {
 
     final String POST_TITLE = "Yurii Sobko post"+Utils_Custom.getDateAndTimeFormatted();
     @Test
-    public void TR003_createNewPost() {
+    public void TR001_createNewPost() {
         pageProvider.getLoginPage()
                 .openLoginPageAndLoginFormWithValidCreds()
                 .checkIsRedirectToHomePage()
                 .getHeaderElement().clickOnButtonCreatePost()
                 .enterTextIntoInputTitle(POST_TITLE)
+                .selectValueInDropDownAccess("One Person")
                 .enterTextIntoInputBody("Body YS")
                 .setUniquePostCheckboxState(CHECK)
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
                 .checkIsPostUniqueCorrectState(YES)
                 .checkIsSuccessMessageDisplayed()
+                .checkTextThisPostWasWrittenAndVisible("One Person")
                 .checkTextInSuccessMessage("New post successfully created.")
 
         ;
