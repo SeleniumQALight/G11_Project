@@ -54,7 +54,7 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getHomePage().checkIsRedirectToHomePage();
 
         pageProvider.getHomePage().switchToNewTab();
-        pageProvider.getHomePage().closeNewTab();
+        pageProvider.getHomePage().closeCurrentTab();
         pageProvider.getHomePage().switchToMainTab();
         pageProvider.getHomePage().checkIsRedirectToHomePage();
     }

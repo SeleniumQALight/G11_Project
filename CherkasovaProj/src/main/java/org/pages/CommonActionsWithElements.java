@@ -214,29 +214,8 @@ public class CommonActionsWithElements {
     // Switch to main tab
     public void switchToMainTab() {
         try {
-            webDriver.switchTo().window(mainWindowHandle);
-            logger.info("Switched to main tab");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
-
-    // Close new tab
-    public void closeNewTab() {
-        try {
-            webDriver.close();
-            webDriver.switchTo().window(mainWindowHandle);
-            logger.info("New tab was closed and switched to main tab");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
-
-//    Refresh Page
-    public void refreshPage() {
-        try {
-            webDriver.navigate().refresh();
-            logger.info("Page was refreshed");
+            webDriver.switchTo().window((String) webDriver.getWindowHandles().toArray()[0]);
+            logger.info("Switched to the first tab");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
