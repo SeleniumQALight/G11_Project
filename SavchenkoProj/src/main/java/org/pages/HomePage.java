@@ -17,13 +17,13 @@ public class HomePage extends ParentPage {
         return "/";
     }
 
-    public HeaderForUserElement getHeaderElement() {
+    public HeaderForUserElement getHeaderForUserElement() {
         return new HeaderForUserElement(webDriver);
     }
 
 
     public HomePage checkIsRedirectToHomePage() {
-        getHeaderElement().checkIsButtonSignOutVisible();
+        getHeaderForUserElement().checkIsButtonSignOutVisible();
         checkUrl();
         return this;
 
@@ -33,7 +33,7 @@ public class HomePage extends ParentPage {
     public HomePage openHomePageAndLoginIfNeed() {
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.openPage();
-        if (getHeaderElement().isButtonSignOutVisible()) {
+        if (getHeaderForUserElement().isButtonSignOutVisible()) {
             logger.info("User is already logged in");
         } else {
             loginPage.enterTextIntoInputLogin(TestData.VALID_LOGIN);
