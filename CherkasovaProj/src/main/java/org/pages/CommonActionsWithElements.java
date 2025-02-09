@@ -232,6 +232,16 @@ public class CommonActionsWithElements {
         }
     }
 
+//    Refresh Page
+    public void refreshPage() {
+        try {
+            webDriver.navigate().refresh();
+            logger.info("Page was refreshed");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
 
     private void printErrorAndStopTest(Exception e) {
         logger.error("Cannot work with element " + e);

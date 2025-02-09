@@ -59,5 +59,16 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getHomePage().checkIsRedirectToHomePage();
     }
 
+    @Test
+    public void T004_dataInLoginInputsDisappearsAfterRefreshing () {
+        pageProvider.getLoginPage().openPage()
+                .enterTextIntoInputLogin(VALID_LOGIN)
+                .enterTextIntoInputPassword(VALID_PASSWORD)
+                .refreshPage();
+        pageProvider.getLoginPage()
+                .clickOnButtonSignIn();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutNotVisible();
+
+    }
 
 }
