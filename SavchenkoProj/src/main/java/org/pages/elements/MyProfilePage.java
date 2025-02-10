@@ -22,12 +22,16 @@ public class MyProfilePage extends ParentPage {
         super(webDriver);
     }
 
+    protected String getRelativeUrl() {
+        return "/profile/[a-zA-Z0-9]*";
+    }
+
     private List<WebElement> getPostsList(String postTitle) {
         return webDriver.findElements(By.xpath(String.format(postWithTitleLocator, postTitle)));
     }
 
     public MyProfilePage checkIsRedirectToProfilePage() {
-        //TODO checkUrl();
+        checkUrlWithPattern();
         return this;
     }
 
@@ -37,6 +41,12 @@ public class MyProfilePage extends ParentPage {
         return this;
     }
 
+    public PostPage clickOnPostWithTitle(String postTitle) {
+        clickOnElement(getPostsList(postTitle).get(0));
+        logger.info("Post with title " + postTitle + " was clicked");
+        return new PostPage(webDriver);
+    }
+
     public MyProfilePage deletePostsTillPresent(String postTitle) {
         List<WebElement> postsList = getPostsList(postTitle);
         final int MAX_POST_COUNT = 100; //postsList.size()
@@ -44,7 +54,7 @@ public class MyProfilePage extends ParentPage {
         while (!postsList.isEmpty() && counter < MAX_POST_COUNT ) {
             clickOnElement(postsList.get(0));
             new PostPage(webDriver)
-                    .checkIsRedirectToPostPage()
+                    .checkIsRedirectToEditPostPage()
                     .clickOnDeleteButton()
                     .checkIsMessageSuccessDeletePresent();
             logger.info("Post with title " + postTitle + " was deleted");
