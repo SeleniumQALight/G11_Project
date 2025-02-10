@@ -132,9 +132,6 @@ public class LoginPage extends ParentPage { //create constructor
         return this;
     }
 
-    public HeaderForUserElement getHeaderElement() {
-        return new HeaderForUserElement(webDriver);
-    }
 
     public LoginPage checkIsInputUserNameRegistrationFormNotVisible() {
         checkIsElementNotVisible(inputUserNameRegistrationForm);

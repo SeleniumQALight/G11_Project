@@ -24,6 +24,7 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectToPostPage()
                 .cheskIsSuccessMessageDisplayed()
                 .checkTextThisPostWasWrittenIsVisible("One Person")
+                .checkTextIsThisPostUnique("yes")
                 .checkTextInSuccessMessage("New post successfully created.")
         ;
 
