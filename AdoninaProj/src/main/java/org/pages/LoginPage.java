@@ -140,4 +140,9 @@ public class LoginPage extends ParentPage {
     softAssertions.assertAll();
     return this;
   }
+
+  public LoginPage refreshPage() {
+    webDriver.navigate().refresh();
+    return this;
+  }
 }
