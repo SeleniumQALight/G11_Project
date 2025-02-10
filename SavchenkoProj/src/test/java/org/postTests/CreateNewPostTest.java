@@ -16,7 +16,7 @@ public class CreateNewPostTest extends BaseTest {
         pageProvider.getLoginPage()
                 .openLoginPageAndFillLoginFormWithValidCred()
                 .checkIsRedirectToHomePage()
-                .getHeaderElement().clickOnButtonCreatePost()
+                .getHeaderForUserElement().clickOnButtonCreatePost()
                 .checkIsRedirectToCreateNewPostPage()
                 .enterTextIntoInputTitle(POST_TITLE)
                 .selectValueInDropDownAccess("One Person")
@@ -24,7 +24,7 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIfUniquePost()
                 .selectUniquePostCheckbox("check")
                 .clickOnSaveNewPostButton()
-                .checkIsRedirectToPostPage()
+                .checkIsRedirectToEditPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInThisPostWasWrittenIsVisible("One Person")
                 .checkTextInSuccessMessage("New post successfully created.")
@@ -41,7 +41,7 @@ public class CreateNewPostTest extends BaseTest {
     public void deletePosts() {
         pageProvider.getHomePage()
                 .openHomePageAndLoginIfNeed()
-                .getHeaderElement().clickOnButtonMyProfile()
+                .getHeaderForUserElement().clickOnButtonMyProfile()
                 .checkIsRedirectToProfilePage()
                 .deletePostsTillPresent(POST_TITLE)
                 ;
