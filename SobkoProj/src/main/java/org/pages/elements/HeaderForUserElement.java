@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.pages.CommonActionsWithElements;
 import org.pages.CreateNewPostPage;
+import org.pages.LoginPage;
 import org.pages.MyProfilePage;
 
 public class HeaderForUserElement extends CommonActionsWithElements {
@@ -34,6 +35,12 @@ public class HeaderForUserElement extends CommonActionsWithElements {
         return new CreateNewPostPage(webdriver);
 
     }
+    public LoginPage clickOnButtonSignOut () {
+        clickOnElement(buttonSignOut);
+        return new LoginPage(webdriver);
+
+    }
+
     public void checkIsButtonSignOutVisible() {
 
         checkIsElementVisible(buttonSignOut);
