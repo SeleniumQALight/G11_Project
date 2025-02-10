@@ -61,18 +61,17 @@ public class LoginPage extends ParrentPage {
         return this;
     }
 
-    public LoginPage checkIsUsernameFieldVisible() {
+    public LoginPage checkIsUsernameFieldNotVisible() {
         checkIsElementNotVisible(inputUserName);
         return this;
     }
 
-    public LoginPage checkIsPasswordFieldVisible() {
+    public LoginPage checkIsPasswordFieldNotVisible() {
         checkIsElementNotVisible(inputPassword);
         return this;
     }
 
     public LoginPage openPage() {
-        String baseUrl = "https://aqa-complexapp.onrender.com";
         webDriver.get(baseUrl);
         logger.info("Login page was opened with the URL: " + baseUrl);
         return this;

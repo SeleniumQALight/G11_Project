@@ -15,6 +15,6 @@ public class LoginTestWithPageObject extends BaseTest {
                 .clickOnButtonSignIn();
 
         pageProvider.getHomePage().getHeaderElement().checkIsButtonCreatePostVisible().checkIsButtonSignOutVisible();
-        pageProvider.getLoginPage().checkIsUsernameFieldVisible().checkIsPasswordFieldVisible();
+        pageProvider.getLoginPage().checkIsUsernameFieldNotVisible().checkIsPasswordFieldNotVisible();
     }
 }
