@@ -120,14 +120,14 @@ public class CommonActionsWithElements {
             }
             return state;
         } catch (Exception e) {
-            logger.info("Element either is not found");
+            logger.info(getElementName(webElement) + "Element is not found");
             return false;
         }
     }
 
     //check if the element is visible
     protected void checkIsElementVisible(WebElement webElement) {
-        Assert.assertTrue(getElementName(webElement) + "Element is not visible", isElementVisible(webElement));
+        Assert.assertTrue(getElementName(webElement) + " Element is not visible", isElementVisible(webElement));
     }
 
     protected void checkIsElementVisible(String locator) {
@@ -176,8 +176,37 @@ public class CommonActionsWithElements {
     private void printErrorAndStopTest(Exception e) {
         logger.error("Cannot work with element " + e);
         Assert.fail("Cannot work with element " + e);
+
     }
 
+    public void selectCheckBox(WebElement checkbox) {
+        if (!checkbox.isSelected()) {
+            clickOnElement(checkbox);
+            logger.info("Checkbox is selected");
+        } else {
+            logger.info("Checkbox was already selected");
+
+        }
+    }
+
+    public void unselectCheckbox(WebElement checkbox) {
+        if (checkbox.isSelected()) {
+            clickOnElement(checkbox);
+            logger.info("Checkbox is unselected");
+        } else {
+            logger.info("Checkbox was already unselected");
+        }
+    }
+
+    public void setCheckboxState(WebElement checkbox, String state) {
+        if (state.equals("check")) {
+            selectCheckBox(checkbox);
+        } else if (state.equals("uncheck")) {
+            unselectCheckbox(checkbox);
+        } else {
+            logger.error("Invalid state: " + state);
+        }
+    }
 }
 
 

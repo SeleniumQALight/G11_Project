@@ -38,6 +38,9 @@ public class LoginPage extends ParentPage{
     @FindBy(xpath = listErrorMessagesLocator)
     private List<WebElement> listOfActualMessages;
 
+    @FindBy(xpath = ".//div[@class = 'alert alert-danger text-center' ]")
+    private WebElement messageInvalidLoginOrPassword;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -112,5 +115,9 @@ return this;
         }
         softAssertions.assertAll(); //відразу пишeмо після methood SoftAssertions softAssertions = new SoftAssertions();
         return this;
+    }
+
+    public boolean checkIfMessageInvalidLoginPasswordVisible() {
+        return isElementVisible(messageInvalidLoginOrPassword);
     }
 }
