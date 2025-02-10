@@ -3,18 +3,27 @@ package org.pages;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
     private Logger logger = Logger.getLogger(getClass());
+    protected WebDriverWait webDriverWait_10, webDriverWait_15;
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); //ініціалізує елементи описані FindBy
+        webDriverWait_10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
+        webDriverWait_15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
     }
 
     //method for select visible text in DropDown
@@ -40,7 +49,6 @@ public class CommonActionsWithElements {
     }
 
 
-
     protected void clearAndEnterTextToElement(WebElement webElement, String text) {
         try {
             webElement.clear();
@@ -63,6 +71,7 @@ public class CommonActionsWithElements {
 
     protected void clickOnElement(WebElement webElement) {
         try {
+            webDriverWait_10.until(ExpectedConditions.elementToBeClickable(webElement));
             String elementName = getElementName(webElement);
             webElement.click();
             logger.info(elementName + " Element was clicked");
@@ -70,8 +79,10 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
+
     protected void clickOnElement(WebElement webElement, String elementName) {
         try {
+            webDriverWait_10.until(ExpectedConditions.elementToBeClickable(webElement));
             webElement.click();
             logger.info(elementName + " Element was clicked");
         } catch (Exception e) {
@@ -117,6 +128,38 @@ public class CommonActionsWithElements {
         Assert.assertEquals("Text in element " + getElementName(webElement) + " is not expected", text, webElement.getText());
         logger.info("Text in element " + getElementName(webElement) + " is expected");
     }
+
+    protected void acceptAlert() {
+        try {
+            webDriverWait_10.until(ExpectedConditions.alertIsPresent());
+            webDriver.switchTo().alert().accept();
+            logger.info("Alert was accepted");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void scrollToElement(WebElement webElement) {
+        try {
+            Actions actions = new Actions(webDriver);
+            actions.moveToElement(webElement);
+            actions.perform();
+            logger.info("Scrolled to element " + getElementName(webElement));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    //open new tab using JS
+    protected void openNewTab() {
+        try {
+            ((JavascriptExecutor) webDriver).executeScript("window.open()");
+            logger.info("New tab was opened");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
 
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);

@@ -42,6 +42,15 @@ public class LoginPage extends ParentPage {
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
+    public LoginPage checkIsUsernameInputIsVisible() {
+        checkIsElementVisible(inputUserName);
+        return this;
+    }
+
+    public LoginPage checkIsInputPasswordIsVisible() {
+        checkIsElementVisible(inputPassword);
+        return this;
+    }
 
     protected String getRelativeUrl() {
         return "/";
@@ -74,8 +83,12 @@ public class LoginPage extends ParentPage {
         clickOnButtonSignIn();
         return new HomePage(webDriver);
     }
-    public LoginPage checkIsButtonSignInVisible() {
+
+    public LoginPage checkIsRedirectToLoginPage() {
         checkIsElementVisible(buttonSignIn);
+        checkIsUsernameInputIsVisible();
+        checkIsInputPasswordIsVisible();
+        //TODO check current URL
         return this;
     }
 

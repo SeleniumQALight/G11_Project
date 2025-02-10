@@ -1,5 +1,6 @@
 package org.pages.elements;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,7 +24,8 @@ public class HeaderForUserElements  extends CommonActionsWithElements {
     @FindBy(xpath = "//a[@class='btn btn-sm btn-success mr-2']")
     private WebElement buttonCreatePost;
 
-
+@FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
+    private WebElement buttonSignIn;
 
     public void checkIsButtonSignOutVisible() {
         // Assert.assertTrue("Button Sign Out is not displayed", isElementVisible(buttonSignOut));
@@ -43,4 +45,12 @@ public class HeaderForUserElements  extends CommonActionsWithElements {
     public boolean isButtonSignOutVisible() {
         return isElementVisible(buttonSignOut);
     }
+
+
+    public boolean checkIsButtonSignInVisible() {return isElementVisible(buttonSignIn); }
+
+    public void checkIsButtonSignOutInvisible() {
+        Assert.assertFalse("Button Sign Out is not displayed  ", isElementVisible(buttonSignOut));
+    }
 }
+
