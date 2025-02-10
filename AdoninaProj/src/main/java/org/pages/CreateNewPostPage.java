@@ -18,13 +18,29 @@ public class CreateNewPostPage extends ParentPage {
   @FindBy(xpath = "//input [@type='checkbox']")
   private WebElement checkboxIsPrivatePost;
 
+  @FindBy(xpath = ".//select")
+  private WebElement dropDownSelectCategory;
+
+  public CreareNewPostPage(WebDriver webDriver) {
   public CreateNewPostPage(WebDriver webDriver) {
     super(webDriver);
+  }
+
+  @Override
+  protected String getRelativeUrl() {
+    return "/create-post";
   }
 
   //check is redirect to CreateNewPostPage
   public CreateNewPostPage checkIsRedirectToCreateNewPostPage() {
     //TODO check current URL();
+  public CreareNewPostPage checkIsRedirectToCreateNewPostPage() {
+    checkUrlWithPattern();
+    return this;
+  }
+
+  public CreareNewPostPage selectValueDDCategory(String valueForSelect) {
+    selectValueInDD(dropDownSelectCategory, valueForSelect);
     return this;
   }
 
