@@ -12,15 +12,15 @@ public class SignOutTest extends BaseTest {
                 .checkIsRedirectToHomePage();
 
         pageProvider.getHomePage().openNewTab();
-        pageProvider.getLoginPage().switchToNewTab();
+        pageProvider.getLoginPage().switchToTab(1);
         pageProvider.getLoginPage().openPage();
         pageProvider.getHomePage().checkIsRedirectToHomePage();
 
-        pageProvider.getHomePage().switchToTheFirstTab();
+        pageProvider.getHomePage().switchToTab(0);
         pageProvider.getHomePage().getHeaderForUserElement().clickOnButtonSignOut();
         pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonSignOutInvisible();
 
-        pageProvider.getHomePage().switchToNewTab();
+        pageProvider.getHomePage().switchToTab(1);
         pageProvider.getHomePage().refreshPage();
         pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonSignOutInvisible();
     }

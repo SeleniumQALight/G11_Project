@@ -50,20 +50,11 @@ abstract public class ParentPage extends CommonActionsWithElements {
     }
 
     // switch to new tab
-    public void switchToNewTab() {
+    public void switchToTab(int numberOfTab) {
         try {
             ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
-            webDriver.switchTo().window(tabs.get(1));
-            logger.info("Switched to new tab");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
-
-    public void switchToTheFirstTab() {
-        try {
-            webDriver.switchTo().window((String) webDriver.getWindowHandles().toArray()[0]);
-            logger.info("Switched to the first tab");
+            webDriver.switchTo().window(tabs.get(numberOfTab));
+            logger.info("Switched to " + numberOfTab + " tab");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
