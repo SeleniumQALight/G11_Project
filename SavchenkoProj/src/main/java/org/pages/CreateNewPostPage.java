@@ -47,10 +47,15 @@ public class CreateNewPostPage extends ParentPage {
 
     public PostPage clickOnSaveNewPostButton() {
         clickOnElement(buttonSaveNewPost);
-return new PostPage(webDriver);
+        return new PostPage(webDriver);
     }
 
-    public CreateNewPostPage selectUniquePostCheckbox (String check){
+    public CreateNewPostPage setNeededStateToUniquePostCheckbox(String state) {
+        setCheckboxState(uniquePostCheckbox, state);
+        return this;
+    }
+
+    public CreateNewPostPage selectUniquePostCheckbox(String check) {
         setCheckboxState(uniquePostCheckbox, check);
         return this;
     }
@@ -59,4 +64,5 @@ return new PostPage(webDriver);
         checkIsElementVisible(uniquePostCheckbox);
         return this;
     }
+
 }

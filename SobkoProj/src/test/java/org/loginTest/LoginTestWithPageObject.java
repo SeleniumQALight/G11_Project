@@ -93,4 +93,18 @@ public class LoginTestWithPageObject extends BaseTest {
 
     }
 
+    @Test
+    public void T0003_signOut() {
+        pageProvider.getLoginPage()
+                .openLoginPageAndLoginFormWithValidCreds()
+                .checkIsRedirectToHomePage()
+                .getHeaderElement().checkAllHeaderElementsVisible()
+                .clickOnButtonSignOut()
+                .checkHeaderElementsNotVisible();
+        pageProvider.getLoginPage().checkIsButtonSignInVisible()
+                .checkIsInputLoginVisible()
+                .checkIsInputPasswordVisible();
+
+
+    }
 }

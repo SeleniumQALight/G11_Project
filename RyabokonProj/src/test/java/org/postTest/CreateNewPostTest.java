@@ -20,6 +20,7 @@ public class CreateNewPostTest extends BaseTest {
                 .enterTextIntoInputTitle(POST_TITLE)
                 .selectValueInDropDownAccess("One Person")
                 .enterTextIntoInputBody("Body**** of the ****post")
+                .setCheckboxState()
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectOnPostPage()
                 .checkIsSuccessMessageDisplayed()

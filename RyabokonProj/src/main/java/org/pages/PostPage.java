@@ -10,6 +10,7 @@ public class PostPage extends ParentPage {
     //"//*[contains(@class,'alert-success')]"
     @FindBy(xpath = "//*[@class='alert alert-success text-center']")
     private WebElement successMessage;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
