@@ -15,6 +15,9 @@ public class PostPage extends ParentPage {
   @FindBy(xpath = "//p[text()='Is this post unique? : yes']")
   private WebElement uniquePostMessage;
 
+  @FindBy(xpath = ".//a[@class='text-primary mr-2']")
+  private WebElement buttonEditePost;
+
   private String locatorForTextThisPostWasWritten = "//*[contains(text(),'%s')]";
 
   public PostPage(WebDriver webDriver) {
@@ -53,6 +56,11 @@ public class PostPage extends ParentPage {
   public PostPage checkIfUniquePost() {
     checkIsElementVisible(uniquePostMessage);
     return this;
+  }
+
+  public MyProfilePage clickOnEditeButton() {
+    clickOnElement(buttonEditePost, "Edite post Button");
+    return new MyProfilePage(webDriver);
   }
 
   public PostPage checkTextThisPostWasWrittenIsVisible(String text) {

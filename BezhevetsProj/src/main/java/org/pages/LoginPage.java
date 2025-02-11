@@ -38,6 +38,14 @@ public class LoginPage extends ParrentPage {
     @FindBy(xpath = listErrorsMessagesLocator)
     private List<WebElement> listOfActualMessages;
 
+    @FindBy(xpath = "//div[@class=\'alert alert-danger text-center\']")
+    private WebElement alertInvalidLoginOrPassword;
+
+    public LoginPage checkIsButtonSignInVisible() {
+        checkIsElementVisible(buttonSignIn);
+        return new LoginPage(webDriver);
+    }
+
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -46,6 +54,21 @@ public class LoginPage extends ParrentPage {
     @Override
     protected String getRelativeUrl() {
         return "/";
+    }
+
+    public LoginPage isAlertInvalidLoginOrPasswordDisplayed() {
+        checkIsElementVisible(alertInvalidLoginOrPassword);
+        return this;
+    }
+
+    public LoginPage checkIsUsernameFieldNotVisible() {
+        checkIsElementNotVisible(inputUserName);
+        return this;
+    }
+
+    public LoginPage checkIsPasswordFieldNotVisible() {
+        checkIsElementNotVisible(inputPassword);
+        return this;
     }
 
     public LoginPage openPage() {
