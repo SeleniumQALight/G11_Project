@@ -1,14 +1,11 @@
 package org.pages;
 
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.apache.log4j.Logger;
 import org.pages.elements.HeaderForUserElement;
-
-import java.util.List;
 
 public class PostPage extends ParentPage {
 
@@ -20,15 +17,24 @@ public class PostPage extends ParentPage {
 
     private String locatorForTextThisPostWasWritten = "//*[contains(text(),'%s')]";
 
-//@FindBy(xpath = "//p[text()='Is this post unique? : yes']")
-//private WebElement checkboxUniquePostYes;
-//
-//@FindBy(xpath = "//p[text()='Is this post unique? : no']")
-//private WebElement checkboxUniquePostNo;
+    private String checkboxUniquePostLocator = "//p[text()='Is this post unique? : %s']";
 
-private String checkboxUniquePostLocator = "//p[text()='Is this post unique? : %s']";
+    Logger logger = Logger.getLogger(getClass());
 
-Logger logger = Logger.getLogger(getClass());
+    @FindBy(xpath = "//a[@data-original-title='Edit']")
+    private WebElement editButton;
+
+    @FindBy(xpath = "//a[text()='« Back to post permalink']")
+    private WebElement toBackOnMyProfilePageLink;
+
+    @FindBy(xpath = "//button[text()='Save Updates']")
+    private WebElement saveUpdatesButton;
+
+    @FindBy(xpath = "//input[@name='title']")
+    private WebElement inputTitle;
+
+    @FindBy(xpath = "//textarea[@name='body']")
+    private WebElement inputBody;
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -82,4 +88,29 @@ Logger logger = Logger.getLogger(getClass());
         }
     }
 
+
+    public PostPage clickOnEditButton() {
+        clickOnElement(editButton, "Edit post button");
+        return new PostPage(webDriver);
+    }
+
+    public PostPage clickOnSaveUpdatesButton() {
+        clickOnElement(saveUpdatesButton, "Save Updates button");
+        return new PostPage(webDriver);
+    }
+
+    public MyProfilePage clickOnBackToMyProfilePage() {
+        clickOnElement(toBackOnMyProfilePageLink, "« Back to post permalink");
+        return new MyProfilePage(webDriver);
+    }
+
+    public PostPage editTextIntoInputTitle(String title) {
+        clearAndEnterTextIntoElement(inputTitle, title);
+        return this;
+    }
+
+    public PostPage editTextIntoInputBody(String body) {
+        clearAndEnterTextIntoElement(inputBody, body);
+        return this;
+    }
 }

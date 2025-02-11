@@ -1,10 +1,17 @@
 package org.pages;
 
+import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+
+import java.util.ArrayList;
 
 abstract public class ParentPage extends CommonActionsWithElements {
     protected String baseUrl = "https://aqa-complexapp.onrender.com";
+    private Logger logger = Logger.getLogger(getClass());
 
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
@@ -31,4 +38,47 @@ abstract public class ParentPage extends CommonActionsWithElements {
                         "\n Actual url: " + webDriver.getCurrentUrl(),
                 webDriver.getCurrentUrl().matches(baseUrl + getRelativeUrl()));
     }
+
+    // open new tab using JS
+    public void openNewTab() {
+        try {
+            ((org.openqa.selenium.JavascriptExecutor) webDriver).executeScript("window.open()");
+            logger.info("New tab was opened");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    // switch to new tab
+    public void switchToTab(int numberOfTab) {
+        try {
+            ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+            webDriver.switchTo().window(tabs.get(numberOfTab));
+            logger.info("Switched to " + numberOfTab + " tab");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    // Close current tab
+    public void closeCurrentTab() {
+        try {
+            webDriver.close();
+            logger.info("Current tab was closed");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    // method for page refresh
+    public void refreshPage() {
+        try {
+            webDriver.navigate().refresh();
+            logger.info("Page was refreshed");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+
 }
