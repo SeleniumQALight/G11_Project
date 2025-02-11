@@ -21,4 +21,25 @@ public class ValidationMessageTest extends BaseTest {
 
     }
 
+    @Test
+    public void TC010_validationMessageWithTabAndEnterButtonsTest() {
+        pageProvider.getLoginPage().openPage().pressTabButton();
+        pageProvider.getLoginPage().pressTabButton();
+        pageProvider.getLoginPage().pressTabButton();
+        pageProvider.getLoginPage().pressTabButton();
+        pageProvider.getLoginPage().pressTabButton();
+        pageProvider.getLoginPage().sendKeysUsingActions("tr");
+        pageProvider.getLoginPage().pressTabButton();
+        pageProvider.getLoginPage().sendKeysUsingActions("tr");
+        pageProvider.getLoginPage().pressTabButton();
+        pageProvider.getLoginPage().sendKeysUsingActions("tr");
+        pageProvider.getLoginPage().pressEnterButton();
+        pageProvider.getLoginPage()
+                .checkErrorsMessage(RegistrationValidationMessages.ERROR_USERNAME
+                        + RegistrationValidationMessages.SEMICOLON
+                        + RegistrationValidationMessages.ERROR_EMAIL
+                        + RegistrationValidationMessages.SEMICOLON
+                        + RegistrationValidationMessages.ERROR_PASSWORD);
+    }
+
 }

@@ -131,13 +131,13 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public LoginPage enterTextIntoRegistrationEmailField(String login) {
-        clearAndEnterTextIntoElement(inputEmailRegistrationForm, login);
+    public LoginPage enterTextIntoRegistrationEmailField(String email) {
+        clearAndEnterTextIntoElement(inputEmailRegistrationForm, email);
         return this;
     }
 
-    public LoginPage enterTextIntoRegistrationPasswordField(String login) {
-        clearAndEnterTextIntoElement(inputPasswordRegistrationForm, login);
+    public LoginPage enterTextIntoRegistrationPasswordField(String password) {
+        clearAndEnterTextIntoElement(inputPasswordRegistrationForm, password);
         return this;
     }
 
@@ -171,4 +171,6 @@ public class LoginPage extends ParentPage {
 
         return this;
     }
+
+
 }

@@ -3,6 +3,7 @@ package org.pages;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -18,6 +19,7 @@ public class CommonActionsWithElements {
     protected WebDriver webDriver;
     private Logger logger = Logger.getLogger(getClass());
     protected WebDriverWait webDriverWait10, webDriverWait15;
+    protected Actions actions;
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -27,6 +29,7 @@ public class CommonActionsWithElements {
         //@CashLookUp - кешуємо елементи, які вже знайшли, і більше не шукаємо їх
         webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
         webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        actions = new Actions(webDriver);
     }
 
     // method for select visible text in dropdown
@@ -107,6 +110,7 @@ public class CommonActionsWithElements {
 
     //check if element is invisible
     protected void checkIsElementInvisible(WebElement webElement) {
+        webDriverWait15.until(ExpectedConditions.invisibilityOf(webElement));
         Assert.assertFalse("Element is visible", isElementVisible(webElement));
     }
 
@@ -139,7 +143,7 @@ public class CommonActionsWithElements {
         logger.info("Text in element " + getElementName(webElement) + " is as expected");
     }
 
-    private void printErrorAndStopTest(Exception e) {
+    protected void printErrorAndStopTest(Exception e) {
         logger.error("Cannot work with element " + e);
         Assert.fail("Cannot work with element " + e);
     }
@@ -199,14 +203,26 @@ public class CommonActionsWithElements {
 
     }
 
-    // open new tab using JS
-    protected void openNewTab() {
+    public void pressEnterButton() {
         try {
-            ((org.openqa.selenium.JavascriptExecutor) webDriver).executeScript("window.open()");
-            logger.info("New tab was opened");
+            actions.sendKeys(Keys.ENTER).perform();
+            logger.info("Enter button was pressed");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
+
+    public void pressTabButton() {
+        try {
+            actions.sendKeys(Keys.TAB).perform();
+            logger.info("Tab button was pressed");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+   public void sendKeysUsingActions(String text) {
+       actions.sendKeys(text).perform();
+   }
 
 }
