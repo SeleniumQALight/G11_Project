@@ -4,7 +4,8 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 abstract public class ParantPage extends CommonActionsWithElements {
-    protected String baseUrl = "https://aqa-complexapp.onrender.com";
+    String environment = System.getProperty("env", "aqa");
+    protected String baseUrl = "https://"+environment+"-complexapp.onrender.com";
 
     public ParantPage(WebDriver webDriver) {
         super(webDriver);
