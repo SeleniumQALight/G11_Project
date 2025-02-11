@@ -27,8 +27,7 @@ public class UpdatePostPage extends ParentPage {
   }
 
   public UpdatePostPage checkIsRedirectToUpdatePostPage() {
-    webDriver.get(baseUrl);
-    logger.info("Login Page was opened with url " + baseUrl);
+    checkUrlWithPattern();
     return this;
   }
 
