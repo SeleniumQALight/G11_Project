@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class LogoutTestWithPageObject extends BaseTest {
     @Test
-    public void T0002_validLogout() {
+    public void TC0002_validLogout() {
         pageProvider.getLoginPage()
                 .openLoginPageAndFillLoginFormWithValidCred()
                 .getHeaderElement()
