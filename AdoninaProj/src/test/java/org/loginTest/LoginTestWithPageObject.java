@@ -35,7 +35,8 @@ public class LoginTestWithPageObject extends BaseTest {
             .clickOnButtonSignIn()
             .checkIsErrorMessageDisplayed("Invalid username/password.")
     ;
-    pageProvider.getHomePage().getHeaderElement().checkIsButtonSignInVisible()
+    pageProvider.getLoginPage().checkIsButtonSignInVisible();
+    pageProvider.getHomePage().getHeaderElement()
             .checkIsSignOutButtonNotVisible()
     ;
   }
@@ -45,11 +46,12 @@ public class LoginTestWithPageObject extends BaseTest {
     pageProvider.getLoginPage()
             .openLoginPageAndFillLoginFormWithValidCred()
     ;
-    pageProvider.getHomePage().getHeaderElement().checkAllElementsOnHomePageInHeaderVisible()
+    pageProvider.getHomePage().getHeaderElement().checkAllElementsInHeaderVisible()
             .clickOnButtonSignOut()
     ;
     pageProvider.getHomePage().getHeaderElement()
-            .checkElementsOnLoginPageInHeaderNotVisible()
+            .checkElementsInHeaderNotVisible();
+    pageProvider.getLoginPage()
             .checkAllElementsOnLoginPageInHeaderVisible()
     ;
   }

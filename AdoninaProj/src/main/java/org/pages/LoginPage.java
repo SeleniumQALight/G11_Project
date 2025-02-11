@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.pages.elements.HeaderForUserElement;
 
 import java.util.List;
 
@@ -117,6 +118,28 @@ public class LoginPage extends ParentPage {
   public LoginPage enterTextIntoRegistrationPasswordField(String login) {
     clearAndEnterTextIntoInput(inputPasswordRegistrationForm, login);
     return this;
+  }
+
+  public LoginPage checkIsInputLoginVisible() {
+    checkIsElementVisible(inputUserName);
+    return this;
+  }
+
+  public LoginPage checkIsInputPasswordVisible() {
+    checkIsElementVisible(inputPassword);
+    return this;
+  }
+
+  public LoginPage checkIsButtonSignInVisible() {
+    checkIsElementVisible(buttonSignIn);
+    return this;
+  }
+
+  public LoginPage checkAllElementsOnLoginPageInHeaderVisible() {
+    this.checkIsInputLoginVisible();
+    this.checkIsInputPasswordVisible();
+    this.checkIsButtonSignInVisible();
+    return new LoginPage(webDriver);
   }
 
   public LoginPage checkErrorsMessages(String expectedErrors) {

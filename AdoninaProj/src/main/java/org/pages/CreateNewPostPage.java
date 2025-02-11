@@ -21,7 +21,7 @@ public class CreateNewPostPage extends ParentPage {
   @FindBy(xpath = ".//select")
   private WebElement dropDownSelectCategory;
 
-  public CreareNewPostPage(WebDriver webDriver) {
+  //  public CreareNewPostPage(WebDriver webDriver) {
   public CreateNewPostPage(WebDriver webDriver) {
     super(webDriver);
   }
@@ -33,13 +33,13 @@ public class CreateNewPostPage extends ParentPage {
 
   //check is redirect to CreateNewPostPage
   public CreateNewPostPage checkIsRedirectToCreateNewPostPage() {
-    //TODO check current URL();
-  public CreareNewPostPage checkIsRedirectToCreateNewPostPage() {
+//    //TODO check current URL();
+//  public CreareNewPostPage checkIsRedirectToCreateNewPostPage() {
     checkUrlWithPattern();
     return this;
   }
 
-  public CreareNewPostPage selectValueDDCategory(String valueForSelect) {
+  public CreateNewPostPage selectValueDDCategory(String valueForSelect) {
     selectValueInDD(dropDownSelectCategory, valueForSelect);
     return this;
   }

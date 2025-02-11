@@ -2,6 +2,7 @@ package org.postTests;
 
 import org.baseTest.BaseTest;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.utils.Utils_Custom;
 
@@ -13,18 +14,7 @@ public class UpdatePostTest extends BaseTest {
 
   @Test
   public void TR005_UpdatePost() {
-    pageProvider.getLoginPage()
-            .openLoginPageAndFillLoginFormWithValidCred()
-            .checkIsRedirectOnHomePage()
-            .getHeaderElement().clickOnButtonCreatePost()
-            .checkIsRedirectToCreateNewPostPage()
-            .enterTextIntoInputTitle(POST_TITLE)
-            .enterTextIntoInputBody("Body of the post")
-            .clickOnButtonSaveNewPost()
-            .checkIsRedirectToPostPage()
-            .checkIsSuccessMessageDisplayed()
-            .checkTextInSuccessMessage("New post successfully created.")
-            .clickOnEditeButton()
+    pageProvider.getPostPage().clickOnEditeButton()
     ;
     pageProvider.getUpdatePostPage()
             .enterUpdateTextIntoInputTitle(POST_TITLE_2)
@@ -36,6 +26,22 @@ public class UpdatePostTest extends BaseTest {
             .checkPostWithTitleIsPresent(POST_TITLE_2, 1)
     ;
 
+  }
+
+  @Before
+  public void createNewPost() {
+    pageProvider.getLoginPage()
+            .openLoginPageAndFillLoginFormWithValidCred()
+            .checkIsRedirectOnHomePage();
+    pageProvider.getHomePage().getHeaderElement().clickOnButtonCreatePost()
+            .checkIsRedirectToCreateNewPostPage()
+            .enterTextIntoInputTitle(POST_TITLE)
+            .enterTextIntoInputBody("Body of the post")
+            .clickOnButtonSaveNewPost()
+            .checkIsRedirectToPostPage()
+            .checkIsSuccessMessageDisplayed()
+            .checkTextInSuccessMessage("New post successfully created.")
+    ;
   }
 
   @After

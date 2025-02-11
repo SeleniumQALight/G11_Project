@@ -1,10 +1,12 @@
 package org.pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class UpdatePostPage extends ParentPage {
+  private Logger logger = Logger.getLogger(getClass());
 
   @FindBy(xpath = ".//button[@class='btn btn-primary']")
   private WebElement buttonSaveUpdates;
@@ -19,9 +21,15 @@ public class UpdatePostPage extends ParentPage {
     super(webDriver);
   }
 
+  @Override
+  protected String getRelativeUrl() {
+    return "/";
+  }
+
   public UpdatePostPage checkIsRedirectToUpdatePostPage() {
-    //TODO check URL ();
-    return null;
+    webDriver.get(baseUrl);
+    logger.info("Login Page was opened with url " + baseUrl);
+    return this;
   }
 
   public UpdatePostPage enterUpdateTextIntoInputTitle(String title) {

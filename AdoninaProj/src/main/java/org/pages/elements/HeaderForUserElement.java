@@ -21,14 +21,6 @@ public class HeaderForUserElement extends CommonActionsWithElements {
   @FindBy(xpath = "//span[@data-original-title='Chat']")
   private WebElement buttonChat;
 
-  @FindBy(xpath = "//input[@placeholder='Username']")
-  private WebElement inputUserName;
-
-  @FindBy(xpath = "//input[@placeholder='Password']")
-  private WebElement inputPassword;
-
-  @FindBy(xpath = "//button[text()='Sign In']")
-  private WebElement buttonSignIn;
 
   public HeaderForUserElement(WebDriver webDriver) {
     super(webDriver);
@@ -104,22 +96,7 @@ public class HeaderForUserElement extends CommonActionsWithElements {
     return this;
   }
 
-  public HeaderForUserElement checkIsInputLoginVisible() {
-    checkIsElementVisible(inputUserName);
-    return this;
-  }
-
-  public HeaderForUserElement checkIsInputPasswordVisible() {
-    checkIsElementVisible(inputPassword);
-    return this;
-  }
-
-  public HeaderForUserElement checkIsButtonSignInVisible() {
-    checkIsElementVisible(buttonSignIn);
-    return this;
-  }
-
-  public HeaderForUserElement checkAllElementsOnHomePageInHeaderVisible() {
+  public HeaderForUserElement checkAllElementsInHeaderVisible() {
     this.checkIsSearchButtonVisible();
     this.checkIsChatButtonVisible();
     this.checkIsMyProfileButtonVisible();
@@ -128,7 +105,7 @@ public class HeaderForUserElement extends CommonActionsWithElements {
     return new HeaderForUserElement(webDriver);
   }
 
-  public HeaderForUserElement checkElementsOnLoginPageInHeaderNotVisible() {
+  public HeaderForUserElement checkElementsInHeaderNotVisible() {
     this.checkIsSearchButtonNotVisible();
     this.checkIsChatButtonNotVisible();
     this.checkIsMyProfileButtonNotVisible();
@@ -137,10 +114,4 @@ public class HeaderForUserElement extends CommonActionsWithElements {
     return new HeaderForUserElement(webDriver);
   }
 
-  public HeaderForUserElement checkAllElementsOnLoginPageInHeaderVisible() {
-    this.checkIsInputLoginVisible();
-    this.checkIsInputPasswordVisible();
-    this.checkIsButtonSignInVisible();
-    return new HeaderForUserElement(webDriver);
-  }
 }
