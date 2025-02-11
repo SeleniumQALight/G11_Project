@@ -3,9 +3,10 @@ package org.pages;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
-abstract public class ParentPage extends CommonActionsWithElements{
+abstract public class ParentPage extends CommonActionsWithElements {
+    String environment = System.getProperty("env", "aqa");
 
-    protected String baseUrl = "https://aqa-complexapp.onrender.com";
+    protected String baseUrl = "https://" + environment + "-complexapp.onrender.com";
 
 
     public ParentPage(WebDriver webDriver) {
@@ -19,7 +20,7 @@ abstract public class ParentPage extends CommonActionsWithElements{
     }
 
     // method for checking URL with pattern
-    protected void checkUrlWithPattern(){
+    protected void checkUrlWithPattern() {
         Assert.assertTrue("URL is not expected \n" +
                         "Expected url: " + baseUrl + getRelativeUrl() +
                         "\n Actual url: " + webDriver.getCurrentUrl(),
