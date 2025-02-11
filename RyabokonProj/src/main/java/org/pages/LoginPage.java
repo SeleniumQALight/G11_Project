@@ -120,4 +120,5 @@ return this;
     public boolean checkIfMessageInvalidLoginPasswordVisible() {
         return isElementVisible(messageInvalidLoginOrPassword);
     }
+
 }

@@ -21,15 +21,39 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
     }
 
-@Test
+    @Test
     public void T002a_invalidLogin() {
-    pageProvider.getLoginPage().openPage();
-    pageProvider.getLoginPage().enterTextIntoInputLogin("qaato1");
-    pageProvider.getLoginPage().enterTextIntoInputPassword("123456");
-    pageProvider.getLoginPage().clickOnButtonSignIn();
-    pageProvider.getHomePage().getHeaderElement().checkIsButtonSignInVisible();
-    pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutInvisible();
-    pageProvider.getLoginPage().checkIfMessageInvalidLoginPasswordVisible();
-}
-}
+        pageProvider.getLoginPage().openPage();
+        pageProvider.getLoginPage().enterTextIntoInputLogin("qaato1");
+        pageProvider.getLoginPage().enterTextIntoInputPassword("123456");
+        pageProvider.getLoginPage().clickOnButtonSignIn();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignInVisible();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutInvisible();
+        pageProvider.getLoginPage().checkIfMessageInvalidLoginPasswordVisible();
+    }
 
+    //Test case for sign out
+    @Test
+    public void T002b_SignOut() {
+        pageProvider.getLoginPage().openPage();
+        pageProvider.getLoginPage().enterTextIntoInputLogin(VALID_LOGIN);
+        pageProvider.getLoginPage().enterTextIntoInputPassword(VALID_PASSWORD);
+        pageProvider.getLoginPage().clickOnButtonSignIn();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignInVisible();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonCreatePostVisible();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonAvatarVisible();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonChatVisible();
+        pageProvider.getHomePage().getHeaderElement().clickOnButtonSignOut();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutInvisible();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonCreatePostInVisible();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonAvatarInVisible();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonChatInVisible();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignInVisible();
+        pageProvider.getHomePage().getHeaderElement().checkIsInputLoginVisible();
+        pageProvider.getHomePage().getHeaderElement().checkIsInputPasswordVisible();
+
+
+
+
+    }
+}
