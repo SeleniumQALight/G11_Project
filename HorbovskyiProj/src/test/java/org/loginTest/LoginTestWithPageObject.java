@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import static org.data.TestData.VALID_LOGIN;
 import static org.data.TestData.VALID_PASSWORD;
+import static org.pages.elements.HeaderForLoggedInUserElement.buttonSearchLocator;
 
 public class LoginTestWithPageObject extends BaseTest {
     @Test
@@ -34,6 +35,30 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getHomePage().getHeaderElement()
                 .checkIsButtonSignOutNotVisible()
                 .checkIsInvalidLoginOrPasswordMessageVisible();
+
+    }
+
+    @Test
+    public void T0003_signOut() {
+        pageProvider.getLoginPage().openPage()
+                .enterTextIntoInputLogin(VALID_LOGIN)
+                .enterTextIntoInputPassword(VALID_PASSWORD)
+                .clickOnButtonSignIn();
+
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
+
+
+        pageProvider.getHomePage().getHeaderElement().checkIsElementVisible(buttonSearchLocator);
+
+
+        pageProvider.getHomePage().getHeaderElement().checkIsChatButtonVisible();
+        pageProvider.getHomePage().getHeaderElement().checkIsMyProfileButtonVisible();
+        pageProvider.getHomePage().getHeaderElement().checkIsCreatePostButtonVisible();
+
+        pageProvider.getHomePage().getHeaderElement().clickOnButtonSignOut();
+
+
+
 
     }
 }
