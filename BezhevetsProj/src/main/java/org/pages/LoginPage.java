@@ -66,8 +66,18 @@ public class LoginPage extends ParrentPage {
         return this;
     }
 
+    public LoginPage checkIsUsernameFieldVisible() {
+        checkIsElementVisible(inputUserName);
+        return this;
+    }
+
     public LoginPage checkIsPasswordFieldNotVisible() {
         checkIsElementNotVisible(inputPassword);
+        return this;
+    }
+
+    public LoginPage checkIsPasswordFieldVisible() {
+        checkIsElementVisible(inputPassword);
         return this;
     }
 
@@ -133,6 +143,11 @@ public class LoginPage extends ParrentPage {
 
 
         softAssertions.assertAll();
+        return this;
+    }
+
+    public LoginPage checkIsRedirectToLoginPage() {
+        checkUrl();
         return this;
     }
 }
