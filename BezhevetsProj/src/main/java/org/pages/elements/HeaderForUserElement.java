@@ -18,6 +18,42 @@ public class HeaderForUserElement extends CommonActionsWithElements {
     @FindBy(xpath = "//a[@class='btn btn-sm btn-success mr-2']")
     private WebElement buttonCreatePost;
 
+    @FindBy(xpath = "//*[@data-icon=\"comment\"]")
+    private WebElement chatButton;
+
+    @FindBy(xpath = "//*[@data-original-title=\"Search\"]//*[@data-icon=\"search\"]")
+    private WebElement searchButton;
+
+    public HeaderForUserElement checkIsMyProfileButtonVisible() {
+        checkIsElementVisible(buttonMyProfile);
+        return this;
+    }
+
+    public HeaderForUserElement checkIsMyProfileButtonNotVisible() {
+        checkIsElementNotVisible(buttonMyProfile);
+        return this;
+    }
+
+    public HeaderForUserElement checkIsChatButtonVisible() {
+        checkIsElementVisible(chatButton);
+        return this;
+    }
+
+    public HeaderForUserElement checkIsChatButtonNotVisible() {
+        checkIsElementNotVisible(chatButton);
+        return this;
+    }
+
+    public HeaderForUserElement checkIsSearchButtonVisible() {
+        checkIsElementVisible(searchButton);
+        return this;
+    }
+
+    public HeaderForUserElement checkIsSearchButtonNotVisible() {
+        checkIsElementNotVisible(searchButton);
+        return this;
+    }
+
     public void checkIsButtonSignOutVisible() {
         checkIsElementVisible(buttonSignOut);
     }
@@ -29,6 +65,11 @@ public class HeaderForUserElement extends CommonActionsWithElements {
 
     public HeaderForUserElement checkIsButtonCreatePostVisible() {
         checkIsElementVisible(buttonCreatePost);
+        return this;
+    }
+
+    public HeaderForUserElement checkIsButtonCreatePostNotVisible() {
+        checkIsElementNotVisible(buttonCreatePost);
         return this;
     }
 
@@ -45,6 +86,11 @@ public class HeaderForUserElement extends CommonActionsWithElements {
     public MyProfilePage clickOnMyProfileButton() {
         clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
+    }
+
+    public LoginPage clickOnButtonSignOut() {
+        clickOnElement(buttonSignOut);
+        return new LoginPage(webDriver);
     }
 
     public boolean isButtonSignOutVisible() {
