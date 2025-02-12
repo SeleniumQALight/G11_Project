@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.utils.Utils_Custom;
 
 import java.util.List;
 
@@ -145,6 +146,8 @@ public class LoginPage extends ParentPage {
         webDriverWait10.until(ExpectedConditions
                 .numberOfElementsToBe(By.xpath(listErrorsMessagesLocator)
                         , messagesArray.length));
+
+        Utils_Custom.waitABit(1);
 
         Assert.assertEquals("Number of messages "
                 , messagesArray.length, listOfActualMessages.size()); //якщо кількість повідомлень різна, то впадемо тут
