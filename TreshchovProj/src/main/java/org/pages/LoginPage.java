@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.utils.Utils_Custom;
 
 import java.util.List;
 
@@ -108,6 +109,8 @@ public class LoginPage extends ParentPage {
                     .isIn(messagesArray);
 
         }
+
+        Utils_Custom.waitABit(1);
 
         softAssertions.assertAll();
 
