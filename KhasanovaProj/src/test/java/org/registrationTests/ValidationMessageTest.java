@@ -1,25 +1,39 @@
 package org.registrationTests;
 
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.baseTest.BaseTest;
 import org.data.RegistrationValidationMessages;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+@RunWith(JUnitParamsRunner.class)
 public class ValidationMessageTest extends BaseTest {
 
     @Test
-    public void TC023_validationMessageTest() {
+    @Parameters(method = "parametersForValidationMessageTest")
+    public void TC023_validationMessageTest(String username, String email, String password, String expectedMessage) {
         pageProvider.getLoginPage().openPage();
         pageProvider.getLoginPage()
-                .enterTextIntoRegistrationUserNameField("tr")
-                .enterTextIntoRegistrationEmailField("tr")
-                .enterTextIntoRegistrationPasswordField("tr")
-                .checkErrorsMessage(RegistrationValidationMessages.ERROR_USERNAME
+                .enterTextIntoRegistrationUserNameField(username)
+                .enterTextIntoRegistrationEmailField(email)
+                .enterTextIntoRegistrationPasswordField(password)
+                .checkErrorsMessage(expectedMessage);
+
+    }
+
+    public Object[][] parametersForValidationMessageTest() {
+        return new Object[][]{
+                {"tr", "tr", "tr", RegistrationValidationMessages.ERROR_USERNAME
                         + RegistrationValidationMessages.SEMICOLON
                         + RegistrationValidationMessages.ERROR_EMAIL
                         + RegistrationValidationMessages.SEMICOLON
-                        + RegistrationValidationMessages.ERROR_PASSWORD);
-
-    }
+                        + RegistrationValidationMessages.ERROR_PASSWORD},
+                {"test7", "tr", "tr", RegistrationValidationMessages.ERROR_EMAIL
+                        + RegistrationValidationMessages.SEMICOLON
+                        + RegistrationValidationMessages.ERROR_PASSWORD}
+        };
+        }
 
     @Test
     public void TC010_validationMessageWithTabAndEnterButtonsTest() {
