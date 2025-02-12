@@ -17,7 +17,7 @@ public class HeaderForUserElements  extends CommonActionsWithElements {
     @FindBy(xpath = ".//img[@alt ='My profile']")
     private WebElement buttonMyProfile;
 
-    @FindBy(xpath = "//button[text()='Sign Out']")
+    @FindBy(xpath = "//button[@class='btn btn-sm btn-secondary']")
     private WebElement buttonSignOut;
 
 
@@ -33,11 +33,6 @@ public class HeaderForUserElements  extends CommonActionsWithElements {
 @FindBy(xpath = ".//*[@data-original-title='Chat']") //.//*[@data-original-title="Chat"]
     private WebElement buttonChat;
 
-@FindBy(xpath = ".//input[@placeholder='Username']")
-    private WebElement InputLogin;
-
-@FindBy(xpath = ".//input[@placeholder='Password']")
-    private WebElement InputPassword;
 
     public void checkIsButtonSignOutVisible() {
         // Assert.assertTrue("Button Sign Out is not displayed", isElementVisible(buttonSignOut));
@@ -61,7 +56,7 @@ public class HeaderForUserElements  extends CommonActionsWithElements {
 
     public boolean checkIsButtonSignInVisible() {return isElementVisible(buttonSignIn); }
 
-    public void checkIsButtonSignOutInvisible() {
+    public void checkIsButtonSignOutNotVisible() {
         Assert.assertFalse("Button Sign Out is not displayed  ", isElementVisible(buttonSignOut));
     }
 
@@ -81,13 +76,9 @@ public class HeaderForUserElements  extends CommonActionsWithElements {
         checkIsElementVisible(buttonChat);
     }
 
-    public void checkIsInputLoginVisible() {
-        checkIsElementVisible(InputLogin);
-    }
 
-    public void checkIsInputPasswordVisible() {
-        checkIsElementVisible(InputPassword);
-    }
+
+
 
     public void checkIsButtonCreatePostInVisible() {
         Assert.assertFalse("Button CreatePost is not displayed", isElementVisible(buttonCreatePost));
