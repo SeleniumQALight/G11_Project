@@ -19,6 +19,7 @@ public class CommonActionsWithElements {
     protected WebDriver webDriver;
     private Logger logger = Logger.getLogger(getClass());
     protected WebDriverWait webDriverWait_10, webDriverWait_15;
+    private String mainWindowHandle;
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -189,10 +190,33 @@ public class CommonActionsWithElements {
     }
 
     //open new tab using JS
-    protected void openNewTab() {
+    public void openNewTab() {
         try {
+            mainWindowHandle = webDriver.getWindowHandle(); // зберігаємо ID головної вкладки
             ((JavascriptExecutor) webDriver).executeScript("window.open()");
             logger.info("New tab was opened");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    // Switch to new tab
+    public void switchToNewTab() {
+        try {
+            for (String tab : webDriver.getWindowHandles()) {
+                webDriver.switchTo().window(tab);
+            }
+            logger.info("Switched to new tab");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    // Switch to main tab
+    public void switchToMainTab() {
+        try {
+            webDriver.switchTo().window((String) webDriver.getWindowHandles().toArray()[0]);
+            logger.info("Switched to the first tab");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
