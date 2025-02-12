@@ -1,24 +1,33 @@
 package org.registrationTests;
 
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.baseTest.BaseTest;
-import org.data.RegistrationValidationMessages;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static org.data.RegistrationValidationMessages.*;
 
+@RunWith(JUnitParamsRunner.class)
 public class ValidationMessageTest extends BaseTest {
   @Test
-  public void TC023_validationMessageTest() {
+  @Parameters(method = "parametersForValidationMessageTest")
+  public void TC023_validationMessageTest(
+          String username, String email, String password, String expectedMessage) {
     pageProvider.getLoginPage().openPage();
     pageProvider.getLoginPage()
-            .enterTextIntoRegistrationUserNameField("tr")
-            .enterTextIntoRegistrationEmailField("tr")
-            .enterTextIntoRegistrationPasswordField("tr")
-            .checkErrorsMessages(ERROR_USERNAME
-                    + SEMICOLON
-                    + ERROR_EMAIL
-                    + SEMICOLON
-                    + ERROR_PASSWORD
-            );
+            .enterTextIntoRegistrationUserNameField(username)
+            .enterTextIntoRegistrationEmailField(email)
+            .enterTextIntoRegistrationPasswordField(password)
+            .checkErrorsMessages(expectedMessage);
+  }
+
+  public Object[][] parametersForValidationMessageTest() {
+    return new Object[][]{
+            {"tr", "tr", "tr"
+                    , ERROR_USERNAME + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
+            {"trrr", "tr", "tr"
+                    , ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD}
+    };
   }
 }

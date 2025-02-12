@@ -12,9 +12,15 @@ public class HeaderForUserElement extends CommonActionsWithElements {
   @FindBy(xpath = "//button[text()='Sign Out']")
   private WebElement buttonSignOut;
 
-
   @FindBy(xpath = "//a[@href='/create-post']")
   private WebElement buttonCreatePost;
+
+  @FindBy(xpath = "//a[@href='#']")
+  private WebElement buttonSearch;
+
+  @FindBy(xpath = "//span[@data-original-title='Chat']")
+  private WebElement buttonChat;
+
 
   public HeaderForUserElement(WebDriver webDriver) {
     super(webDriver);
@@ -25,15 +31,30 @@ public class HeaderForUserElement extends CommonActionsWithElements {
     return new MyProfilePage(webDriver);
   }
 
+  public HeaderForUserElement checkIsMyProfileButtonVisible() {
+    checkIsElementVisible(buttonMyProfile);
+    return this;
+  }
+
+  public HeaderForUserElement checkIsMyProfileButtonNotVisible() {
+    checkIsElementNotVisible(buttonMyProfile);
+    return this;
+  }
+
   public HeaderForUserElement checkIsButtonSignOutVisible() {
 //    Assert.assertTrue("Button Sign Out is not visible", isButtonSignOutVisible());
     checkIsElementVisible(buttonSignOut);
     return this;
   }
 
-  public CreareNewPostPage clickOnButtonCreatePost() {
+  public CreateNewPostPage clickOnButtonSignOut() {
+    clickOnElement(buttonSignOut);
+    return new CreateNewPostPage(webDriver);
+  }
+
+  public CreateNewPostPage clickOnButtonCreatePost() {
     clickOnElement(buttonCreatePost);
-    return new CreareNewPostPage(webDriver);
+    return new CreateNewPostPage(webDriver);
   }
 
   public boolean isButtonSignOutVisible() {
@@ -45,8 +66,52 @@ public class HeaderForUserElement extends CommonActionsWithElements {
     return this;
   }
 
+  public HeaderForUserElement checkIsButtonCreatePostNotVisible() {
+    checkIsElementNotVisible(buttonCreatePost);
+    return this;
+  }
+
   public HeaderForUserElement checkIsSignOutButtonNotVisible() {
     checkIsElementNotVisible(buttonSignOut);
     return this;
   }
+
+  public HeaderForUserElement checkIsSearchButtonVisible() {
+    checkIsElementVisible(buttonSearch);
+    return this;
+  }
+
+  public HeaderForUserElement checkIsSearchButtonNotVisible() {
+    checkIsElementNotVisible(buttonSearch);
+    return this;
+  }
+
+  public HeaderForUserElement checkIsChatButtonVisible() {
+    checkIsElementVisible(buttonChat);
+    return this;
+  }
+
+  public HeaderForUserElement checkIsChatButtonNotVisible() {
+    checkIsElementNotVisible(buttonChat);
+    return this;
+  }
+
+  public HeaderForUserElement checkAllElementsInHeaderVisible() {
+    this.checkIsSearchButtonVisible();
+    this.checkIsChatButtonVisible();
+    this.checkIsMyProfileButtonVisible();
+    this.checkIsButtonCreatePostVisible();
+    this.isButtonSignOutVisible();
+    return new HeaderForUserElement(webDriver);
+  }
+
+  public HeaderForUserElement checkElementsInHeaderNotVisible() {
+    this.checkIsSearchButtonNotVisible();
+    this.checkIsChatButtonNotVisible();
+    this.checkIsMyProfileButtonNotVisible();
+    this.checkIsButtonCreatePostNotVisible();
+    this.checkIsChatButtonNotVisible();
+    return new HeaderForUserElement(webDriver);
+  }
+
 }
