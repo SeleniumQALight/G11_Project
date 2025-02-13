@@ -67,6 +67,7 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutNotVisible();
     }
 
+
     @Test
     public void T0005_pressKeysToLogIn() {
         pageProvider.getLoginPage().useTabAndEnterToSetCredentialsAndLogin(VALID_LOGIN, VALID_PASSWORD)
