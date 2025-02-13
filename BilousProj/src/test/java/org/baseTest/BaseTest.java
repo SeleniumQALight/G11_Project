@@ -38,7 +38,7 @@ public class BaseTest {
         logger.info("Browser was closed");
     }
     // @BeforeClass
-//    @Before // Parent class
+    // @Before // Parent class
     // @Before // Child class
     // @Test // Child class Tsst1
     // @After // Child class
