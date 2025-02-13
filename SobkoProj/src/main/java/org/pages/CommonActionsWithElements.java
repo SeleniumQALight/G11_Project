@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.utils.ConfigProvider;
 
 import java.time.Duration;
 
@@ -22,8 +23,8 @@ public class CommonActionsWithElements {
         this.webdriver = webdriver;
         PageFactory.initElements(webdriver, this);
         // ініціалізує елементи описані FindBy
-        webDriverWait10 = new WebDriverWait(webdriver, Duration.ofSeconds(10));
-        webDriverWait15 = new WebDriverWait(webdriver, Duration.ofSeconds(15));
+        webDriverWait10 = new WebDriverWait(webdriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
+        webDriverWait15 = new WebDriverWait(webdriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT()));
     }
 
     //method for select visible text in dropdown

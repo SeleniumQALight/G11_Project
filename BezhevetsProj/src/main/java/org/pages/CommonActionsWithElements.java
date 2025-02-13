@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.utils.ConfigProvider;
 
 import java.time.Duration;
 
@@ -22,8 +23,8 @@ public class CommonActionsWithElements {
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); //ініціалізує елементи описані FindBy
-        webDriverWait_10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriverWait_15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait_10 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
+        webDriverWait_15 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT()));
     }
 
     //method for select visible text in DropDown
@@ -84,7 +85,7 @@ public class CommonActionsWithElements {
         try {
             webDriverWait_10.until(ExpectedConditions.elementToBeClickable(webElement));
             webElement.click();
-            logger.info(elementName + " Element was clicked");
+            logger.info(elementName + " element was clicked");
         } catch (Exception e) {
             logger.error("Can not work with element " + elementName);
             printErrorAndStopTest(e);
@@ -121,6 +122,10 @@ public class CommonActionsWithElements {
 
     protected void checkIsElementVisible(String locator) {
         Assert.assertTrue("Element is not visible", isElementVisible(locator));
+    }
+
+    protected void checkIsElementNotVisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible", isElementVisible(webElement));
     }
 
     //checkTextInElement
@@ -165,4 +170,33 @@ public class CommonActionsWithElements {
         logger.error("Can not work with element " + e);
         Assert.fail("Can't work with element " + e);
     }
+
+    protected void setCheckboxAsChecked(WebElement webElement) {
+        if (!webElement.isSelected()) {
+            clickOnElement(webElement, "Unique post checkbox");
+        } else {
+            logger.info("Checkbox is already checked");
+        }
+    }
+
+    protected void setCheckboxAsUnchecked(WebElement webElement) {
+        if (webElement.isSelected()) {
+            clickOnElement(webElement, "Unique post checkbox");
+        } else {
+            logger.info("Checkbox is already unchecked");
+        }
+    }
+
+    protected void setCheckboxState(WebElement webElement, String state) {
+        if (state.equalsIgnoreCase("check")) {
+            setCheckboxAsChecked(webElement);
+        } else if (state.equalsIgnoreCase("uncheck")) {
+            setCheckboxAsUnchecked(webElement);
+        } else {
+            logger.error("State should be 'check' or 'uncheck'");
+            Assert.fail("State should be 'check' or 'uncheck'");
+        }
+    }
+
+
 }

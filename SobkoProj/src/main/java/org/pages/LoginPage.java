@@ -51,7 +51,7 @@ public class LoginPage extends ParentPage {
     }
 
     public LoginPage openPage() {
-        String baseUrl = "https://aqa-complexapp.onrender.com/";
+
         webdriver.get(baseUrl);
         logger.info("Login Page was opened url " + baseUrl);
         return this;

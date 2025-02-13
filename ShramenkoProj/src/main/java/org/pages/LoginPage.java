@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.utils.Utils_Custom;
 
 import java.util.List;
 
@@ -71,20 +72,24 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public void clickOnButtonSighIn() {
+    public HomePage clickOnButtonSighIn() {
         clickOnElement(buttonSighIn);
+        return new HomePage(webDriver);
     }
 
-    public void checkIsButtonSighInVisible() {
+    public LoginPage checkIsButtonSighInVisible(){
         checkIsElementVisible(buttonSighIn);
+        return this;
     }
 
-    public void checkIsButtonSighInNotVisible() {
+    public LoginPage checkIsButtonSighInNotVisible(){
         checkIsElementNotVisible(buttonSighIn);
+        return this;
     }
 
-    public void checkIsAlertIncorrectLoginPasswordVisible() {
+    public LoginPage checkIsAlertIncorrectLoginPasswordVisible(){
         checkIsElementVisible(alertIncorrectLoginPassword);
+        return this;
     }
 
     public HomePage openLoginPageAndFillLoginWithValidCred() {
@@ -103,9 +108,20 @@ public class LoginPage extends ParentPage {
         clickOnButtonSighIn();
     }
 
-    public void checkIsInputLoginAndPasswordNotVisible() {
+    public LoginPage checkIsInputLoginAndPasswordVisible(){
+        checkIsElementVisible(inputUserName);
+        checkIsElementVisible(inputPassword);
+        return this;
+    }
+    public void checkIsInputLoginAndPasswordNotVisible(){
         checkIsElementNotVisible(inputUserName);
         checkIsElementNotVisible(inputPassword);
+    }
+
+    public LoginPage checkIsRedirectToLoginPage() {
+        checkIsButtonSighInVisible();
+        //checkUrl();
+        return this;
     }
 
     public LoginPage enterTextIntoRegistrationUserNameField(String login) {
@@ -130,6 +146,8 @@ public class LoginPage extends ParentPage {
         webDriverWait10.until(ExpectedConditions
                 .numberOfElementsToBe(By.xpath(listErrorsMessagesLocator)
                         , messagesArray.length));
+
+        Utils_Custom.waitABit(1);
 
         Assert.assertEquals("Number of messages "
                 , messagesArray.length, listOfActualMessages.size()); //якщо кількість повідомлень різна, то впадемо тут

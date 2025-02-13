@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.utils.Utils_Custom;
 
 import java.util.List;
 
@@ -38,6 +39,14 @@ public class LoginPage extends ParrentPage {
     @FindBy(xpath = listErrorsMessagesLocator)
     private List<WebElement> listOfActualMessages;
 
+    @FindBy(xpath = "//div[@class=\'alert alert-danger text-center\']")
+    private WebElement alertInvalidLoginOrPassword;
+
+    public LoginPage checkIsButtonSignInVisible() {
+        checkIsElementVisible(buttonSignIn);
+        return new LoginPage(webDriver);
+    }
+
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -46,6 +55,31 @@ public class LoginPage extends ParrentPage {
     @Override
     protected String getRelativeUrl() {
         return "/";
+    }
+
+    public LoginPage isAlertInvalidLoginOrPasswordDisplayed() {
+        checkIsElementVisible(alertInvalidLoginOrPassword);
+        return this;
+    }
+
+    public LoginPage checkIsUsernameFieldNotVisible() {
+        checkIsElementNotVisible(inputUserName);
+        return this;
+    }
+
+    public LoginPage checkIsUsernameFieldVisible() {
+        checkIsElementVisible(inputUserName);
+        return this;
+    }
+
+    public LoginPage checkIsPasswordFieldNotVisible() {
+        checkIsElementNotVisible(inputPassword);
+        return this;
+    }
+
+    public LoginPage checkIsPasswordFieldVisible() {
+        checkIsElementVisible(inputPassword);
+        return this;
     }
 
     public LoginPage openPage() {
@@ -98,6 +132,8 @@ public class LoginPage extends ParrentPage {
         webDriverWait_10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsMessagesLocator)
                 , messagesArray.length));
 
+        Utils_Custom.waitABit(1);
+
         Assert.assertEquals("Number of messages ", messagesArray.length, listOfActualMessages.size());
 
         SoftAssertions softAssertions = new SoftAssertions();
@@ -110,6 +146,11 @@ public class LoginPage extends ParrentPage {
 
 
         softAssertions.assertAll();
+        return this;
+    }
+
+    public LoginPage checkIsRedirectToLoginPage() {
+        checkUrl();
         return this;
     }
 }
