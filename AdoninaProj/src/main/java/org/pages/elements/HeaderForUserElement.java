@@ -47,9 +47,15 @@ public class HeaderForUserElement extends CommonActionsWithElements {
     return this;
   }
 
-  public CreateNewPostPage clickOnButtonSignOut() {
+  public LoginPage clickOnButtonSignOut() {
     clickOnElement(buttonSignOut);
-    return new CreateNewPostPage(webDriver);
+    return new LoginPage(webDriver);
+  }
+
+  public HeaderForUserElement checkIsButtonSignOutNotVisible() {
+//    Assert.assertTrue("Button Sign Out is not visible", isButtonSignOutVisible());
+    checkIsElementNotVisible(buttonSignOut);
+    return this;
   }
 
   public CreateNewPostPage clickOnButtonCreatePost() {

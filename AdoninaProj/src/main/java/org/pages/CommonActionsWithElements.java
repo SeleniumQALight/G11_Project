@@ -164,7 +164,7 @@ public class CommonActionsWithElements {
     }
   }
 
-  private void printErrorAndStopTest(Exception e) {
+  public void printErrorAndStopTest(Exception e) {
     logger.error("Can not work with element " + e);
     Assert.fail("Can not work with element " + e);
   }
@@ -204,6 +204,15 @@ public class CommonActionsWithElements {
       } else {
         logger.error("Invalid state: " + state);
       }
+    } catch (Exception e) {
+      printErrorAndStopTest(e);
+    }
+  }
+
+  public void closeCurrentTab() {
+    try {
+      webDriver.close();
+      logger.info("New tab was closed");
     } catch (Exception e) {
       printErrorAndStopTest(e);
     }
