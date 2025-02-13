@@ -24,8 +24,4 @@ public class PageProvider {
   public UpdatePostPage getUpdatePostPage() {
     return new UpdatePostPage(webDriver);
   }
-
-  public PostPage getParentPage() {
-    return new PostPage(webDriver);
-  }
 }
