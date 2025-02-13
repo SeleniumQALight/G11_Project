@@ -13,7 +13,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.ArrayList;
 
 public class CommonActionsWithElements {
   protected WebDriver webDriver;
@@ -164,7 +163,7 @@ public class CommonActionsWithElements {
     }
   }
 
-  private void printErrorAndStopTest(Exception e) {
+  public void printErrorAndStopTest(Exception e) {
     logger.error("Can not work with element " + e);
     Assert.fail("Can not work with element " + e);
   }
@@ -209,26 +208,7 @@ public class CommonActionsWithElements {
     }
   }
 
-  public void switchToTab(int numberOfTab) {
-    try {
-      ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
-      webDriver.switchTo().window(tabs.get(numberOfTab));
-      logger.info("Switched to new tab");
-    } catch (Exception e) {
-      printErrorAndStopTest(e);
-    }
-  }
-
-  public void switchToMainTab() {
-    try {
-      webDriver.switchTo().window((String) webDriver.getWindowHandles().toArray()[0]);
-      logger.info("Switched to main tab");
-    } catch (Exception e) {
-      printErrorAndStopTest(e);
-    }
-  }
-
-  public void closeNewTab() {
+  public void closeCurrentTab() {
     try {
       webDriver.close();
       logger.info("New tab was closed");

@@ -1,9 +1,13 @@
 package org.pages;
 
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
+import java.util.ArrayList;
+
 abstract public class ParentPage extends CommonActionsWithElements {
+  private Logger logger = Logger.getLogger(getClass());
   protected String baseUrl = "https://aqa-complexapp.onrender.com";
 
   public ParentPage(WebDriver webDriver) {
@@ -27,5 +31,21 @@ abstract public class ParentPage extends CommonActionsWithElements {
                     "Expected url: " + baseUrl + getRelativeUrl() +
                     "\n Actual url: " + webDriver.getCurrentUrl(),
             webDriver.getCurrentUrl().matches(baseUrl + getRelativeUrl()));
+  }
+
+  public void switchToTab(int numberOfTab) {
+    try {
+      ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+      webDriver.switchTo().window(tabs.get(numberOfTab));
+      logger.info("Switched to new tab");
+    } catch (Exception e) {
+      printErrorAndStopTest(e);
+    }
+  }
+
+  public ParentPage refreshPage() {
+    webDriver.navigate().refresh();
+    logger.info("Page was refreshed");
+    return this;
   }
 }

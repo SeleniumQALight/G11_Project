@@ -10,7 +10,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.pages.elements.HeaderForUserElement;
 
 import java.util.List;
 
@@ -157,11 +156,6 @@ public class LoginPage extends ParentPage {
               .isIn(messagesArray);
     }
     softAssertions.assertAll();
-    return this;
-  }
-
-  public LoginPage refreshPage() {
-    webDriver.navigate().refresh();
     return this;
   }
 }

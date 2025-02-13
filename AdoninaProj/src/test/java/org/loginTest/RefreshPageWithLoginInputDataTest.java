@@ -12,9 +12,9 @@ public class RefreshPageWithLoginInputDataTest extends BaseTest {
     pageProvider.getLoginPage()
             .openPage()
             .enterTextIntoInputLogin(VALID_LOGIN)
-            .enterTextIntoInputPassw0rd(VALID_PASSWORD)
-            .refreshPage()
-            .clickOnButtonSignIn()
+            .enterTextIntoInputPassw0rd(VALID_PASSWORD);
+    pageProvider.getParentPage().refreshPage();
+    pageProvider.getLoginPage().clickOnButtonSignIn()
             .checkIsErrorMessageDisplayed("Invalid username/password.");
     pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutNotVisible()
     ;

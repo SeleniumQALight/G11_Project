@@ -20,11 +20,11 @@ public class OpenNewTabTests extends BaseTest {
     pageProvider.getLoginPage().switchToTab(1);
     pageProvider.getLoginPage().openPage();
     pageProvider.getHomePage().checkIsRedirectOnHomePage();
-    pageProvider.getHomePage().switchToMainTab();
+    pageProvider.getHomePage().switchToTab(0);
     pageProvider.getHomePage().checkIsRedirectOnHomePage();
     pageProvider.getHomePage().switchToTab(1);
-    pageProvider.getHomePage().closeNewTab();
-    pageProvider.getHomePage().switchToMainTab();
+    pageProvider.getHomePage().closeCurrentTab();
+    pageProvider.getHomePage().switchToTab(0);
     pageProvider.getHomePage().checkIsRedirectOnHomePage()
     ;
   }
@@ -41,7 +41,7 @@ public class OpenNewTabTests extends BaseTest {
     pageProvider.getLoginPage().switchToTab(1);
     pageProvider.getLoginPage().openPage();
     pageProvider.getHomePage().checkIsRedirectOnHomePage();
-    pageProvider.getHomePage().switchToMainTab();
+    pageProvider.getHomePage().switchToTab(0);
     pageProvider.getHomePage().getHeaderElement().clickOnButtonSignOut();
     pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutNotVisible();
     pageProvider.getHomePage().switchToTab(1);
