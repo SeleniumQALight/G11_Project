@@ -155,7 +155,7 @@ public class CommonActionsWithElements {
     }
   }
 
-  protected void openNewTab() {
+  public void openNewTab() {
     try {
       ((JavascriptExecutor) webDriver).executeScript("window.open()");
       logger.info("New tab was opened");
