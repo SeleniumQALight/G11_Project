@@ -51,78 +51,44 @@ public class LoginTestWithPageObject extends BaseTest {
 
     @Test
     public void T0006_validLogin() {
-        Actions actions = new Actions(webDriver);
-        // Step 1: Open login page
+
         pageProvider.getLoginPage().openPage();
-        // Step 2: Press Tab key
-        actions.sendKeys(Keys.TAB).perform();
-        // Step 3: Press Tab key
-        actions.sendKeys(Keys.TAB).perform();
-        // Step 4: Enter login into input Login
-        actions.sendKeys(VALID_LOGIN).perform();
-        // Step 5: Press Tab key
-        actions.sendKeys(Keys.TAB).perform();
-        // Step 6: Enter password into input Password
-        actions.sendKeys(VALID_PASSWORD).perform();
-        // Step 7: Press Enter key
-        actions.sendKeys(Keys.ENTER).perform();
-        // Step 8: Check that button SignOut is visible
+        pageProvider.getLoginPage().pressTabKey(2);
+        pageProvider.getLoginPage().enterTextIntoField(VALID_LOGIN);
+        pageProvider.getLoginPage().pressTabKey(1);
+        pageProvider.getLoginPage().enterTextIntoField(VALID_PASSWORD);
+        pageProvider.getLoginPage().pressEnter();
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
     }
 
     @Test
     public void T0007_checkInputsDisappearAfterRefresh() {
-        // Step 1: Open login page
+
         pageProvider.getLoginPage().openPage();
-        // Step 2: Enter 'qaauto' login into input Login
         pageProvider.getLoginPage().enterTextIntoInputLogin("qaauto");
-        // Step 3: Enter '123456qwerty' password into input Password
         pageProvider.getLoginPage().enterTextIntoPassword("123456qwerty");
-        // Step 4: Refresh page
-        webDriver.navigate().refresh();
-        // Step 5: Click on button SignIn
+        pageProvider.getLoginPage().refreshPage();
         pageProvider.getLoginPage().clickInButtonSignIn();
-        // Step 6: Check that button SignOut is not visible
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutInvisible();
     }
 
     @Test
     public void T0008_checkSignOutButtonVisibilityAcrossTabs() {
-        // Step 1: Open login page
-        pageProvider.getLoginPage().openPage();
 
-        // Step 2: Login with valid credentials
-        pageProvider.getLoginPage().enterTextIntoInputLogin(VALID_LOGIN)
+        pageProvider.getLoginPage().openPage()
+                .enterTextIntoInputLogin(VALID_LOGIN)
                 .enterTextIntoPassword(VALID_PASSWORD)
                 .clickInButtonSignIn();
-
-        // Step 3: Check that button SignOut is visible
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
-
-        // Step 4: Open new tab in browser using JavaScript
-        ((JavascriptExecutor) webDriver).executeScript("window.open()");
-
-        // Step 5: Switch to new tab
-        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
-        webDriver.switchTo().window(tabs.get(1));
-
-        // Step 6: Open login page
+        pageProvider.getLoginPage().openNewTab();
+        pageProvider.getLoginPage().switchToTab(1);
         pageProvider.getLoginPage().openPage();
-
-        // Step 7: Check that button SignOut is visible
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
-
-        // Step 8: Switch to main tab
-        webDriver.switchTo().window(tabs.get(0));
-
-        // Step 9: Check that button SignOut is visible
+        pageProvider.getLoginPage().switchToTab(0);
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
-
-        // Step 10: Close new tab and switch to main tab
-        webDriver.switchTo().window(tabs.get(1)).close();
-        webDriver.switchTo().window(tabs.get(0));
-
-        // Step 11: Check that button SignOut is visible
+        pageProvider.getLoginPage().switchToTab(1);
+        pageProvider.getLoginPage().closeCurrentTab();
+        pageProvider.getLoginPage().switchToTab(0);
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
     }
 
@@ -130,21 +96,18 @@ public class LoginTestWithPageObject extends BaseTest {
     public void T0010_checkSignOutButtonVisibilityAndLogoutAcrossTabs() {
         // Step 1: Open login page
         pageProvider.getLoginPage().openPage();
-
         // Step 2: Login with valid credentials
         pageProvider.getLoginPage().enterTextIntoInputLogin(VALID_LOGIN)
                 .enterTextIntoPassword(VALID_PASSWORD)
                 .clickInButtonSignIn();
-
         // Step 3: Check that button SignOut is visible
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
 
         // Step 4: Open new tab in browser using JavaScript
-        ((JavascriptExecutor) webDriver).executeScript("window.open()");
+        pageProvider.getLoginPage().openNewTab();
 
         // Step 5: Switch to new tab
-        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
-        webDriver.switchTo().window(tabs.get(1));
+        pageProvider.getLoginPage().switchToTab(1);
 
         // Step 6: Open login page
         pageProvider.getLoginPage().openPage();
@@ -153,7 +116,7 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
 
         // Step 8: Switch to main tab
-        webDriver.switchTo().window(tabs.get(0));
+        pageProvider.getLoginPage().switchToTab(0);
 
         // Step 9: Click on button SignOut
         pageProvider.getHomePage().getHeaderElement().clickOnButtonSignOut();
@@ -162,10 +125,10 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutInvisible();
 
         // Step 11: Switch to new tab
-        webDriver.switchTo().window(tabs.get(1));
+        pageProvider.getLoginPage().switchToTab(1);
 
         // Step 12: Refresh page
-        webDriver.navigate().refresh();
+        pageProvider.getLoginPage().refreshPage();
 
         // Step 13: Check that button SignOut is not visible
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutInvisible();

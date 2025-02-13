@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
 
-    public WebDriver webDriver;
+    private WebDriver webDriver;
     private Logger logger = Logger.getLogger(getClass());
     protected PageProvider pageProvider;
 
