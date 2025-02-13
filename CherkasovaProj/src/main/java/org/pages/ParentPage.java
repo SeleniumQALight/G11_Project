@@ -1,14 +1,19 @@
 package org.pages;
 
+import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
+import org.utils.ConfigProvider;
 
 abstract public class ParentPage extends CommonActionsWithElements{
-    protected String baseUrl = "https://aqa-complexapp.onrender.com";
+    String environment = System.getProperty("env", "aqa");
+//    protected String baseUrl = "https://"+environment+"-complexapp.onrender.com";
+    protected String baseUrl = ConfigProvider.configProperties.base_url().replace("[env]", environment);
 
     public ParentPage(WebDriver webDriver) {
         super(webDriver);
     }
+    private Logger logger = Logger.getLogger(getClass());
 
     abstract protected String getRelativeUrl();
 
@@ -29,4 +34,30 @@ abstract public class ParentPage extends CommonActionsWithElements{
                         "\n Actual url: " + webDriver.getCurrentUrl(),
                 webDriver.getCurrentUrl().matches(baseUrl + getRelativeUrl()));
     }
+    // Close new tab
+    public void closeCurrentTab() {
+        try {
+            webDriver.close();
+            logger.info("New tab was closed and switched to main tab");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    //    Refresh Page
+    public void refreshPage() {
+        try {
+            webDriver.navigate().refresh();
+            logger.info("Page was refreshed");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+
+    private void printErrorAndStopTest(Exception e) {
+        logger.error("Cannot work with element " + e);
+        Assert.fail("Cannot work with element " + e);
+    }
+
 }

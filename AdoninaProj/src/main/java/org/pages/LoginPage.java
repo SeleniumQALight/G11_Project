@@ -10,6 +10,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.pages.elements.HeaderForUserElement;
+import org.utils.Utils_Custom;
 
 import java.util.List;
 
@@ -145,7 +147,11 @@ public class LoginPage extends ParentPage {
     // error1;error2;error3 -> [error1, error2, error3]
     String[] messagesArray = expectedErrors.split(RegistrationValidationMessages.SEMICOLON);
 
-    webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorMessagesLocator), messagesArray.length));
+    webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorMessagesLocator)
+            , messagesArray.length));
+
+    Utils_Custom.waitABit(1);
+
     Assert.assertEquals("Number of messages ", messagesArray.length, listOfActualMessages.size());
 
     SoftAssertions softAssertions = new SoftAssertions();
