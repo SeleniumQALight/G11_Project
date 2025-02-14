@@ -17,7 +17,7 @@ public class HeaderForUserElements  extends CommonActionsWithElements {
     @FindBy(xpath = ".//img[@alt ='My profile']")
     private WebElement buttonMyProfile;
 
-    @FindBy(xpath = "//button[text()='Sign Out']")
+    @FindBy(xpath = "//button[@class='btn btn-sm btn-secondary']")
     private WebElement buttonSignOut;
 
 
@@ -26,6 +26,13 @@ public class HeaderForUserElements  extends CommonActionsWithElements {
 
 @FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
     private WebElement buttonSignIn;
+
+@FindBy(xpath = ".//img[@alt='My profile']")
+    private WebElement buttonAvatar;
+
+@FindBy(xpath = ".//*[@data-original-title='Chat']") //.//*[@data-original-title="Chat"]
+    private WebElement buttonChat;
+
 
     public void checkIsButtonSignOutVisible() {
         // Assert.assertTrue("Button Sign Out is not displayed", isElementVisible(buttonSignOut));
@@ -49,8 +56,42 @@ public class HeaderForUserElements  extends CommonActionsWithElements {
 
     public boolean checkIsButtonSignInVisible() {return isElementVisible(buttonSignIn); }
 
-    public void checkIsButtonSignOutInvisible() {
+    public void checkIsButtonSignOutNotVisible() {
         Assert.assertFalse("Button Sign Out is not displayed  ", isElementVisible(buttonSignOut));
     }
+
+    public void checkIsButtonCreatePostVisible() {
+        checkIsElementVisible(buttonCreatePost);
+    }
+
+    public void clickOnButtonSignOut() {
+        clickOnElement(buttonSignOut);
+    }
+
+    public void checkIsButtonAvatarVisible() {
+        checkIsElementVisible(buttonAvatar);
+    }
+
+    public void checkIsButtonChatVisible() {
+        checkIsElementVisible(buttonChat);
+    }
+
+
+
+
+
+    public void checkIsButtonCreatePostInVisible() {
+        Assert.assertFalse("Button CreatePost is not displayed", isElementVisible(buttonCreatePost));
+
+    }
+
+    public void checkIsButtonAvatarInVisible() {
+        Assert.assertFalse("Button Avatar is not displayed", isElementVisible(buttonAvatar));
+    }
+
+    public void checkIsButtonChatInVisible() {
+        Assert.assertFalse("Button Chat is not displayed", isElementVisible(buttonChat));
+    }
 }
+
 
