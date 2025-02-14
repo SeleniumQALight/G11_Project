@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.utils.ConfigProvider;
 
 import java.time.Duration;
 
@@ -22,8 +23,8 @@ public class CommonActionsWithElements {
   public CommonActionsWithElements(WebDriver webDriver) {
     this.webDriver = webDriver;
     PageFactory.initElements(webDriver, this); // ініціалізує елементи описані FindBy
-    webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-    webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+    webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
+    webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT()));
   }
 
   // method for select visible text in dropdown
@@ -154,7 +155,7 @@ public class CommonActionsWithElements {
     }
   }
 
-  protected void openNewTab() {
+  public void openNewTab() {
     try {
       ((JavascriptExecutor) webDriver).executeScript("window.open()");
       logger.info("New tab was opened");
@@ -163,7 +164,7 @@ public class CommonActionsWithElements {
     }
   }
 
-  private void printErrorAndStopTest(Exception e) {
+  public void printErrorAndStopTest(Exception e) {
     logger.error("Can not work with element " + e);
     Assert.fail("Can not work with element " + e);
   }
@@ -203,6 +204,15 @@ public class CommonActionsWithElements {
       } else {
         logger.error("Invalid state: " + state);
       }
+    } catch (Exception e) {
+      printErrorAndStopTest(e);
+    }
+  }
+
+  public void closeCurrentTab() {
+    try {
+      webDriver.close();
+      logger.info("New tab was closed");
     } catch (Exception e) {
       printErrorAndStopTest(e);
     }

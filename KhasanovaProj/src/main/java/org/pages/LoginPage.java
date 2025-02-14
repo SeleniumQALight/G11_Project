@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.utils.Utils_Custom;
 
 import java.util.List;
 
@@ -52,7 +53,6 @@ public class LoginPage extends ParentPage {
 
 
     public LoginPage openPage() {
-        String baseUrl = "https://aqa-complexapp.onrender.com/";
         webDriver.get(baseUrl);
         logger.info("Login Page was opened with url " + baseUrl);
         return this;
@@ -131,13 +131,13 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public LoginPage enterTextIntoRegistrationEmailField(String login) {
-        clearAndEnterTextIntoElement(inputEmailRegistrationForm, login);
+    public LoginPage enterTextIntoRegistrationEmailField(String email) {
+        clearAndEnterTextIntoElement(inputEmailRegistrationForm, email);
         return this;
     }
 
-    public LoginPage enterTextIntoRegistrationPasswordField(String login) {
-        clearAndEnterTextIntoElement(inputPasswordRegistrationForm, login);
+    public LoginPage enterTextIntoRegistrationPasswordField(String password) {
+        clearAndEnterTextIntoElement(inputPasswordRegistrationForm, password);
         return this;
     }
 
@@ -150,6 +150,7 @@ public class LoginPage extends ParentPage {
         // 10 seconds for all messages to be visible
         webDriverWait10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsMessagesLocator), messagesArray.length));
 
+        Utils_Custom.waitABit(1); // wait for all messages to be visible
 
         // перевіряємо, що кількість помилок на сторінці співпадає з кількістю очікуваних помилок
         Assert.assertEquals("Number of messages", messagesArray.length, listOfActualMessages.size());
@@ -171,4 +172,6 @@ public class LoginPage extends ParentPage {
 
         return this;
     }
+
+
 }

@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.utils.Utils_Custom;
 
 import java.util.List;
 
@@ -123,6 +124,8 @@ public class LoginPage extends ParantPage {
         webDriverWait_10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorsMessagesLocator), messagesArray.length));
 
         Assert.assertEquals("Number of messages", messagesArray.length, listOfActualMessages.size());
+
+        Utils_Custom.waitABit(1);
 
         SoftAssertions softAssertions = new SoftAssertions();
         for (int i = 0; i < messagesArray.length; i++) {

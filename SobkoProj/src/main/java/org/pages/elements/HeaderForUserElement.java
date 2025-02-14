@@ -45,6 +45,7 @@ public class HeaderForUserElement extends CommonActionsWithElements {
     }
 
     public void checkIsButtonSignOutVisible() {
+
         checkIsElementVisible(buttonSignOut);
     }
     public void checkIsButtonChatVisible() {
@@ -59,7 +60,6 @@ public class HeaderForUserElement extends CommonActionsWithElements {
     public void checkIsButtonCreatePostVisible() {
         checkIsElementVisible(buttonCreatePost);
     }
-
     public void checkIsButtonSignOutNotVisible() {
         checkIsElementNotVisible(buttonSignOut);
     }

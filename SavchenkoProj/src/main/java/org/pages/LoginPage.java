@@ -11,6 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.utils.Utils_Custom;
 
 
 import java.util.List;
@@ -41,6 +42,15 @@ public class LoginPage extends ParentPage {
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
+    }
+    public LoginPage checkIsUsernameInputIsVisible() {
+        checkIsElementVisible(inputUserName);
+        return this;
+    }
+
+    public LoginPage checkIsInputPasswordIsVisible() {
+        checkIsElementVisible(inputPassword);
+        return this;
     }
 
     protected String getRelativeUrl() {
@@ -74,8 +84,12 @@ public class LoginPage extends ParentPage {
         clickOnButtonSignIn();
         return new HomePage(webDriver);
     }
-    public LoginPage checkIsButtonSignInVisible() {
+
+    public LoginPage checkIsRedirectToLoginPage() {
         checkIsElementVisible(buttonSignIn);
+        checkIsUsernameInputIsVisible();
+        checkIsInputPasswordIsVisible();
+        //TODO check current URL
         return this;
     }
 
@@ -114,6 +128,7 @@ public class LoginPage extends ParentPage {
         webDriverWait_10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorrsMessagesLocator), messagesArray.length));
         Assert.assertEquals("Number of messages ", messagesArray.length, listOfActualMessages.size());
 
+        Utils_Custom.waitABit(1);
         SoftAssertions softAssertions = new SoftAssertions();
         for (int i = 0; i < messagesArray.length; i++) {
             softAssertions

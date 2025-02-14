@@ -1,6 +1,7 @@
 package org.pages;
 
 import org.openqa.selenium.WebDriver;
+import org.pages.elements.MyProfilePage;
 
 public class PageProvider {
    private WebDriver webDriver;
@@ -18,5 +19,17 @@ public class PageProvider {
     }
     public HomePage getHomePage(){
         return new HomePage(webDriver);
+    }
+
+    public CreateNewPostPage getCreateNewPostPage() {
+        return new CreateNewPostPage(webDriver);
+    }
+
+    public EditPostPage getEditPostPage() {
+        return new EditPostPage(webDriver);
+    }
+
+    public MyProfilePage getMyProfilePage() {
+        return new MyProfilePage(webDriver);
     }
 }
