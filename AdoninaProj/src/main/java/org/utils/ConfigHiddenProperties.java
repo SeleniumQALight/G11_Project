@@ -7,7 +7,4 @@ public interface ConfigHiddenProperties extends Config {
     String login();
 
     String MySQL_DB_PASSWORD();
-
-    String saucelabs_pass();
-
 }
