@@ -11,28 +11,42 @@ public class EditPostPage extends PostPage{
     }
 
     @FindBy(xpath = "//div[@class='alert alert-success text-center']")
-    private WebElement successUpdatedMessage;
+    private WebElement succesMessage;
+
+    @FindBy(name = "title")
+    private WebElement inputTitle;
 
 
+    @FindBy(xpath = "//button[text()='Save Updates']")
+    private WebElement buttonSaveUpdates;
+
+
+
+    @Override
     protected String getRelativeUrl() {
         return "/post/[a-zA-Z0-9]*/edit";
     }
-    public EditPostPage checkIsRedirectOnEditPostPage() {
+
+    public EditPostPage checkIsRedirectToEditPostPage() {
         checkUrlWithPattern();
         return this;
     }
 
-    public EditPostPage checkIsSuccessMessageDisplayed() {
-        checkIsElementVisible(successUpdatedMessage);
+    public EditPostPage enterNewTextIntoInputTitle(String title) {
+        clearAndEnterTextIntoElement(inputTitle, title);
         return this;
     }
 
-    public EditPostPage checkTextInSuccessMessage(String expectedMessageText) {
-        checkTextInElement(successUpdatedMessage, expectedMessageText);
+    public EditPostPage clickOnButtonSaveUpdatedPost() {
+        clickOnElement(buttonSaveUpdates);
         return this;
     }
 
 
+    public EditPostPage checkTextInSuccessMessage(String expectedMassageText) {
+        checkTextInElement(succesMessage, expectedMassageText);
+        return this;
+    }
 
 
 }

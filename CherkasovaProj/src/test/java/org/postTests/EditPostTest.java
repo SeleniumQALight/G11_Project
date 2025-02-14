@@ -34,9 +34,12 @@ public class EditPostTest extends BaseTest {
                 .checkIsPostWithTitleIsPresent(POST_TITLE, 1)
                 .openPost(POST_TITLE)
                 .checkIsRedirectToPostPage()
-                .clickOnEditPostButton()
-                .enterTextIntoInputTitle(POST_TITLE_EDIT)
-                .clickOnButtonSaveUpdates()
+                .clickOnEditPostButton();
+
+        pageProvider.getEditPostPage()
+                .checkIsRedirectToEditPostPage()
+                .enterNewTextIntoInputTitle(POST_TITLE_EDIT)
+                .clickOnButtonSaveUpdatedPost()
                 .checkTextInSuccessMessage("Post successfully updated.");
 
         pageProvider.getPostPage().getHeaderElement().clickOnMyProfileButton()
