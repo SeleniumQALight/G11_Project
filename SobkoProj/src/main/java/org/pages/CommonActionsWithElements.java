@@ -3,10 +3,7 @@ package org.pages;
 
 import org.apache.log4j.Logger;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -40,7 +37,8 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
-  //select value in dropdown
+
+    //select value in dropdown
     protected void selectValueInDD(WebElement dropDownElement, String valueForSelect) {
         try {
             Select optionsFromDD = new Select(dropDownElement);
@@ -88,6 +86,7 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
+
     protected void clickOnElement(WebElement webElement, String elementName) {
         try {
             webDriverWait10.until((ExpectedConditions.elementToBeClickable((webElement))));
@@ -121,7 +120,7 @@ public class CommonActionsWithElements {
 
     protected boolean isElementVisible(String locator) {
         try {
-          return isElementVisible(webdriver.findElement(By.xpath(locator)));
+            return isElementVisible(webdriver.findElement(By.xpath(locator)));
         } catch (Exception e) {
             logger.info("Element is not found");
             return false;
@@ -132,6 +131,7 @@ public class CommonActionsWithElements {
     protected void checkIsElementVisible(WebElement webElement) {
         Assert.assertTrue("Element is not visible", isElementVisible(webElement));
     }
+
     protected void checkIsElementVisible(String locator) {
         Assert.assertTrue("Element is not visible", isElementVisible(locator));
     }
@@ -174,6 +174,7 @@ public class CommonActionsWithElements {
             logger.info("Element is not found");
         }
     }
+
     //accept alert
     protected void acceptAlert() {
         try {
@@ -184,28 +185,13 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
-
-
-    protected void scrollToElement(WebElement webElement) {
+    protected void pressButton(Keys key) {
         try {
             Actions actions = new Actions(webdriver);
-            actions.moveToElement(webElement);
-            actions.perform();
-            logger.info("Scroll to element " + getElementName(webElement));
+            actions.sendKeys(key).perform();
+            logger.info("Button " + key + " was pressed");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
-
-
-    protected void openNewTab() {
-        try {
-            ((JavascriptExecutor) webdriver).executeScript("window.open()");
-            logger.info("New tab was opened");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
-
-
 }
