@@ -21,6 +21,8 @@ public class CreateNewPostPage extends ParentPage {
     @FindBy(xpath = ".//select")
     private WebElement dropdownAccess;
 
+
+
     public CreateNewPostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -60,6 +62,11 @@ public class CreateNewPostPage extends ParentPage {
         setStateToCheckbox(checkbox, state);
         return this;
     }
+
+
+
+
+
 
 
 }

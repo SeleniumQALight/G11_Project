@@ -34,6 +34,10 @@ public class MyProfilePage extends ParentPage{
                 ));
     }
 
+    private WebElement getMyPost(String postTitle) {
+        return webDriver.findElement(By.xpath(String.format(postWithTitleLocator, postTitle)));
+    }
+
     public MyProfilePage checkIsRedirectToProfilePage() {
         checkUrlWithPattern();
         return this;
@@ -69,5 +73,11 @@ public class MyProfilePage extends ParentPage{
     private MyProfilePage checkIsMessageSuccessDeletePresent() {
         checkIsElementVisible(successMessageDelete);
         return this;
+    }
+
+    public PostPage openPost(String postTitle) {
+        WebElement postName = getMyPost(postTitle);
+        clickOnElement(postName);
+        return new PostPage(webDriver);
     }
 }
