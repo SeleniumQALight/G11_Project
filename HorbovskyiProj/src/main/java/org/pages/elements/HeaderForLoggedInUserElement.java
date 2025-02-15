@@ -72,4 +72,20 @@ public class HeaderForLoggedInUserElement extends CommonActionsWithElements {
     public void clickOnButtonSignOut() {
         clickOnElement(buttonSignOut);
     }
+
+    public void checkIsSearchButtonNotVisible() {
+        checkIsElementNotVisible(buttonSearch);
+    }
+
+    public void checkIsChatButtonNotVisible() {
+        checkIsElementNotVisible(buttonChat);
+    }
+
+    public void checkIsMyProfileButtonNotVisible() {
+        checkIsElementNotVisible(buttonMyProfile);
+    }
+
+    public void checkIsCreatePostButtonNotVisible() {
+        checkIsElementNotVisible(buttonCreatePost);
+    }
 }
