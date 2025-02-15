@@ -6,6 +6,9 @@ import org.baseTest.BaseTest;
 import org.data.RegistrationValidationMessages;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Actions;
+import org.pages.ParantPage;
 
 import static org.data.RegistrationValidationMessages.*;
 
@@ -32,9 +35,22 @@ public class ValidationMessageTest extends BaseTest {
         return new Object[][]{
                 {"tr", "tr", "tr", ERROR_USERNAME + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
                 {"ttrr", "tr", "tr", ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
-
-
         };
-
     }
+    @Test
+    public void TC024_invalidRegistration() {
+
+        pageProvider.getLoginPage().openPage()
+                .pressTabKey(5);
+        pageProvider.getLoginPage().enterTextIntoField("US");
+        pageProvider.getLoginPage().pressTabKey(1);
+        pageProvider.getLoginPage().enterTextIntoField("invalidEmail");
+        pageProvider.getLoginPage().pressTabKey(1);
+        pageProvider.getLoginPage().enterTextIntoField("Password");
+        pageProvider.getLoginPage().pressTabKey(1);
+        pageProvider.getLoginPage().checkErrorsMessages(ERROR_USERNAME + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD);
+    }
+
+
+
 }

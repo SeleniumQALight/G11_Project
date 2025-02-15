@@ -31,11 +31,27 @@ public class BaseTest {
         logger.info("Browser was opened");
         pageProvider = new PageProvider(webDriver);
     }
+
     @After
     public void tearDown() {
         webDriver.quit();
         logger.info("Browser was closed");
     }
+    // @BeforeClass
+    // @Before // Parent class
+    // @Before // Child class
+    // @Test // Child class Tsst1
+    // @After // Child class
+    // @After // Parent class
+
+    // @Before // Parent class
+    // @Before // Child class
+    // @Test // Child class Tsst2
+    // @After // Child class
+    // @After // Parent class
+
+    // @AfterClass
+
 
     private WebDriver initDriver() {
         String browserFromProperty = System.getProperty("browser");
@@ -43,10 +59,10 @@ public class BaseTest {
         if ((browserFromProperty == null) || browserFromProperty.equalsIgnoreCase("chrome")) {
             WebDriverManager.chromedriver().setup();
             return new ChromeDriver();
-        } else if (browserFromProperty.equalsIgnoreCase("firefox")){
+        } else if (browserFromProperty.equalsIgnoreCase("firefox")) {
             WebDriverManager.firefoxdriver().setup();
             webDriver = new FirefoxDriver();
-        } else if ("ie".equals(browserFromProperty.toLowerCase())){
+        } else if ("ie".equals(browserFromProperty.toLowerCase())) {
             WebDriverManager.iedriver().setup(); //zoom 100%
             webDriver = new InternetExplorerDriver(); //security level - Medium
         } else if ("safari".equalsIgnoreCase(browserFromProperty)) {
@@ -55,8 +71,7 @@ public class BaseTest {
         } else if ("edge".equalsIgnoreCase(browserFromProperty)) {
             WebDriverManager.edgedriver().setup();
             webDriver = new EdgeDriver();
-        }
-        else {
+        } else {
             throw new IllegalArgumentException("Browser " + browserFromProperty + " is not supported");
         }
 
