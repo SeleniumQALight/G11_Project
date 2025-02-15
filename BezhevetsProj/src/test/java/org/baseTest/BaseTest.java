@@ -20,6 +20,23 @@ public class BaseTest {
     private Logger logger = Logger.getLogger(getClass());
     protected PageProvider pageProvider;
 
+    // @BeforeClass
+
+    //@Before // Parent class
+    // @Before // Child class
+    // @Test // Child class Tsst1
+    // @After // Child class
+    // @After // Parent class
+
+    // @Before // Parent class
+    // @Before // Child class
+    // @Test // Child class Tsst2
+    // @After // Child class
+    // @After // Parent class
+
+    // @AfterClass
+
+
     @Before
     public void setup() {
 //        WebDriverManager.chromedriver().setup();
