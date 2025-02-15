@@ -109,6 +109,22 @@ public class LoginPage extends ParentPage {
         checkIsElementNotVisible(inputPassword);
     }
 
+    public void checkIsInputLoginVisible() {
+        checkIsElementVisible(inputUserName);
+    }
+
+    public void checkIsInputPasswordVisible() {
+        checkIsElementVisible(inputPassword);
+    }
+
+    public LoginPage checkAllElementsInHeaderOnLoginPageVisible(){
+        checkIsButtonSignInVisible();
+        checkIsInputLoginVisible();
+        checkIsInputPasswordVisible();
+        return new LoginPage(webDriver);
+    }
+
+
 
     public LoginPage enterTextIntoRegistrationUserNameField(String login) {
         clearAndEnterTextIntoElement(inputUserNameRegistrationForm, login);
