@@ -9,7 +9,7 @@ import static org.data.TestData.VALID_PASSWORD;
 public class CheckLoginInAnotherTabTest extends BaseTest {
 
     @Test
-    public void HW4_T0001_validLogin() {
+    public void HW5_T0001_validLogin() {
         pageProvider.getLoginPage().openPage().
                 enterTextIntoInputLogin(VALID_LOGIN).
                 enterTextIntoInputPassword(VALID_PASSWORD).
