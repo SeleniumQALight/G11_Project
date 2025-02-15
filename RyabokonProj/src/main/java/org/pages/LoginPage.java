@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.utils.Utils_Custom;
 
 import java.util.List;
 
@@ -37,6 +38,9 @@ public class LoginPage extends ParentPage{
     final static String listErrorMessagesLocator = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
     @FindBy(xpath = listErrorMessagesLocator)
     private List<WebElement> listOfActualMessages;
+
+    @FindBy(xpath = ".//div[@class = 'alert alert-danger text-center' ]")
+    private WebElement messageInvalidLoginOrPassword;
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
@@ -101,6 +105,7 @@ return this;
         String[] messagesArray = expectedErrors.split(RegistrationValidationMessages.SEMICOLON);
 
         webDriverWait10.until((ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorMessagesLocator), messagesArray.length)));
+        Utils_Custom.waitABit(1);
 
         Assert.assertEquals("Number of Messages",messagesArray.length, listOfActualMessages.size());
         SoftAssertions softAssertions = new SoftAssertions();
@@ -112,5 +117,9 @@ return this;
         }
         softAssertions.assertAll(); //відразу пишeмо після methood SoftAssertions softAssertions = new SoftAssertions();
         return this;
+    }
+
+    public boolean checkIfMessageInvalidLoginPasswordVisible() {
+        return isElementVisible(messageInvalidLoginOrPassword);
     }
 }

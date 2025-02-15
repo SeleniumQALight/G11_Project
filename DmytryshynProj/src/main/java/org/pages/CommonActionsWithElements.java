@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.utils.ConfigProvider;
 
 import java.time.Duration;
 
@@ -22,8 +23,8 @@ public class CommonActionsWithElements {
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); //ініціалізує елементи, описані FindBy
-        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
+        webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT()));
     }
 
     // method for select visible text in dropdown
@@ -125,6 +126,15 @@ public class CommonActionsWithElements {
         Assert.assertTrue("Element is not visible", isElementVisible(locator));
     }
 
+    // check if the element is not visible
+    protected void checkIsElementNotVisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible", isElementVisible(webElement));
+    }
+
+    protected void checkIsElementNotVisible(String locator) {
+        Assert.assertFalse("Element is visible", isElementVisible(locator));
+    }
+
     // checkTextInElement method
     protected void checkTextInElement(WebElement webElement, String text) {
         Assert.assertEquals("Text in element " + getElementName(webElement) + " is not expected", text, webElement.getText());
@@ -169,5 +179,47 @@ public class CommonActionsWithElements {
         Assert.fail("Cannot work with element " + e);
     }
 
+    // method for select CheckBox
+    protected void selectCheckBox(WebElement checkBox, String nameOfCheckBox) {
+        try {
+            if (!checkBox.isSelected()) {
+                checkBox.click();
+                logger.info("CheckBox " + nameOfCheckBox + " was selected");
+            } else {
+                logger.info("CheckBox " + nameOfCheckBox + " is already selected");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    // method for unselect CheckBox
+    protected void unselectCheckBox(WebElement checkBox, String nameOfCheckBox) {
+        try {
+            if (checkBox.isSelected()) {
+                checkBox.click();
+                logger.info("CheckBox " + nameOfCheckBox + " was unselected");
+            } else {
+                logger.info("CheckBox " + nameOfCheckBox + " is already unselected");
+            }
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    // method for setting a given state of a checkbox (if "check"  selectCheckBox, if "uncheck" unselectCheckBox)
+    protected void setCheckBoxState(WebElement checkBox, String state, String nameOfCheckBox) {
+        switch (state) {
+            case "check":
+                selectCheckBox(checkBox, nameOfCheckBox);
+                break;
+            case "uncheck":
+                unselectCheckBox(checkBox, nameOfCheckBox);
+                break;
+            default:
+                logger.info("State " + state + " is not correct");
+                break;
+        }
+    }
 
 }
