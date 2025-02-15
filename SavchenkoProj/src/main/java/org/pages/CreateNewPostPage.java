@@ -14,13 +14,24 @@ public class CreateNewPostPage extends ParentPage {
     private WebElement buttonSaveNewPost;
     @FindBy(xpath = "//input[@name='uniquePost']")
     private WebElement uniquePostCheckbox;
+    @FindBy(xpath = "//select")
+    private WebElement dropDownAccess;
 
     public CreateNewPostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    protected String getRelativeUrl() {
+        return "/create-post";
+    }
+
     public CreateNewPostPage checkIsRedirectToCreateNewPostPage() {
-        //TODO checkUrl();
+        checkUrl();
+        return this;
+    }
+
+    public CreateNewPostPage selectValueInDropDownAccess(String valueInDD) {
+        selectValueInDropDown(dropDownAccess, valueInDD);
         return this;
     }
 
@@ -36,10 +47,15 @@ public class CreateNewPostPage extends ParentPage {
 
     public PostPage clickOnSaveNewPostButton() {
         clickOnElement(buttonSaveNewPost);
-return new PostPage(webDriver);
+        return new PostPage(webDriver);
     }
 
-    public CreateNewPostPage selectUniquePostCheckbox (String check){
+    public CreateNewPostPage setNeededStateToUniquePostCheckbox(String state) {
+        setCheckboxState(uniquePostCheckbox, state);
+        return this;
+    }
+
+    public CreateNewPostPage selectUniquePostCheckbox(String check) {
         setCheckboxState(uniquePostCheckbox, check);
         return this;
     }
@@ -48,4 +64,5 @@ return new PostPage(webDriver);
         checkIsElementVisible(uniquePostCheckbox);
         return this;
     }
+
 }

@@ -22,6 +22,11 @@ public class MyProfilePage extends ParentPage{
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/profile/[a-zA-Z0-9]*";
+    }
+
     private List<WebElement> getPostsList(String postTitle) {
         return webDriver.findElements(
                 By.xpath(
@@ -29,8 +34,12 @@ public class MyProfilePage extends ParentPage{
                 ));
     }
 
+    private WebElement getMyPost(String postTitle) {
+        return webDriver.findElement(By.xpath(String.format(postWithTitleLocator, postTitle)));
+    }
+
     public MyProfilePage checkIsRedirectToProfilePage() {
-        //TODO checkUrl();
+        checkUrlWithPattern();
         return this;
     }
 
@@ -64,5 +73,11 @@ public class MyProfilePage extends ParentPage{
     private MyProfilePage checkIsMessageSuccessDeletePresent() {
         checkIsElementVisible(successMessageDelete);
         return this;
+    }
+
+    public PostPage openPost(String postTitle) {
+        WebElement postName = getMyPost(postTitle);
+        clickOnElement(postName);
+        return new PostPage(webDriver);
     }
 }

@@ -19,12 +19,20 @@ public class CreateNewPostPage extends ParentPage {
     @FindBy(xpath = "//input[@type='checkbox']")
     private WebElement checkBoxIsPostUnique;
 
+    @FindBy(xpath = "//select")
+    private WebElement dropdownAccess;
+
     public CreateNewPostPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/create-post";
+    }
+
     public CreateNewPostPage checkIsRedirectToCreateNewPostPage() {
-        //TODO checkUrl();
+        checkUrl();
         return this;
     }
 
@@ -45,8 +53,13 @@ public class CreateNewPostPage extends ParentPage {
 
     //methode set needed state
     public CreateNewPostPage setNeededStateToPostUniqueCheckBox(String neededState) {
-      setNeededStateToCheckBox(checkBoxIsPostUnique, neededState);
+        setNeededStateToCheckBox(checkBoxIsPostUnique, neededState);
 
+        return this;
+    }
+
+    public CreateNewPostPage selectValueInDropdownAccess(String valueForSelect) {
+        selectValueInDD(dropdownAccess, valueForSelect);
         return this;
     }
 }

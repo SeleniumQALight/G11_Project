@@ -19,10 +19,14 @@ public class CreateNewPostTest extends BaseTest {
                 .clickOnButtonCreatePost()
                 .checkIsRedirectToCreateNewPostPage()
                 .enterTextIntoInputTitle(POST_TITLE)
+                .selectValueInDropDownAccess("One Person")
                 .enterTextIntoInputBody("Body of the post")
+                .setCheckboxWithState("check")
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectToPostPage()
                 .checkIsSuccessMessageDisplayed()
+                .checkTextThisPostWasWrittenIsVisible("One Person")
+                .checkIsPostIsUnique()
                 .checkTextInSuccessMessage("New post successfully created.")
         ;
 

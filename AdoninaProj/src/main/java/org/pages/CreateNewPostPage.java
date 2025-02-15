@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CreareNewPostPage extends ParentPage {
+public class CreateNewPostPage extends ParentPage {
   //  @FindBy(xpath = ".//input[@id='post-title']")
   @FindBy(name = "title")
   private WebElement inputTitle;
@@ -18,22 +18,38 @@ public class CreareNewPostPage extends ParentPage {
   @FindBy(xpath = "//input [@type='checkbox']")
   private WebElement checkboxIsPrivatePost;
 
-  public CreareNewPostPage(WebDriver webDriver) {
+  @FindBy(xpath = ".//select")
+  private WebElement dropDownSelectCategory;
+
+  //  public CreareNewPostPage(WebDriver webDriver) {
+  public CreateNewPostPage(WebDriver webDriver) {
     super(webDriver);
   }
 
+  @Override
+  protected String getRelativeUrl() {
+    return "/create-post";
+  }
+
   //check is redirect to CreateNewPostPage
-  public CreareNewPostPage checkIsRedirectToCreateNewPostPage() {
-    //TODO check current URL();
+  public CreateNewPostPage checkIsRedirectToCreateNewPostPage() {
+//    //TODO check current URL();
+//  public CreareNewPostPage checkIsRedirectToCreateNewPostPage() {
+    checkUrlWithPattern();
     return this;
   }
 
-  public CreareNewPostPage enterTextIntoInputTitle(String title) {
+  public CreateNewPostPage selectValueDDCategory(String valueForSelect) {
+    selectValueInDD(dropDownSelectCategory, valueForSelect);
+    return this;
+  }
+
+  public CreateNewPostPage enterTextIntoInputTitle(String title) {
     clearAndEnterTextIntoInput(inputTitle, title);
     return this;
   }
 
-  public CreareNewPostPage enterTextIntoInputBody(String body) {
+  public CreateNewPostPage enterTextIntoInputBody(String body) {
     clearAndEnterTextIntoInput(inputBody, body);
     return this;
   }
@@ -43,7 +59,7 @@ public class CreareNewPostPage extends ParentPage {
     return new PostPage(webDriver);
   }
 
-  public CreareNewPostPage setOnCheckBoxIsPrivatePost(String needState) {
+  public CreateNewPostPage setOnCheckBoxIsPrivatePost(String needState) {
     setCheckboxState(checkboxIsPrivatePost, needState);
     return this;
   }
