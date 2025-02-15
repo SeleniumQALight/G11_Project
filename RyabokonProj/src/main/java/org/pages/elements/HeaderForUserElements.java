@@ -1,5 +1,6 @@
 package org.pages.elements;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,13 +17,21 @@ public class HeaderForUserElements  extends CommonActionsWithElements {
     @FindBy(xpath = ".//img[@alt ='My profile']")
     private WebElement buttonMyProfile;
 
-    @FindBy(xpath = "//button[text()='Sign Out']")
+    @FindBy(xpath = "//button[@class='btn btn-sm btn-secondary']")
     private WebElement buttonSignOut;
 
 
     @FindBy(xpath = "//a[@class='btn btn-sm btn-success mr-2']")
     private WebElement buttonCreatePost;
 
+@FindBy(xpath = ".//button[@class='btn btn-primary btn-sm']")
+    private WebElement buttonSignIn;
+
+@FindBy(xpath = ".//img[@alt='My profile']")
+    private WebElement buttonAvatar;
+
+@FindBy(xpath = ".//*[@data-original-title='Chat']") //.//*[@data-original-title="Chat"]
+    private WebElement buttonChat;
 
 
     public void checkIsButtonSignOutVisible() {
@@ -35,8 +44,54 @@ public class HeaderForUserElements  extends CommonActionsWithElements {
         return new CreateNewPostPage(webDriver);
     }
 
-    public MyProfilePage ClickOnMyProfileButton() {
+    public MyProfilePage clickOnButtonMyProfile() {
         clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
     }
+
+    public boolean isButtonSignOutVisible() {
+        return isElementVisible(buttonSignOut);
+    }
+
+
+    public boolean checkIsButtonSignInVisible() {return isElementVisible(buttonSignIn); }
+
+    public void checkIsButtonSignOutNotVisible() {
+        Assert.assertFalse("Button Sign Out is not displayed  ", isElementVisible(buttonSignOut));
+    }
+
+    public void checkIsButtonCreatePostVisible() {
+        checkIsElementVisible(buttonCreatePost);
+    }
+
+    public void clickOnButtonSignOut() {
+        clickOnElement(buttonSignOut);
+    }
+
+    public void checkIsButtonAvatarVisible() {
+        checkIsElementVisible(buttonAvatar);
+    }
+
+    public void checkIsButtonChatVisible() {
+        checkIsElementVisible(buttonChat);
+    }
+
+
+
+
+
+    public void checkIsButtonCreatePostInVisible() {
+        Assert.assertFalse("Button CreatePost is not displayed", isElementVisible(buttonCreatePost));
+
+    }
+
+    public void checkIsButtonAvatarInVisible() {
+        Assert.assertFalse("Button Avatar is not displayed", isElementVisible(buttonAvatar));
+    }
+
+    public void checkIsButtonChatInVisible() {
+        Assert.assertFalse("Button Chat is not displayed", isElementVisible(buttonChat));
+    }
 }
+
+

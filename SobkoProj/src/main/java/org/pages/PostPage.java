@@ -18,15 +18,29 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = "//*[text()='Is this post unique? : no']")
     private WebElement stateNoOfUniquePost;
 
+    @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDeletePost;
+    private String locatorForText = "//*[contains(text(),'%s')]";
+
+    @FindBy(xpath = "//a[@data-original-title='Edit']")
+    private WebElement buttonEditPost;
+
     public PostPage(WebDriver webdriver) {
         super(webdriver);
     }
 
-     public HeaderForUserElement getHeaderElement() {
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
+    }
+
+    public HeaderForUserElement getHeaderElement() {
          return new HeaderForUserElement(webdriver);
      }
+
+
     public PostPage checkIsRedirectToPostPage() {
-        // TODO check url
+        checkUrlWithPattern();
         return this;
     }
     public PostPage checkIsSuccessMessageDisplayed() {
@@ -51,5 +65,20 @@ public class PostPage extends ParentPage {
         }
         return this;
 
+    }
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDeletePost, "Delete post button");
+        return new MyProfilePage(webdriver);
+    }
+
+    public CreateNewPostPage clickOnEditButton() {
+        clickOnElement(buttonEditPost, "Edit post button");
+        return new CreateNewPostPage(webdriver);
+    }
+
+    public PostPage checkTextThisPostWasWrittenAndVisible(String text) {
+     checkIsElementVisible(String.format(locatorForText, text));
+        return this;
     }
 }

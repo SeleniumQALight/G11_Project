@@ -15,14 +15,16 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectOnHomePage()
                 .getHeaderElement().clickOnButtonCreatePost()
                 .checkIsRedirectOnCreateNewPostPage()
-                .enterTextIntoInputTitle("Title of the post Horbovskyi")
+                .enterTextIntoInputTitle(POST_TITLE)
+                .selectValueInDropdownAccess("One Person")
                 .enterTextIntoInputBody("Body of the post Horbovskyi")
+                .selectUniquePostCheckbox("check")
                 .clickOnButtonSavePost()
                 .checkIsRedirectOnPostPage()
                 .checkIsSuccessMessageDisplayed()
+                .checkTextThisPostWasWrittenIsVisible("One Person")
                 .checkTextInSuccessMessage("New post successfully created.")
-        ;
-        pageProvider.getPostPage().getHeaderElement().clickOnButtonMyProfile()
+                .checkIfUniquePost().getHeaderElement().clickOnButtonMyProfile()
                 .checkIsRedirectToMyProfilePage()
                 .checkIsPostWithTitleWereAdded(POST_TITLE, 1)
         ;
@@ -31,6 +33,10 @@ public class CreateNewPostTest extends BaseTest {
 
     @After
     public void deletePost() {
+        pageProvider.getHomePage().openHomePageIfNeeded().
+                getHeaderElement().clickOnButtonMyProfile().checkIsRedirectToMyProfilePage()
+                .deletePostWhilePresent(POST_TITLE)
+        ;
     }
 
 }

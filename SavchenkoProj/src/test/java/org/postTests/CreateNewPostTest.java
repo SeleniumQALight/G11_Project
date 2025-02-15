@@ -6,22 +6,27 @@ import org.junit.Test;
 import org.utils.Utils_Custom;
 
 public class CreateNewPostTest extends BaseTest {
+    final String POST_TITLE = "TR003_savchenko_" + Utils_Custom.getDateAndTimeFormatted();
     //GUID =
     @Test
     public void TR003_createNewPost() {
 
-        final String POST_TITLE = "TR003_savchenko_" + Utils_Custom.getDateAndTimeFormatted();
+
 
         pageProvider.getLoginPage()
                 .openLoginPageAndFillLoginFormWithValidCred()
                 .checkIsRedirectToHomePage()
-                .getHeaderElement().clickOnButtonCreatePost()
+                .getHeaderForUserElement().clickOnButtonCreatePost()
                 .checkIsRedirectToCreateNewPostPage()
                 .enterTextIntoInputTitle(POST_TITLE)
+                .selectValueInDropDownAccess("One Person")
                 .enterTextIntoInputBody("Body")
+                .checkIfUniquePost()
+                .selectUniquePostCheckbox("check")
                 .clickOnSaveNewPostButton()
-                .checkIsRedirectToPostPage()
+                .checkIsRedirectToEditPostPage()
                 .checkIsSuccessMessageDisplayed()
+                .checkTextInThisPostWasWrittenIsVisible("One Person")
                 .checkTextInSuccessMessage("New post successfully created.")
         ;
         pageProvider.getPostPage().getHeaderElement().clickOnButtonMyProfile()
@@ -34,6 +39,12 @@ public class CreateNewPostTest extends BaseTest {
 
     @After
     public void deletePosts() {
+        pageProvider.getHomePage()
+                .openHomePageAndLoginIfNeed()
+                .getHeaderForUserElement().clickOnButtonMyProfile()
+                .checkIsRedirectToProfilePage()
+                .deletePostsTillPresent(POST_TITLE)
+                ;
 
     }
 }

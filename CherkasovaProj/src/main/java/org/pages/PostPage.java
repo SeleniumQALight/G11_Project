@@ -12,10 +12,24 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = ".//p[text()='Is this post unique? : yes']")
     private WebElement PostMessageUnique;
 
+    @FindBy(xpath = ".//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDeletePost;
+
+    @FindBy(xpath = ".//a[@data-original-title='Edit']")
+    private WebElement buttonEditPost;
+
+
+
+    private String locatorForTextThisPostWasWritten = "//*[contains(text(),'%s')]";
 
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
     }
 
     public HeaderForUserElement getHeaderElement() {
@@ -23,7 +37,7 @@ public class PostPage extends ParentPage {
     }
 
     public PostPage checkIsRedirectToPostPage() {
-//        TODO checkUrl();
+        checkUrlWithPattern();
         return this;
     }
 
@@ -43,10 +57,24 @@ public class PostPage extends ParentPage {
     }
 
 
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDeletePost, "Delete post button");
+        return new MyProfilePage(webDriver);
+    }
 
+    public CreateNewPostPage clickOnEditPostButton() {
+        clickOnElement(buttonEditPost, "Edit post button");
+        return new CreateNewPostPage(webDriver);
+    }
 
-
-
-
-
+    public PostPage checkTextThisPostWasWrittenIsVisible(String text) {
+        checkIsElementVisible(String.format(locatorForTextThisPostWasWritten, text));
+        return this;
+    }
 }
+
+
+
+
+
+

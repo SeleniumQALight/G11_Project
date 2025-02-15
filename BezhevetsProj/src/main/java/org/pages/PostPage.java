@@ -10,8 +10,25 @@ public class PostPage extends ParrentPage {
     @FindBy(xpath = "//*[@class='alert alert-success text-center']")
     private WebElement succesMessage;
 
+    //Locator for delete button
+    @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
+    private WebElement buttonDeletePost;
+
+    @FindBy(xpath = "//a[@data-original-title=\"Edit\"]")
+    private WebElement editPostButton;
+
+    private String locatorForTextThisPostWasWritten = "//*[contains(text(),'%s')]";
+
+    @FindBy(xpath = "//*[text()='Is this post unique? : yes']")
+    private WebElement postIsUnique;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    @Override
+    protected String getRelativeUrl() {
+        return "/post/[a-zA-Z0-9]*";
     }
 
     public HeaderForUserElement getHeaderElement() {
@@ -19,7 +36,7 @@ public class PostPage extends ParrentPage {
     }
 
     public PostPage checkIsRedirectToPostPage() {
-        //TODO checkUrl();
+        checkUrlWithPattern();
         return this;
     }
 
@@ -30,6 +47,26 @@ public class PostPage extends ParrentPage {
 
     public PostPage checkTextInSuccessMessage(String expectedMassageText) {
         checkTextInElement(succesMessage, expectedMassageText);
+        return this;
+    }
+
+    public MyProfilePage clickOnDeleteButton() {
+        clickOnElement(buttonDeletePost, "Delete post button");
+        return new MyProfilePage(webDriver);
+    }
+
+    public EditPostPage clickOnEditPostButton() {
+        clickOnElement(editPostButton, "Edit post button");
+        return new EditPostPage(webDriver);
+    }
+
+    public PostPage checkTextThisPostWasWrittenIsVisible(String text) {
+        checkIsElementVisible(String.format(locatorForTextThisPostWasWritten, text));
+        return this;
+    }
+
+    public PostPage checkIsPostIsUnique() {
+        checkIsElementVisible(postIsUnique);
         return this;
     }
 }

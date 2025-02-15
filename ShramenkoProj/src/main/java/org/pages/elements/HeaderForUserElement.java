@@ -3,9 +3,7 @@ package org.pages.elements;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.pages.CommonActionsWithElements;
-import org.pages.CreateNewPostPage;
-import org.pages.MyProfilePage;
+import org.pages.*;
 
 public class HeaderForUserElement extends CommonActionsWithElements {
     @FindBy(xpath = "//img[@alt='My profile']")
@@ -17,17 +15,30 @@ public class HeaderForUserElement extends CommonActionsWithElements {
     @FindBy(xpath = "//a[@href='/create-post']")
     private WebElement buttonCreatePost;
 
+    @FindBy(xpath = "//*[@data-original-title='Search']")
+    private WebElement buttonSearch;
+
+    @FindBy(xpath = "//*[@data-original-title='Chat']")
+    private WebElement buttonChat;
+
+    @FindBy(xpath = "//img[@data-original-title='My Profile']")
+    private WebElement imgAvatar;
+
+
+
 
     public HeaderForUserElement(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public void checkIsButtonSighOutVisible() {
+    public HeaderForUserElement checkIsButtonSighOutVisible() {
         checkIsElementVisible(buttonSighOut);
+        return this;
     }
 
-    public void checkIsButtonSighOutNotVisible() {
+    public HeaderForUserElement checkIsButtonSighOutNotVisible() {
         checkIsElementNotVisible(buttonSighOut);
+        return this;
     }
 
 
@@ -41,11 +52,50 @@ public class HeaderForUserElement extends CommonActionsWithElements {
         return new CreateNewPostPage(webDriver);
     }
 
-    public void checkIsButtonCreatePostNotVisible() {
+    public HeaderForUserElement checkIsButtonCreatePostNotVisible() {
         checkIsElementNotVisible(buttonCreatePost);
+        return this;
     }
 
-    public void checkIsButtonCreatePostVisible() {
+    public HeaderForUserElement checkIsButtonCreatePostVisible() {
         checkIsElementVisible(buttonCreatePost);
+        return this;
     }
+
+    public boolean isButtonSighOutVisible() {
+        return isElementVisible(buttonSighOut);
+    }
+
+    public HeaderForUserElement checkIsButtonSearchVisible(){
+        checkIsElementVisible(buttonSearch);
+        return this;
+    }
+    public HeaderForUserElement checkIsButtonSearchNotVisible(){
+        checkIsElementNotVisible(buttonSearch);
+        return this;
+    }
+
+    public HeaderForUserElement checkIsButtonChatVisible(){
+        checkIsElementVisible(buttonChat);
+        return this;
+    }
+    public HeaderForUserElement checkIsButtonChatNotVisible(){
+        checkIsElementNotVisible(buttonChat);
+        return this;
+    }
+
+    public HeaderForUserElement checkIsAvatarVisible(){
+        checkIsElementVisible(imgAvatar);
+        return this;
+    }
+    public HeaderForUserElement checkIsAvatarNotVisible(){
+        checkIsElementNotVisible(imgAvatar);
+        return this;
+    }
+
+    public LoginPage clickOnButtonSignOut(){
+        clickOnElement(buttonSighOut);
+        return new LoginPage(webDriver);
+    }
+
 }

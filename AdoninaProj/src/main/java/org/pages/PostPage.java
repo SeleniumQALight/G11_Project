@@ -9,8 +9,24 @@ public class PostPage extends ParentPage {
   @FindBy(xpath = "//*[@class='alert alert-success text-center']")
   private WebElement successMessage;
 
+  @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
+  private WebElement buttonDeletePost;
+
+  @FindBy(xpath = "//p[text()='Is this post unique? : yes']")
+  private WebElement uniquePostMessage;
+
+  @FindBy(xpath = ".//a[@class='text-primary mr-2']")
+  private WebElement buttonEditePost;
+
+  private String locatorForTextThisPostWasWritten = "//*[contains(text(),'%s')]";
+
   public PostPage(WebDriver webDriver) {
     super(webDriver);
+  }
+
+  @Override
+  protected String getRelativeUrl() {
+    return "/post/[a-zA-Z0-9]*";
   }
 
   public HeaderForUserElement getHeaderElement() {
@@ -18,7 +34,7 @@ public class PostPage extends ParentPage {
   }
 
   public PostPage checkIsRedirectToPostPage() {
-    //TODO check current URL();
+    checkUrlWithPattern();
     return this;
   }
 
@@ -29,6 +45,26 @@ public class PostPage extends ParentPage {
 
   public PostPage checkTextInSuccessMessage(String expectedText) {
     checkTextInElement(successMessage, expectedText);
+    return this;
+  }
+
+  public MyProfilePage clicKOnDeleteButton() {
+    clickOnElement(buttonDeletePost, "Delete post Button");
+    return new MyProfilePage(webDriver);
+  }
+
+  public PostPage checkIfUniquePost() {
+    checkIsElementVisible(uniquePostMessage);
+    return this;
+  }
+
+  public MyProfilePage clickOnEditeButton() {
+    clickOnElement(buttonEditePost, "Edite post Button");
+    return new MyProfilePage(webDriver);
+  }
+
+  public PostPage checkTextThisPostWasWrittenIsVisible(String text) {
+    checkIsElementVisible(String.format(locatorForTextThisPostWasWritten, text));
     return this;
   }
 }

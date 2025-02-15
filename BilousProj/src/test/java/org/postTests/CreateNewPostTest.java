@@ -18,16 +18,18 @@ public class CreateNewPostTest extends BaseTest {
                 .getHeaderElement().clickOnButtonCreatePost()
                 .checkIsRedirectOnCreateNewPostPage()
                 .enterTextIntoInputTitle(POST_TITLE)
+                .selectValueInDropdownAccess("One Person")
                 .enterTextIntoInputBody("Body of the post")
                 .setOnCheckBoxIsPrivatePost()
                 .clickOnButtonSavePost()
                 .checkIsRedirectOnPostPage()
                 .checkIsSuccessMessageDisplayed()
+                .checkTextThisPostWasWrittenIsVisible("One Person")
                 .checkTextInSuccessMessage("New post successfully created.")
 
         ;
 
-        pageProvider.getPostPage().getHeaderElement().clickOnButtomMyProfile()
+        pageProvider.getPostPage().getHeaderElement().clickOnButtonMyProfile()
                 .checkIsRedirectOnMyProfilePage()
                 .checkPostWithTitleIsPresent(POST_TITLE, 1)
         ;
@@ -35,6 +37,12 @@ public class CreateNewPostTest extends BaseTest {
 
     @After
     public void deletePost() {
+        pageProvider.getHomePage()
+                .openHomePageAndLoginIfNeeded()
+                .getHeaderElement().clickOnButtonMyProfile()
+                .checkIsRedirectOnMyProfilePage()
+                .deletePostTillPresent(POST_TITLE)
+        ;
 
     }
 }

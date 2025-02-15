@@ -18,10 +18,12 @@ public class CreateNewPostTest extends BaseTest {
                 clickOnButtonCreatePost().
                 checkIsRedirectToCreateNewPostPage().
                 enterTextIntoInputTitle(TITLE).
+                selectValueInDD("One Person").
                 enterTextIntoInputBody("test body").
                 clickOnButtonSavePost().
                 checkIsRedirectToPostPage().
                 CheckIsAlertSuccessPresent().
+                checkTextThisPostWasWrittenIsVisible("One Person").
                 checkTextInSuccessMessage("New post successfully created.")
         ;
 
@@ -34,6 +36,7 @@ public class CreateNewPostTest extends BaseTest {
 
     @After
     public void deletePosts(){
+        pageProvider.getHomePage().openHomePageAndLoginIfNeeded().getHeaderElement().clickOnButtonMyProfile().checkIsRedirectToMyProfilePage().deletePostsTillPresent(TITLE);
 
     }
 

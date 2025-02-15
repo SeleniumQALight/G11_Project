@@ -1,11 +1,18 @@
 package org.pages;
 
 import org.apache.log4j.Logger;
+import org.assertj.core.api.SoftAssertions;
+import org.data.RegistrationValidationMessages;
 import org.data.TestData;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.utils.Utils_Custom;
+
+import java.util.List;
 
 public class LoginPage extends ParentPage {
     private Logger logger = Logger.getLogger(getClass());
@@ -19,12 +26,32 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = "//button[text()='Sign In']")
     private WebElement buttonSignIn;
 
+    @FindBy(xpath = "//div[text()='Invalid username/password.']")
+    private WebElement invalidLoginOrPasswordMessage;
+
+    @FindBy(id = "username-register")
+    private WebElement inputUserNameRegistrationForm;
+
+    @FindBy(id = "email-register")
+    private WebElement inputEmailRegistrationForm;
+
+    @FindBy(id = "password-register")
+    private WebElement inputPasswordRegistrationForm;
+
+    final static String listErrorMessagesLocator = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+    @FindBy(xpath = listErrorMessagesLocator)
+    private List<WebElement> lsitOfActualMessages;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Override
+    protected String getRelativeUrl() {
+        return "/";
+    }
+
     public LoginPage openPage() {
-        String baseUrl = "https://aqa-complexapp.onrender.com/";
         webDriver.get(baseUrl);
         logger.info("Login Page was opened with URL " + baseUrl);
         return this;
@@ -56,5 +83,55 @@ public class LoginPage extends ParentPage {
         enterTextIntoInputPassword(TestData.VALID_PASSWORD);
         clickOnButtonSignIn();
         return new HomePage(webDriver);
+    }
+
+    public LoginPage checkIsButtonSignInVisible() {
+        checkIsElementVisible(buttonSignIn);
+        return this;
+    }
+
+    public HomePage checkIsInputLoginOrPasswordNotVisible() {
+        checkIsElementNotVisible(inputUserName);
+        checkIsElementNotVisible(inputPassword);
+        return new HomePage(webDriver);
+    }
+
+    public LoginPage checkIsInvalidLoginOrPasswordMessageVisible() {
+        checkIsElementVisible(invalidLoginOrPasswordMessage);
+        return this;
+    }
+
+    public LoginPage enterTextIntoRegistaionUserNameField(String login) {
+        clearAndEnterTextToElement(inputUserNameRegistrationForm, login);
+        return this;
+    }
+    public LoginPage enterTextIntoRegistaionEmailField(String email) {
+        clearAndEnterTextToElement(inputEmailRegistrationForm, email);
+        return this;
+    }
+
+    public LoginPage enterTextIntoRegistaionPasswordField(String password) {
+        clearAndEnterTextToElement(inputPasswordRegistrationForm, password);
+        return this;
+    }
+
+    public LoginPage checkErrorsMessages(String expectedErrors) {
+        String[] errorsArray = expectedErrors.split(RegistrationValidationMessages.SEMICOLON);
+
+        webDriverWait_10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorMessagesLocator), errorsArray.length));
+
+        Utils_Custom.waitABit(1);
+
+        Assert.assertEquals("Number of Messages", errorsArray.length, lsitOfActualMessages.size());
+
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (int i = 0; i < errorsArray.length; i++) {
+            softAssertions.assertThat(lsitOfActualMessages.get(i).getText())
+                    .as("Message number " + i)
+                    .isIn(errorsArray);
+        }
+
+        softAssertions.assertAll();
+    return this;
     }
 }

@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.pages.CommonActionsWithElements;
 import org.pages.CreateNewPostPage;
+import org.pages.LoginPage;
 import org.pages.MyProfilePage;
 
 public class HeaderForUserElement extends CommonActionsWithElements {
@@ -18,15 +19,52 @@ public class HeaderForUserElement extends CommonActionsWithElements {
     @FindBy(xpath = "//a[@class='btn btn-sm btn-success mr-2']")
     private WebElement buttonCreatePost;
 
-    public void checkIsButtonSignOutVisible() {
-        checkIsElementVisible(buttonSignOut);
-    }
+    @FindBy(xpath = "//span[@data-placement='bottom']")
+    private WebElement buttonChat;
+
+    @FindBy(xpath = "//a[@href='#']")
+    private WebElement buttonSearch;
+
 
     public HeaderForUserElement(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public MyProfilePage clickOnButtomMyProfile() {
+
+    public void checkIsButtonSignOutVisible() { checkIsElementVisible(buttonSignOut); }
+    public void checkIsButtonSignOutInvisible() { checkIsElementInvisible(buttonSignOut); }
+
+    public void checkIsButtonCreatePostIsVisible() { checkIsElementVisible(buttonCreatePost); }
+    public void checkIsButtonCreatePostIsInvisible() { checkIsElementInvisible(buttonCreatePost); }
+
+    public void checkIsButtonMyProfileVisible() { checkIsElementVisible(buttomMyProfile); }
+    public void checkIsButtonMyProfileInvisible() { checkIsElementInvisible(buttomMyProfile); }
+
+    public void checkIsButtonChatVisible() { checkIsElementVisible(buttonChat); }
+    public void checkIsButtonChatInvisible() { checkIsElementInvisible(buttonChat); }
+
+    public void checkIsButtonSearchVisible() { checkIsElementVisible(buttonSearch); }
+    public void checkIsButtonSearchInvisible() { checkIsElementInvisible(buttonSearch); }
+
+    public void checkAllElementsInHeaderIsVisible() {
+        checkIsButtonSignOutVisible();
+        checkIsButtonCreatePostIsVisible();
+        checkIsButtonMyProfileVisible();
+        checkIsButtonChatVisible();
+        checkIsButtonSearchVisible();
+    }
+    public void checkAllElementsInHeaderIsInvisible() {
+        checkIsButtonSignOutInvisible();
+        checkIsButtonCreatePostIsInvisible();
+        checkIsButtonMyProfileInvisible();
+        checkIsButtonChatInvisible();
+        checkIsButtonSearchInvisible();
+    }
+
+
+
+
+    public MyProfilePage clickOnButtonMyProfile() {
         clickOnElement(buttomMyProfile);
         return new MyProfilePage(webDriver);
     }
@@ -35,10 +73,16 @@ public class HeaderForUserElement extends CommonActionsWithElements {
         clickOnElement(buttonCreatePost);
         return new CreateNewPostPage(webDriver);
     }
-    public void checkIsButtonCreatePostIsVisible() {
-        checkIsElementVisible(buttonCreatePost);
+    public LoginPage clickOnButtonSignOut() {
+        clickOnElement(buttonSignOut);
+        return new LoginPage(webDriver);
     }
 
-    public void checkIsButtonSignOutInvisible() { checkIsElementInvisible(buttonSignOut); }
+
+    public boolean isButtonSignOutVisible() {
+        return isElementVisible(buttonSignOut);
+    }
+
+
 
 }
