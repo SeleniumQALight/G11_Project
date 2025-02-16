@@ -45,7 +45,7 @@ public class PageProvider {
         }
     }
 
-    public void closeNotActualTabAndReturnOnMainTab(){
+    public void closeNotActualTabAndReturnOnMainTab() {
         String originalHandle = webDriver.getWindowHandle();
         String tabToClose = null; // Зберігаємо handle вкладки для закриття
 
@@ -67,5 +67,8 @@ public class PageProvider {
         }
     }
 
+    public void refreshPage() {
+        webDriver.navigate().refresh();
+    }
 
 }
