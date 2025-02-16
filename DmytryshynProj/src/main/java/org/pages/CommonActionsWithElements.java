@@ -165,10 +165,51 @@ public class CommonActionsWithElements {
     }
 
     // open new tab using JS
-    protected void openNewTab() {
+    public void openNewTab() {
         try {
             ((JavascriptExecutor) webDriver).executeScript("window.open()");
             logger.info("New tab was opened");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    // switch to new tab
+    public void switchToNewTab() {
+        try {
+            webDriverWait10.until(ExpectedConditions.numberOfWindowsToBe(2));
+            webDriver.switchTo().window((String) webDriver.getWindowHandles().toArray()[1]);
+            logger.info("Switched to new tab");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    // switch to main tab
+    public void switchToMainTab() {
+        try {
+            webDriver.switchTo().window((String) webDriver.getWindowHandles().toArray()[0]);
+            logger.info("Switched to main tab");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    // close current tab
+    public void closeCurrentTab() {
+        try {
+            webDriver.close();
+            logger.info("Current tab was closed");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    // refresh page
+    public void refreshPage() {
+        try {
+            webDriver.navigate().refresh();
+            logger.info("Page was refreshed");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
