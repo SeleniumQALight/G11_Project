@@ -23,6 +23,15 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
     private WebElement buttonDeletePost;
 
+    @FindBy(xpath = "//*[@data-icon='edit']")
+    private WebElement buttonEditPost;
+
+    @FindBy(xpath = "//input[@name='title']")
+    private WebElement inputTitle;
+
+    @FindBy(xpath = "//button[text()='Save Updates']")
+    private WebElement buttonSaveEditedPost;
+
     private String locatorForTextThisPostWasWritten  = "//*[contains(text(),'%s')]";
 
     public HeaderForUserElements getHeaderElement() {
@@ -55,6 +64,21 @@ public class PostPage extends ParentPage {
     public PostPage checkTextThisPostWasWrittenIsVisible(String text) {
     checkIsElementVisible(String.format(locatorForTextThisPostWasWritten, text));
         //TODO
+        return this;
+    }
+
+    public PostPage clickOnEditPostButton() {
+        clickOnElement(buttonEditPost);
+        return this;
+    }
+
+    public PostPage enterTextIntoInputTitle(String CHANGED_POST_TITLE) {
+        clearAndEnterTextIntoElement(inputTitle, CHANGED_POST_TITLE);
+        return this;
+    }
+
+    public PostPage clickOnSaveEditedPostButton() {
+        clickOnElement(buttonSaveEditedPost);
         return this;
     }
 }
