@@ -9,7 +9,7 @@ import static org.data.TestData.VALID_PASSWORD;
 public class LoginTestWithPageObject extends BaseTest {
 
     @Test
-    public void T0001_validLogin() {
+    public void T0001_validLoginTest() {
         pageProvider.getLoginPage()
                 .openPage()
                 .enterTextIntoInputLogin(VALID_LOGIN)
@@ -31,7 +31,7 @@ public class LoginTestWithPageObject extends BaseTest {
     }
 
     @Test
-    public void T0002_invalidLogin() {
+    public void T0002_invalidLoginTest() {
         pageProvider.getLoginPage()
                 .openPage()
                 .enterTextIntoInputLogin("invalidLogin")
@@ -45,5 +45,75 @@ public class LoginTestWithPageObject extends BaseTest {
                 .checkIsButtonSignInVisible()
         ;
     }
+
+    @Test
+    public void T0004_validSignOut() {
+        pageProvider.getLoginPage()
+                .openLoginPageAndFillLoginFormWithValidCred()
+                .checkIsRedirectToHomePage()
+                .getHeaderForUserElement()
+                .checkIsButtonCreatePostVisible()
+                .checkIsButtonMyProfileVisible()
+                .checkIsButtonSearchIsVisible()
+                .checkIsButtonChatIsVisible();
+        pageProvider.getHomePage().getHeaderForUserElement()
+                .clickOnSignOutButton()
+                .checkIsRedirectToLoginPage();
+        pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonSignOutInvisible();
+        pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonCreatePostInvisible();
+        pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonMyProfileInvisible();
+        pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonSearchInvisible();
+        pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonChatInvisible();
+    }
+
+    @Test
+    public void TC006_stayLoggedInNewTabTest() {
+        pageProvider.getLoginPage()
+                .openLoginPageAndFillLoginFormWithValidCred()
+                .checkIsRedirectToHomePage();
+
+        pageProvider.getHomePage().openNewTab();
+        pageProvider.getLoginPage().switchToTab(1);
+        pageProvider.getLoginPage().openPage();
+        pageProvider.getHomePage().checkIsRedirectToHomePage();
+
+        pageProvider.getHomePage().switchToTab(0);
+        pageProvider.getHomePage().checkIsRedirectToHomePage();
+
+        pageProvider.getHomePage().switchToTab(1);
+        pageProvider.getHomePage().closeCurrentTab();
+
+        pageProvider.getHomePage().switchToTab(0);
+        pageProvider.getHomePage().checkIsRedirectToHomePage();
+
+    }
+
+    @Test
+    public void TC007_inputFieldsAreClearedAfterRefreshTest() {
+        pageProvider.getLoginPage()
+                .openPage()
+                .enterTextIntoInputLogin(VALID_LOGIN)
+                .enterTextIntoInputPassword(VALID_PASSWORD)
+                .refreshPage();
+        pageProvider.getLoginPage()
+                .clickOnButtonSignIn()
+                .getHeaderForUserElement()
+                .checkIsButtonSignOutInvisible();
+    }
+
+    @Test
+    public void TC009_validLoginWithTabAndEnterTest() {
+        pageProvider.getLoginPage()
+                .openPage()
+                .pressTabButton();
+        pageProvider.getLoginPage().pressTabButton();
+        pageProvider.getLoginPage().
+                sendKeysUsingActions(VALID_LOGIN);
+        pageProvider.getLoginPage().pressTabButton();
+        pageProvider.getLoginPage().sendKeysUsingActions(VALID_PASSWORD);
+        pageProvider.getLoginPage().pressEnterButton();
+        pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonSignOutVisible();
+    }
+
 
 }

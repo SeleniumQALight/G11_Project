@@ -14,7 +14,13 @@ public class PostPage extends ParrentPage {
     @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
     private WebElement buttonDeletePost;
 
+    @FindBy(xpath = "//a[@data-original-title=\"Edit\"]")
+    private WebElement editPostButton;
+
     private String locatorForTextThisPostWasWritten = "//*[contains(text(),'%s')]";
+
+    @FindBy(xpath = "//*[text()='Is this post unique? : yes']")
+    private WebElement postIsUnique;
 
     public PostPage(WebDriver webDriver) {
         super(webDriver);
@@ -49,8 +55,18 @@ public class PostPage extends ParrentPage {
         return new MyProfilePage(webDriver);
     }
 
+    public EditPostPage clickOnEditPostButton() {
+        clickOnElement(editPostButton, "Edit post button");
+        return new EditPostPage(webDriver);
+    }
+
     public PostPage checkTextThisPostWasWrittenIsVisible(String text) {
         checkIsElementVisible(String.format(locatorForTextThisPostWasWritten, text));
+        return this;
+    }
+
+    public PostPage checkIsPostIsUnique() {
+        checkIsElementVisible(postIsUnique);
         return this;
     }
 }

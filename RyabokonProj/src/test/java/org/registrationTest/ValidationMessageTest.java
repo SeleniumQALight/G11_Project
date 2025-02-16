@@ -1,23 +1,33 @@
 package org.registrationTest;
 
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.baseTest.BaseTest;
 import org.data.RegistrationValidationMessages;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
-import static org.data.RegistrationValidationMessages.SEMICOLON;
+import static org.data.RegistrationValidationMessages.*;
 
+@RunWith(JUnitParamsRunner.class)
 public class ValidationMessageTest extends BaseTest {
+@Test
+@Parameters(method = "parametersForValidationMessagesTest")
 
-    @Test
-    public void TC023_ValidationMessageTest() {
+    public void TC023_ValidationMessageTest(String userName, String email, String password, String expectedMessages) {
         pageProvider.getLoginPage().openPage();
         pageProvider.getLoginPage().openPage()
-                .enterTextIntoRegistrationUsernameField("tr")
-                .enterTextIntoRegistrationEmailField("tr")
-                .enterTextIntoRegistrationPasswordField("tr")
-                .checkErrorsMessages(RegistrationValidationMessages.ERROR_USERNAME
-                + SEMICOLON + RegistrationValidationMessages.ERROR_EMAIL
-                + SEMICOLON + RegistrationValidationMessages.ERROR_PASSWORD)
+                .enterTextIntoRegistrationUsernameField(userName)
+                .enterTextIntoRegistrationEmailField(email)
+                .enterTextIntoRegistrationPasswordField(password)
+                .checkErrorsMessages(expectedMessages)
                 ;
     }
+    public Object[][] parametersForValidationMessagesTest() {
+        return new Object[][]{
+                {"tr", "tr","tr", ERROR_USERNAME + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
+                {"tr", "tr","tr", ERROR_USERNAME + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
+
+        };
 }
+    }

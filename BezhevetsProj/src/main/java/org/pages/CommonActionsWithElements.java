@@ -3,18 +3,28 @@ package org.pages;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.utils.ConfigProvider;
+
+import java.time.Duration;
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
     private Logger logger = Logger.getLogger(getClass());
+    protected WebDriverWait webDriverWait_10, webDriverWait_15;
 
     public CommonActionsWithElements(WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this); //ініціалізує елементи описані FindBy
+        webDriverWait_10 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
+        webDriverWait_15 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT()));
     }
 
     //method for select visible text in DropDown
@@ -40,7 +50,6 @@ public class CommonActionsWithElements {
     }
 
 
-
     protected void clearAndEnterTextToElement(WebElement webElement, String text) {
         try {
             webElement.clear();
@@ -63,6 +72,7 @@ public class CommonActionsWithElements {
 
     protected void clickOnElement(WebElement webElement) {
         try {
+            webDriverWait_10.until(ExpectedConditions.elementToBeClickable(webElement));
             String elementName = getElementName(webElement);
             webElement.click();
             logger.info(elementName + " Element was clicked");
@@ -70,10 +80,12 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
+
     protected void clickOnElement(WebElement webElement, String elementName) {
         try {
+            webDriverWait_10.until(ExpectedConditions.elementToBeClickable(webElement));
             webElement.click();
-            logger.info(elementName + " Element was clicked");
+            logger.info(elementName + " element was clicked");
         } catch (Exception e) {
             logger.error("Can not work with element " + elementName);
             printErrorAndStopTest(e);
@@ -112,14 +124,79 @@ public class CommonActionsWithElements {
         Assert.assertTrue("Element is not visible", isElementVisible(locator));
     }
 
+    protected void checkIsElementNotVisible(WebElement webElement) {
+        Assert.assertFalse("Element is visible", isElementVisible(webElement));
+    }
+
     //checkTextInElement
     protected void checkTextInElement(WebElement webElement, String text) {
         Assert.assertEquals("Text in element " + getElementName(webElement) + " is not expected", text, webElement.getText());
         logger.info("Text in element " + getElementName(webElement) + " is expected");
     }
 
+    protected void acceptAlert() {
+        try {
+            webDriverWait_10.until(ExpectedConditions.alertIsPresent());
+            webDriver.switchTo().alert().accept();
+            logger.info("Alert was accepted");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void scrollToElement(WebElement webElement) {
+        try {
+            Actions actions = new Actions(webDriver);
+            actions.moveToElement(webElement);
+            actions.perform();
+            logger.info("Scrolled to element " + getElementName(webElement));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    //open new tab using JS
+    protected void openNewTab() {
+        try {
+            ((JavascriptExecutor) webDriver).executeScript("window.open()");
+            logger.info("New tab was opened");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+
     private void printErrorAndStopTest(Exception e) {
         logger.error("Can not work with element " + e);
         Assert.fail("Can't work with element " + e);
     }
+
+    protected void setCheckboxAsChecked(WebElement webElement) {
+        if (!webElement.isSelected()) {
+            clickOnElement(webElement, "Unique post checkbox");
+        } else {
+            logger.info("Checkbox is already checked");
+        }
+    }
+
+    protected void setCheckboxAsUnchecked(WebElement webElement) {
+        if (webElement.isSelected()) {
+            clickOnElement(webElement, "Unique post checkbox");
+        } else {
+            logger.info("Checkbox is already unchecked");
+        }
+    }
+
+    protected void setCheckboxState(WebElement webElement, String state) {
+        if (state.equalsIgnoreCase("check")) {
+            setCheckboxAsChecked(webElement);
+        } else if (state.equalsIgnoreCase("uncheck")) {
+            setCheckboxAsUnchecked(webElement);
+        } else {
+            logger.error("State should be 'check' or 'uncheck'");
+            Assert.fail("State should be 'check' or 'uncheck'");
+        }
+    }
+
+
 }

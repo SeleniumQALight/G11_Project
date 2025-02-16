@@ -13,6 +13,7 @@ public class PostPage extends ParentPage {
     private WebElement buttonDeletePost;
 
     private String locatorForTextThisPostWasWritten = "//*[contains(text(),'%s')]";
+    private String locatorForTextIsThisPostUnique = "//*[contains(text(),'%s')]";
 
 
     public PostPage(WebDriver webDriver) {
@@ -51,6 +52,11 @@ public class PostPage extends ParentPage {
 
     public PostPage checkTextThisPostWasWrittenIsVisible(String text) {
         checkIsElementVisible(String.format(locatorForTextThisPostWasWritten, text));
+        return this;
+    }
+
+    public PostPage checkTextIsThisPostUnique(String text) {
+        checkIsElementVisible(String.format(locatorForTextIsThisPostUnique, text));
         return this;
     }
 }

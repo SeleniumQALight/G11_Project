@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.utils.Utils_Custom;
 
 import java.util.List;
 
@@ -118,6 +119,8 @@ public class LoginPage extends ParentPage {
         String[] errorsArray = expectedErrors.split(RegistrationValidationMessages.SEMICOLON);
 
         webDriverWait_10.until(ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorMessagesLocator), errorsArray.length));
+
+        Utils_Custom.waitABit(1);
 
         Assert.assertEquals("Number of Messages", errorsArray.length, lsitOfActualMessages.size());
 

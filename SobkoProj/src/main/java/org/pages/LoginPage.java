@@ -5,6 +5,7 @@ import org.assertj.core.api.SoftAssertions;
 import org.data.RegistrationValidationMessages;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,7 +36,7 @@ public class LoginPage extends ParentPage {
     private WebElement inputUserEmailRegistrationForm;
     @FindBy(xpath = "//input[@placeholder='Create a password']")
     private WebElement inputUserPasswordRegistrationForm;
-   final static String listErrorsMessagesLocator = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
+    final static String listErrorsMessagesLocator = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
     @FindBy(xpath = listErrorsMessagesLocator)
     private List<WebElement> listOfActualMessages;
 
@@ -50,7 +51,7 @@ public class LoginPage extends ParentPage {
     }
 
     public LoginPage openPage() {
-        String baseUrl = "https://aqa-complexapp.onrender.com/";
+
         webdriver.get(baseUrl);
         logger.info("Login Page was opened url " + baseUrl);
         return this;
@@ -129,7 +130,7 @@ public class LoginPage extends ParentPage {
                 , messagesArray.length));
         Assert.assertEquals("Number of messages", messagesArray.length, listOfActualMessages.size());
 
-        SoftAssertions  softAssertions = new SoftAssertions();
+        SoftAssertions softAssertions = new SoftAssertions();
         for (int i = 0; i < messagesArray.length; i++) {
             softAssertions.assertThat(listOfActualMessages.get(i).getText())
                     .as("Message number " + i)
@@ -138,6 +139,38 @@ public class LoginPage extends ParentPage {
         }
         softAssertions.assertAll();
         return this;
+    }
+    public HomePage useTabAndEnterButtonsToSignUpUser(String login, String email, String password) {
+        openPage();
+        pressTabUntilElement(inputUserNameRegistrationForm);
+        this.enterTextIntoRegistrationNameField(login);
+        pressTabUntilElement(inputUserEmailRegistrationForm);
+        this.enterTextIntoRegistrationEmailField(email);
+        pressTabUntilElement(inputUserPasswordRegistrationForm);
+        this.enterTextIntoRegistrationPasswordField(password);
+        pressButton(Keys.ENTER);
+        return new HomePage(webdriver);
+    }
+
+    public HomePage useTabAndEnterToSetCredentialsAndLogin(String login, String password) {
+        openPage();
+        pressTabUntilElement(inputUserName);
+        this.enterTextIntoInputLogin(login);
+        pressTabUntilElement(inputPassword);
+        this.enterTextIntoInputPassword(password);
+        pressButton(Keys.ENTER);
+        return new HomePage(webdriver);
+    }
+
+    private void pressTabUntilElement(WebElement webElement) {
+        int count = 0;
+        while (!webElement.equals(webdriver.switchTo().activeElement())) {
+            pressButton(Keys.TAB);
+            if (++count > 5) {
+                Assert.fail("Element not found");
+                break;
+            }
+        }
     }
 }
 

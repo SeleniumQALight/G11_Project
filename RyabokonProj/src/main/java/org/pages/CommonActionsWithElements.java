@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.utils.ConfigProvider;
 
 import java.time.Duration;
 
@@ -25,8 +26,8 @@ public class CommonActionsWithElements {
         PageFactory.initElements(webDriver, this); //initializes element described in FindBy, this allows flexibility
         //if we come form login page to home page, or login page or profile page this will return the page we need
         //and it allows us to reload the page and have an actual state of the page
-        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(10));
-        webDriverWait_15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        webDriverWait10 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_EXPLICIT_WAIT_LOW()));
+        webDriverWait_15 = new WebDriverWait(webDriver, Duration.ofSeconds(ConfigProvider.configProperties.TIME_FOR_DEFAULT_WAIT()));
     }
 
     // method for select visible text in dropdown
@@ -120,14 +121,14 @@ public class CommonActionsWithElements {
             }
             return state;
         } catch (Exception e) {
-            logger.info("Element either is not found");
+            logger.info(getElementName(webElement) + "Element is not found");
             return false;
         }
     }
 
     //check if the element is visible
     protected void checkIsElementVisible(WebElement webElement) {
-        Assert.assertTrue(getElementName(webElement) + "Element is not visible", isElementVisible(webElement));
+        Assert.assertTrue(getElementName(webElement) + " Element is not visible", isElementVisible(webElement));
     }
 
     protected void checkIsElementVisible(String locator) {
@@ -176,8 +177,37 @@ public class CommonActionsWithElements {
     private void printErrorAndStopTest(Exception e) {
         logger.error("Cannot work with element " + e);
         Assert.fail("Cannot work with element " + e);
+
     }
 
+    public void selectCheckBox(WebElement checkbox) {
+        if (!checkbox.isSelected()) {
+            clickOnElement(checkbox);
+            logger.info("Checkbox is selected");
+        } else {
+            logger.info("Checkbox was already selected");
+
+        }
+    }
+
+    public void unselectCheckbox(WebElement checkbox) {
+        if (checkbox.isSelected()) {
+            clickOnElement(checkbox);
+            logger.info("Checkbox is unselected");
+        } else {
+            logger.info("Checkbox was already unselected");
+        }
+    }
+
+    public void setCheckboxState(WebElement checkbox, String state) {
+        if (state.equals("check")) {
+            selectCheckBox(checkbox);
+        } else if (state.equals("uncheck")) {
+            unselectCheckbox(checkbox);
+        } else {
+            logger.error("Invalid state: " + state);
+        }
+    }
 }
 
 

@@ -10,10 +10,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.utils.Utils_Custom;
 
 import java.util.List;
 
-public class LoginPage extends ParentPage{
+public class LoginPage extends ParentPage {
 
     private Logger logger = Logger.getLogger(getClass());
     @FindBy(xpath = ".//input[@placeholder='Username']")
@@ -38,6 +39,12 @@ public class LoginPage extends ParentPage{
     @FindBy(xpath = listErrorMessagesLocator)
     private List<WebElement> listOfActualMessages;
 
+    @FindBy(xpath = ".//div[@class = 'alert alert-danger text-center' ]")
+    private WebElement messageInvalidLoginOrPassword;
+
+    //@FindBy(xpath = ".//input[@placeholder='Username']")
+   // private WebElement inputLogin;
+
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -51,7 +58,7 @@ public class LoginPage extends ParentPage{
 
         webDriver.get(baseUrl);
         logger.info("Login Page was opened with url " + baseUrl);
-return this; //returning LoginPage
+        return this; //returning LoginPage
     }
 
     public LoginPage enterTextIntoInputLogin(String login) {
@@ -60,16 +67,16 @@ return this; //returning LoginPage
         inputUserName.sendKeys(login);
         logger.info(login + "was input UserName");*  !!!!!!!! we have described it in @FindBy*/
         clearAndEnterTextIntoElement(inputUserName, login);
-return this;
+        return this;
 
     }
 
-    public LoginPage enterTextIntoInputPassword(String password){
+    public LoginPage enterTextIntoInputPassword(String password) {
         clearAndEnterTextIntoElement(inputPassword, password);
         return this;
     }
 
-    public void clickOnButtonSignIn(){
+    public void clickOnButtonSignIn() {
         //buttonSignIn.click(); ** before we have created method CommonActionsWithElements
 
         clickOnElement(buttonSignIn);
@@ -87,10 +94,12 @@ return this;
         clearAndEnterTextIntoElement(inputUserNameRegistrationForm, login);
         return this;
     }
+
     public LoginPage enterTextIntoRegistrationEmailField(String email) {
         clearAndEnterTextIntoElement(inputEmailRegistrationForm, email);
         return this;
     }
+
     public LoginPage enterTextIntoRegistrationPasswordField(String password) {
         clearAndEnterTextIntoElement(inputPasswordRegistrationForm, password);
         return this;
@@ -101,8 +110,9 @@ return this;
         String[] messagesArray = expectedErrors.split(RegistrationValidationMessages.SEMICOLON);
 
         webDriverWait10.until((ExpectedConditions.numberOfElementsToBe(By.xpath(listErrorMessagesLocator), messagesArray.length)));
+        Utils_Custom.waitABit(1);
 
-        Assert.assertEquals("Number of Messages",messagesArray.length, listOfActualMessages.size());
+        Assert.assertEquals("Number of Messages", messagesArray.length, listOfActualMessages.size());
         SoftAssertions softAssertions = new SoftAssertions();
         for (int i = 0; i < messagesArray.length; i++) {
             softAssertions.assertThat(listOfActualMessages.get(i).getText())
@@ -112,5 +122,18 @@ return this;
         }
         softAssertions.assertAll(); //відразу пишeмо після methood SoftAssertions softAssertions = new SoftAssertions();
         return this;
+    }
+
+    public boolean checkIfMessageInvalidLoginPasswordVisible() {
+        return isElementVisible(messageInvalidLoginOrPassword);
+    }
+
+    public void checkIsInputLoginVisible() {
+        checkIsElementVisible(inputUserName);
+    }
+
+    public void checkIsInputPasswordVisible() {
+        checkIsElementVisible(inputPassword);
+
     }
 }
