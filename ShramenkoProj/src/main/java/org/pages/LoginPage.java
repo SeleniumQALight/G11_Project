@@ -167,4 +167,13 @@ public class LoginPage extends ParentPage {
 
         return this;
     }
+
+    public void enterLoginAndPasswordUsingTabAndEnter(){
+        pressTab();
+        pressTab();
+        enterText("qaauto");
+        pressTab();
+        enterText("123456qwerty");
+        pressEnter();
+    }
 }
