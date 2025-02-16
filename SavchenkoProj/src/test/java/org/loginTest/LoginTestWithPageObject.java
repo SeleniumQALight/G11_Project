@@ -18,7 +18,7 @@ public class LoginTestWithPageObject extends BaseTest {
                 .enterTextIntoInputPassword(TestData.INVALID_PASSWORD)
                 .clickOnButtonSignIn();
 
-        pageProvider.getLoginPage().checkIsButtonSignInVisible()
+        pageProvider.getLoginPage().checkIsUsernameInputIsVisible()
                 .checkIsInvalidLoginOrPasswordMessageVisible()
         ;
     }
@@ -72,15 +72,15 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getLoginPage().enterTextIntoInputLogin(VALID_LOGIN);
         pageProvider.getLoginPage().enterTextIntoInputPassword(VALID_PASSWORD);
         pageProvider.getLoginPage().clickOnButtonSignIn();
-        pageProvider.getHomePage().getHeaderElement().isButtonSignOutVisible();
+        pageProvider.getHomePage().getHeaderForUserElement().isButtonSignOutVisible();
         pageProvider.getPostPage().openNewTab();
         pageProvider.getPostPage().switchToNewTab();
         pageProvider.getLoginPage().openPage();
-        pageProvider.getHomePage().getHeaderElement().isButtonSignOutVisible();
+        pageProvider.getHomePage().getHeaderForUserElement().isButtonSignOutVisible();
         pageProvider.getPostPage().switchToFirstTab();
-        pageProvider.getHomePage().getHeaderElement().isButtonSignOutVisible();
+        pageProvider.getHomePage().getHeaderForUserElement().isButtonSignOutVisible();
         pageProvider.getPostPage().closeCurrentTab();
-        pageProvider.getHomePage().getHeaderElement().isButtonSignOutVisible();
+        pageProvider.getHomePage().getHeaderForUserElement().isButtonSignOutVisible();
     }
 
     @Test
@@ -90,7 +90,7 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getLoginPage().enterTextIntoInputPassword("123456qwerty");
         pageProvider.getLoginPage().refreshPage();
         pageProvider.getLoginPage().clickOnButtonSignIn();
-        boolean isSignOutVisible = pageProvider.getHomePage().getHeaderElement().isButtonSignOutVisible();
+        boolean isSignOutVisible = pageProvider.getHomePage().getHeaderForUserElement().isButtonSignOutVisible();
         Assert.assertFalse("Sign Out button should not be visible after refresh", isSignOutVisible);
     }
 

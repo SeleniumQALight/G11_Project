@@ -93,9 +93,7 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected void checkIsElementInvisible(WebElement webElement) {
-        Assert.assertFalse("Element is visible", isElementVisible(webElement));
-    }
+
 
     protected boolean isElementVisible(String locator) {
         try {
