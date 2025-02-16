@@ -68,7 +68,7 @@ public class ExcelDriver {
 	 * are String. We should take care of value's type by himself when will use
 	 * data values in the test.
 	 */
-	public static Map getDataRow(String dataFileName, String sheetName) throws IOException {
+	public static Map getDataRow(String dataFileName, String sheetName, int i) throws IOException {
 		Map<String, String> testData = new HashMap<>();
 		// Create stream for reading from file
 		InputStream input = new FileInputStream(dataFileName);
