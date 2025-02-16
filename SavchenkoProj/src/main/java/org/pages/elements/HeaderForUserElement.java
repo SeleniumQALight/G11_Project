@@ -28,6 +28,10 @@ public class HeaderForUserElement extends CommonActionsWithElements {
         checkIsElementVisible(buttonSignOut);
     }
 
+    public void checkIsButtonSignOutInvisible() {
+        checkIsElementInvisible(buttonSignOut);
+    }
+
 
     public CreateNewPostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);

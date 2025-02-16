@@ -5,7 +5,6 @@ import org.data.TestData;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.pages.CommonActionsWithElements;
 
 import static org.data.TestData.VALID_LOGIN;
 import static org.data.TestData.VALID_PASSWORD;
@@ -62,7 +61,7 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getHomePage().getHeaderElement().isButtonSignOutVisible();
         pageProvider.getPostPage().switchToFirstTab();
         pageProvider.getHomePage().getHeaderElement().isButtonSignOutVisible();
-        pageProvider.getPostPage().closeNewTab();
+        pageProvider.getPostPage().closeCurrentTab();
         pageProvider.getHomePage().getHeaderElement().isButtonSignOutVisible();
     }
 

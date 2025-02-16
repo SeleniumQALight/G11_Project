@@ -172,6 +172,11 @@ public class CommonActionsWithElements {
         Assert.fail("Cannot work with element " + e);
     }
 
+    protected void checkIsElementInvisible(WebElement webElement) {
+        webDriverWait_15.until(ExpectedConditions.invisibilityOf(webElement));
+        Assert.assertFalse("Element is visible", isElementVisible(webElement));
+    }
+
 
     protected void selectCheckbox(WebElement webElement) {
         if (webElement.isSelected() == false) {
@@ -202,41 +207,5 @@ public class CommonActionsWithElements {
     }
 
 
-    public void switchToNewTab() {
-        try {
-            for (String winHandle : webDriver.getWindowHandles()) {
-                webDriver.switchTo().window(winHandle);
-            }
-            logger.info("Switched to new tab");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
 
-    public void switchToFirstTab() {
-        try {
-            webDriver.switchTo().defaultContent();
-            logger.info("Switched to first tab");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
-
-    public void closeNewTab() {
-        try {
-            webDriver.close();
-            logger.info("New tab was closed");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
-
-    public void refreshPage() {
-        try {
-            webDriver.navigate().refresh();
-            logger.info("Page was refreshed");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
 }
