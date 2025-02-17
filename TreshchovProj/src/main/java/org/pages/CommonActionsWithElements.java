@@ -204,13 +204,13 @@ public class CommonActionsWithElements {
     }
 
     protected void checkBoxSelect(WebElement element, String state){
-        boolean tempState = element.isSelected();
         if (state.equals("check")){
             checkBoxCheck(element);
         } else if (state.equals("uncheck")){
             checkBoxUncheck(element);
         } else {
-            logger.info("State is not correct");
+            Assert.fail("State is not correct");
+
         }
     }
 

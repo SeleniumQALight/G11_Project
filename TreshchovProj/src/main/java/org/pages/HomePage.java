@@ -6,11 +6,18 @@ import org.openqa.selenium.By;
 import org.apache.log4j.Logger;
 import org.data.TestData;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.pages.elements.HeaderForUserElement;
 
 public class HomePage extends ParentPage {
      Logger logger = Logger.getLogger(getClass());
 
+    @FindBy(xpath = "//input[@placeholder='Username']")
+    private WebElement inputUserName;
+
+    @FindBy(xpath = "//input[@placeholder='Password']")
+    private WebElement inputPassword;
 
 
     public HomePage(WebDriver webDriver) {
@@ -63,8 +70,8 @@ public class HomePage extends ParentPage {
     }
 
     public HomePage checkIsLoginPasswordFieldVisible(){
-        Assert.assertTrue("Login field is visible", isElementVisible(webDriver.findElement(By.xpath("//input[@placeholder='Username']"))));
-        Assert.assertTrue("Password field is visible", isElementVisible(webDriver.findElement(By.xpath("//input[@placeholder='Password']"))));
+        Assert.assertTrue("Login field is visible", isElementVisible(inputUserName));
+        Assert.assertTrue("Password field is visible", isElementVisible(inputPassword));
         return this;
     }
 
