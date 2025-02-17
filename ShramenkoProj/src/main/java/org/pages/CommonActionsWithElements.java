@@ -12,6 +12,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.utils.ConfigProvider;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Actions;
 
 import java.time.Duration;
 
@@ -213,4 +215,23 @@ public class CommonActionsWithElements {
         }
     }
 
+    //дії з Tab and Enter buttons:
+
+    protected void pressTab() {
+        Actions actions = new Actions(webDriver);
+        actions.sendKeys(Keys.TAB).perform();
+        logger.info("TAB");
+    }
+
+    protected void pressEnter() {
+        Actions actions = new Actions(webDriver);
+        actions.sendKeys(Keys.ENTER).perform();
+        logger.info("ENTER");
+    }
+
+    protected void enterText(String text) {
+        Actions actions = new Actions(webDriver);
+        actions.sendKeys(text).perform();
+        logger.info("Text " + text + " is entering");
+    }
 }
