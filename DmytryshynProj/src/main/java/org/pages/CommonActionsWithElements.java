@@ -3,7 +3,6 @@ package org.pages;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -164,58 +163,7 @@ public class CommonActionsWithElements {
         }
     }
 
-    // open new tab using JS
-    public void openNewTab() {
-        try {
-            ((JavascriptExecutor) webDriver).executeScript("window.open()");
-            logger.info("New tab was opened");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
-
-    // switch to new tab
-    public void switchToNewTab() {
-        try {
-            webDriverWait10.until(ExpectedConditions.numberOfWindowsToBe(2));
-            webDriver.switchTo().window((String) webDriver.getWindowHandles().toArray()[1]);
-            logger.info("Switched to new tab");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
-
-    // switch to main tab
-    public void switchToMainTab() {
-        try {
-            webDriver.switchTo().window((String) webDriver.getWindowHandles().toArray()[0]);
-            logger.info("Switched to main tab");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
-
-    // close current tab
-    public void closeCurrentTab() {
-        try {
-            webDriver.close();
-            logger.info("Current tab was closed");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
-
-    // refresh page
-    public void refreshPage() {
-        try {
-            webDriver.navigate().refresh();
-            logger.info("Page was refreshed");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
-
-    private void printErrorAndStopTest(Exception e) {
+    public void printErrorAndStopTest(Exception e) {
         logger.error("Cannot work with element " + e);
         Assert.fail("Cannot work with element " + e);
     }

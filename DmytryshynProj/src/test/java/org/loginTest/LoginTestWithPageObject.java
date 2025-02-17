@@ -66,10 +66,7 @@ public class LoginTestWithPageObject extends BaseTest {
                 .checkIsButtonSignInVisible()
                 .checkIsInputUserNameFieldVisible()
                 .checkIsInputPasswordFieldVisible();
-
     }
-
-
 
     @Test
     public void T0006_StayLoggedInNewTab() {
@@ -82,7 +79,7 @@ public class LoginTestWithPageObject extends BaseTest {
                 .checkIsButtonSingOutVisible();
 
         pageProvider.getHomePage().openNewTab();
-        pageProvider.getLoginPage().switchToNewTab();
+        pageProvider.getLoginPage().switchToNewTab(1);
         pageProvider.getLoginPage().openPage();
         pageProvider.getHomePage().getHeaderElement()
                 .checkIsButtonSingOutVisible();
@@ -91,7 +88,7 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getHomePage().getHeaderElement()
                 .checkIsButtonSingOutVisible();
 
-        pageProvider.getHomePage().switchToNewTab();
+        pageProvider.getHomePage().switchToNewTab(1);
         pageProvider.getHomePage().closeCurrentTab();
         pageProvider.getHomePage().switchToMainTab();
         pageProvider.getHomePage().getHeaderElement()
