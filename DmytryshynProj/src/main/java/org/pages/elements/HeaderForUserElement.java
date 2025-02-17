@@ -5,17 +5,24 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.pages.CommonActionsWithElements;
 import org.pages.CreateNewPostPage;
+import org.pages.LoginPage;
 import org.pages.MyProfilePage;
 
 public class HeaderForUserElement extends CommonActionsWithElements {
-    @FindBy (xpath = ".//img[@alt='My profile']")
+    @FindBy(xpath = ".//img[@alt='My profile']")
     private WebElement buttonMyProfile;
 
-    @FindBy(xpath = "//button[text()='Sign Out']")
+    @FindBy(xpath = ".//button[text()='Sign Out']")
     private WebElement buttonSignOut;
 
-    @FindBy(xpath = "//a[@class='btn btn-sm btn-success mr-2']")
+    @FindBy(xpath = ".//a[@class='btn btn-sm btn-success mr-2']")
     private WebElement buttonCreatePost;
+
+    @FindBy(xpath = ".//span[@data-original-title='Chat']")
+    private WebElement buttonChat;
+
+    @FindBy(xpath = ".//a[@data-original-title='Search']")
+    private WebElement buttonSearch;
 
     public HeaderForUserElement(WebDriver webDriver) {
         super(webDriver);
@@ -24,6 +31,11 @@ public class HeaderForUserElement extends CommonActionsWithElements {
     public MyProfilePage clickOnMyProfileButton() {
         clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
+    }
+
+    public LoginPage clickOnButtonSingOut() {
+        clickOnElement(buttonSignOut);
+        return new LoginPage(webDriver);
     }
 
     public HeaderForUserElement checkIsButtonSingOutVisible() {
@@ -51,4 +63,42 @@ public class HeaderForUserElement extends CommonActionsWithElements {
     public boolean isButtonSingOutVisible() {
         return isElementVisible(buttonSignOut);
     }
+
+    public HeaderForUserElement checkIsButtonMyProfileVisible() {
+        checkIsElementVisible(buttonMyProfile);
+        return this;
+    }
+
+    public HeaderForUserElement checkIsButtonChatVisible() {
+        checkIsElementVisible(buttonChat);
+        return this;
+    }
+
+    public HeaderForUserElement checkIsSearchVisible() {
+        checkIsElementVisible(buttonSearch);
+        return this;
+    }
+
+    public HeaderForUserElement checkIsButtonCreatePostNotVisible() {
+        checkIsElementNotVisible(buttonCreatePost);
+        return this;
+    }
+
+    public HeaderForUserElement checkIsButtonMyProfileNotVisible() {
+        checkIsElementNotVisible(buttonMyProfile);
+        return this;
+    }
+
+    public HeaderForUserElement checkIsButtonChatNotVisible() {
+        checkIsElementNotVisible(buttonChat);
+        return this;
+    }
+
+    public HeaderForUserElement checkIsSearchNotVisible() {
+        checkIsElementNotVisible(buttonSearch);
+        return this;
+    }
 }
+
+
+
