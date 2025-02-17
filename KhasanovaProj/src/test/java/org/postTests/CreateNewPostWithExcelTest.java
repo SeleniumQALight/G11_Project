@@ -17,7 +17,7 @@ import java.util.Collection;
 import java.util.Random;
 
 @RunWith(JUnitParamsRunner.class)
-public class CreatePostTestWithExcelTest extends BaseTest {
+public class CreateNewPostWithExcelTest extends BaseTest {
     Logger logger = Logger.getLogger(getClass());
     private String postTitle;
 
