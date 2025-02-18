@@ -169,4 +169,8 @@ public class CommonActionsWithElements {
 
 
 
+    protected void checkIsElementNotVisible(WebElement element) {
+        Assert.assertFalse(getElementName(element) + " Element is visible", isElementVisible(element));
+    }
+
 }
