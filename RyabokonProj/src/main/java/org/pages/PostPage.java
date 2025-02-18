@@ -23,6 +23,11 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
     private WebElement buttonDeletePost;
 
+    @FindBy(xpath = "//*[@data-icon='edit']")
+    private WebElement buttonEditPost;
+
+
+
     private String locatorForTextThisPostWasWritten  = "//*[contains(text(),'%s')]";
 
     public HeaderForUserElements getHeaderElement() {
@@ -57,4 +62,13 @@ public class PostPage extends ParentPage {
         //TODO
         return this;
     }
+
+    public PostPage clickOnEditPostButton() {
+        clickOnElement(buttonEditPost);
+        return this;
+    }
+
+
+
+
 }

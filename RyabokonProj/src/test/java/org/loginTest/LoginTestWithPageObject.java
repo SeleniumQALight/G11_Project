@@ -51,9 +51,5 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutNotVisible();
         pageProvider.getLoginPage().checkIsInputLoginVisible();
         pageProvider.getLoginPage().checkIsInputPasswordVisible();
-
-
-
-
     }
 }

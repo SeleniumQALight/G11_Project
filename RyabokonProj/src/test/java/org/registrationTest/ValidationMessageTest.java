@@ -26,7 +26,7 @@ public class ValidationMessageTest extends BaseTest {
     public Object[][] parametersForValidationMessagesTest() {
         return new Object[][]{
                 {"tr", "tr","tr", ERROR_USERNAME + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
-                {"tr", "tr","tr", ERROR_USERNAME + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
+                {"trrrr", "tr","tr",  ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
 
         };
 }
