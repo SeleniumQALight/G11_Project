@@ -28,6 +28,15 @@ public class ValidationMessageTest extends BaseTest {
                 {"ttrr", "tr", "tr", ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD}
         };
     }
+    @Test
+    public void TC024ValidationMessageTestUseTabAndEnter() {
+        pageProvider.getLoginPage().useTabAndEnterButtonsToSignUpUser("tr", "tr", "tr");
+        pageProvider.getLoginPage().checkErrorsMessages(RegistrationValidationMessages.ERROR_USERNAME
+                + RegistrationValidationMessages.SEMICOLON
+                + RegistrationValidationMessages.ERROR_EMAIL
+                + RegistrationValidationMessages.SEMICOLON
+                + RegistrationValidationMessages.ERROR_PASSWORD);
+
+    }
+
 }
-
-

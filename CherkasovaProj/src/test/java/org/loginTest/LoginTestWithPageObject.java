@@ -8,14 +8,11 @@ import static org.data.TestData.*;
 
 public class LoginTestWithPageObject extends BaseTest {
     @Test
-    public void T001_validLogin(){
+    public void T001_validLogin() {
         pageProvider.getLoginPage().openPage()
                 .enterTextIntoInputLogin(VALID_LOGIN)
                 .enterTextIntoInputPassword(VALID_PASSWORD)
                 .clickOnButtonSignIn();
-//        pageProvider.getLoginPage().enterTextIntoInputLogin(VALID_LOGIN);
-//        pageProvider.getLoginPage().enterTextIntoInputPassword(VALID_PASSWORD);
-//        pageProvider.getLoginPage().clickOnButtonSignIn();
 
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
         pageProvider.getHomePage().getHeaderElement().checkIsButtonCreatePostVisible();
@@ -38,6 +35,27 @@ public class LoginTestWithPageObject extends BaseTest {
 
 
     }
+
+
+    @Test
+    public void T003_SignOut() {
+        pageProvider.getLoginPage()
+                .openLoginPageAndFillLoginFormWithValidCred()
+        ;
+        pageProvider.getHomePage().getHeaderElement()
+                .checkAllElementsInHeaderOnHomePageVisible()
+                .clickOnButtonSignOut()
+        ;
+        pageProvider.getHomePage().getHeaderElement()
+                .checkAllElementsInHeaderOnLoginPageNotVisible()
+        ;
+        pageProvider.getLoginPage()
+                .checkAllElementsInHeaderOnLoginPageVisible()
+        ;
+
+    }
+
+
 
     @Test
     public void T003_stayLoggedAfterClosingNewTab(){

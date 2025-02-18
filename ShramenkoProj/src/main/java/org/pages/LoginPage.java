@@ -167,4 +167,34 @@ public class LoginPage extends ParentPage {
 
         return this;
     }
+
+    public void enterLoginAndPasswordUsingTabAndEnter(){
+        pressTab();
+        pressTab();
+        enterText("qaauto");
+        pressTab();
+        enterText("123456qwerty");
+        pressEnter();
+    }
+
+    public LoginPage enterTextIntoLoginWithTab(String login){
+        for (int i = 0; i < 5; i++) {
+            pressTab();
+        }
+        enterText(login);
+        return this;
+    }
+    public LoginPage enterTextIntoEmailWithTab(String email){
+        pressTab();
+        enterText(email);
+        return this;
+    }
+    public LoginPage enterTextIntoPasswordWithTabAndEnter(String pass){
+        pressTab();
+        enterText(pass);
+        pressEnter();
+        return this;
+    }
+
 }
+
