@@ -35,6 +35,7 @@ public class HeaderForUserElement extends CommonActionsWithElements {
     }
 
 
+
     public CreateNewPostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
         return new CreateNewPostPage(webDriver);
