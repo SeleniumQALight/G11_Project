@@ -38,4 +38,36 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSingOutNotVisible();
 
     }
+
+    @Test
+    public void T0004_SingOut() {
+        pageProvider.getLoginPage()
+                .openPage()
+                .enterTextIntoInputLogin(VALID_LOGIN)
+                .enterTextIntoInputPassword(VALID_PASSWORD)
+                .clickOnButtonSignIn();
+
+        pageProvider.getHomePage().getHeaderElement()
+                .checkIsButtonSingOutVisible()
+                .checkIsButtonCreatePostVisible()
+                .checkIsButtonMyProfileVisible()
+                .checkIsButtonChatVisible()
+                .checkIsSearchVisible()
+                .clickOnButtonSingOut();
+
+        pageProvider.getHomePage().getHeaderElement()
+                .checkIsButtonSingOutNotVisible()
+                .checkIsButtonCreatePostNotVisible()
+                .checkIsButtonMyProfileNotVisible()
+                .checkIsButtonChatNotVisible()
+                .checkIsSearchNotVisible();
+
+        pageProvider.getLoginPage()
+                .checkIsButtonSignInVisible()
+                .checkIsInputUserNameFieldVisible()
+                .checkIsInputPasswordFieldVisible();
+
+    }
+
+
 }
