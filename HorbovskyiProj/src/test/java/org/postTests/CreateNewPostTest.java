@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.utils.Utils_Custom;
 
 public class CreateNewPostTest extends BaseTest {
-    final String POST_TITLE = "TR003Horbovskyi" + Utils_Custom.getDateAndTimeFormatted();
+    protected static final String POST_TITLE = "TR003Horbovskyi" + Utils_Custom.getDateAndTimeFormatted();
 
     @Test
     public void TR003_createNewPost() {

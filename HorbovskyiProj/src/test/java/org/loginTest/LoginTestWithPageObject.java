@@ -41,10 +41,9 @@ public class LoginTestWithPageObject extends BaseTest {
     @Test
     public void T0003_signOut() {
         //sign in
-        pageProvider.getLoginPage().openPage()
-                .enterTextIntoInputLogin(VALID_LOGIN)
-                .enterTextIntoInputPassword(VALID_PASSWORD)
-                .clickOnButtonSignIn();
+        pageProvider.getLoginPage().
+                openLoginPageAndFillLoginFormWithValidCred()
+                .checkIsRedirectOnHomePage();
 
 // check if elements are visible:
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
@@ -65,4 +64,7 @@ public class LoginTestWithPageObject extends BaseTest {
                 .checkIsLoginInputVisible()
                 .checkIsPasswordInputVisible();
     }
+
 }
+
+
