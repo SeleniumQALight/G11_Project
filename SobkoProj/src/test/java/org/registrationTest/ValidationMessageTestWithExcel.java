@@ -18,6 +18,7 @@ import java.util.Collection;
 
 @RunWith(JUnitParamsRunner.class)
 public class ValidationMessageTestWithExcel extends BaseTest {
+
    Logger logger = Logger.getLogger(getClass());
     @Test
     @Parameters(method = "parametersForValidationMessagesTest")

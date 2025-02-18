@@ -11,11 +11,16 @@ import org.utils.ExcelSpreadsheetData;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Random;
+
 import org.junit.After;
 
 
 @RunWith(JUnitParamsRunner.class)
 public class CreateNewPostTestWithExcel extends BaseTest {
+
+    Random random = new Random();
+    int randomNumber = random.nextInt(1000);
 
     Logger logger = Logger.getLogger(getClass());
     @Test
@@ -26,7 +31,7 @@ public class CreateNewPostTestWithExcel extends BaseTest {
                 .openLoginPageAndLoginFormWithValidCreds()
                 .checkIsRedirectToHomePage()
                 .getHeaderElement().clickOnButtonCreatePost()
-                .enterTextIntoInputTitle(postTitle)
+                .enterTextIntoInputTitle(postTitle + randomNumber)
                 .selectValueInDropDownAccess(numberOfPeople)
                 .enterTextIntoInputBody(postBody)
                 .setUniquePostCheckboxState(checkboxState)
