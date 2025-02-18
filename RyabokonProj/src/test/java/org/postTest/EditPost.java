@@ -9,7 +9,7 @@ import static org.postTest.CreateNewPostTest.*;
 
 public class EditPost extends BaseTest {
 
-    final String CHANGED_POST_TITLE = "TR003 *** Ryabokon CHANGED" + Utils_Custom.getDateAndTimeFormatted();
+    final String changedPostTitle = "TR004 *** Ryabokon CHANGED" + Utils_Custom.getDateAndTimeFormatted();
 
     @Test
     public void TR004_editPost() {
@@ -18,7 +18,7 @@ public class EditPost extends BaseTest {
                 .checkIsRedirectToHomePage()
                 .getHeaderElement().clickOnButtonCreatePost()
                 .checkIsRedirectOnCreateNewPostPage()
-                .enterTextIntoInputTitle(POST_TITLE)
+                .enterTextIntoInputTitle(postTitle)
                 .enterTextIntoInputBody("Body**** of the ****post")
                 .clickOnSaveNewPostButton()
                 .checkIsRedirectOnPostPage()
@@ -27,19 +27,20 @@ public class EditPost extends BaseTest {
 
         pageProvider.getPostPage().getHeaderElement().clickOnButtonMyProfile()
                 .checkIsRedirectToProfilePage()
-                .checkPostWithTitleIsPresent(POST_TITLE, 1)
-                .clickOnPostWithTitle(POST_TITLE);
+                .checkPostWithTitleIsPresent(postTitle, 1)
+                .clickOnPostWithTitle(postTitle);
 
-        pageProvider.getPostPage().clickOnEditPostButton()
-                .enterTextIntoInputTitle(CHANGED_POST_TITLE)
+        pageProvider.getPostPage().clickOnEditPostButton();
+        pageProvider.getEditPostPage()
+                .enterTextIntoInputTitle(changedPostTitle)
                 .clickOnSaveEditedPostButton()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage("Post successfully updated.");
 
         pageProvider.getHomePage().getHeaderElement().clickOnButtonMyProfile()
                 .checkIsRedirectToProfilePage()
-                .checkPostWithTitleIsPresent(CHANGED_POST_TITLE, 1)
-                .deletePostsTillPresent(CHANGED_POST_TITLE);
+                .checkPostWithTitleIsPresent(changedPostTitle, 1)
+                .deletePostsTillPresent(changedPostTitle);
     }
 
     @After
@@ -47,8 +48,8 @@ public class EditPost extends BaseTest {
         pageProvider.getHomePage().openHomePageAndLoginIfNeeded()
                 .getHeaderElement().clickOnButtonMyProfile()
                 .checkIsRedirectToProfilePage()
-                .deletePostsTillPresent(CHANGED_POST_TITLE)
-                .deletePostsTillPresent(POST_TITLE);
+                .deletePostsTillPresent(changedPostTitle)
+                .deletePostsTillPresent(postTitle);
 
     }
 }
