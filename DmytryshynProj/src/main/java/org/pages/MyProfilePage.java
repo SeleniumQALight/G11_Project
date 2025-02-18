@@ -71,4 +71,18 @@ public class MyProfilePage extends ParentPage {
         checkIsElementVisible(successMessageDelete);
         return this;
     }
+
+    public PostPage clickOnPostWithTitle(String postTitle) {
+        List<WebElement> postsList = getPostsList(postTitle);
+        if (!postsList.isEmpty()) {
+            WebElement latestPost = postsList.get(postsList.size() - 1);
+            clickOnElement(latestPost);
+            return new PostPage(webDriver);
+        } else {
+            logger.error("Post with title " + postTitle + " not found.");
+            Assert.fail("Post with title " + postTitle + " not found.");
+            return new PostPage(webDriver);
+        }
+    }
+
 }
