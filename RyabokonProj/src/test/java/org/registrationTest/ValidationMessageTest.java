@@ -3,8 +3,10 @@ package org.registrationTest;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.baseTest.BaseTest;
+import org.categories.SmokeTestFilter;
 import org.data.RegistrationValidationMessages;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 import static org.data.RegistrationValidationMessages.*;
@@ -12,6 +14,7 @@ import static org.data.RegistrationValidationMessages.*;
 @RunWith(JUnitParamsRunner.class)
 public class ValidationMessageTest extends BaseTest {
 @Test
+@Category(SmokeTestFilter.class)
 @Parameters(method = "parametersForValidationMessagesTest")
 
     public void TC023_ValidationMessageTest(String userName, String email, String password, String expectedMessages) {
