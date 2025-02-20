@@ -27,8 +27,11 @@ public class ValidationMessageTestWithExel extends BaseTest {
                 .enterTextIntoRegistrationUserNameField(username)
                 .enterTextIntoRegistrationEmailField(email)
                 .enterTextIntoRegistrationPasswordField(password)
-                .checkErrorsMessages(expectedErrorsMessages);
+                .checkErrorsMessages(expectedErrorsMessages)
+
+
         ;
+
 
     }
 
