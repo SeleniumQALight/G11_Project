@@ -13,6 +13,7 @@ import static org.data.TestData.YES;
 
 public class CreateNewPostTest extends BaseTest {
 
+
     final String POST_TITLE = "Yurii Sobko post"+Utils_Custom.getDateAndTimeFormatted();
     @Test
     public void TR001_createNewPost() {
