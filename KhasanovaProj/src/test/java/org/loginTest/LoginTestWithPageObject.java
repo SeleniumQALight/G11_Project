@@ -11,7 +11,9 @@ import static org.data.TestData.VALID_PASSWORD;
 public class LoginTestWithPageObject extends BaseTest {
 
     @Test
+    //@Ignore - анотація для ігнорування тестів
     @Category(SmokeTestsFilter.class)
+    //LoginTestWithPageObject#T0001_validLoginTest
     public void T0001_validLoginTest() {
         pageProvider.getLoginPage()
                 .openPage()
