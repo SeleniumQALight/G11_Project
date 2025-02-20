@@ -1,8 +1,10 @@
 package org.postTests;
 
 import org.baseTest.BaseTest;
+import org.categories.SmokeTestsFilter;
 import org.junit.After;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.utils.Utils_Custom;
 
 public class CreateNewPostTest extends BaseTest {
@@ -11,6 +13,7 @@ public class CreateNewPostTest extends BaseTest {
     final String POST_TITLE = "T0003_khasanova_" + Utils_Custom.getDateAndTimeFormatted();
 
     @Test
+    @Category(SmokeTestsFilter.class)
     public void T0003_createNewPost() {
         pageProvider.getLoginPage()
                 .openLoginPageAndFillLoginFormWithValidCred()
