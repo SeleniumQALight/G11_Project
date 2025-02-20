@@ -13,7 +13,6 @@ public class CreateNewPostTest extends BaseTest {
     final String POST_TITLE = "T0003_khasanova_" + Utils_Custom.getDateAndTimeFormatted();
 
     @Test
-    @Category(SmokeTestsFilter.class)
     public void T0003_createNewPost() {
         pageProvider.getLoginPage()
                 .openLoginPageAndFillLoginFormWithValidCred()
