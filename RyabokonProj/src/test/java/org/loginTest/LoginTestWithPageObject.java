@@ -3,6 +3,7 @@ package org.loginTest;
 
 import org.baseTest.BaseTest;
 import org.categories.SmokeTestFilter;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
@@ -14,7 +15,9 @@ public class LoginTestWithPageObject extends BaseTest {
 
     // Test case for
     @Test
+    @Ignore // ignore this test instead of commenting it as we can forget it
     @Category(SmokeTestFilter.class)
+    //LoginTestWithPageObject#T001_validLogin
     public void T001_validLogin() {
 // chain method
         pageProvider.getLoginPage().openPage()
