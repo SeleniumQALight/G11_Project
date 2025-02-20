@@ -91,7 +91,7 @@ public class CommonActionsWithElements {
         }
     }
 
-    private void printErrorAndStopTest(Exception e) {
+    protected void printErrorAndStopTest(Exception e) {
         logger.error("Cannot work with element " + e);
         Assert.fail("Cannot work with element " + e);
     }
@@ -156,43 +156,6 @@ public class CommonActionsWithElements {
             actions.moveToElement(element);
             actions.perform();
             logger.info("Scrolled to element " + getElementName(element));
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
-
-    protected void openNewTab() {
-        try {
-            ((JavascriptExecutor) webDriver).executeScript("window.open()");
-            logger.info("New tab was opened");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
-
-    protected void switchToTab(int tabNumber) {
-        try {
-            webDriver.switchTo().window((String) webDriver.getWindowHandles().toArray()[tabNumber]);
-            logger.info("Switched to tab " + tabNumber);
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
-
-    protected void closeTab(int tabNumber) {
-        try {
-            webDriver.switchTo().window((String) webDriver.getWindowHandles().toArray()[tabNumber]);
-            webDriver.close();
-            logger.info("Tab with index " + tabNumber + " was closed");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
-
-    protected void refreshPage() {
-        try {
-            webDriver.navigate().refresh();
-            logger.info("Page was refreshed");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }

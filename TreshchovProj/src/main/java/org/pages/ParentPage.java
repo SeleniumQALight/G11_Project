@@ -1,10 +1,14 @@
 package org.pages;
 
+import org.apache.log4j.Logger;
 import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.utils.ConfigProvider;
 
 abstract public class ParentPage extends CommonActionsWithElements {
+    Logger logger = Logger.getLogger(getClass());
+
     String environment = System.getProperty("env", "aqa");
     // protected String baseUrl = "https://"+environment+"-complexapp.onrender.com";
     protected String baseUrl = ConfigProvider.configProperties.base_url().replace("[env]", environment);
@@ -31,4 +35,42 @@ abstract public class ParentPage extends CommonActionsWithElements {
                         "\n Actual url: " + webDriver.getCurrentUrl(),
                 webDriver.getCurrentUrl().matches(baseUrl +  getRelativeUrl()));
     }
+
+    protected void switchToTab(int tabNumber) {
+        try {
+            webDriver.switchTo().window((String) webDriver.getWindowHandles().toArray()[tabNumber]);
+            logger.info("Switched to tab " + tabNumber);
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void openNewTab() {
+        try {
+            ((JavascriptExecutor) webDriver).executeScript("window.open()");
+            logger.info("New tab was opened");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void closeTab(int tabNumber) {
+        try {
+            webDriver.switchTo().window((String) webDriver.getWindowHandles().toArray()[tabNumber]);
+            webDriver.close();
+            logger.info("Tab with index " + tabNumber + " was closed");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void refreshPage() {
+        try {
+            webDriver.navigate().refresh();
+            logger.info("Page was refreshed");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
 }

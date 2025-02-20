@@ -50,9 +50,6 @@ public class LoginPage extends ParentPage {
         return "";
     }
 
-    public HeaderForUserElement getHeaderElement() {
-        return new HeaderForUserElement(webDriver);
-    }
 
     public LoginPage openPage() {
 

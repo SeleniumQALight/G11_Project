@@ -64,7 +64,7 @@ public class HomePage extends ParentPage {
         refreshPage();
     }
 
-    public void CloseTab(int index) {
+    public void closeSelectedTab(int index) {
         closeTab(index);
     }
 

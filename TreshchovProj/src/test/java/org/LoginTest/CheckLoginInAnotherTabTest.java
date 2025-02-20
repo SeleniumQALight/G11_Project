@@ -18,7 +18,7 @@ public class CheckLoginInAnotherTabTest extends BaseTest {
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
 
         pageProvider.getLoginPage().openNewTabAndOpenHomePage().getHeaderElement().checkIsButtonSignOutVisible();
-        pageProvider.getHomePage().switchToSelectedTabAndCheckButtonSignOut(0).CloseTab(1);
+        pageProvider.getHomePage().switchToSelectedTabAndCheckButtonSignOut(0).closeSelectedTab(1);
         pageProvider.getHomePage().switchToSelectedTabAndCheckButtonSignOut(0);
 
     }
