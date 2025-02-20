@@ -11,6 +11,7 @@ import static org.data.TestData.*;
 public class LoginTestWithPageObject extends BaseTest {
     @Test
     @Category(SmokeTestsFilter.class)
+//    LoginTestWithPageObject#T0001_validLogin
     public void T0001_validLogin() {
         pageProvider.getLoginPage()
                 .openPage()
