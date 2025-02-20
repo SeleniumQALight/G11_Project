@@ -64,7 +64,7 @@ public class HeaderForUserElement extends CommonActionsWithElements {
 
 
 
-    public MyProfilePage clickOnButtonMyProfile() {
+    public MyProfilePage clickOnButtonMyProfile(){
         clickOnElement(buttomMyProfile);
         return new MyProfilePage(webDriver);
     }

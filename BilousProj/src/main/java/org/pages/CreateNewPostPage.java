@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.pages.elements.ElementsForCreateEditPost;
-import org.pages.elements.HeaderForUserElement;
+
 
 public class CreateNewPostPage extends ParantPage {
 
@@ -63,8 +63,8 @@ public class CreateNewPostPage extends ParantPage {
         return new PostPage(webDriver);
     }
 
-    public CreateNewPostPage setOnCheckBoxIsPrivatePost() {
-        setCheckboxState(checkboxIsPrivatePost, "check");
+    public CreateNewPostPage setOnCheckBoxIsPrivatePost(String state) {
+        setCheckboxState(checkboxIsPrivatePost, state);
         return this;
     }
 
