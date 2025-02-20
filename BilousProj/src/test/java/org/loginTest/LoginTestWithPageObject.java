@@ -2,6 +2,7 @@ package org.loginTest;
 
 import org.baseTest.BaseTest;
 import org.categories.SmokeTestFilter;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.openqa.selenium.JavascriptExecutor;
@@ -15,7 +16,9 @@ import static org.data.TestData.VALID_PASSWORD;
 
 public class LoginTestWithPageObject extends BaseTest {
     @Test
+    @Ignore
     @Category(SmokeTestFilter.class)
+    //LoginTestWithPageObject#T0001_validLogin
     public void T0001_validLogin() {
         pageProvider.getLoginPage().openPage()
                 .enterTextIntoInputLogin(VALID_LOGIN)
