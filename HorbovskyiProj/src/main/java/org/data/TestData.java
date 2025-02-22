@@ -1,6 +1,7 @@
 package org.data;
 
 import org.utils.ConfigProvider;
+import org.utils.Utils_Custom;
 
 public class TestData {
     public final static String VALID_LOGIN = System.getProperty("defaultLogin", ConfigProvider.configHiddenProperties.login());
@@ -8,6 +9,8 @@ public class TestData {
 
     public static final String INVALID_LOGIN = "qaauto" + System.currentTimeMillis();
     public static final String INVALID_PASSWORD = "123456qwerty" + System.currentTimeMillis();
+
+    public static final String POST_TITLE = "TR003Horbovskyi" + Utils_Custom.getDateAndTimeFormatted();
 
 
 }

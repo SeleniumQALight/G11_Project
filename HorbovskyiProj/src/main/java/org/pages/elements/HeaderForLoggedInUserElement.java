@@ -19,6 +19,13 @@ public class HeaderForLoggedInUserElement extends CommonActionsWithElements {
     @FindBy(xpath = "//a[@class='btn btn-sm btn-success mr-2']")
     private WebElement buttonCreatePost;
 
+    public static final String buttonSearchLocator = "//a[@class='text-white mr-2 header-search-icon']";
+    @FindBy(xpath = "//a[@class='text-white mr-2 header-search-icon']")
+    private WebElement buttonSearch;
+
+    @FindBy(xpath = "//span[@class='text-white mr-2 header-chat-icon']")
+    private WebElement buttonChat;
+
     public HeaderForLoggedInUserElement(WebDriver webDriver) {
         super(webDriver);
     }
@@ -44,5 +51,41 @@ public class HeaderForLoggedInUserElement extends CommonActionsWithElements {
     public CreateNewPostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
         return new CreateNewPostPage(webDriver);
+    }
+
+    public void checkIsSearchButtonVisible() {
+        checkIsElementVisible(buttonSearch);
+    }
+
+    public void checkIsChatButtonVisible() {
+        checkIsElementVisible(buttonChat);
+    }
+
+    public void checkIsMyProfileButtonVisible() {
+        checkIsElementVisible(buttonMyProfile);
+    }
+
+    public void checkIsCreatePostButtonVisible() {
+        checkIsElementVisible(buttonCreatePost);
+    }
+
+    public void clickOnButtonSignOut() {
+        clickOnElement(buttonSignOut);
+    }
+
+    public void checkIsSearchButtonNotVisible() {
+        checkIsElementNotVisible(buttonSearch);
+    }
+
+    public void checkIsChatButtonNotVisible() {
+        checkIsElementNotVisible(buttonChat);
+    }
+
+    public void checkIsMyProfileButtonNotVisible() {
+        checkIsElementNotVisible(buttonMyProfile);
+    }
+
+    public void checkIsCreatePostButtonNotVisible() {
+        checkIsElementNotVisible(buttonCreatePost);
     }
 }

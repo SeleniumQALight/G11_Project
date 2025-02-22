@@ -60,5 +60,14 @@ public class HomePage extends ParentPage {
         return this;
     }
 
+    public PostPage createNewPostWithUniqueTitle(String title, String body) {
+        openHomePageIfNeeded();
+        getHeaderElement().clickOnButtonCreatePost()
+                .enterTextIntoInputTitle(title)
+                .enterTextIntoInputBody(body)
+                .clickOnButtonSavePost();
+        return new PostPage(webDriver);
+    }
+
 
 }
