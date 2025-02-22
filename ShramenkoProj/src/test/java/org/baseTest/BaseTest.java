@@ -4,6 +4,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
+import org.junit.rules.TestName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -12,7 +14,6 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.pages.PageProvider;
 import org.utils.ConfigProvider;
-
 import java.util.concurrent.TimeUnit;
 
 
@@ -22,9 +23,12 @@ public class BaseTest {
     private Logger logger = Logger.getLogger(getClass());
     protected PageProvider pageProvider;
 
+    private String symbols = "-------------";
+
     //preconditions
     @Before
     public void setup() {
+        logger.info(symbols + testName.getMethodName() + " was started " + symbols);
 //        WebDriverManager.chromedriver().setup();
 //        webDriver = new ChromeDriver();
         webDriver = initDriver();
@@ -45,7 +49,13 @@ public class BaseTest {
         //потрібно закривати вебдрайвер після кожного використання!!!
         webDriver.quit();
         logger.info("Browser was closed");
+        logger.info(symbols + testName.getMethodName() + " was finished " + symbols);
     }
+
+    @Rule                                       //анотація яка буде виконана над/перед тестом
+    public TestName testName = new TestName(); //назва тесту, який буде виконуватися
+
+
 
     private WebDriver initDriver() {
         String browserFromProperly = System.getProperty("browser");
