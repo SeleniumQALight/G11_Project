@@ -20,13 +20,7 @@ public class ChangePostTest extends BaseTest {
 
     @Test
     public void T0004_changePost() {
-        //sign in
-//        pageProvider.getLoginPage().
-//                openLoginPageAndFillLoginFormWithValidCred()
-//                .checkIsRedirectOnHomePage()
-//                // create post
-//                .createNewPostWithUniqueTitle(TestData.POST_TITLE, "Body of the post Horbovskyi")
-//                .checkIsRedirectOnPostPage()
+
         pageProvider.getPostPage()
                 .clickOnEditButton()
                 .enterTextIntoInputTitle(POST_TITLE + "123")
