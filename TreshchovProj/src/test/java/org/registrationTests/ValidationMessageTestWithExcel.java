@@ -13,8 +13,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Collection;
 
-import static org.data.RegistrationValidationMessages.*;
-
 @RunWith(JUnitParamsRunner.class)
 public class ValidationMessageTestWithExcel extends BaseTest {
     Logger logger = Logger.getLogger(ValidationMessageTestWithExcel.class);
