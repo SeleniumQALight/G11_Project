@@ -12,8 +12,7 @@ public class PostPage extends ParentPage {
   @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
   private WebElement buttonDeletePost;
 
-//  @FindBy(xpath = "//p[text()='Is this post unique? : yes']")
-  @FindBy(xpath = "//div[not(@*)]")
+  @FindBy(xpath = "//p[text()='Is this post unique? : yes']")
   private WebElement uniquePostMessage;
 
   @FindBy(xpath = "//div[not(@*)]")
@@ -61,8 +60,9 @@ public class PostPage extends ParentPage {
     checkIsElementVisible(uniquePostMessage);
     return this;
   }
+
   public PostPage checkIsPostUniqueCheckboxChecked(String expectedMessageText) {
-    checkTextInElement(messageIsUniqueCheckbox, expectedMessageText);
+    checkTextInElement(messageIsUniqueCheckbox, "Is this post unique? : " + expectedMessageText);
     return this;
   }
 
