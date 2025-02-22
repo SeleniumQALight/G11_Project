@@ -10,7 +10,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.pages.elements.HeaderForUserElement;
 import org.utils.Utils_Custom;
 
 import java.util.List;
@@ -48,10 +47,6 @@ public class LoginPage extends ParentPage {
     @Override
     protected String getRelativeUrl() {
         return "";
-    }
-
-    public HeaderForUserElement getHeaderElement() {
-        return new HeaderForUserElement(webDriver);
     }
 
     public LoginPage openPage() {
@@ -121,48 +116,4 @@ public class LoginPage extends ParentPage {
 
         return this;
     }
-
-    public HomePage openNewTabAndOpenHomePage() {
-        openNewTab();
-        switchToTab(1);
-        openPage();
-        return new HomePage(webDriver);
-    }
-
-    public LoginPage refreshLoginPage(){
-        refreshPage();
-        return new LoginPage(webDriver);
-    }
-
-    public HomePage openPageAndLoginUsingActions(){
-        openPage();
-        useTabKey();
-        useTabKey();
-        enterTextUsingActions("qaauto");
-        useTabKey();
-        enterTextUsingActions("123456qwerty");
-        useEnterKey();
-        return new HomePage(webDriver);
-    }
-
-    public LoginPage openPageAndMoveToRegistrationFieldUserNameUsingActions(){
-        openPage();
-        useTabKey();
-        useTabKey();
-        useTabKey();
-        useTabKey();
-        useTabKey();
-        return this;
-    }
-
-    public LoginPage enterValueUsingActions(String value){
-        enterTextUsingActions(value);
-        return this;
-    }
-
-    public LoginPage switchToNextFieldUsingActions(){
-        useTabKey();
-        return this;
-    }
-
 }
