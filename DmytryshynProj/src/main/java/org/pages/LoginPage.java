@@ -145,4 +145,14 @@ public class LoginPage extends ParentPage { //create constructor
         checkIsElementNotVisible(inputEmailInRegistrationForm);
         return this;
     }
+
+    public LoginPage checkIsInputUserNameFieldVisible() {
+        checkIsElementVisible(inputUserName);
+        return this;
+    }
+
+    public LoginPage checkIsInputPasswordFieldVisible() {
+        checkIsElementVisible(inputPassword);
+        return this;
+    }
 }

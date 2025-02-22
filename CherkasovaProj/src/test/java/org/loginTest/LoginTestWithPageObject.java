@@ -1,14 +1,17 @@
 package org.loginTest;
 
 import org.baseTest.BaseTest;
+import org.categories.SmokeTestsFilter;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 
 import static org.data.TestData.*;
 
 public class LoginTestWithPageObject extends BaseTest {
     @Test
-    public void T001_validLogin(){
+    @Category(SmokeTestsFilter.class)
+    public void T001_validLogin() {
         pageProvider.getLoginPage().openPage()
                 .enterTextIntoInputLogin(VALID_LOGIN)
                 .enterTextIntoInputPassword(VALID_PASSWORD)
@@ -35,6 +38,27 @@ public class LoginTestWithPageObject extends BaseTest {
 
 
     }
+
+
+    @Test
+    public void T003_SignOut() {
+        pageProvider.getLoginPage()
+                .openLoginPageAndFillLoginFormWithValidCred()
+        ;
+        pageProvider.getHomePage().getHeaderElement()
+                .checkAllElementsInHeaderOnHomePageVisible()
+                .clickOnButtonSignOut()
+        ;
+        pageProvider.getHomePage().getHeaderElement()
+                .checkAllElementsInHeaderOnLoginPageNotVisible()
+        ;
+        pageProvider.getLoginPage()
+                .checkAllElementsInHeaderOnLoginPageVisible()
+        ;
+
+    }
+
+
 
     @Test
     public void T003_stayLoggedAfterClosingNewTab(){

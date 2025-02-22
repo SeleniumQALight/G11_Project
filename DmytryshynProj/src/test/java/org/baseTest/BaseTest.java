@@ -4,6 +4,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
+import org.junit.rules.TestName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -20,8 +22,26 @@ public class BaseTest {
     private Logger logger = Logger.getLogger(getClass());
     protected PageProvider pageProvider;
 
+    private String symbols = "--------------";
+
+    // @BeforeClass
+    // @Before // Parent class
+    // @Before // Child class
+    // @Test // Child class Test1
+    // @After // Child class
+    // @After // Parent class
+
+    // @Before // Parent class
+    // @Before // Child class
+    // @Test // Child class Test2
+    // @After // Child class
+    // @After // Parent class
+
+    // @AfterClass
+
     @Before
     public void setup(){
+        logger.info(symbols + testName.getMethodName() + " was started" + symbols);
 //        WebDriverManager.chromedriver().setup();
 //        webDriver = new ChromeDriver();
         webDriver = initDriver();
@@ -37,8 +57,12 @@ public class BaseTest {
     public void tearDown(){
         webDriver.quit();
         logger.info("Browser was closed");
+        logger.info(symbols + testName.getMethodName() + " was finished" + symbols);
 
     }
+
+    @Rule
+    public TestName testName = new TestName();
 
     private WebDriver initDriver(){
         String browserFromProperty = System.getProperty("browser");

@@ -93,9 +93,7 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected void checkIsElementInvisible(WebElement webElement) {
-        Assert.assertFalse("Element is visible", isElementVisible(webElement));
-    }
+
 
     protected boolean isElementVisible(String locator) {
         try {
@@ -151,7 +149,7 @@ public class CommonActionsWithElements {
     }
 
     //open new tab using JS
-    protected void openNewTab() {
+    public void openNewTab() {
         try {
             ((JavascriptExecutor) webDriver).executeScript("window.open()");
             logger.info("New tab was opened");
@@ -176,6 +174,11 @@ public class CommonActionsWithElements {
     private void printErrorAndStopTest(Exception e) {
         logger.error("Cannot work with element " + e);
         Assert.fail("Cannot work with element " + e);
+    }
+
+    protected void checkIsElementInvisible(WebElement webElement) {
+        webDriverWait_15.until(ExpectedConditions.invisibilityOf(webElement));
+        Assert.assertFalse("Element is visible", isElementVisible(webElement));
     }
 
 
@@ -206,6 +209,7 @@ public class CommonActionsWithElements {
             logger.error("State should be 'check' or 'uncheck'");
         }
     }
+
 
 
 }
