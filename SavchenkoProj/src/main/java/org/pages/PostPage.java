@@ -18,6 +18,8 @@ public class PostPage extends ParentPage {
 
     private String locatorForTextThisPostWasWritten = "//*[contains(text(), '%s')]";
 
+    private String locatorForUniquePost = ".//p[text()='Is this post unique? : %s']";
+
     @FindBy(xpath =  "//a[@data-original-title='Edit']")
     private WebElement buttonEditPost;
 
@@ -66,6 +68,16 @@ public class PostPage extends ParentPage {
 
     public PostPage checkTextInThisPostWasWrittenIsVisible(String text) {
         checkIsElementVisible(String.format(locatorForTextThisPostWasWritten, text));
+        return this;
+    }
+
+    public PostPage checkPostUnique(String text ) {
+        checkIsElementVisible(String.format(locatorForUniquePost, text));
+        return this;
+    }
+
+    public PostPage checkIsRedirectToPostPage() {
+        checkUrlWithPattern();
         return this;
     }
 }
