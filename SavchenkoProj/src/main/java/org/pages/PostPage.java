@@ -75,4 +75,9 @@ public class PostPage extends ParentPage {
         checkIsElementVisible(String.format(locatorForUniquePost, text));
         return this;
     }
+
+    public PostPage checkIsRedirectToPostPage() {
+        checkUrlWithPattern();
+        return this;
+    }
 }

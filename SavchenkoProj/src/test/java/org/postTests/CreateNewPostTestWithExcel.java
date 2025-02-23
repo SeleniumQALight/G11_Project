@@ -33,9 +33,9 @@ public class CreateNewPostTestWithExcel extends BaseTest{
                 .enterTextIntoInputTitle(postTitle + randomNumber)
                 .selectValueInDropDownAccess(numberOfPeople)
                 .enterTextIntoInputBody(postBody)
-                .setNeededStateToUniquePostCheckbox(checkboxState)
+                .selectUniquePostCheckbox(checkboxState)
                 .clickOnSaveNewPostButton()
-                .checkIsRedirectToEditPostPage()
+                .checkIsRedirectToPostPage()
                 .checkPostUnique(isPostUnique)
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInThisPostWasWrittenIsVisible(numberOfPeople)
@@ -44,7 +44,7 @@ public class CreateNewPostTestWithExcel extends BaseTest{
 
         pageProvider.getPostPage().getHeaderElement().clickOnButtonMyProfile()
                 .checkIsRedirectToProfilePage()
-                .checkPostWithTitlePresent(postTitle, 1)
+                .checkPostWithTitlePresent(postTitle + randomNumber, 1)
         ;
 
         pageProvider.getHomePage().openHomePageAndLoginIfNeed()
