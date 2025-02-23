@@ -90,6 +90,16 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    public LoginPage checkIsLoginInputVisible() {
+        checkIsElementVisible(inputUserName);
+        return this;
+    }
+
+    public LoginPage checkIsPasswordInputVisible() {
+        checkIsElementVisible(inputPassword);
+        return this;
+    }
+
     public HomePage checkIsInputLoginOrPasswordNotVisible() {
         checkIsElementNotVisible(inputUserName);
         checkIsElementNotVisible(inputPassword);
