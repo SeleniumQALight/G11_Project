@@ -15,6 +15,7 @@ import org.utils.Utils_Custom;
 
 import java.util.List;
 
+
 public class LoginPage extends ParentPage {
     private Logger logger = Logger.getLogger(getClass());
 
@@ -51,10 +52,6 @@ public class LoginPage extends ParentPage {
     @Override
     protected String getRelativeUrl() {
         return "";
-    }
-
-    public HeaderForUserElement getHeaderElement() {
-        return new HeaderForUserElement(webDriver);
     }
 
     public LoginPage openPage() {
@@ -145,6 +142,11 @@ public class LoginPage extends ParentPage {
         checkIsElementNotVisible(inputUserName);
         checkIsElementNotVisible(inputPassword);
         return this;
+    }
+
+
+    public HeaderForUserElement getHeaderElement() {
+        return new HeaderForUserElement(webDriver);
     }
 
 }

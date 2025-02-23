@@ -3,6 +3,7 @@ package org.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.pages.elements.HeaderForUserElement;
 
 public class CreateNewPostPage extends ParentPage{
     @FindBy(name = "title")
@@ -19,6 +20,9 @@ public class CreateNewPostPage extends ParentPage{
 
     @FindBy(xpath = "//select")
     private WebElement dropDownAccess;
+
+    @FindBy(xpath = "//button[text()='Save Updates']")
+    private WebElement buttonSaveUpdates;
 
     public CreateNewPostPage(WebDriver webDriver) {
         super(webDriver);
@@ -42,6 +46,10 @@ public class CreateNewPostPage extends ParentPage{
         return this;
     }
 
+    public HeaderForUserElement getHeaderElement() {
+        return new HeaderForUserElement(webDriver);
+    }
+
     public CreateNewPostPage enterTextIntoInputTitle(String title) {
         enterTextIntoInput(inputTitle, title);
         return this;
@@ -62,6 +70,8 @@ public class CreateNewPostPage extends ParentPage{
         return new PostPage(webDriver);
     }
 
-
-
+    public CreateNewPostPage clickOnButtonSaveUpdates() {
+        clickOnElement(buttonSaveUpdates);
+        return this;
+    }
 }

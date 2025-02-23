@@ -9,11 +9,15 @@ public class PostPage extends ParentPage {
     //    "//*contains [@class='alert-success']" -
     @FindBy(xpath = "//*[@class='alert alert-success text-center']")
     private WebElement successMessage;
+
     @FindBy(xpath = "//button[@class='delete-post-button text-danger']")
     private WebElement buttonDeletePost;
 
+    @FindBy(xpath = ".//a[@data-original-title='Edit']")
+    private WebElement buttonEditPost;
+
     private String locatorForTextThisPostWasWritten = "//*[contains(text(),'%s')]";
-    private String locatorForTextIsThisPostUnique = "//*[contains(text(),'%s')]";
+    private String locatorForTextIsThisPostUnique = ".//p[text()='Is this post unique? : %s']";
 
 
     public PostPage(WebDriver webDriver) {
@@ -49,6 +53,12 @@ public class PostPage extends ParentPage {
         clickOnElement(buttonDeletePost, "Delete Post Button");
         return new MyProfilePage(webDriver);
     }
+
+    public MyProfilePage clickOnEditButton() {
+        clickOnElement(buttonEditPost, "Edit Post Button");
+        return new MyProfilePage(webDriver);
+    }
+
 
     public PostPage checkTextThisPostWasWrittenIsVisible(String text) {
         checkIsElementVisible(String.format(locatorForTextThisPostWasWritten, text));
