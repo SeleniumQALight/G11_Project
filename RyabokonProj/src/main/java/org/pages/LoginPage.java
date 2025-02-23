@@ -136,4 +136,8 @@ public class LoginPage extends ParentPage {
         checkIsElementVisible(inputPassword);
 
     }
+
+    public void refreshPage() {
+        webDriver.navigate().refresh();
+    }
 }

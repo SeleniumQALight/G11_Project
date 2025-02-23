@@ -59,7 +59,36 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getLoginPage().checkIsInputPasswordVisible();
 
 
+    }
+
+    @Test
+    public void T4_ValidLoginUserLoggedInInNewTab() {
+        pageProvider.getLoginPage().openPage()
+                .enterTextIntoInputLogin(VALID_LOGIN)
+                .enterTextIntoInputPassword(VALID_PASSWORD)
+                .clickOnButtonSignIn();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
+        pageProvider.getHomePage().openNewTab();
+        pageProvider.getHomePage().switchToNewTab(1);
+        pageProvider.getLoginPage().openPage();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
+        pageProvider.getHomePage().switchToMainTab(0);
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
+        pageProvider.getHomePage().openNewTab();
+        pageProvider.getHomePage().closeCurrentTab();
+        pageProvider.getHomePage().switchToMainTab(0);
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
 
 
+    }
+
+    @Test
+    public void T5_RefreshPageValidLoginPasswordDisappear() {
+        pageProvider.getLoginPage().openPage()
+                .enterTextIntoInputLogin(VALID_LOGIN)
+                .enterTextIntoInputPassword(VALID_PASSWORD);
+        pageProvider.getLoginPage().refreshPage();
+        pageProvider.getLoginPage().clickOnButtonSignIn();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutNotVisible();
     }
 }
