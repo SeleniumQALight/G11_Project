@@ -18,11 +18,11 @@ import java.util.Collection;
 @RunWith(JUnitParamsRunner.class)
 public class CreateNewPostTestWithExcel extends BaseTest {
     Logger logger = Logger.getLogger(CreateNewPostTestWithExcel.class);
-    //GUID =
 
-    final String TITLE =  "Treshchov Test" + Utils_Custom.getDateAndTimeFormatted();
+    final String time = Utils_Custom.getDateAndTimeFormatted();
+
     @Test
-    @Parameters(method = "parametersCreatePostTest")
+    @Parameters(method = "parametersForCreatePostTest")
     public void TR003_createNewPost(String title, String body, String dropdownSelect, String checkBox, String expectedMessage, String expectedUniquePost) {
         String titleUnique = String.format(title, "Treshchov Test", Utils_Custom.getDateAndTimeFormatted());
         pageProvider.getLoginPage().
@@ -31,24 +31,30 @@ public class CreateNewPostTestWithExcel extends BaseTest {
                 getHeaderElement().
                 clickOnButtonCreatePost().
                 checkIsRedirectToCreateNewPostPage().
-                enterTextIntoInputTitle(titleUnique).
+                enterTextIntoInputTitle(String.format(title, "Treshchov Test", time)).
                 selectValueInDD(dropdownSelect).
                 enterTextIntoInputBody(String.format(body,"Treshchov Test")).
                 checkBoxSelection(checkBox).
                 clickOnButtonSavePost().
                 checkIsRedirectToPostPage().
-                CheckIsAlertSuccessPresent(expectedMessage).
+                CheckIsAlertSuccessPresent().
+                checkIsThisMessageUniqueText(expectedUniquePost).
                 checkTextThisPostWasWrittenIsVisible(dropdownSelect).
-                checkTextInSuccessMessage(expectedUniquePost)
+                checkTextInSuccessMessage(expectedMessage)
         ;
 
         pageProvider.getPostPage().
                 getHeaderElement().
-                clickOnButtonMyProfile().checkIsRedirectToMyProfilePage().checkPostWithTitlePresent(titleUnique, 1)
+                clickOnButtonMyProfile().checkIsRedirectToMyProfilePage().checkPostWithTitlePresent((String.format(title, "Treshchov Test", time)), 1)
 
         ;
     }
 
+    @After
+    public void deletePosts(){
+        pageProvider.getHomePage().openHomePageAndLoginIfNeeded().getHeaderElement().clickOnButtonMyProfile().checkIsRedirectToMyProfilePage().deletePostsTillPresent(String.format("%s-%s-excel", "Treshchov Test", time));
+
+    }
 
 
     public Collection parametersForCreatePostTest() throws IOException {
