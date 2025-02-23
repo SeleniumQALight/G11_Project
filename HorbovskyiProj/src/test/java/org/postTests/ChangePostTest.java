@@ -10,7 +10,7 @@ import static org.data.TestData.*;
 
 public class ChangePostTest extends BaseTest {
 
-    private final String POST_TITLE_EDITED = POST_TITLE + "123";
+    private final String postTitleEdit  = POST_TITLE + "123";
 
     @Before
     public void signInAndCreatePost() {
@@ -25,12 +25,12 @@ public class ChangePostTest extends BaseTest {
 
         pageProvider.getPostPage()
                 .clickOnEditButton()
-                .enterTextIntoInputTitle(POST_TITLE_EDITED)
+                .enterTextIntoInputTitle(postTitleEdit)
                 .clickOnButtonSaveUpdates()
                 .checkIsSuccessMessageDisplayed()
                 .getHeaderElement().clickOnButtonMyProfile()
                 .checkIsRedirectToMyProfilePage()
-                .checkIsPostWithTitleWereAdded(POST_TITLE_EDITED, 1)
+                .checkIsPostWithTitleWereAdded(postTitleEdit, 1)
         ;
 
 
@@ -40,7 +40,7 @@ public class ChangePostTest extends BaseTest {
     public void deletePost() {
         pageProvider.getHomePage().openHomePageIfNeeded().
                 getHeaderElement().clickOnButtonMyProfile().checkIsRedirectToMyProfilePage()
-                .deletePostWhilePresent(POST_TITLE_EDITED)
+                .deletePostWhilePresent(postTitleEdit)
                 .deletePostWhilePresent(POST_TITLE);
     }
 }
