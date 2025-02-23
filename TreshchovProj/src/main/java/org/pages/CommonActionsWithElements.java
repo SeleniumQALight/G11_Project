@@ -157,17 +157,15 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected void openNewTab() {
+protected void useTabKey() {
         try {
-            ((JavascriptExecutor) webDriver).executeScript("window.open()");
-            logger.info("New tab was opened");
+            Actions actions = new Actions(webDriver);
+            actions.sendKeys("\t").build().perform();
+            logger.info("Tab key was pressed");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
-
-
-
 
     protected void checkIsElementNotVisible(WebElement element) {
         Assert.assertFalse(getElementName(element) + " Element is visible", isElementVisible(element));
