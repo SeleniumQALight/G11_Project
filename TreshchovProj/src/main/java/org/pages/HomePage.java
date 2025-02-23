@@ -1,8 +1,13 @@
 package org.pages;
 
+
+import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.apache.log4j.Logger;
 import org.data.TestData;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.pages.elements.HeaderForUserElement;
 
 public class HomePage extends ParentPage {
@@ -21,6 +26,11 @@ public class HomePage extends ParentPage {
 
     public HeaderForUserElement getHeaderElement() {
         return new HeaderForUserElement(webDriver);
+    }
+
+    public HomePage checkIsButtonSignOutVisible() {
+    getHeaderElement().checkIsButtonSignOutVisible();
+        return this;
     }
 
     public HomePage checkIsRedirectToHomePage() {
@@ -46,4 +56,14 @@ public class HomePage extends ParentPage {
         }
         return this;
     }
+
+
+
+    public HomePage checkIsButtonCreatePostVisible() {
+        getHeaderElement().checkIsButtonCreatePostVisible();
+        return this;
+    }
+
+
+
 }

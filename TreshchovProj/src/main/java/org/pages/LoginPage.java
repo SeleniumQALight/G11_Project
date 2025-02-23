@@ -10,10 +10,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.pages.elements.HeaderForUserElement;
 import org.utils.Utils_Custom;
 
 import java.util.List;
-import org.pages.elements.HeaderForUserElement;
+
 
 public class LoginPage extends ParentPage {
     private Logger logger = Logger.getLogger(getClass());
@@ -26,6 +27,9 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = "//button[text()='Sign In']")
     private WebElement buttonSignIn;
+
+    @FindBy(xpath = "//div[text()='Invalid username/password.']")
+    private WebElement errorMessage;
 
     @FindBy(id = "username-register")
     private WebElement inputUserNameRegistrationField;
@@ -69,6 +73,22 @@ public class LoginPage extends ParentPage {
 
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
+    }
+
+    public LoginPage clickOnButtonSignInWithInvalidData() {
+        clickOnElement(buttonSignIn);
+        return this;
+    }
+
+    public LoginPage checkIsButtonSignInVisible() {
+        checkIsElementVisible(buttonSignIn);
+        return this;
+    }
+
+
+    public LoginPage checkIsErrorMessageVisible() {
+        checkIsElementVisible(errorMessage);
+        return this;
     }
 
     public HomePage openLoginAndFillLoginFormWithValidData() {
@@ -117,6 +137,13 @@ public class LoginPage extends ParentPage {
 
         return this;
     }
+
+    public LoginPage checkIsLoginPasswordFieldNotVisible(){
+        checkIsElementNotVisible(inputUserName);
+        checkIsElementNotVisible(inputPassword);
+        return this;
+    }
+
 
     public HeaderForUserElement getHeaderElement() {
         return new HeaderForUserElement(webDriver);
