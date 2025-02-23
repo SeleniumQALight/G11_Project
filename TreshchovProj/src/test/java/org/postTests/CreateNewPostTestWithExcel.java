@@ -20,42 +20,40 @@ public class CreateNewPostTestWithExcel extends BaseTest {
     Logger logger = Logger.getLogger(CreateNewPostTestWithExcel.class);
     //GUID =
 
-    final String TITLE = "Treshchov Test" + Utils_Custom.getDateAndTimeFormatted();
+    final String TITLE =  "Treshchov Test" + Utils_Custom.getDateAndTimeFormatted();
     @Test
     @Parameters(method = "parametersCreatePostTest")
     public void TR003_createNewPost(String title, String body, String dropdownSelect, String checkBox, String expectedMessage, String expectedUniquePost) {
+        String titleUnique = String.format(title, "Treshchov Test", Utils_Custom.getDateAndTimeFormatted());
         pageProvider.getLoginPage().
                 openLoginAndFillLoginFormWithValidData().
                 checkIsRedirectToHomePage().
                 getHeaderElement().
                 clickOnButtonCreatePost().
                 checkIsRedirectToCreateNewPostPage().
-                enterTextIntoInputTitle(TITLE).
-                selectValueInDD("One Person").
-                enterTextIntoInputBody("test body").
+                enterTextIntoInputTitle(titleUnique).
+                selectValueInDD(dropdownSelect).
+                enterTextIntoInputBody(String.format(body,"Treshchov Test")).
+                checkBoxSelection(checkBox).
                 clickOnButtonSavePost().
                 checkIsRedirectToPostPage().
-                CheckIsAlertSuccessPresent().
-                checkTextThisPostWasWrittenIsVisible("One Person").
-                checkTextInSuccessMessage("New post successfully created.")
+                CheckIsAlertSuccessPresent(expectedMessage).
+                checkTextThisPostWasWrittenIsVisible(dropdownSelect).
+                checkTextInSuccessMessage(expectedUniquePost)
         ;
 
         pageProvider.getPostPage().
                 getHeaderElement().
-                clickOnButtonMyProfile().checkIsRedirectToMyProfilePage().checkPostWithTitlePresent(TITLE, 1)
+                clickOnButtonMyProfile().checkIsRedirectToMyProfilePage().checkPostWithTitlePresent(titleUnique, 1)
 
         ;
     }
 
-    @After
-    public void deletePosts(){
-        pageProvider.getHomePage().openHomePageAndLoginIfNeeded().getHeaderElement().clickOnButtonMyProfile().checkIsRedirectToMyProfilePage().deletePostsTillPresent(TITLE);
 
-    }
 
     public Collection parametersForCreatePostTest() throws IOException {
         String pathToDataFile = ConfigProvider.configProperties.DATA_FILE_PATH() + "testDataSuit.xls";
-        String sheetName = "registrationErrors";
+        String sheetName = "createPostWithExcel";
         boolean skipFirstRow = false;
         logger.info("Data file path: " + pathToDataFile);
         logger.info(" sheetName: " + sheetName);

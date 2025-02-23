@@ -46,6 +46,11 @@ public class PostPage extends ParentPage{
         return this;
     }
 
+    public PostPage CheckIsAlertSuccessPresent(String message) {
+        checkIsElementVisible(message);
+        return this;
+    }
+
     public PostPage checkTextInSuccessMessage(String text) {
         checkTextInElement(successMessage, text);
         return this;
