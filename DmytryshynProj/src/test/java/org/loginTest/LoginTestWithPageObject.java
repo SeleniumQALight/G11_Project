@@ -70,8 +70,46 @@ public class LoginTestWithPageObject extends BaseTest {
                 .checkIsButtonSignInVisible()
                 .checkIsInputUserNameFieldVisible()
                 .checkIsInputPasswordFieldVisible();
-
     }
 
+    @Test
+    public void T0006_StayLoggedInNewTab() {
+        pageProvider.getLoginPage()
+                .openPage()
+                .enterTextIntoInputLogin(VALID_LOGIN)
+                .enterTextIntoInputPassword(VALID_PASSWORD)
+                .clickOnButtonSignIn();
+        pageProvider.getHomePage().getHeaderElement()
+                .checkIsButtonSingOutVisible();
+
+        pageProvider.getHomePage().openNewTab();
+        pageProvider.getLoginPage().switchToNewTab(1);
+        pageProvider.getLoginPage().openPage();
+        pageProvider.getHomePage().getHeaderElement()
+                .checkIsButtonSingOutVisible();
+
+        pageProvider.getHomePage().switchToMainTab();
+        pageProvider.getHomePage().getHeaderElement()
+                .checkIsButtonSingOutVisible();
+
+        pageProvider.getHomePage().switchToNewTab(1);
+        pageProvider.getHomePage().closeCurrentTab();
+        pageProvider.getHomePage().switchToMainTab();
+        pageProvider.getHomePage().getHeaderElement()
+                .checkIsButtonSingOutVisible();
+    }
+
+    @Test
+    public void T007_inputDataDisappearsAfterRefreshing () {
+        pageProvider.getLoginPage()
+                .openPage()
+                .enterTextIntoInputLogin(VALID_LOGIN)
+                .enterTextIntoInputPassword(VALID_PASSWORD)
+                .refreshPage();
+        pageProvider.getLoginPage()
+                .clickOnButtonSignIn();
+        pageProvider.getHomePage().getHeaderElement()
+                .checkIsButtonSingOutNotVisible();
+    }
 
 }
