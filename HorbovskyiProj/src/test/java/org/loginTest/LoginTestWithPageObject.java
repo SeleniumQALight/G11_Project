@@ -8,7 +8,6 @@ import org.junit.experimental.categories.Category;
 
 import static org.data.TestData.VALID_LOGIN;
 import static org.data.TestData.VALID_PASSWORD;
-import static org.pages.elements.HeaderForLoggedInUserElement.buttonSearchLocator;
 
 public class LoginTestWithPageObject extends BaseTest {
     @Test
