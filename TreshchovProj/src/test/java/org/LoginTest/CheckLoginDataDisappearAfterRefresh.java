@@ -14,7 +14,7 @@ public class CheckLoginDataDisappearAfterRefresh extends BaseTest {
                 enterTextIntoInputLogin(VALID_LOGIN).
                 enterTextIntoInputPassword(TestData.VALID_PASSWORD).refreshLoginPage().clickOnButtonSignIn();
 
-        pageProvider.getLoginPage().getHeaderElement().checkIsButtonSignOutNotVisible();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutNotVisible();
 
     }
 }
