@@ -46,7 +46,7 @@ public class PostPage extends ParentPage{
         return this;
     }
 
-    public PostPage CheckIsAlertSuccessPresent() {
+    public PostPage checkIsAlertSuccessPresent() {
         checkIsElementVisible(successMessage);
         return this;
     }

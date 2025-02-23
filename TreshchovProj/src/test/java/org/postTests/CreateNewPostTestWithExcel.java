@@ -23,7 +23,7 @@ public class CreateNewPostTestWithExcel extends BaseTest {
 
     @Test
     @Parameters(method = "parametersForCreatePostTest")
-    public void TR003_createNewPost(String title, String body, String dropdownSelect, String checkBox, String expectedMessage, String expectedUniquePost) {
+    public void HW6_createNewPostUsingExcel(String title, String body, String dropdownSelect, String checkBox, String expectedMessage, String expectedUniquePost) {
         String titleUnique = String.format(title, "Treshchov Test", Utils_Custom.getDateAndTimeFormatted());
         pageProvider.getLoginPage().
                 openLoginAndFillLoginFormWithValidData().
@@ -37,7 +37,7 @@ public class CreateNewPostTestWithExcel extends BaseTest {
                 checkBoxSelection(checkBox).
                 clickOnButtonSavePost().
                 checkIsRedirectToPostPage().
-                CheckIsAlertSuccessPresent().
+                checkIsAlertSuccessPresent().
                 checkIsThisMessageUniqueText(expectedUniquePost).
                 checkTextThisPostWasWrittenIsVisible(dropdownSelect).
                 checkTextInSuccessMessage(expectedMessage)
