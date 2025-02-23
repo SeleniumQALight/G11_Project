@@ -11,12 +11,12 @@ public class DB_Util_seleniumUsers {
     public String getPassForLogin(String login) throws SQLException, ClassNotFoundException {
         mySQL_DataBase = MySQL_Database.getDataBase();
         logger.info("--- Connected to DB -------");
-
         String pass = mySQL_DataBase.selectValue(
-                String.format("select passWord from seleniumTable where login = '%s'", login)
+                String.format("select passWord from seleniumUsers where login = '%s'", login)
         );
         mySQL_DataBase.quit();
         logger.info("--- Disconnected from DB -------");
+        logger.info("Password for login " + login + " is " + pass);
         return pass;
     }
 }

@@ -11,7 +11,7 @@ public class LoginTestUsingDB extends BaseTest {
 
     @Test
     public void HW7_validLoginUsingDB() throws SQLException, ClassNotFoundException {
-        DB_Util_seleniumUsers db_util_seleniumUsers = new DB_Util_seleniumUsers();
+        DB_Util_seleniumUsers db_util_seleniumUsers = new DB_Util_seleniumUsers();;
         pageProvider.getLoginPage().openPage().
                 enterTextIntoInputLogin(LOGIN).
                 enterTextIntoInputPassword(db_util_seleniumUsers.getPassForLogin(LOGIN)).
