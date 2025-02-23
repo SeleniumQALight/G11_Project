@@ -13,7 +13,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.utils.Utils_Custom;
 
 import java.util.List;
-import org.pages.elements.HeaderForUserElement;
 
 public class LoginPage extends ParentPage {
     private Logger logger = Logger.getLogger(getClass());
@@ -117,9 +116,4 @@ public class LoginPage extends ParentPage {
 
         return this;
     }
-
-    public HeaderForUserElement getHeaderElement() {
-        return new HeaderForUserElement(webDriver);
-    }
-
 }
