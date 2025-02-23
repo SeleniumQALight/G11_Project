@@ -1,9 +1,11 @@
 package org.loginTest;
 
 import org.baseTest.BaseTest;
+import org.categories.SmokeTestFilter;
 import org.data.TestData;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.pages.elements.HeaderForUserElement;
 
 import static org.data.TestData.VALID_LOGIN;
@@ -33,6 +35,7 @@ public class LoginTestWithPageObject extends BaseTest {
 //    }
 
     @Test
+    @Category(SmokeTestFilter.class)
     public void T0001_validLogin() {
         pageProvider.getLoginPage()
                 .openPage()
@@ -42,6 +45,8 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getHomePage().getHeaderForUserElement().checkIsButtonSignOutVisible();
 
     }
+
+
 
     @Test
     public void T0004_validSignOut() {

@@ -1,7 +1,9 @@
 package org.loginTest;
 
 import org.baseTest.BaseTest;
+import org.categories.SmokeTestsFilter;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import static org.data.TestData.VALID_LOGIN;
 import static org.data.TestData.VALID_PASSWORD;
@@ -9,6 +11,9 @@ import static org.data.TestData.VALID_PASSWORD;
 public class LoginTestWithPageObject extends BaseTest {
 
     @Test
+    //@Ignore - анотація для ігнорування тестів
+    @Category(SmokeTestsFilter.class)
+    //LoginTestWithPageObject#T0001_validLoginTest
     public void T0001_validLoginTest() {
         pageProvider.getLoginPage()
                 .openPage()

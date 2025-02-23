@@ -130,10 +130,6 @@ public class CommonActionsWithElements {
         Assert.assertTrue(locator + " Element is not visible", isElementVisible(locator));
     }
 
-    protected void checkIsElementNotVisible(WebElement element) {
-        Assert.assertFalse(getElementName(element) + " Element is visible", isElementVisible(element));
-    }
-
     protected void checkTextInElement(WebElement element, String text) {
             Assert.assertEquals("Text in " + getElementName(element) +  " element is not expected", text, element.getText());
             logger.info("Text in " + getElementName(element) + " element is expected");
@@ -161,14 +157,20 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected void useTabKey() {
+    protected void openNewTab() {
         try {
-            Actions actions = new Actions(webDriver);
-            actions.sendKeys("\t").build().perform();
-            logger.info("Tab key was pressed");
+            ((JavascriptExecutor) webDriver).executeScript("window.open()");
+            logger.info("New tab was opened");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
+    }
+
+
+
+
+    protected void checkIsElementNotVisible(WebElement element) {
+        Assert.assertFalse(getElementName(element) + " Element is visible", isElementVisible(element));
     }
 
     protected void useEnterKey() {

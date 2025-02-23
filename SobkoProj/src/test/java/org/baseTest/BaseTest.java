@@ -4,6 +4,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
+import org.junit.rules.TestName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -22,12 +24,16 @@ public class BaseTest {
     private Logger logger = Logger.getLogger(getClass());
     protected PageProvider pageProvider;
     protected BrowserActions browserActions;
+
+    private String symbols = "--------";
+
     @Before
-    public void setup(){
+    public void setup() {
 //        WebDriverManager.chromedriver().setup();
 //        webDriver = new ChromeDriver();
         webDriver = initDriver();
         webDriver.manage().window().maximize();
+        logger.info(symbols+testName.getMethodName() + "was started" + symbols);
         webDriver.manage().timeouts().implicitlyWait(ConfigProvider.configProperties.TIME_FOR_IMPLICIT_WAIT(), TimeUnit.SECONDS);
         logger.info("Browser was opened");
         pageProvider = new PageProvider(webDriver);
@@ -37,21 +43,26 @@ public class BaseTest {
     }
 
     @After
-    public void tearDown(){
+    public void tearDown() {
         webDriver.quit();
         logger.info("Browser was closed");
+        logger.info(symbols+testName.getMethodName() + "was finished" + symbols);
     }
-    private WebDriver initDriver(){
-        String browserFromProperty= System.getProperty("browser");
+
+    @Rule
+    public TestName testName = new TestName();
+
+    private WebDriver initDriver() {
+        String browserFromProperty = System.getProperty("browser");
         logger.info("Browser is " + browserFromProperty);
-        if((browserFromProperty == null) || (browserFromProperty.equalsIgnoreCase("chrome"))){
+        if ((browserFromProperty == null) || (browserFromProperty.equalsIgnoreCase("chrome"))) {
             WebDriverManager.chromedriver().setup();
             webDriver = new ChromeDriver();
             logger.info("Browser is chrome");
-        }else if (browserFromProperty.equalsIgnoreCase("firefox")){
+        } else if (browserFromProperty.equalsIgnoreCase("firefox")) {
             WebDriverManager.firefoxdriver().setup();
             webDriver = new FirefoxDriver();
-        } else if ("ie".equals(browserFromProperty.toLowerCase())){
+        } else if ("ie".equals(browserFromProperty.toLowerCase())) {
             WebDriverManager.iedriver().setup(); //zoom 100%
             webDriver = new InternetExplorerDriver(); //security level - Medium
         } else if ("safari".equalsIgnoreCase(browserFromProperty)) {
@@ -60,8 +71,7 @@ public class BaseTest {
         } else if ("edge".equalsIgnoreCase(browserFromProperty)) {
             WebDriverManager.edgedriver().setup();
             webDriver = new EdgeDriver();
-        }
-        else {
+        } else {
             throw new IllegalArgumentException("Browser " + browserFromProperty + " is not supported");
         }
 
