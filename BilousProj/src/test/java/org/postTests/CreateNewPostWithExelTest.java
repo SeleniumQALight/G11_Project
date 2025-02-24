@@ -18,8 +18,8 @@ import java.util.Collection;
 @RunWith(JUnitParamsRunner.class)
 
 public class CreateNewPostWithExelTest extends BaseTest {
-    private static String POST_TITLE;
-    private static String POST_BODY;
+    private static String postTitle;
+    private static String postBody;
 
     Logger logger = Logger.getLogger(getClass());
 
@@ -28,8 +28,8 @@ public class CreateNewPostWithExelTest extends BaseTest {
 
     public void TR015_createNewPostWithExel(
             String titleOfPost, String textOfBody, String dropDown, String checkBox, String successMessage, String resCheckBox) {
-        POST_TITLE = String.format(titleOfPost, "Bilous", "TR015");
-        POST_BODY = String.format(textOfBody, "TR015");
+        postTitle = String.format(titleOfPost, "Bilous", "TR015");
+        postBody = String.format(textOfBody, "TR015");
 
 
         pageProvider.getLoginPage()
@@ -37,8 +37,8 @@ public class CreateNewPostWithExelTest extends BaseTest {
                 .checkIsRedirectOnHomePage()
                 .getHeaderElement().clickOnButtonCreatePost()
                 .checkIsRedirectOnCreateNewPostPage()
-                .enterTextIntoInputTitle(POST_TITLE)
-                .enterTextIntoInputBody(POST_BODY)
+                .enterTextIntoInputTitle(postTitle)
+                .enterTextIntoInputBody(postBody)
                 .selectValueInDropdownAccess(dropDown)
                 .setOnCheckBoxIsPrivatePost(checkBox)
                 .clickOnButtonSavePost()
@@ -51,7 +51,7 @@ public class CreateNewPostWithExelTest extends BaseTest {
         ;
         pageProvider.getPostPage().getHeaderElement().clickOnButtonMyProfile()
                 .checkIsRedirectOnMyProfilePage()
-                .checkPostWithTitleIsPresent(POST_TITLE, 1)
+                .checkPostWithTitleIsPresent(postTitle, 1)
         ;
     }
     public Collection parametersForCreteNewPost() throws IOException {
@@ -72,7 +72,7 @@ public class CreateNewPostWithExelTest extends BaseTest {
                 .openHomePageAndLoginIfNeeded()
                 .getHeaderElement().clickOnButtonMyProfile()
                 .checkIsRedirectOnMyProfilePage()
-                .deletePostTillPresent(POST_TITLE)
+                .deletePostTillPresent(postTitle)
         ;
 
     }

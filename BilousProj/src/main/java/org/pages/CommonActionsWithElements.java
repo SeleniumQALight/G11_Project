@@ -162,15 +162,16 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected void setCheckboxState(WebElement checkbox, String state) {
+    protected void setCheckboxState
+            (WebElement checkbox, String state, String textSelectedMessage, String textDeselectedMessage) {
         try {
             if ("check".equalsIgnoreCase(state)) {
                 selectCheckbox(checkbox);
-                Assert.assertEquals("Checkbox is not selected", true, checkbox.isSelected());
+                Assert.assertEquals(textDeselectedMessage, true, checkbox.isSelected());
                 logger.info("This post is unique");
             } else if ("uncheck".equalsIgnoreCase(state)) {
                 deselectCheckbox(checkbox);
-                Assert.assertEquals("Checkbox is selected", false, checkbox.isSelected());
+                Assert.assertEquals(textSelectedMessage, false, checkbox.isSelected());
                 logger.info("This post is not unique");
             } else {
                 logger.error("Invalid state: " + state);

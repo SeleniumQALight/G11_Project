@@ -64,7 +64,8 @@ public class CreateNewPostPage extends ParantPage {
     }
 
     public CreateNewPostPage setOnCheckBoxIsPrivatePost(String state) {
-        setCheckboxState(checkboxIsPrivatePost, state);
+        setCheckboxState(checkboxIsPrivatePost, state, "Checkbox is selected",
+                "Checkbox is not selected");
         return this;
     }
 
