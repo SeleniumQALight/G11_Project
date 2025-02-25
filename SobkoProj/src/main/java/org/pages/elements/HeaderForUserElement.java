@@ -1,5 +1,6 @@
 package org.pages.elements;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -43,46 +44,55 @@ public class HeaderForUserElement extends CommonActionsWithElements {
         clickOnElement(buttonSignOut);
         return this;
     }
-
+    @Step
     public void checkIsButtonSignOutVisible() {
 
         checkIsElementVisible(buttonSignOut);
     }
+    @Step
     public void checkIsButtonChatVisible() {
         checkIsElementVisible(buttonChat);
     }
+    @Step
     public void checkIsButtonSearchVisible() {
         checkIsElementVisible(buttonSearch);
     }
+    @Step
     public void checkIsMyProfileVisible() {
         checkIsElementVisible(buttonMyProfile);
     }
+    @Step
     public void checkIsButtonCreatePostVisible() {
         checkIsElementVisible(buttonCreatePost);
     }
+    @Step
     public void checkIsButtonSignOutNotVisible() {
         checkIsElementNotVisible(buttonSignOut);
     }
+    @Step
     public void checkIsButtonChatNotVisible() {
         checkIsElementNotVisible(buttonChat);
     }
+    @Step
     public void checkIsButtonSearchNotVisible() {
         checkIsElementNotVisible(buttonSearch);
     }
-
+    @Step
     public void checkIsMyProfileNotVisible() {
         checkIsElementNotVisible(buttonMyProfile);
     }
+    @Step
     public void checkIsButtonCreatePostNotVisible() {
         checkIsElementNotVisible(buttonCreatePost);
     }
 
 
 
+    @Step
     public boolean isButtonSignOutVisible() {
         return isElementVisible(buttonSignOut);
     }
-
+    @Step
     public HeaderForUserElement checkAllHeaderElementsVisible(){
         checkIsButtonCreatePostVisible();
         checkIsButtonSignOutVisible();
@@ -91,7 +101,7 @@ public class HeaderForUserElement extends CommonActionsWithElements {
         checkIsButtonSearchVisible();
         return this;
     }
-
+    @Step
     public LoginPage checkHeaderElementsNotVisible(){
         checkIsButtonCreatePostNotVisible();
         checkIsButtonSignOutNotVisible();

@@ -1,5 +1,6 @@
 package org.pages;
 
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.data.RegistrationValidationMessages;
@@ -50,43 +51,45 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public LoginPage openPage() {
 
         webdriver.get(baseUrl);
         logger.info("Login Page was opened url " + baseUrl);
         return this;
     }
-
+    @Step
     public LoginPage enterTextIntoInputLogin(String login) {
         clearAndEnterTextIntoElement(inputUserName, login);
         return this;
 
     }
-
+    @Step
     public LoginPage checkIsButtonSignInVisible() {
         checkIsElementVisible(clickSignIn);
         return this;
     }
-
+    @Step
     public LoginPage checkIsInputLoginVisible() {
         checkIsElementVisible(inputUserName);
         return this;
     }
+    @Step
     public LoginPage checkIsInputPasswordVisible() {
         checkIsElementVisible(inputUserName);
         return this;
     }
-
+    @Step
     public LoginPage enterTextIntoInputPassword(String password) {
         clearAndEnterTextIntoElement(inputPassword, password);
         return this;
     }
 
-
+    @Step
     public void clickOnButtonSignIn() {
         clickOnElement(clickSignIn);
     }
-
+    @Step
     public HomePage openLoginPageAndLoginFormWithValidCreds() {
         this.openPage();
         this.enterTextIntoInputLogin(VALID_LOGIN);
@@ -95,24 +98,24 @@ public class LoginPage extends ParentPage {
         return new HomePage(webdriver);
 
     }
-
+    @Step
     public void checkWarningMessageInvalidLoginPassword() {
         Assert.assertTrue("Warning message is not displayed", isElementVisible(warningMessage));
     }
-
+    @Step
     public void checkIsInputLoginNotVisible() {
         checkIsElementNotVisible(inputUserName);
     }
-
+    @Step
     public void checkIsInputPasswordNotVisible() {
         checkIsElementNotVisible(inputPassword);
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationNameField(String login) {
         clearAndEnterTextIntoElement(inputUserNameRegistrationForm, login);
         return this;
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationEmailField(String email) {
         clearAndEnterTextIntoElement(inputUserEmailRegistrationForm, email);
         return this;
@@ -151,7 +154,7 @@ public class LoginPage extends ParentPage {
         pressButton(Keys.ENTER);
         return new HomePage(webdriver);
     }
-
+    @Step
     public HomePage useTabAndEnterToSetCredentialsAndLogin(String login, String password) {
         openPage();
         pressTabUntilElement(inputUserName);
@@ -161,7 +164,7 @@ public class LoginPage extends ParentPage {
         pressButton(Keys.ENTER);
         return new HomePage(webdriver);
     }
-
+    @Step
     private void pressTabUntilElement(WebElement webElement) {
         int count = 0;
         while (!webElement.equals(webdriver.switchTo().activeElement())) {
