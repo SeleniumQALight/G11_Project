@@ -1,6 +1,7 @@
 package org.pages;
 
 
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.data.RegistrationValidationMessages;
@@ -57,26 +58,31 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public LoginPage openPage() {
         webDriver.get(baseUrl);
         logger.info("Login Page was opened with url" + baseUrl);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoInputLogin(String login) {
         clearAndEnterTextIntoElement(inputUserName, login);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoInputPassword(String password) {
         clearAndEnterTextIntoElement(inputPassword, password);
         return this;
     }
 
+    @Step
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
 
+    @Step
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN);
@@ -85,6 +91,7 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    @Step
     public LoginPage checkIsRedirectToLoginPage() {
         checkIsElementVisible(buttonSignIn);
         checkIsUsernameInputIsVisible();
@@ -105,21 +112,25 @@ public class LoginPage extends ParentPage {
         checkIsElementNotVisible(inputPassword);
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationUserNameField(String login) {
         clearAndEnterTextIntoElement(inputUserNameRegistrationForm, login);
         return this;
 
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationEmailField(String email) {
         clearAndEnterTextIntoElement(inputEmailRegistrationForm, email);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationPasswordField(String password) {
         clearAndEnterTextIntoElement(inputPasswordRegistrationForm, password);
         return this;
     }
+
 
     public LoginPage checkErrorMessages(String expectedErrors) {
         //error1;error2;error3; -> [error1, error2, error3]
