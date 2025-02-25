@@ -1,5 +1,6 @@
 package org.pages;
 
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.data.RegistrationValidationMessages;
@@ -57,20 +58,24 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoInputLogin(String login) {
         enterTextIntoInput(inputUserName, login);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
         return this;
     }
 
+    @Step
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
 
+    @Step
     public HomePage openLoginAndFillLoginFormWithValidData() {
         openPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN);
@@ -80,21 +85,25 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationUserNameField(String userName) {
         enterTextIntoInput(inputUserNameRegistrationField, userName);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationEmailField(String Email) {
         enterTextIntoInput(inputEmailRegistrationField, Email);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationPasswordField(String Password) {
         enterTextIntoInput(inputPasswordRegistrationField, Password);
         return this;
     }
 
+    @Step
     public LoginPage checkErrorsMessages(String expectedErrors) {
         String[] messagesArray = expectedErrors.split(RegistrationValidationMessages.SEMICOLON);
 
