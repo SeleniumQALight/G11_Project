@@ -36,15 +36,21 @@ public class PostPage extends ParentPage{
         return this;
     }
 
+    public PostPage checkIsThisMessageUniqueText(String text) {
+        checkIsElementVisible(String.format(locatorForTextThisPostWasWritten, "Is this post unique? : "+ text));
+        return this;
+    }
+
     public PostPage checkIsRedirectToPostPage() {
         checkUrlWithPattern();
         return this;
     }
 
-    public PostPage CheckIsAlertSuccessPresent() {
+    public PostPage checkIsAlertSuccessPresent() {
         checkIsElementVisible(successMessage);
         return this;
     }
+
 
     public PostPage checkTextInSuccessMessage(String text) {
         checkTextInElement(successMessage, text);

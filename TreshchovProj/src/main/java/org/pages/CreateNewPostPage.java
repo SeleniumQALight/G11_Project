@@ -15,6 +15,9 @@ public class CreateNewPostPage extends ParentPage{
     @FindBy(xpath = "//button[text()='Save New Post']")
     private WebElement buttonSaveNewPost;
 
+    @FindBy(xpath = "//input[@type='checkbox' and @name='uniquePost']")
+    private WebElement checkboxUniquePost;
+
     @FindBy(xpath = "//select")
     private WebElement dropDownAccess;
 
@@ -64,6 +67,11 @@ public class CreateNewPostPage extends ParentPage{
 
     public CreateNewPostPage clickOnButtonSaveUpdates() {
         clickOnElement(buttonSaveUpdates);
+        return this;
+    }
+
+    public CreateNewPostPage checkBoxSelection(String state){
+        checkBoxSelect(checkboxUniquePost, state);
         return this;
     }
 }

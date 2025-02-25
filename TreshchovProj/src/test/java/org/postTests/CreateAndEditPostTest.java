@@ -21,7 +21,7 @@ public class CreateAndEditPostTest extends BaseTest {
                 enterTextIntoInputBody("test body").
                 clickOnButtonSavePost().
                 checkIsRedirectToPostPage().
-                CheckIsAlertSuccessPresent().
+                checkIsAlertSuccessPresent().
                 checkTextInSuccessMessage("New post successfully created.").
                 getHeaderElement().
                 clickOnButtonMyProfile().EditPostWithNewTitle(TITLE, TITLE_EDITED).checkPostWithTitlePresent(TITLE_EDITED, 1);
