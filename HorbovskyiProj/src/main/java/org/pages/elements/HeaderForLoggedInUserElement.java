@@ -1,5 +1,6 @@
 package org.pages.elements;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,6 +31,7 @@ public class HeaderForLoggedInUserElement extends CommonActionsWithElements {
         super(webDriver);
     }
 
+    @Step
     public MyProfilePage clickOnButtonMyProfile() {
         clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
@@ -48,6 +50,7 @@ public class HeaderForLoggedInUserElement extends CommonActionsWithElements {
         return isElementVisible(buttonSignOut);
     }
 
+    @Step
     public CreateNewPostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
         return new CreateNewPostPage(webDriver);
@@ -69,6 +72,7 @@ public class HeaderForLoggedInUserElement extends CommonActionsWithElements {
         checkIsElementVisible(buttonCreatePost);
     }
 
+    @Step
     public void clickOnButtonSignOut() {
         clickOnElement(buttonSignOut);
     }
