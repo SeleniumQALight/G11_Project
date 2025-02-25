@@ -1,5 +1,6 @@
 package org.pages;
 
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.data.RegistrationValidationMessages;
@@ -52,6 +53,7 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public LoginPage openPage() {
 
         webDriver.get(baseUrl);
@@ -60,6 +62,7 @@ public class LoginPage extends ParentPage {
 
     }
 
+    @Step
     public LoginPage enterTextIntoInputLogin(String login) {
 //        WebElement inputUserName = webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
 //        inputUserName.clear();
@@ -69,16 +72,19 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoInputPassword(String password) {
         clearAndEnterTextIntoElement(inputPassword, password);
         return this;
     }
 
+    @Step
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
 
 
+    @Step
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN);
@@ -87,36 +93,44 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    @Step
     public void checkIsButtonSignInVisible() {
         checkIsElementVisible(buttonSignIn);
     }
 
+    @Step
     public LoginPage checkIsRedirectToLoginPage() {
         checkIsButtonSignInVisible();
         return this;
     }
 
+    @Step
     public LoginPage checkIsSussesMessageDisplayed() {
         checkIsElementVisible(successMessage);
         return this;
     }
 
+    @Step
     public void checkIsInputLoginNotVisible() {
         checkIsElementNotVisible(inputUserName);
     }
 
+    @Step
     public void checkIsInputPasswordNotVisible() {
         checkIsElementNotVisible(inputPassword);
     }
 
+    @Step
     public void checkIsInputLoginVisible() {
         checkIsElementVisible(inputUserName);
     }
 
+    @Step
     public void checkIsInputPasswordVisible() {
         checkIsElementVisible(inputPassword);
     }
 
+    @Step
     public LoginPage checkAllElementsInHeaderOnLoginPageVisible(){
         checkIsButtonSignInVisible();
         checkIsInputLoginVisible();
@@ -126,16 +140,19 @@ public class LoginPage extends ParentPage {
 
 
 
+    @Step
     public LoginPage enterTextIntoRegistrationUserNameField(String login) {
         clearAndEnterTextIntoElement(inputUserNameRegistrationForm, login);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationEmailField(String email) {
         clearAndEnterTextIntoElement(inputEmailInRegistrationForm, email);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationPasswordField(String password) {
         clearAndEnterTextIntoElement(inputPasswordInRegistrationForm, password);
         return this;
