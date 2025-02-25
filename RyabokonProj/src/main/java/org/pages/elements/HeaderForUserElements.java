@@ -1,5 +1,6 @@
 package org.pages.elements;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,7 +34,7 @@ public class HeaderForUserElements  extends CommonActionsWithElements {
 @FindBy(xpath = ".//*[@data-original-title='Chat']") //.//*[@data-original-title="Chat"]
     private WebElement buttonChat;
 
-
+    @Step
     public void checkIsButtonSignOutVisible() {
         // Assert.assertTrue("Button Sign Out is not displayed", isElementVisible(buttonSignOut));
         checkIsElementVisible(buttonSignOut);
@@ -43,7 +44,7 @@ public class HeaderForUserElements  extends CommonActionsWithElements {
         clickOnElement(buttonCreatePost);
         return new CreateNewPostPage(webDriver);
     }
-
+    @Step
     public MyProfilePage clickOnButtonMyProfile() {
         clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
@@ -53,25 +54,26 @@ public class HeaderForUserElements  extends CommonActionsWithElements {
         return isElementVisible(buttonSignOut);
     }
 
-
+    @Step
     public boolean checkIsButtonSignInVisible() {return isElementVisible(buttonSignIn); }
 
+    @Step
     public void checkIsButtonSignOutNotVisible() {
         Assert.assertFalse("Button Sign Out is not displayed  ", isElementVisible(buttonSignOut));
     }
-
+    @Step
     public void checkIsButtonCreatePostVisible() {
         checkIsElementVisible(buttonCreatePost);
     }
-
+    @Step
     public void clickOnButtonSignOut() {
         clickOnElement(buttonSignOut);
     }
-
+    @Step
     public void checkIsButtonAvatarVisible() {
         checkIsElementVisible(buttonAvatar);
     }
-
+    @Step
     public void checkIsButtonChatVisible() {
         checkIsElementVisible(buttonChat);
     }
@@ -79,12 +81,12 @@ public class HeaderForUserElements  extends CommonActionsWithElements {
 
 
 
-
+    @Step
     public void checkIsButtonCreatePostInVisible() {
         Assert.assertFalse("Button CreatePost is not displayed", isElementVisible(buttonCreatePost));
 
     }
-
+    @Step
     public void checkIsButtonAvatarInVisible() {
         Assert.assertFalse("Button Avatar is not displayed", isElementVisible(buttonAvatar));
     }
