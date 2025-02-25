@@ -87,4 +87,5 @@ public class HeaderForUserElement extends CommonActionsWithElements {
         checkIsElementNotVisible(buttonMyProfile);
     }
 
+
 }
