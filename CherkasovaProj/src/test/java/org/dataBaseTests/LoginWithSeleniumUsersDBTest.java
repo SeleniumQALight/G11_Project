@@ -21,6 +21,6 @@ public class LoginWithSeleniumUsersDBTest extends BaseTest {
                 .clickOnButtonSignIn()
         ;
 
-        pageProvider.getHomePage().getHeaderElement().isButtonSignOutVisible();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
     }
 }
