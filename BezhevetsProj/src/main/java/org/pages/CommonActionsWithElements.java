@@ -156,14 +156,14 @@ public class CommonActionsWithElements {
     }
 
     //open new tab using JS
-    protected void openNewTab() {
-        try {
-            ((JavascriptExecutor) webDriver).executeScript("window.open()");
-            logger.info("New tab was opened");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
+//    protected void openNewTab() {
+//        try {
+//            ((JavascriptExecutor) webDriver).executeScript("window.open()");
+//            logger.info("New tab was opened");
+//        } catch (Exception e) {
+//            printErrorAndStopTest(e);
+//        }
+//    }
 
 
     private void printErrorAndStopTest(Exception e) {

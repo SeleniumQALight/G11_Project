@@ -92,8 +92,4 @@ public class BaseTest {
         return webDriver;
     }
 
-    public WebDriver getDriver() {
-        return webDriver;
-    }
-
 }
