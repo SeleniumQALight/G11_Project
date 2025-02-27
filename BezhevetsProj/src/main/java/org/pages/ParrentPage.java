@@ -1,8 +1,11 @@
 package org.pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.utils.ConfigProvider;
+
+import java.util.ArrayList;
 
 abstract public class ParrentPage extends CommonActionsWithElements {
     String environment = System.getProperty("env", "aqa");
@@ -30,5 +33,36 @@ abstract public class ParrentPage extends CommonActionsWithElements {
                         "Expected url: " + baseUrl + getRelativeUrl() +
                         "\n Actual url: " + webDriver.getCurrentUrl(),
                 webDriver.getCurrentUrl().matches(baseUrl + getRelativeUrl()));
+    }
+
+    public void openNewTab() {
+        JavascriptExecutor js = (JavascriptExecutor) webDriver;
+        js.executeScript("window.open('about:blank','_blank');");
+    }
+
+    // Метод для отримання списку вкладок
+    public ArrayList<String> getWindowHandles() {
+        return new ArrayList<>(webDriver.getWindowHandles());
+    }
+
+    public void switchToTab(int tabIndex) {
+        ArrayList<String> tabs = getWindowHandles();
+        if (tabIndex >= 0 && tabIndex < tabs.size()) {
+            webDriver.switchTo().window(tabs.get(tabIndex));
+        } else {
+            throw new IllegalArgumentException("Invalid tab index: " + tabIndex);
+        }
+    }
+
+    public void closeCurrentTab() {
+        webDriver.close();
+    }
+
+    public void switchToMainTab() {
+        switchToTab(0);
+    }
+
+    public void refreshPage() {
+        webDriver.navigate().refresh();
     }
 }
