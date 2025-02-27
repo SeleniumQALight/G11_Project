@@ -3,7 +3,6 @@ package org.pages;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -164,17 +163,7 @@ public class CommonActionsWithElements {
         }
     }
 
-    // open new tab using JS
-    protected void openNewTab() {
-        try {
-            ((JavascriptExecutor) webDriver).executeScript("window.open()");
-            logger.info("New tab was opened");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
-
-    private void printErrorAndStopTest(Exception e) {
+    public void printErrorAndStopTest(Exception e) {
         logger.error("Cannot work with element " + e);
         Assert.fail("Cannot work with element " + e);
     }

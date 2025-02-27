@@ -18,6 +18,9 @@ public class PostPage extends ParentPage {
     @FindBy(xpath = "//*[@class='delete-post-button text-danger']")
     private WebElement buttonDeletePost;
 
+    @FindBy(xpath = "//a[@data-original-title='Edit']")
+    private WebElement buttonEditPost;
+
     private String locatorForTextThisPostWasWritten = "//*[contains(text(),'%s')]";
 
     public HeaderForLoggedInUserElement getHeaderElement() {
@@ -56,6 +59,11 @@ public class PostPage extends ParentPage {
     public MyProfilePage clickOnDeleteButton() {
         clickOnElement(buttonDeletePost, "Delete post button");
         return new MyProfilePage(webDriver);
+    }
+
+    public EditPostPage clickOnEditButton() {
+        clickOnElement(buttonEditPost, "Edit post button");
+        return new EditPostPage(webDriver);
     }
 
     public PostPage checkTextThisPostWasWrittenIsVisible(String text) {

@@ -1,8 +1,10 @@
 package org.postTests;
 
 import org.baseTest.BaseTest;
+import org.categories.SmokeTestsFilter;
 import org.junit.After;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.utils.Utils_Custom;
 
 public class CreateNewPostTest extends BaseTest {

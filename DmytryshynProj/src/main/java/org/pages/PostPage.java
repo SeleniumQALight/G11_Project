@@ -17,7 +17,7 @@ public class PostPage extends ParentPage {
     private WebElement buttonEditPost;
 
     private String locatorForTextThisPostWasWritten = "//*[contains(text(),'%s')]";
-    private String locatorForTextIsThisPostUnique = "//*[contains(text(),'%s')]";
+    private String locatorForTextIsThisPostUnique = ".//p[text()='Is this post unique? : %s']";
 
 
     public PostPage(WebDriver webDriver) {

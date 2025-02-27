@@ -1,14 +1,19 @@
 package org.loginTest;
 
+import io.qameta.allure.*;
 import org.baseTest.BaseTest;
+import org.categories.SmokeTestFilter;
 import org.data.TestData;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.pages.elements.HeaderForUserElement;
 
 import static org.data.TestData.VALID_LOGIN;
 import static org.data.TestData.VALID_PASSWORD;
 
+@Epic("Allure examples")
+@Feature("Junit 4 support")
 public class LoginTestWithPageObject extends BaseTest {
 
     @Test
@@ -33,6 +38,7 @@ public class LoginTestWithPageObject extends BaseTest {
 //    }
 
     @Test
+    @Category(SmokeTestFilter.class)
     public void T0001_validLogin() {
         pageProvider.getLoginPage()
                 .openPage()
@@ -43,7 +49,15 @@ public class LoginTestWithPageObject extends BaseTest {
 
     }
 
+
+
     @Test
+    @Description("Some detailed test description")
+    @Link("https://example.org")
+    @Link(name = "allure", type = "mylink")
+    @Issue("123")
+    @Issue("432")
+    @Story("Base support for bdd annotations")
     public void T0004_validSignOut() {
         pageProvider.getLoginPage()
                 .openLoginPageAndFillLoginFormWithValidCred()

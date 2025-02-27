@@ -3,10 +3,10 @@ package org.postTests;
 import org.baseTest.BaseTest;
 import org.junit.After;
 import org.junit.Test;
-import org.utils.Utils_Custom;
+
+import static org.data.TestData.POST_TITLE;
 
 public class CreateNewPostTest extends BaseTest {
-    final String POST_TITLE = "TR003Horbovskyi" + Utils_Custom.getDateAndTimeFormatted();
 
     @Test
     public void TR003_createNewPost() {

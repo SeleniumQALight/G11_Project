@@ -3,8 +3,10 @@ package org.registrationTests;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.baseTest.BaseTest;
+import org.categories.SmokeTestFilter;
 import org.data.RegistrationValidationMessages;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
@@ -13,7 +15,7 @@ import org.pages.ParantPage;
 import static org.data.RegistrationValidationMessages.*;
 
 @RunWith(JUnitParamsRunner.class)
-
+@Category(SmokeTestFilter.class)
 public class ValidationMessageTest extends BaseTest {
 
     @Test
