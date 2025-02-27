@@ -221,7 +221,7 @@ public class CommonActionsWithElements {
     }
 
     public void closeCurrentTab() {
-        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+        logger.info("Current tab is cloosed.");
         webDriver.close();
        ;
 

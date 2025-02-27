@@ -72,6 +72,7 @@ public class LoginTestWithPageObject extends BaseTest {
         pageProvider.getHomePage().switchToNewTab(1);
         pageProvider.getLoginPage().openPage();
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
+
         pageProvider.getHomePage().switchToMainTab(0);
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
         pageProvider.getHomePage().openNewTab();
