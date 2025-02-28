@@ -169,7 +169,7 @@ protected void useTabKey() {
 
     protected void checkIsElementNotVisible(WebElement element) {
         Assert.assertFalse(getElementName(element) + " Element is visible", isElementVisible(element));
-}
+    }
 
 
     protected void checkBoxCheck(WebElement element) {
