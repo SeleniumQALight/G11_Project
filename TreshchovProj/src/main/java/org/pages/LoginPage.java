@@ -15,7 +15,6 @@ import org.pages.elements.HeaderForUserElement;
 import org.utils.Utils_Custom;
 
 import java.util.List;
-import org.pages.elements.HeaderForUserElement;
 
 public class LoginPage extends ParentPage {
     private Logger logger = Logger.getLogger(getClass());
