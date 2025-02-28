@@ -13,7 +13,8 @@ public class InvalidLoginTestHW3 extends BaseTest {
                 enterTextIntoInputLogin(VALID_LOGIN).
                 enterTextIntoInputPassword("123456asd").
                 clickOnButtonSignInWithInvalidData().
-                checkIsButtonSignInVisible().getHeaderElement().
+                checkIsButtonSignInVisible();
+        pageProvider.getHomePage().getHeaderElement().
                 checkIsButtonSignOutVisible();
 
         pageProvider.getLoginPage().checkIsErrorMessageVisible();

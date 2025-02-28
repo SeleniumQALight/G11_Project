@@ -28,10 +28,6 @@ public class HomePage extends ParentPage {
         return new HeaderForUserElement(webDriver);
     }
 
-    public HomePage checkIsButtonSignOutVisible() {
-    getHeaderElement().checkIsButtonSignOutVisible();
-        return this;
-    }
 
     public HomePage checkIsRedirectToHomePage() {
         getHeaderElement().checkIsButtonSignOutVisible();
@@ -56,14 +52,5 @@ public class HomePage extends ParentPage {
         }
         return this;
     }
-
-
-
-    public HomePage checkIsButtonCreatePostVisible() {
-        getHeaderElement().checkIsButtonCreatePostVisible();
-        return this;
-    }
-
-
 
 }
