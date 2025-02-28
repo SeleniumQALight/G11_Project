@@ -91,7 +91,7 @@ public class CommonActionsWithElements {
         }
     }
 
-    private void printErrorAndStopTest(Exception e) {
+    protected void printErrorAndStopTest(Exception e) {
         logger.error("Cannot work with element " + e);
         Assert.fail("Cannot work with element " + e);
     }
@@ -130,10 +130,6 @@ public class CommonActionsWithElements {
         Assert.assertTrue(locator + " Element is not visible", isElementVisible(locator));
     }
 
-    protected void checkIsElementNotVisible(WebElement element) {
-        Assert.assertFalse("Element is visible", isElementVisible(element));
-    }
-
     protected void checkTextInElement(WebElement element, String text) {
             Assert.assertEquals("Text in " + getElementName(element) +  " element is not expected", text, element.getText());
             logger.info("Text in " + getElementName(element) + " element is expected");
@@ -161,16 +157,19 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected void openNewTab() {
+protected void useTabKey() {
         try {
-            ((JavascriptExecutor) webDriver).executeScript("window.open()");
-            logger.info("New tab was opened");
+            Actions actions = new Actions(webDriver);
+            actions.sendKeys("\t").build().perform();
+            logger.info("Tab key was pressed");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
     }
 
-
+    protected void checkIsElementNotVisible(WebElement element) {
+        Assert.assertFalse(getElementName(element) + " Element is visible", isElementVisible(element));
+    }
 
 
     protected void checkBoxCheck(WebElement element) {
@@ -213,6 +212,28 @@ public class CommonActionsWithElements {
 
         }
     }
+
+
+    protected void useEnterKey() {
+        try {
+            Actions actions = new Actions(webDriver);
+            actions.sendKeys("\n").build().perform();
+            logger.info("Enter key was pressed");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void enterTextUsingActions(String text) {
+        try {
+            Actions actions = new Actions(webDriver);
+            actions.sendKeys(text).build().perform();
+            logger.info(text + " was inputted");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
 
 
 }
