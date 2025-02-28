@@ -148,7 +148,6 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
-
     protected void deselectCheckbox(WebElement checkbox) {
         try {
             if (checkbox.isSelected()) {
