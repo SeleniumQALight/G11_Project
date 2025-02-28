@@ -1,5 +1,6 @@
 package org.pages.elements;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -31,32 +32,37 @@ public class HeaderForUserElement extends CommonActionsWithElements {
         super(webDriver);
     }
 
+    @Step
     public HeaderForUserElement checkIsButtonSighOutVisible() {
         checkIsElementVisible(buttonSighOut);
         return this;
     }
 
+    @Step
     public HeaderForUserElement checkIsButtonSighOutNotVisible() {
         checkIsElementNotVisible(buttonSighOut);
         return this;
     }
 
-
+    @Step
     public MyProfilePage clickOnMyProfileButton() {
         clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
     }
 
+    @Step
     public CreateNewPostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
         return new CreateNewPostPage(webDriver);
     }
 
+    @Step
     public HeaderForUserElement checkIsButtonCreatePostNotVisible() {
         checkIsElementNotVisible(buttonCreatePost);
         return this;
     }
 
+    @Step
     public HeaderForUserElement checkIsButtonCreatePostVisible() {
         checkIsElementVisible(buttonCreatePost);
         return this;
@@ -66,33 +72,43 @@ public class HeaderForUserElement extends CommonActionsWithElements {
         return isElementVisible(buttonSighOut);
     }
 
+    @Step
     public HeaderForUserElement checkIsButtonSearchVisible(){
         checkIsElementVisible(buttonSearch);
         return this;
     }
+
+    @Step
     public HeaderForUserElement checkIsButtonSearchNotVisible(){
         checkIsElementNotVisible(buttonSearch);
         return this;
     }
 
+    @Step
     public HeaderForUserElement checkIsButtonChatVisible(){
         checkIsElementVisible(buttonChat);
         return this;
     }
+
+    @Step
     public HeaderForUserElement checkIsButtonChatNotVisible(){
         checkIsElementNotVisible(buttonChat);
         return this;
     }
 
+    @Step
     public HeaderForUserElement checkIsAvatarVisible(){
         checkIsElementVisible(imgAvatar);
         return this;
     }
+
+    @Step
     public HeaderForUserElement checkIsAvatarNotVisible(){
         checkIsElementNotVisible(imgAvatar);
         return this;
     }
 
+    @Step
     public LoginPage clickOnButtonSignOut(){
         clickOnElement(buttonSighOut);
         return new LoginPage(webDriver);
