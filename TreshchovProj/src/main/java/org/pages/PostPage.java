@@ -18,6 +18,9 @@ public class PostPage extends ParentPage{
 
     private String locatorForTextThisPostWasWritten = "//*[contains(text(),'%s')]";
 
+    @FindBy(xpath = "//p[text()='Is this post unique? : yes']")
+     private WebElement isPostUniqueYes;
+
     public PostPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -43,6 +46,11 @@ public class PostPage extends ParentPage{
 
     public PostPage CheckIsAlertSuccessPresent() {
         checkIsElementVisible(successMessage);
+        return this;
+    }
+
+    public PostPage checkIsPostUnique(){
+        checkIsElementVisible(isPostUniqueYes);
         return this;
     }
 
