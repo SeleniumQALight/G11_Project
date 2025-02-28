@@ -168,11 +168,9 @@ public class CommonActionsWithElements {
             if ("check".equalsIgnoreCase(state)) {
                 selectCheckbox(checkbox);
                 Assert.assertEquals(textDeselectedMessage, true, checkbox.isSelected());
-                logger.info("This post is unique");
             } else if ("uncheck".equalsIgnoreCase(state)) {
                 deselectCheckbox(checkbox);
                 Assert.assertEquals(textSelectedMessage, false, checkbox.isSelected());
-                logger.info("This post is not unique");
             } else {
                 logger.error("Invalid state: " + state);
             }
