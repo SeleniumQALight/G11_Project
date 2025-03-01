@@ -123,7 +123,7 @@ public class CommonActionsWithElements {
     }
 
     protected void checkIsElementVisible(String locator) {
-        Assert.assertTrue("Element is not visible", isElementVisible(locator));
+        Assert.assertTrue("Element is not visible with locator " + locator, isElementVisible(locator));
     }
 
     protected void checkIsElementInvisible(WebElement webElement) {
@@ -148,7 +148,6 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
-
     protected void deselectCheckbox(WebElement checkbox) {
         try {
             if (checkbox.isSelected()) {
@@ -162,14 +161,15 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected void setCheckboxState(WebElement checkbox, String state) {
+    protected void setCheckboxState
+            (WebElement checkbox, String state, String textSelectedMessage, String textDeselectedMessage) {
         try {
             if ("check".equalsIgnoreCase(state)) {
                 selectCheckbox(checkbox);
-                logger.info("This post is unique");
+                Assert.assertEquals(textDeselectedMessage, true, checkbox.isSelected());
             } else if ("uncheck".equalsIgnoreCase(state)) {
                 deselectCheckbox(checkbox);
-                logger.info("This post is not unique");
+                Assert.assertEquals(textSelectedMessage, false, checkbox.isSelected());
             } else {
                 logger.error("Invalid state: " + state);
             }
