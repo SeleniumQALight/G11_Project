@@ -74,4 +74,9 @@ public class CreateNewPostPage extends ParentPage{
         clickOnElement(buttonSaveUpdates);
         return this;
     }
+
+    public CreateNewPostPage checkBoxSelection(String state){
+        checkBoxSelect(checkboxUniquePost, state);
+        return this;
+    }
 }
