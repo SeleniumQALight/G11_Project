@@ -22,7 +22,6 @@ public class LoginAndLogoutTest extends BaseTest {
         pageProvider.getHomePage().getHeaderElement().checkIsButtonMyProfileVisible();
 
         pageProvider.getHomePage().getHeaderElement().clickOnButtonSignOut();
-
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutNotVisible();
         pageProvider.getHomePage().getHeaderElement().checkIsButtonCreatePostNotVisible();
         pageProvider.getHomePage().getHeaderElement().checkIsButtonChatNotVisible();

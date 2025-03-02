@@ -45,7 +45,8 @@ public class ElementsForCreateEditPost extends CommonActionsWithElements {
     }
 
     public ElementsForCreateEditPost setOnCheckBoxIsPrivatePost() {
-        setCheckboxState(checkboxIsPrivatePost, "check");
+        setCheckboxState(checkboxIsPrivatePost, "check", "Checkbox is selected",
+                "Checkbox is not selected");
         return this;
     }
 
