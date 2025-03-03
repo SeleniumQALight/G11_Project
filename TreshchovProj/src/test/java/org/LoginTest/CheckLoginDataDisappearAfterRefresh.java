@@ -9,7 +9,7 @@ import static org.data.TestData.VALID_LOGIN;
 public class CheckLoginDataDisappearAfterRefresh extends BaseTest {
 
     @Test
-    public void HW4_T0002_CheckLoginDataDisappearAfterRefresh() {
+    public void HW5_T0002_CheckLoginDataDisappearAfterRefresh() {
         pageProvider.getLoginPage().openPage().
                 enterTextIntoInputLogin(VALID_LOGIN).
                 enterTextIntoInputPassword(TestData.VALID_PASSWORD).refreshLoginPage().clickOnButtonSignIn();

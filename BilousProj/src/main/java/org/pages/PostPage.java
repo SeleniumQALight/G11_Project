@@ -16,6 +16,8 @@ public class PostPage extends ParantPage {
 
     private String locatorForTextThisPostWasWritten = "//*[contains(text(),'%s')]";
 
+    private String locatorForElementPostUniq = "//*[contains(text(),'Is this post unique? : %s')]";
+
     @FindBy(xpath = "//a[@data-placement='top']")
     private WebElement buttonEditPost;
 
@@ -58,6 +60,12 @@ public class PostPage extends ParantPage {
         checkIsElementVisible(String.format(locatorForTextThisPostWasWritten, text));
         return this;
     }
+
+    public PostPage checkTextFromCheckBoxIsVisible(String text) {
+        checkIsElementVisible(String.format(locatorForElementPostUniq, text));
+        return this;
+    }
+
     public EditPostPage clickOnEditButton() {
         clickOnElement(buttonEditPost);
         return new EditPostPage(webDriver);

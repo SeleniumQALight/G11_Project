@@ -20,7 +20,7 @@ public class CreateNewPostTest extends BaseTest {
                 .enterTextIntoInputTitle(POST_TITLE)
                 .selectValueInDropdownAccess("One Person")
                 .enterTextIntoInputBody("Body of the post")
-                .setOnCheckBoxIsPrivatePost()
+                .setOnCheckBoxIsPrivatePost("check")
                 .clickOnButtonSavePost()
                 .checkIsRedirectOnPostPage()
                 .checkIsSuccessMessageDisplayed()

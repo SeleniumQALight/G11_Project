@@ -9,7 +9,7 @@ import static org.data.TestData.VALID_PASSWORD;
 public class CheckLoginInAnotherTabTest extends BaseTest {
 
     @Test
-    public void HW4_T0001_validLogin() {
+    public void HW5_T0001_validLogin() {
         pageProvider.getLoginPage().openPage().
                 enterTextIntoInputLogin(VALID_LOGIN).
                 enterTextIntoInputPassword(VALID_PASSWORD).
@@ -18,7 +18,7 @@ public class CheckLoginInAnotherTabTest extends BaseTest {
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
 
         pageProvider.getLoginPage().openNewTabAndOpenHomePage().getHeaderElement().checkIsButtonSignOutVisible();
-        pageProvider.getHomePage().switchToSelectedTabAndCheckButtonSignOut(0).CloseTab(1);
+        pageProvider.getHomePage().switchToSelectedTabAndCheckButtonSignOut(0).closeSelectedTab(1);
         pageProvider.getHomePage().switchToSelectedTabAndCheckButtonSignOut(0);
 
     }

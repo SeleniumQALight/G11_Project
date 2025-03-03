@@ -12,8 +12,8 @@ import static org.data.RegistrationValidationMessages.*;
 public class ValidationMessagesUsingActionsTest extends BaseTest {
 
     @Test
-    @Parameters(method = "parametersForHW4_T0004_ValidationMessagesUsingActionsTest")
-    public void HW4_T0004_ValidationMessagesUsingActionsTest(String username, String email, String password, String expectedErrors){
+    @Parameters(method = "parametersForHW5_T0004_ValidationMessagesUsingActionsTest")
+    public void HW5_T0004_ValidationMessagesUsingActionsTest(String username, String email, String password, String expectedErrors){
     pageProvider.getLoginPage().
             openPageAndMoveToRegistrationFieldUserNameUsingActions().enterValueUsingActions(username).
             switchToNextFieldUsingActions().enterValueUsingActions(email).
@@ -21,7 +21,7 @@ public class ValidationMessagesUsingActionsTest extends BaseTest {
             switchToNextFieldUsingActions().checkErrorsMessages(expectedErrors);
     }
 
-    public Object[][] parametersForHW4_T0004_ValidationMessagesUsingActionsTest() {
+    public Object[][] parametersForHW5_T0004_ValidationMessagesUsingActionsTest() {
         return new Object[][]{
                 { "tr", "tr", "tr", ERROR_USERNAME + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD },
                 { "ttrr", "tr", "tr", ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD },
