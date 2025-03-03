@@ -130,9 +130,6 @@ public class CommonActionsWithElements {
         Assert.assertTrue(locator + " Element is not visible", isElementVisible(locator));
     }
 
-    protected void checkIsElementNotVisible(WebElement element) {
-        Assert.assertFalse(getElementName(element) + " Element is visible", isElementVisible(element));
-    }
 
     protected void checkTextInElement(WebElement element, String text) {
             Assert.assertEquals("Text in " + getElementName(element) +  " element is not expected", text, element.getText());
@@ -217,64 +214,6 @@ protected void useTabKey() {
         }
     }
 
-
-    protected void useEnterKey() {
-        try {
-            Actions actions = new Actions(webDriver);
-            actions.sendKeys("\n").build().perform();
-            logger.info("Enter key was pressed");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
-
-    protected void enterTextUsingActions(String text) {
-        try {
-            Actions actions = new Actions(webDriver);
-            actions.sendKeys(text).build().perform();
-            logger.info(text + " was inputted");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
-
-    protected void switchToTab(int tabNumber) {
-        try {
-            webDriver.switchTo().window((String) webDriver.getWindowHandles().toArray()[tabNumber]);
-            logger.info("Switched to tab " + tabNumber);
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
-
-    protected void closeTab(int tabNumber) {
-        try {
-            webDriver.switchTo().window((String) webDriver.getWindowHandles().toArray()[tabNumber]);
-            webDriver.close();
-            logger.info("Tab with index " + tabNumber + " was closed");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
-
-    protected void refreshPage() {
-        try {
-            webDriver.navigate().refresh();
-            logger.info("Page was refreshed");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
-
-    protected void useTabKey() {
-        try {
-            Actions actions = new Actions(webDriver);
-            actions.sendKeys("\t").build().perform();
-            logger.info("Tab key was pressed");
-        } catch (Exception e) {
-            printErrorAndStopTest(e);
-        }
-    }
 
     protected void useEnterKey() {
         try {
