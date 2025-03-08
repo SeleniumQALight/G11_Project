@@ -1,5 +1,6 @@
 package org.pages;
 
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.data.RegistrationValidationMessages;
@@ -51,12 +52,14 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public LoginPage openPage() {
         webDriver.get(baseUrl);
         logger.info("Login Page was opened with URL " + baseUrl);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoInputLogin(String login) {
         //  WebElement inputUserName = webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
 //        inputUserName.clear();
@@ -66,17 +69,20 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoInputPassword(String password) {
 //        WebElement inputPassword = webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
         clearAndEnterTextToElement(inputPassword, password);
         return this;
     }
 
+    @Step
     public void clickOnButtonSignIn() {
         webDriver.findElement(By.xpath("//button[text()='Sign In']")).click();
         logger.info("Button Sign In was clicked");
     }
 
+    @Step
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN);
@@ -87,6 +93,16 @@ public class LoginPage extends ParentPage {
 
     public LoginPage checkIsButtonSignInVisible() {
         checkIsElementVisible(buttonSignIn);
+        return this;
+    }
+
+    public LoginPage checkIsLoginInputVisible() {
+        checkIsElementVisible(inputUserName);
+        return this;
+    }
+
+    public LoginPage checkIsPasswordInputVisible() {
+        checkIsElementVisible(inputPassword);
         return this;
     }
 
@@ -110,6 +126,7 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistaionPasswordField(String password) {
         clearAndEnterTextToElement(inputPasswordRegistrationForm, password);
         return this;

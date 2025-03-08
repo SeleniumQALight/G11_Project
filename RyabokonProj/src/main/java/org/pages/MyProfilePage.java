@@ -68,4 +68,11 @@ public class MyProfilePage extends ParentPage {
         checkIsElementVisible(successMessageDelete);
         return this;
     }
+
+    public MyProfilePage clickOnPostWithTitle(String POST_TITLE) {
+        clickOnElement(getPostsList(POST_TITLE).get(0));
+        return this;
+    }
+
+
 }

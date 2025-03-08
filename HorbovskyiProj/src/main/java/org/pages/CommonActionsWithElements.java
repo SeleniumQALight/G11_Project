@@ -131,7 +131,7 @@ public class CommonActionsWithElements {
         Assert.assertTrue("Element " + getElementName(webElement) + " is not visible", isElementVisible(webElement));
     }
 
-    protected void checkIsElementVisible(String locator) {
+    public void checkIsElementVisible(String locator) {
         Assert.assertTrue("Element is not visible", isElementVisible(locator));
     }
 

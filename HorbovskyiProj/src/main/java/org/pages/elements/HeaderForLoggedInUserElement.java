@@ -1,5 +1,6 @@
 package org.pages.elements;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,10 +20,18 @@ public class HeaderForLoggedInUserElement extends CommonActionsWithElements {
     @FindBy(xpath = "//a[@class='btn btn-sm btn-success mr-2']")
     private WebElement buttonCreatePost;
 
+    public static final String buttonSearchLocator = "//a[@class='text-white mr-2 header-search-icon']";
+    @FindBy(xpath = "//a[@class='text-white mr-2 header-search-icon']")
+    private WebElement buttonSearch;
+
+    @FindBy(xpath = "//span[@class='text-white mr-2 header-chat-icon']")
+    private WebElement buttonChat;
+
     public HeaderForLoggedInUserElement(WebDriver webDriver) {
         super(webDriver);
     }
 
+    @Step
     public MyProfilePage clickOnButtonMyProfile() {
         clickOnElement(buttonMyProfile);
         return new MyProfilePage(webDriver);
@@ -41,8 +50,46 @@ public class HeaderForLoggedInUserElement extends CommonActionsWithElements {
         return isElementVisible(buttonSignOut);
     }
 
+    @Step
     public CreateNewPostPage clickOnButtonCreatePost() {
         clickOnElement(buttonCreatePost);
         return new CreateNewPostPage(webDriver);
+    }
+
+    public void checkIsSearchButtonVisible() {
+        checkIsElementVisible(buttonSearch);
+    }
+
+    public void checkIsChatButtonVisible() {
+        checkIsElementVisible(buttonChat);
+    }
+
+    public void checkIsMyProfileButtonVisible() {
+        checkIsElementVisible(buttonMyProfile);
+    }
+
+    public void checkIsCreatePostButtonVisible() {
+        checkIsElementVisible(buttonCreatePost);
+    }
+
+    @Step
+    public void clickOnButtonSignOut() {
+        clickOnElement(buttonSignOut);
+    }
+
+    public void checkIsSearchButtonNotVisible() {
+        checkIsElementNotVisible(buttonSearch);
+    }
+
+    public void checkIsChatButtonNotVisible() {
+        checkIsElementNotVisible(buttonChat);
+    }
+
+    public void checkIsMyProfileButtonNotVisible() {
+        checkIsElementNotVisible(buttonMyProfile);
+    }
+
+    public void checkIsCreatePostButtonNotVisible() {
+        checkIsElementNotVisible(buttonCreatePost);
     }
 }

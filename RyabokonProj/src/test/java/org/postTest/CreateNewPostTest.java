@@ -10,7 +10,7 @@ import org.utils.Utils_Custom;
 public class CreateNewPostTest extends BaseTest {
     //GUID = 1b1b1b1b-1b1b-1b1b-1b1b-1b1b1b1b1b1b
 
-    final String POST_TITLE = "TR003 *** Ryabokon" + Utils_Custom.getDateAndTimeFormatted();
+    public static final String postTitle = "TR003 *** Ryabokon" + Utils_Custom.getDateAndTimeFormatted();
 
     @Test
     @Category(SmokeTestFilter.class)
@@ -20,7 +20,7 @@ public class CreateNewPostTest extends BaseTest {
                 .checkIsRedirectToHomePage()
                 .getHeaderElement().clickOnButtonCreatePost()
                 .checkIsRedirectOnCreateNewPostPage()
-                .enterTextIntoInputTitle(POST_TITLE)
+                .enterTextIntoInputTitle(postTitle)
                 .selectValueInDropDownAccess("One Person")
                 .enterTextIntoInputBody("Body**** of the ****post")
                 .setCheckboxState()
@@ -33,9 +33,12 @@ public class CreateNewPostTest extends BaseTest {
 
         pageProvider.getPostPage().getHeaderElement().clickOnButtonMyProfile()
                 .checkIsRedirectToProfilePage()
-                .checkPostWithTitleIsPresent(POST_TITLE, 1)
+                .checkPostWithTitleIsPresent(postTitle, 1)
         ;
     }
+
+
+
 
 
     @After
@@ -43,9 +46,10 @@ public class CreateNewPostTest extends BaseTest {
 pageProvider.getHomePage().openHomePageAndLoginIfNeeded()
         .getHeaderElement().clickOnButtonMyProfile()
         .checkIsRedirectToProfilePage()
-        .deletePostsTillPresent(POST_TITLE)
+        .deletePostsTillPresent(postTitle)
 
         ;
 
     }
+
 }

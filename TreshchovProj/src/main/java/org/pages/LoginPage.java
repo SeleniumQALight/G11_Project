@@ -1,5 +1,6 @@
 package org.pages;
 
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.data.RegistrationValidationMessages;
@@ -27,6 +28,9 @@ public class LoginPage extends ParentPage {
     @FindBy(xpath = "//button[text()='Sign In']")
     private WebElement buttonSignIn;
 
+    @FindBy(xpath = "//div[text()='Invalid username/password.']")
+    private WebElement errorMessage;
+
     @FindBy(id = "username-register")
     private WebElement inputUserNameRegistrationField;
 
@@ -50,6 +54,7 @@ public class LoginPage extends ParentPage {
         return "";
     }
 
+
     public LoginPage openPage() {
 
         webDriver.get(baseUrl);
@@ -57,20 +62,40 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoInputLogin(String login) {
         enterTextIntoInput(inputUserName, login);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoInputPassword(String password) {
         enterTextIntoInput(inputPassword, password);
         return this;
     }
 
+    @Step
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
 
+    public LoginPage clickOnButtonSignInWithInvalidData() {
+        clickOnElement(buttonSignIn);
+        return this;
+    }
+
+    public LoginPage checkIsButtonSignInVisible() {
+        checkIsElementVisible(buttonSignIn);
+        return this;
+    }
+
+
+    public LoginPage checkIsErrorMessageVisible() {
+        checkIsElementVisible(errorMessage);
+        return this;
+    }
+
+    @Step
     public HomePage openLoginAndFillLoginFormWithValidData() {
         openPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN);
@@ -80,21 +105,25 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationUserNameField(String userName) {
         enterTextIntoInput(inputUserNameRegistrationField, userName);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationEmailField(String Email) {
         enterTextIntoInput(inputEmailRegistrationField, Email);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationPasswordField(String Password) {
         enterTextIntoInput(inputPasswordRegistrationField, Password);
         return this;
     }
 
+    @Step
     public LoginPage checkErrorsMessages(String expectedErrors) {
         String[] messagesArray = expectedErrors.split(RegistrationValidationMessages.SEMICOLON);
 
@@ -118,8 +147,55 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
-    public HeaderForUserElement getHeaderElement() {
-        return new HeaderForUserElement(webDriver);
+    public LoginPage checkIsLoginPasswordFieldNotVisible(){
+        checkIsElementNotVisible(inputUserName);
+        checkIsElementNotVisible(inputPassword);
+        return this;
+    }
+
+
+
+    public HomePage openNewTabAndOpenHomePage() {
+        openNewTab();
+        switchToTab(1);
+        openPage();
+        return new HomePage(webDriver);
+    }
+
+    public LoginPage refreshLoginPage(){
+        refreshPage();
+        return new LoginPage(webDriver);
+    }
+
+    public HomePage openPageAndLoginUsingActions(){
+        openPage();
+        useTabKey();
+        useTabKey();
+        enterTextUsingActions("qaauto");
+        useTabKey();
+        enterTextUsingActions("123456qwerty");
+        useEnterKey();
+        return new HomePage(webDriver);
+    }
+
+    public LoginPage openPageAndMoveToRegistrationFieldUserNameUsingActions(){
+        openPage();
+        useTabKey();
+        useTabKey();
+        useTabKey();
+        useTabKey();
+        useTabKey();
+        return this;
+    }
+
+    public LoginPage enterValueUsingActions(String value){
+        enterTextUsingActions(value);
+        return this;
+    }
+
+    public LoginPage switchToNextFieldUsingActions(){
+        useTabKey();
+        return this;
     }
 
 }

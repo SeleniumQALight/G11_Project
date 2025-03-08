@@ -91,7 +91,7 @@ public class CommonActionsWithElements {
         }
     }
 
-    private void printErrorAndStopTest(Exception e) {
+    protected void printErrorAndStopTest(Exception e) {
         logger.error("Cannot work with element " + e);
         Assert.fail("Cannot work with element " + e);
     }
@@ -157,10 +157,78 @@ public class CommonActionsWithElements {
         }
     }
 
-    protected void openNewTab() {
+protected void useTabKey() {
         try {
-            ((JavascriptExecutor) webDriver).executeScript("window.open()");
-            logger.info("New tab was opened");
+            Actions actions = new Actions(webDriver);
+            actions.sendKeys("\t").build().perform();
+            logger.info("Tab key was pressed");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void checkIsElementNotVisible(WebElement element) {
+        Assert.assertFalse(getElementName(element) + " Element is visible", isElementVisible(element));
+    }
+
+
+    protected void checkBoxCheck(WebElement element) {
+        try {
+            boolean tempState = element.isSelected();
+            if (tempState) {
+                logger.info("Checkbox is now selected");
+            } else {
+                logger.info("Checkbox is selected");
+                element.click();
+            }
+        } catch (Exception e) {
+            logger.error("Cannot work with element " + e);
+            Assert.fail("Cannot work with element " + e);
+        }
+    }
+
+    protected void checkBoxUncheck(WebElement element) {
+        try {
+            boolean tempState = element.isSelected();
+            if (tempState) {
+                logger.info("Checkbox is now unselected");
+                element.click();
+            } else {
+                logger.info("Checkbox is not selected");
+            }
+        } catch (Exception e) {
+            logger.error("Cannot work with element " + e);
+            Assert.fail("Cannot work with element " + e);
+        }
+    }
+
+    protected void checkBoxSelect(WebElement element, String state){
+        if (state.equals("check")){
+            checkBoxCheck(element);
+        } else if (state.equals("uncheck")){
+            checkBoxUncheck(element);
+        } else {
+            Assert.fail("State is not correct");
+
+        }
+    }
+
+
+    protected void useEnterKey() {
+        try {
+            Actions actions = new Actions(webDriver);
+            actions.sendKeys("\n").build().perform();
+            logger.info("Enter key was pressed");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
+    protected void enterTextUsingActions(String text) {
+        try {
+            Actions actions = new Actions(webDriver);
+            actions.sendKeys(text).build().perform();
+            logger.info(text + " was inputted");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
@@ -168,9 +236,5 @@ public class CommonActionsWithElements {
 
 
 
-
-    protected void checkIsElementNotVisible(WebElement element) {
-        Assert.assertFalse(getElementName(element) + " Element is visible", isElementVisible(element));
-    }
 
 }
