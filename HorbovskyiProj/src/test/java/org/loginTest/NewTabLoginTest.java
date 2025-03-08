@@ -9,7 +9,7 @@ import static org.data.TestData.VALID_PASSWORD;
 public class NewTabLoginTest extends BaseTest {
 
     @Test
-    public void TR051_OpenNewTabWithLogInUser() {
+    public void TR005_OpenNewTabWithLogInUser() {
         pageProvider.getLoginPage()
                 .openPage()
                 .enterTextIntoInputLogin(VALID_LOGIN)
