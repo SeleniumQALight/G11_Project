@@ -19,13 +19,13 @@ public class NewTabLoginTest extends BaseTest {
         pageProvider.getHomePage().openNewTab();
         pageProvider.getLoginPage().switchToTab(1);
         pageProvider.getLoginPage().openPage();
-        pageProvider.getHomePage().checkIsRedirectOnHomePage();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
         pageProvider.getHomePage().switchToTab(0);
-        pageProvider.getHomePage().checkIsRedirectOnHomePage();
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
         pageProvider.getHomePage().switchToTab(1);
         pageProvider.getHomePage().closeCurrentTab();
         pageProvider.getHomePage().switchToTab(0);
-        pageProvider.getHomePage().checkIsRedirectOnHomePage()
+        pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible()
         ;
     }
 }
