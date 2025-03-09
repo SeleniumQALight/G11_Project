@@ -25,6 +25,7 @@ public class HeaderForUserElement extends CommonActionsWithElements {
     @FindBy(xpath = "//a[@data-original-title='Search']")
     private WebElement buttonSearch;
 
+
     public HeaderForUserElement(WebDriver webDriver) {
         super(webDriver);
     }

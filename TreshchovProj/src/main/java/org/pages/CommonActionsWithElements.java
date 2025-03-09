@@ -130,6 +130,7 @@ public class CommonActionsWithElements {
         Assert.assertTrue(locator + " Element is not visible", isElementVisible(locator));
     }
 
+
     protected void checkTextInElement(WebElement element, String text) {
             Assert.assertEquals("Text in " + getElementName(element) +  " element is not expected", text, element.getText());
             logger.info("Text in " + getElementName(element) + " element is expected");
@@ -233,7 +234,6 @@ protected void useTabKey() {
             printErrorAndStopTest(e);
         }
     }
-
 
 
 
