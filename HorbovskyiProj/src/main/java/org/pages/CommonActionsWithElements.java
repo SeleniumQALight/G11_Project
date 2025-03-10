@@ -211,4 +211,13 @@ public class CommonActionsWithElements {
         }
     }
 
+    public void closeCurrentTab() {
+        try {
+            webDriver.close();
+            logger.info("New tab was closed");
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
 }

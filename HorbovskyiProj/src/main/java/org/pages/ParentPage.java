@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 abstract public class ParentPage extends CommonActionsWithElements {
     String environment = System.getProperty("env", "aqa");
+
     private Logger logger = Logger.getLogger(getClass());
 
 //    protected String baseUrl = "https://" + environment + "-complexapp.onrender.com";
@@ -42,9 +43,10 @@ abstract public class ParentPage extends CommonActionsWithElements {
         }
     }
 
-    public void refreshPage() {
+    public ParentPage refreshPage() {
         webDriver.navigate().refresh();
         logger.info("Page was refreshed");
+        return this;
     }
 
 }
