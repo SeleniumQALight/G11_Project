@@ -1,0 +1,71 @@
+package org.postTests;
+
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
+import org.apache.log4j.Logger;
+import org.baseTest.BaseTest;
+import org.junit.After;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.utils.ConfigProvider;
+import org.utils.ExcelSpreadsheetData;
+import org.utils.Utils_Custom;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Collection;
+
+@RunWith(JUnitParamsRunner.class)
+public class CreateNewPostWithExcel extends BaseTest {
+    Logger logger = Logger.getLogger(getClass());
+    private String POST_TITLE;
+
+    @Test
+    @Parameters(method = "parametersForCreateNewPostTest")
+    public void TC006_createNewPostWithExcel(String title, String body, String dropdownValue, String checkboxValue,
+                                             String successfulMessage, String checkPostUnique) {
+        POST_TITLE = String.format(title, "TC006_Horbovskyi", Utils_Custom.getDateAndTimeFormatted());
+
+        pageProvider.getLoginPage()
+                .openLoginPageAndFillLoginFormWithValidCred()
+                .checkIsRedirectOnHomePage()
+                .getHeaderElement().clickOnButtonCreatePost()
+                .checkIsRedirectOnCreateNewPostPage()
+                .enterTextIntoInputTitle(POST_TITLE)
+                .selectValueInDropdownAccess(dropdownValue)
+                .enterTextIntoInputBody(body)
+                .selectUniquePostCheckbox(checkboxValue)
+                .clickOnButtonSavePost()
+                .checkIsRedirectOnPostPage()
+                .checkIsSuccessMessageDisplayed()
+                .checkTextThisPostWasWrittenIsVisible(dropdownValue)
+                .checkTextInSuccessMessage(successfulMessage)
+                .checkIsPostUniqueCheckboxChecked(checkPostUnique)
+                .getHeaderElement().clickOnButtonMyProfile()
+        ;
+        pageProvider.getPostPage().getHeaderElement().clickOnButtonMyProfile()
+                .checkIsRedirectToMyProfilePage()
+                .checkIsPostWithTitleWereAdded(POST_TITLE, 1);
+    }
+
+    @After
+    public void deletePosts() {
+        pageProvider.getHomePage()
+                .openHomePageIfNeeded()
+                .getHeaderElement().clickOnButtonMyProfile()
+                .checkIsRedirectToMyProfilePage()
+                .deletePostWhilePresent(POST_TITLE)
+        ;
+    }
+
+    public Collection parametersForCreateNewPostTest() throws IOException {
+        String pathToDataFile = ConfigProvider.configProperties.DATA_FILE_PATH();
+        String sheetName = "createPostWithExcel";
+        boolean skipFirstRow = false;
+        logger.info("Data file path: " + pathToDataFile);
+        logger.info(" sheetName: " + sheetName);
+        logger.info(" skipFirstRow: " + skipFirstRow);
+        return new ExcelSpreadsheetData(new FileInputStream(pathToDataFile), sheetName, skipFirstRow).getData();
+    }
+
+}
