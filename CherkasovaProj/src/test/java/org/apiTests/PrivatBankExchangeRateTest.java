@@ -80,5 +80,57 @@ public class PrivatBankExchangeRateTest {
 
             softAssertions.assertAll();
         }
+
+    @Test
+    public void validateExchangeRatesAreGreaterThanZero() {
+        PBExchangeRatesDTO actualResponse =
+                given()
+                        .contentType(ContentType.JSON)
+                        .queryParam("date", DATE)
+                        .log().all()
+                     .when()
+                        .get(EndPointsPrivatBank.EXCHANGE_RATE)
+                     .then()
+                        .log().all()
+                        .statusCode(200)
+                        .extract().body().as(PBExchangeRatesDTO.class);
+
+        logger.info("Number of exchange rates = " + actualResponse.getExchangeRate().size());
+        logger.info("Actual response: " + actualResponse);
+
+        for (int i = 0; i < actualResponse.getExchangeRate().size(); i++) {
+            Assert.assertEquals("BaseCurrency is not expected in exchange rate " + i,
+                    "UAH", actualResponse.getExchangeRate().get(i).getBaseCurrency());
+
+        }
+
+        SoftAssertions softAssertions = new SoftAssertions();
+
+        for (ExchangeRateDTO rate : actualResponse.getExchangeRate()) {
+            if (rate.getSaleRateNB() != null) {
+                softAssertions.assertThat(rate.getSaleRateNB())
+                        .as("SaleRateNB for currency: " + rate.getCurrency())
+                        .isGreaterThan(0);
+            }
+            if (rate.getPurchaseRateNB() != null) {
+                softAssertions.assertThat(rate.getPurchaseRateNB())
+                        .as("PurchaseRateNB for currency: " + rate.getCurrency())
+                        .isGreaterThan(0);
+            }
+            if (rate.getSaleRate() != null) {
+                softAssertions.assertThat(rate.getSaleRate())
+                        .as("SaleRate for currency: " + rate.getCurrency())
+                        .isGreaterThan(0);
+            }
+            if (rate.getPurchaseRate() != null) {
+                softAssertions.assertThat(rate.getPurchaseRate())
+                        .as("PurchaseRate for currency: " + rate.getCurrency())
+                        .isGreaterThan(0);
+            }
+        }
+
+        softAssertions.assertAll();
+    }
+
     }
 
