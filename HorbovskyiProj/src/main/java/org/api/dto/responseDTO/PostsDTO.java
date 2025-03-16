@@ -100,7 +100,7 @@ public class PostsDTO {
     }
 
     public AuthorDTO getAuthor() {
-        return author;
+        return new AuthorDTO();
     }
 
 
