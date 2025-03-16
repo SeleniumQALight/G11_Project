@@ -11,44 +11,28 @@ public class PostsDTO {
     private String select;
     private String uniquePost;
     private String createdDate;
-    private Boolean isVisitorOwner;
     private AuthorDTO author;
+    private Boolean isVisitorOwner;
 
-    public PostsDTO() {
+    public PostsDTO(){
+
     }
 
-    public PostsDTO(String title, String body, String select, String uniquePost, Boolean isVisitorOwner, AuthorDTO author) {
+    public PostsDTO(String title, String body, String select, String uniquePost, AuthorDTO author, Boolean isVisitorOwner) {
         this.title = title;
         this.body = body;
         this.select = select;
         this.uniquePost = uniquePost;
-        this.isVisitorOwner = isVisitorOwner;
         this.author = author;
+        this.isVisitorOwner = isVisitorOwner;
     }
 
     public String getId() {
         return id;
     }
 
-    @Override
-    public String toString() {
-        return "PostsDTO{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", body='" + body + '\'' +
-                ", select='" + select + '\'' +
-                ", uniquePost='" + uniquePost + '\'' +
-                ", createdDate='" + createdDate + '\'' +
-                ", isVisitorOwner=" + isVisitorOwner +
-                '}';
-    }
-
     public void setId(String id) {
         this.id = id;
-    }
-
-    public void setAuthor(AuthorDTO author) {
-        this.author = author;
     }
 
     public String getTitle() {
@@ -91,6 +75,14 @@ public class PostsDTO {
         this.createdDate = createdDate;
     }
 
+    public AuthorDTO getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(AuthorDTO author) {
+        this.author = author;
+    }
+
     public Boolean getIsVisitorOwner() {
         return isVisitorOwner;
     }
@@ -99,9 +91,17 @@ public class PostsDTO {
         isVisitorOwner = visitorOwner;
     }
 
-    public AuthorDTO getAuthor() {
-        return author;
+    @Override
+    public String toString() {
+        return "PostsDTO{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", body='" + body + '\'' +
+                ", select='" + select + '\'' +
+                ", uniquePost='" + uniquePost + '\'' +
+                ", createdDate='" + createdDate + '\'' +
+                ", author=" + author +
+                ", isVisitorOwner=" + isVisitorOwner +
+                '}';
     }
-
-
 }

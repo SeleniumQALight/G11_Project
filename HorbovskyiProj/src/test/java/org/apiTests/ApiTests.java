@@ -31,7 +31,7 @@ public class ApiTests {
                 .body("author.username", everyItem(equalTo(USER_NAME)))
         // method#2 DTO
                 .extract().body().as(PostsDTO[].class);
-        ;
+
         logger.info("Number of posts = " + actualResponce.length);
         logger.info("Title [0] = " + actualResponce[0].getTitle());
         logger.info("UserName = " + actualResponce[0].getAuthor().getUsername());
