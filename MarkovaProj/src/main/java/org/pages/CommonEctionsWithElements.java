@@ -41,8 +41,9 @@ public class CommonEctionsWithElements {
     //method for clicking on the element
     protected void clickOnElement(WebElement webElement) {
         try {
+            String webElementName = getElementName(webElement);
             webElement.click();
-            logger.info(getElementName(webElement) + "Element was clicked");
+            logger.info(webElementName  + " Element was clicked");
         } catch (Exception e) {
             printErrorAndStopTest(e);
         }
