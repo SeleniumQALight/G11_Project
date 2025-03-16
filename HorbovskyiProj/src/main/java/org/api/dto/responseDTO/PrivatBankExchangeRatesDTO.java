@@ -13,11 +13,12 @@ public class PrivatBankExchangeRatesDTO {
     public PrivatBankExchangeRatesDTO() {
     }
 
-    public PrivatBankExchangeRatesDTO(String date, String bank, Integer baseCurrency, String baseCurrencyLit) {
+    public PrivatBankExchangeRatesDTO(String date, String bank, Integer baseCurrency, String baseCurrencyLit, PrivatBankCurrenciesDTO[] exchangeRate) {
         this.date = date;
         this.bank = bank;
         this.baseCurrency = baseCurrency;
         this.baseCurrencyLit = baseCurrencyLit;
+        this.exchangeRate = exchangeRate;
     }
 
     @Override

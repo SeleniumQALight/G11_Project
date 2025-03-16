@@ -9,6 +9,14 @@ public class PrivatBankCurrenciesDTO {
         private Float saleRate;
         private Float purchaseRate;
 
+        public PrivatBankCurrenciesDTO() {
+        }
+
+        public PrivatBankCurrenciesDTO(String baseCurrency, String currency) {
+                this.baseCurrency = baseCurrency;
+                this.currency = currency;
+        }
+
         @Override
         public String toString() {
                 return "PrivatBankCurrenciesDTO{" +
