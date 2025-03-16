@@ -17,7 +17,7 @@ import static org.api.PbEndPoints.EXCHANGE_RATE;
 import static org.hamcrest.CoreMatchers.*;
 
 public class PbApiTests {
-  final String DATE = "22.03.2022";
+  private final String DATE = "22.03.2022";
   private Logger logger = Logger.getLogger(getClass());
 
   @Test
@@ -25,9 +25,10 @@ public class PbApiTests {
     PrivatBankDTO actualResponse =
             given()
                     .contentType(ContentType.JSON)
+                    .queryParam("date", DATE)
                     .log().all()
                     .when()
-                    .get(EXCHANGE_RATE, DATE) //URL
+                    .get(EXCHANGE_RATE) //URL
                     .then()
                     .log().all()
                     .statusCode(200)
