@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.utils.ConfigProvider;
 
+import java.util.ArrayList;
+
 abstract public class ParentPage extends CommonActionsWithElements{
 
     String environment = System.getProperty("env", "aqa");
@@ -34,4 +36,15 @@ protected String baseUrl = ConfigProvider.configProperties.base_url().replace("[
                         "\n Actual url: " + webDriver.getCurrentUrl(),
                 webDriver.getCurrentUrl().matches(baseUrl + getRelativeUrl()));
     }
+
+    public void switchToNewTab(int tabIndex) {
+        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+        webDriver.switchTo().window(tabs.get(tabIndex));
+    }
+
+    public void switchToMainTab(int tabIndex) {
+        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+        webDriver.switchTo().window(tabs.get(tabIndex));
+    }
+
 }
