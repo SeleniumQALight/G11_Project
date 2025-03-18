@@ -29,8 +29,8 @@ public class ApiTests {
                   .log().all()
                   .statusCode(200)
         // method #1 RestAssured assert
-                .body("[0].title", equalTo("The second Default post"))
-                .body("author.username", everyItem(equalTo(USER_NAME)))
+                .body("[0].title", equalTo("The second Default post"))  //для точкової перевірки json напряму
+                .body("author.username", everyItem(equalTo(USER_NAME)))         //за допомогою бібліотеки CoreMatchers
         // method #2 DTO
                 .extract().body().as(PostsDTO[].class)
         ;
