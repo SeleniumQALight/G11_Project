@@ -44,18 +44,34 @@ public class ApiTests {
         }
 
         PostsDTO[] expectedResponse = {
-                new PostsDTO("The second Default post",
-                                        "This post was created automatically after cleaning the database",
-                                        "All Users",
-                                        "no",
-                        false,
-                        new AuthorDTO(USER_NAME)),
-                new PostsDTO("The first Default post",
-                                        "This post was created automatically after cleaning the database",
-                                        "All Users",
-                                        "no",
-                        false,
-                        new AuthorDTO(USER_NAME))
+                PostsDTO.builder()
+                        .title("The second Default post")
+                        .body("This post was created automatically after cleaning the database")
+                        .select("All Users")
+                        .uniquePost("no")
+                        .isVisitorOwner(false)
+                        .author(AuthorDTO.builder().username(USER_NAME).build())
+                        .build(),
+                PostsDTO.builder()
+                        .title("The first Default post")
+                        .body("This post was created automatically after cleaning the database")
+                        .select("All Users")
+                        .uniquePost("no")
+                        .isVisitorOwner(false)
+                        .author(AuthorDTO.builder().username(USER_NAME).build())
+                        .build()
+//                new PostsDTO("The second Default post",
+//                                        "This post was created automatically after cleaning the database",
+//                                        "All Users",
+//                                        "no",
+//                        false,
+//                        new AuthorDTO(USER_NAME)),
+//                new PostsDTO("The first Default post",
+//                                        "This post was created automatically after cleaning the database",
+//                                        "All Users",
+//                                        "no",
+//                        false,
+//                        new AuthorDTO(USER_NAME))
         };
 
         SoftAssertions softAssertions = new SoftAssertions();

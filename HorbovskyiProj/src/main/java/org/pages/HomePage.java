@@ -73,4 +73,7 @@ public class HomePage extends ParentPage {
     }
 
 
+    public void closeCurrentTab() {
+
+    }
 }
