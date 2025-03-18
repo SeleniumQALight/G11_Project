@@ -2,6 +2,7 @@ package org.apiTests;
 
 import io.restassured.http.ContentType;
 import org.apache.log4j.Logger;
+import org.api.ApiHelper;
 import org.api.EndPoints;
 import org.api.dto.responseDTO.AuthorDTO;
 import org.api.dto.responseDTO.PostsDTO;
@@ -16,6 +17,7 @@ import static org.hamcrest.CoreMatchers.everyItem;
 public class ApiTests {
     final String USER_NAME = "autoapi";
     private Logger logger = Logger.getLogger(getClass());
+    ApiHelper apiHelper = new ApiHelper();
 
     @Test
     public void getAllPostsByUser() {
@@ -85,4 +87,22 @@ public class ApiTests {
 
 
     }
+
+    @Test
+    public void getAllPostsByUserNegative(){
+        final String NOT_VALID_USER_NAME = "NotValidUser";
+
+        String actualResponse =
+                apiHelper.getAllPostsByUserRequest(NOT_VALID_USER_NAME, 400)
+                        // method #3 response as String - якщо результат стрінга, то і працювати з нею так простіше
+                        .extract().response().body().asString(); //дістань.з респонсу.боді.в форматі стрінги
+
+        Assert.assertEquals("Message in response ",
+                "\"Sorry, invalid user requested. Wrong username - "
+                        + NOT_VALID_USER_NAME + " or there is no posts. Exception is undefined\""
+                , actualResponse);
+
+    }
+
+
 }
