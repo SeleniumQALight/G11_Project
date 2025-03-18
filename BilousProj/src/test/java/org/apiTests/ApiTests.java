@@ -1,6 +1,7 @@
 package org.apiTests;
 
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.apache.log4j.Logger;
 import org.api.ApiHelper;
 import org.api.EndPoints;
@@ -9,6 +10,10 @@ import org.api.dataTransferObject.responseDTO.PostsDTO;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.junit.Test;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+
+import java.util.List;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -92,6 +97,33 @@ public class ApiTests {
         Assert.assertEquals("Message in response ",
                 "\"Sorry, invalid user requested. Wrong username - "+NOT_VALID_USER_NAME+" or there is no posts. Exception is undefined\"",
                 actualResponse);
+    }
+
+    @Test
+    public void getAllPostsByUserJsonPath() {
+        Response actualResponse =
+             apiHelper.getAllPostsByUserRequest(USER_NAME, 200).extract().response();
+        SoftAssertions softAssertions = new SoftAssertions();
+        List<String> actualListOfTitles = actualResponse.jsonPath().getList("title", String.class);
+
+        for (int i = 0; i < actualListOfTitles.size(); i++) {
+            softAssertions.assertThat(actualListOfTitles.get(i))
+                    .as("Title is not expected in post " + i)
+                    .contains("Default post");
+        }
+        List<Map> actualListOfAuthors = actualResponse.jsonPath().getList("author", Map.class);
+        for(Map actualAuthor : actualListOfAuthors) {
+            softAssertions.assertThat(actualAuthor.get("username"))
+                    .as("UserName in Author")
+                    .isEqualTo(USER_NAME);
+        }
+        softAssertions.assertAll();
+    }
+    @Test
+    public void getAllPostsByUseSchemaValidation() {
+        apiHelper.getAllPostsByUserRequest(USER_NAME, 200)
+                .assertThat().body(matchesJsonSchemaInClasspath("response.json"))
+        ;
     }
 
 }
