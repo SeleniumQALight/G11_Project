@@ -48,12 +48,28 @@ public class ApiTests {
         }
 
         PostsDTO[] expectedResponse = {
-                new PostsDTO("The second Default post"
-                        , "This post was created automatically after cleaning the database"
-                        ,"All Users" , "no", new AuthorDTO(USER_NAME), false),
-                new PostsDTO("The first Default post"
-                        , "This post was created automatically after cleaning the database"
-                        ,"All Users" , "no", new AuthorDTO(USER_NAME), false)
+                PostsDTO.builder()
+                        .title("The second Default post")
+                        .body("This post was created automatically after cleaning the database")
+                        .uniquePost("no")
+                        .select("All Users")
+                        .isVisitorOwner(false)
+                        .author(AuthorDTO.builder().username(USER_NAME).build())
+                        .build(),
+                PostsDTO.builder()
+                        .title("The first Default post")
+                        .body("This post was created automatically after cleaning the database")
+                        .uniquePost("no")
+                        .select("All Users")
+                        .isVisitorOwner(false)
+                        .author(AuthorDTO.builder().username(USER_NAME).build())
+                        .build()
+//                new PostsDTO("The second Default post"
+//                        , "This post was created automatically after cleaning the database"
+//                        ,"All Users" , "no", new AuthorDTO(USER_NAME), false),
+//                new PostsDTO("The first Default post"
+//                        , "This post was created automatically after cleaning the database"
+//                        ,"All Users" , "no", new AuthorDTO(USER_NAME), false)
         };
 
         SoftAssertions softAssertions = new SoftAssertions();
