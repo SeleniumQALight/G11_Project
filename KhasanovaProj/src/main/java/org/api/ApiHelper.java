@@ -1,12 +1,12 @@
-package org.api.dto;
+package org.api;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
-import org.api.EndPoints;
 
 import static io.restassured.RestAssured.given;
 
 public class ApiHelper {
+    //винесення запиту в метод
     public ValidatableResponse getAllPostsByUserRequest(String userName, int expectedStatusCode) {
         return given()
                 .contentType(ContentType.JSON)

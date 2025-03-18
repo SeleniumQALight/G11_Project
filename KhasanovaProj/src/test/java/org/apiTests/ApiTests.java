@@ -1,18 +1,22 @@
 package org.apiTests;
-
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.apache.log4j.Logger;
 import org.api.EndPoints;
-import org.api.dto.ApiHelper;
+import org.api.ApiHelper;
 import org.api.dto.responseDTO.AuthorDTO;
 import org.api.dto.responseDTO.PostsDTO;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.List;
+import java.util.Map;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.everyItem;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class ApiTests {
     final String USER_NAME = "autoapi";
@@ -105,5 +109,41 @@ public class ApiTests {
         Assert.assertEquals("Message in response ",
                 "\"Sorry, invalid user requested. Wrong username - "+NOT_VALID_USER_NAME+" or there is no posts. Exception is undefined\"",
                 actualResponse);
+    }
+
+    @Test
+    public void getAllPostsByUserJsonPath(){
+        //method #4 json path
+        Response actualResponse =
+                apiHelper.getAllPostsByUserRequest(USER_NAME, 200).extract().response();
+
+        SoftAssertions softAssertions = new SoftAssertions();
+
+        List<String> actualListOfTitle = actualResponse.jsonPath().getList("title", String.class);
+
+        for (int i = 0; i < actualListOfTitle.size(); i++) {
+            softAssertions.assertThat(actualListOfTitle.get(i))
+                    .as("Item number " + i)
+                    .contains("Default post");
+
+        }
+
+        List<Map> actualAuthorList = actualResponse.jsonPath().getList("author", Map.class);
+
+        for(Map actualAuthorObject : actualAuthorList){
+            softAssertions.assertThat(actualAuthorObject.get("username")) //ключ вказуємо, як у джейсоні
+                    .as("Field userName in Author ")
+                    .isEqualTo(USER_NAME);
+        }
+        softAssertions.assertAll();
+
+    }
+
+    @Test
+    public void getAllPostsByUseSchemaValidation(){ //тест для контрактого тестування апі
+        apiHelper.getAllPostsByUserRequest(USER_NAME, 200)
+                .assertThat().body(matchesJsonSchemaInClasspath("response.json"))
+
+                ;
     }
 }
