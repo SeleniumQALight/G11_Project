@@ -47,12 +47,31 @@ public class ApiTests {
         }
 
         PostsDTO[] expectedResponse = { //створення масиву з об'єктами
-                new PostsDTO("The second Default post",
-                        "This post was created automatically after cleaning the database",
-                        "All Users", "no", new AuthorDTO(USER_NAME), false),
-                new PostsDTO("The first Default post",
-                        "This post was created automatically after cleaning the database",
-                        "All Users", "no", new AuthorDTO(USER_NAME), false)
+                PostsDTO.builder() //порядок філдів в білдері не має значення
+                        .title("The second Default post")
+                        .body("This post was created automatically after cleaning the database")
+                        .uniquePost("no")
+                        .select("All Users")
+                        .isVisitorOwner(false)
+                        .author(AuthorDTO.builder().username(USER_NAME).build())
+                        .build(), //метод, який створює об'єкт
+
+                PostsDTO.builder()
+                        .title("The first Default post")
+                        .body("This post was created automatically after cleaning the database")
+                        .uniquePost("no")
+                        .select("All Users")
+                        .isVisitorOwner(false)
+                        .author(AuthorDTO.builder().username(USER_NAME).build())
+                        .build()
+
+
+//                new PostsDTO("The second Default post",
+//                        "This post was created automatically after cleaning the database",
+//                        "All Users", "no", new AuthorDTO(USER_NAME), false),
+//                new PostsDTO("The first Default post",
+//                        "This post was created automatically after cleaning the database",
+//                        "All Users", "no", new AuthorDTO(USER_NAME), false)
         };
 
         SoftAssertions softAssertions = new SoftAssertions();
@@ -63,6 +82,9 @@ public class ApiTests {
                           .ignoringFields("id", "createdDate", "author.avatar")
                            //ігнорування полів, назви з джави, а не джейсону
                              .isEqualTo(expectedResponse);
+
+//        actualResponse.equals(expectedResponse); - гірший варіант порівняння, бо він впаде без уточнення,
+//                                                    які поля не спвівпали + немає ігнорування полів
 
         softAssertions.assertAll();
 
