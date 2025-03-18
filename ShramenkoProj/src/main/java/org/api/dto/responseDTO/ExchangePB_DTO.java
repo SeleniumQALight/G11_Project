@@ -60,5 +60,14 @@ public class ExchangePB_DTO {
         this.exchangeRate = exchangeRate;
     }
 
-
+    @Override
+    public String toString() {
+        return "ExchangePB_DTO{" +
+                "date='" + date + '\'' +
+                ", bank='" + bank + '\'' +
+                ", baseCurrency=" + baseCurrency +
+                ", baseCurrencyLit='" + baseCurrencyLit + '\'' +
+                ", exchangeRate=" + exchangeRate +
+                '}';
+    }
 }

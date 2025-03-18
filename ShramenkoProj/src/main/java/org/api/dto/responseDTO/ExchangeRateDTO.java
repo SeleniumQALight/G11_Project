@@ -72,4 +72,16 @@ public class ExchangeRateDTO {
     public void setPurchaseRate(Double purchaseRate) {
         this.purchaseRate = purchaseRate;
     }
+
+    @Override
+    public String toString() {
+        return "ExchangeRateDTO{" +
+                "baseCurrency='" + baseCurrency + '\'' +
+                ", currency='" + currency + '\'' +
+                ", saleRateNB=" + saleRateNB +
+                ", purchaseRateNB=" + purchaseRateNB +
+                ", saleRate=" + saleRate +
+                ", purchaseRate=" + purchaseRate +
+                '}';
+    }
 }
