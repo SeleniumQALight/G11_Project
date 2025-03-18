@@ -1,6 +1,7 @@
 package org.apiTests;
 
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.apache.log4j.Logger;
 import org.api.ApiHelper;
 import org.api.EndPoints;
@@ -10,7 +11,11 @@ import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.List;
+import java.util.Map;
+
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.everyItem;
 
@@ -104,5 +109,42 @@ public class ApiTests {
 
     }
 
+    @Test
+    public void getAllPostByUserJsonPath(){
+        //method #4 Json Path
+        Response actualResponse =
+                apiHelper.getAllPostsByUserRequest(USER_NAME, 200).extract().response();
+
+        SoftAssertions softAssertions = new SoftAssertions();
+
+        List<String> actualListOfTitle = actualResponse.jsonPath().getList("title", String.class);
+
+        for (int i = 0; i < actualListOfTitle.size(); i++) {
+            softAssertions.assertThat(actualListOfTitle.get(i))
+                    .as("Item number " + i)
+                    .contains("Default post");
+
+        }
+
+        List<Map> actualAuthorList = actualResponse.jsonPath().getList("author", Map.class);
+
+        for(Map actualAuthorObject : actualAuthorList){
+            softAssertions.assertThat(actualAuthorObject.get("username"))
+                    .as("Field userName in Author ")
+                    .isEqualTo(USER_NAME);
+        }
+
+
+        softAssertions.assertAll();
+    }
+
+
+    @Test
+    public void getAllPostByUserSchemaValidation(){
+        //method #5 Schema validation
+        apiHelper.getAllPostsByUserRequest(USER_NAME, 200)
+                .assertThat().body(matchesJsonSchemaInClasspath("response.json"))
+                ;
+    }
 
 }
