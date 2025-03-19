@@ -93,12 +93,12 @@ public class PostsDTO {
     @Override
     public String toString() {
         return "PostsDTO{" +
-                "_id='" + _id + '\'' +
-                ", title='" + title + '\'' +
-                ", body='" + body + '\'' +
-                ", select='" + select + '\'' +
-                ", uniquePost='" + uniquePost + '\'' +
-                ", createDate='" + createdDate + '\'' +
+                "_id='" + _id + '\'' + "\n" +
+                ", title='" + title + '\'' + "\n" +
+                ", body='" + body + '\'' + "\n" +
+                ", select='" + select + '\'' + "\n" +
+                ", uniquePost='" + uniquePost + '\'' + "\n" +
+                ", createDate='" + createdDate + '\'' + "\n" +
                 ", author=" + author +
                 ", isVisitoOwner=" + isVisitorOwner +
                 '}';
