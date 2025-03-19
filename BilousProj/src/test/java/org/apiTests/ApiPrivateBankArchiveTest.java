@@ -69,4 +69,33 @@ public class ApiPrivateBankArchiveTest {
                 .isEqualTo(exchangeRateExpected);
         softAssertions.assertAll();
     }
+    @Test
+    public void validateExchangeRatesGreaterThanZeroTest() {
+        CurrencyResponseDTO currencyResponseDTO =
+                given()
+                        .contentType(ContentType.JSON)
+                        .queryParam("date", "22.02.2022")
+                        .log().all()
+                        .when()
+                        .get(EndPointsPB.EXCHANGE_RATES)
+                        .then()
+                        .statusCode(200)
+                        .log().all()
+                        .extract().body().as(CurrencyResponseDTO.class)
+                ;
+
+        SoftAssertions softAssertions = new SoftAssertions();
+        for (ExchangeRateDTO rate : currencyResponseDTO.getExchangeRate()) {
+            softAssertions.assertThat(rate.getSaleRateNB()).isGreaterThan(0);
+            softAssertions.assertThat(rate.getPurchaseRateNB()).isGreaterThan(0);
+            if (rate.getSaleRate() != null) {
+                softAssertions.assertThat(rate.getSaleRate()).isGreaterThan(0);
+            }
+            if (rate.getPurchaseRate() != null) {
+                softAssertions.assertThat(rate.getPurchaseRate()).isGreaterThan(0);
+            }
+        }
+        softAssertions.assertAll();
+    }
 }
+
