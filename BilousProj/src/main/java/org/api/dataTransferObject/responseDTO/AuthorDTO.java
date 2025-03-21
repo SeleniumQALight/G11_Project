@@ -1,36 +1,13 @@
 package org.api.dataTransferObject.responseDTO;
 
+import lombok.*;
+
+@Data // setters and getters
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@ToString
 public class AuthorDTO {
     private String username;
     private String avatar;
-
-    public AuthorDTO() { //Default constructor
-    }
-    public AuthorDTO(String username) {
-        this.username = username;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    @Override
-    public String toString() {
-        return "AuthorDTO{" +
-                "username='" + username + '\'' +
-                ", avatar='" + avatar + '\'' +
-                '}';
-    }
 }
