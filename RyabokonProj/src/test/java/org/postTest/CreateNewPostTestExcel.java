@@ -44,6 +44,8 @@ public class CreateNewPostTestExcel extends BaseTest {
                 .checkIsRedirectOnPostPage()
                 .checkIsSuccessMessageDisplayed()
                 .checkTextInSuccessMessage(successMessage);
+        pageProvider.getPostPage().checkTextThisPostWasWrittenIsVisible(uniquePost);
+
 
         pageProvider.getPostPage().getHeaderElement().clickOnButtonMyProfile()
                 .checkIsRedirectToProfilePage()
@@ -67,6 +69,7 @@ public class CreateNewPostTestExcel extends BaseTest {
         logger.info("Data file path: " + pathToDataFile);
         logger.info(" sheetName: " + sheetName);
         logger.info(" skipFirstRow: " + skipFirstRow);
+        logger.info("Unique post identier: " + Utils_Custom.getDateAndTimeFormatted());
         return new ExcelSpreadsheetData(new FileInputStream(pathToDataFile), sheetName, skipFirstRow).getData();
     }
 }

@@ -137,8 +137,11 @@ public class CommonActionsWithElements {
 
     protected void checkTextInElement(WebElement webElement, String text) {
         Assert.assertEquals("Text in element" + getElementName(webElement) + "is not expected", text, webElement.getText());
+        Assert.assertFalse("Text in element is not expected", webElement.getText().isEmpty());
         logger.info("Text in element is expected");
     }
+
+
 
     //acceptAlert
     protected void acceptAlert() {
