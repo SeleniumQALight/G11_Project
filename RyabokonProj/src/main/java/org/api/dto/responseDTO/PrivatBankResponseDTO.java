@@ -49,4 +49,5 @@ public class PrivatBankResponseDTO {
     public void setExchangeRate(List<ExchangeRateDTO> exchangeRate) {
         this.exchangeRate = exchangeRate;
     }
+
     }

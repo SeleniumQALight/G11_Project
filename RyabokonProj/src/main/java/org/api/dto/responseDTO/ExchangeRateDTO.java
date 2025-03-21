@@ -56,4 +56,5 @@ public class ExchangeRateDTO {
     public void setPurchaseRate(Double purchaseRate) {
         this.purchaseRate = purchaseRate;
     }
+
 }
