@@ -27,7 +27,7 @@ public class PostPage extends ParentPage {
     private WebElement buttonEditPost;
 
 
-
+    private String uniquePost = "//p[text()='Is this post unique? : '%s']";
     private String locatorForTextThisPostWasWritten  = "//*[contains(text(),'%s')]";
 
     public HeaderForUserElements getHeaderElement() {
@@ -68,7 +68,8 @@ public class PostPage extends ParentPage {
         return this;
     }
 
-
-
-
+    public PostPage checkTextIsThisPostUnique(String text) {
+        checkIsElementVisible(String.format(uniquePost, text));
+        return this;
+    }
 }
