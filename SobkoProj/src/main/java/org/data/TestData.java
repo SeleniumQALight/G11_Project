@@ -10,4 +10,7 @@ public class TestData {
     public final static String UNCHECK="uncheck";
     public final static String YES = "yes";
     public final static String NO ="no";
+
+    public final static String VALID_LOGIN_API  = "YuriiSobko".toLowerCase();
+    public final static String VALID_PASSWORD_API  = "4575214Natenu";
 }
