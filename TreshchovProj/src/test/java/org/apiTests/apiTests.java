@@ -67,7 +67,7 @@ public class apiTests {
     public void getAllPostsByUserNegative(){
         final String NOT_VALID_USER_NAME = "NotValidUser";
 
-        String actualResponse = apiHelper.getAllPostsByUserReqeuest(NOT_VALID_USER_NAME, 400).extract().response().body().asString(); //method 3 asString
+        String actualResponse = apiHelper.getAllPostsByUserRequest(NOT_VALID_USER_NAME, 400).extract().response().body().asString(); //method 3 asString
 
         Assert.assertEquals("Message in response ", "\"Sorry, invalid user requested. Wrong username - "+ NOT_VALID_USER_NAME+ " or there is no posts. Exception is undefined\"", actualResponse);
 
@@ -77,7 +77,7 @@ public class apiTests {
     @Test
     public void getAllPostsByUserJsonPath(){
         //method 4 JsonPath
-        Response actualResponse = apiHelper.getAllPostsByUserReqeuest(USER_NAME, 200).extract().response();
+        Response actualResponse = apiHelper.getAllPostsByUserRequest(USER_NAME, 200).extract().response();
         SoftAssertions softAssertions = new SoftAssertions();
 
         List<String> actualListOfTitle = actualResponse.jsonPath().getList("title", String.class);
@@ -101,6 +101,6 @@ public class apiTests {
     @Test
     public void getAllPostsByUserSchemaValidation(){
         //method 5 Schema validation
-        apiHelper.getAllPostsByUserReqeuest(USER_NAME, 200).assertThat().body(matchesJsonSchemaInClasspath("response.json"));
+        apiHelper.getAllPostsByUserRequest(USER_NAME, 200).assertThat().body(matchesJsonSchemaInClasspath("response.json"));
     }
 }
