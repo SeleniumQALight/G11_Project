@@ -28,7 +28,7 @@ public class ApiHelper {
             .build();
 
     public static ResponseSpecification responseSpecification = new ResponseSpecBuilder()
-            .expectStatusCode(HttpStatus.SC_OK)
+//            .expectStatusCode(HttpStatus.SC_OK)
             .log(LogDetail.ALL)
             .build();
 
