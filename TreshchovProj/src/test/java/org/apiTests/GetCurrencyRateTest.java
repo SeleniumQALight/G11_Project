@@ -71,7 +71,7 @@ public class GetCurrencyRateTest {
     }
 
     @Test
-    public void validateEchangeRatesGreaterThanZeroTest(){
+    public void validateExchangeRatesGreaterThanZeroTest(){
         GetCurrencyInfoDTO actualResponse =
                 given().contentType(ContentType.JSON).queryParam("date","22.03.2022").log().all().
                         when().get(GET_CURRENCY_RATE).
