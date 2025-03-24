@@ -113,7 +113,7 @@ public class ApiTests {
 
     @Test
     public void getAllPostsByUserJsonPath(){
-        //method #4 json path
+        //method #4 json path (використовуємо, коли немає DTO)
         Response actualResponse =
                 apiHelper.getAllPostsByUserRequest(USER_NAME, 200).extract().response();
 
