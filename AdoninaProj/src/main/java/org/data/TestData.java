@@ -10,5 +10,6 @@ public class TestData {
   public final static String INVALID_LOGIN = "qaauto1";
   public final static String INVALID_PASSWORD = "123456qwerty1";
 
-
+  public static final String VALID_LOGIN_API = "vadon2003".toLowerCase();
+  public static final String VALID_PASSWORD_API = "123456qwerty";
 }
