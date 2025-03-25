@@ -1,5 +1,6 @@
 package org.api;
 
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -23,6 +24,7 @@ public class ApiHelper {
     //Специфікації
     public static RequestSpecification requestSpecification = new RequestSpecBuilder()
             .setContentType(ContentType.JSON)
+            .addFilter(new AllureRestAssured())  //для аллюр репорту
             .log(LogDetail.ALL)
             .build();
 
