@@ -8,15 +8,16 @@ import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.apache.http.HttpStatus;
+import org.api.dto.requestDTO.AddBookDTO;
 import org.api.dto.responseDTO.*;
 import org.json.JSONObject;
+
+import java.util.Arrays;
 
 import static io.restassured.RestAssured.*;
 
 public class ApiHelperBooks {
-
-    public final static String USER_NAME_BOOKS = "alla123";
-    final static String PASSWORD_BOOKS = "kP_53LV*6vuCW7R";
+    LoginDTO loginDTO = new LoginDTO();
 
     //реквекст специфікація
     public static RequestSpecification requestSpecification = new RequestSpecBuilder()
@@ -35,13 +36,13 @@ public class ApiHelperBooks {
         return getAllBooksByUserRequest(token, userId, 200);
     }
 
-    public ValidatableResponse getAllBooksByUserRequest(String token,String userId, int expectedStatusCode) {
+    public ValidatableResponse getAllBooksByUserRequest(String token, String userId, int expectedStatusCode) {
         return
                 given()
                         .spec(requestSpecification)
                         .header("Authorization", "Bearer " + token)
                         .when()
-                        .get(EndPointsBooks.USER_WITH_ID,userId)
+                        .get(EndPointsBooks.USER_WITH_ID, userId)
                         .then()
                         .spec(responseSpecification.statusCode(expectedStatusCode))
                 ;
@@ -54,35 +55,33 @@ public class ApiHelperBooks {
                         .when()
                         .get(EndPointsBooks.BOOKS)
                         .then()
-                        .spec(responseSpecification.statusCode(200))
+                        .spec(responseSpecification)
                 ;
     }
 
-    public String getStringFromLoginResponse(String userName, String password, String extract) {
+    public LoginDTO getLoginResponse(String userName, String password) {
         JSONObject requestBody = new JSONObject();
         requestBody.put("userName", userName);
         requestBody.put("password", password);
 
         return
-                given()
+                loginDTO = given()
                         .spec(requestSpecification)
                         .body(requestBody.toMap())
                         .when()
                         .post(EndPointsBooks.LOGIN)
                         .then()
                         .spec(responseSpecification)
-                        .extract().response()
-                        .jsonPath().getString(extract);
+                        .extract().response().body().as(LoginDTO.class)
+                ;
     }
 
     public String getUserId() {
-        return getStringFromLoginResponse(
-                USER_NAME_BOOKS, PASSWORD_BOOKS, "userId");
+        return loginDTO.getUserId();
     }
 
     public String getTokenBooks() {
-        return getStringFromLoginResponse(
-                USER_NAME_BOOKS, PASSWORD_BOOKS, "token");
+        return loginDTO.getToken();
     }
 
     public void deleteAllBooksByUser(String userId, String token) {
@@ -102,24 +101,39 @@ public class ApiHelperBooks {
                 .extract().response().body().as(UserDTO.class);
         return listOfBooks;
     }
+
     public UserDTO getListOfBooks() {
         UserDTO listOfBooks = getAllBooks()
                 .extract().response().body().as(UserDTO.class);
         return listOfBooks;
     }
 
-    public void postNewBookInUserList(String token, String userId, String isbn){
+//    public void postNewBookInUserList(String token, String userId, String isbn) {
+//
+//        given()
+//                .spec(requestSpecification)
+//                .header("Authorization", "Bearer " + token)
+//                .body("{\"userId\": \"" + userId + "\", \"collectionOfIsbns\": [{\"isbn\": \"" + isbn + "\"}]}")
+//                .when()
+//                .post(EndPointsBooks.BOOKS)
+//                .then()
+//                .spec(responseSpecification.statusCode(201));
+//    }
+
+    //версія з DTO
+    public void postNewBookInUserList(String token, String userId, String isbn) {
+        AddBookDTO.IsbnEntry isbnEntry = new AddBookDTO.IsbnEntry(isbn);
+        AddBookDTO requestBody = new AddBookDTO(userId, Arrays.asList(isbnEntry));
 
         given()
                 .spec(requestSpecification)
                 .header("Authorization", "Bearer " + token)
-                .body("{\"userId\": \"" + userId + "\", \"collectionOfIsbns\": [{\"isbn\": \"" + isbn + "\"}]}")
+                .body(requestBody)
                 .when()
                 .post(EndPointsBooks.BOOKS)
                 .then()
                 .spec(responseSpecification.statusCode(201));
     }
-
 
 
 }
