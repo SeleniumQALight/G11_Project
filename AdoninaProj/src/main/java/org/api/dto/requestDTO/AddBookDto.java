@@ -12,5 +12,5 @@ import java.util.List;
 @Builder
 public class AddBookDto {
   public String userId;
-  public List<BooksDTO> collectionOfIsbns;
+  public List<IsbnDto> collectionOfIsbns;
 }

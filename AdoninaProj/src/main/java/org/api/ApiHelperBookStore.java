@@ -2,6 +2,7 @@ package org.api;
 
 import org.apache.hc.core5.http.HttpStatus;
 import org.api.dto.requestDTO.AddBookDto;
+import org.api.dto.requestDTO.IsbnDto;
 import org.api.dto.responseDTO.LoginResponseDto;
 import org.api.dto.responseDTO.UserBooksDto;
 import org.json.JSONObject;
@@ -62,7 +63,7 @@ public class ApiHelperBookStore {
   }
 
   public void addBookToUser(String token, String userId, String isbn) {
-    AddBookDto requestBody = new AddBookDto(userId, List.of());
+    AddBookDto requestBody = new AddBookDto(userId, List.of(new IsbnDto(isbn)));
 
     given()
             .spec(requestSpecification)
