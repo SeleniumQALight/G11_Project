@@ -82,10 +82,10 @@ public class GetCurrencyRateTest {
         for (GetCurrencyRateDTO exchangeRate: actualResponse.getExchangeRate()){
             softAssertions.assertThat(exchangeRate.getSaleRateNB()).as("Sale rate NB").isGreaterThan(0);
             softAssertions.assertThat(exchangeRate.getPurchaseRateNB()).as("Purchase rate NB").isGreaterThan(0);
-            if (exchangeRate.getSaleRate() != 0){
+            if (exchangeRate.getSaleRate() != null){
                 softAssertions.assertThat(exchangeRate.getSaleRate()).as("Sale rate").isGreaterThan(0);
             }
-            if (exchangeRate.getPurchaseRate() != 0){
+            if (exchangeRate.getPurchaseRate() != null){
                 softAssertions.assertThat(exchangeRate.getPurchaseRate()).as("Purchase rate").isGreaterThan(0);
             }
         }

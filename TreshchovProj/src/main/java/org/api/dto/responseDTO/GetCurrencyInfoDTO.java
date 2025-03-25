@@ -10,7 +10,7 @@ import lombok.*;
 public class GetCurrencyInfoDTO {
     private String date;
     private String bank;
-    private int baseCurrency;
+    private Integer baseCurrency;
     private String baseCurrencyLit;
     private GetCurrencyRateDTO[] exchangeRate;
 }
