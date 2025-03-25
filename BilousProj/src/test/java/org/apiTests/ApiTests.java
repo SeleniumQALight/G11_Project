@@ -1,5 +1,6 @@
 package org.apiTests;
 
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
@@ -8,8 +9,11 @@ import org.api.EndPoints;
 import org.api.dataTransferObject.responseDTO.AuthorDTO;
 import org.api.dataTransferObject.responseDTO.PostsDTO;
 import org.assertj.core.api.SoftAssertions;
+import org.categories.SmokeTestFilter;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
+
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 import java.util.List;
@@ -25,11 +29,13 @@ public class ApiTests {
     ApiHelper apiHelper = new ApiHelper();
 
     @Test
+    @Category(SmokeTestFilter.class)
     public void getAllPostsByUser() {
         PostsDTO[] actualResponse =
         given()
                     .contentType(ContentType.JSON)
                 .log().all()
+                .filter(new AllureRestAssured())
                 .when()
                     .get(EndPoints.POST_BY_USER, USER_NAME) // URL
                 .then()
