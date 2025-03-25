@@ -9,7 +9,7 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
-import org.api.dto.responseDTO.PostsDTO;
+import org.api.dto.response.PostsDTO;
 import org.data.TestData;
 import org.json.JSONObject;
 
@@ -18,7 +18,6 @@ import java.util.HashMap;
 import static io.restassured.RestAssured.given;
 
 public class ApiHelper {
-
     Logger logger = Logger.getLogger(getClass());
 
     public static RequestSpecification requestSpecification = new RequestSpecBuilder()
@@ -31,32 +30,33 @@ public class ApiHelper {
             .expectStatusCode(HttpStatus.SC_OK)
             .build();
 
-    public ValidatableResponse getAllPostsByUserRequest(String userName){
+    public ValidatableResponse getAllPostsByUserRequest(String userName)
+    {
         return getAllPostsByUserRequest(userName, HttpStatus.SC_OK);
     }
 
-    public ValidatableResponse getAllPostsByUserRequest(String userName, int expectedStatusCode) {
+
+    public ValidatableResponse getAllPostsByUserRequest(String userName, int expectedStatusCode){
         return given()
 //                .contentType(ContentType.JSON)
 //                .log().all()
-                .spec(requestSpecification)
                 .when()
                 .get(EndPoints.POST_BY_USER, userName)
                 .then()
-                .spec(responseSpecification.statusCode(expectedStatusCode));
 //                .log().all()
 //                .statusCode(expectedStatusCode);
+                .spec(responseSpecification.statusCode(expectedStatusCode));
     }
 
     public String getToken() {
         return getToken(TestData.VALID_LOGIN_API, TestData.VALID_PASSWORD_API);
+
     }
 
-    public String getToken(String userName, String password) {
+    public String getToken(String username, String password) {
         JSONObject requestBody = new JSONObject();
-        requestBody.put("username", userName);
+        requestBody.put("username", username);
         requestBody.put("password", password);
-
         return given()
                 .spec(requestSpecification)
                 .body(requestBody.toMap())
@@ -65,13 +65,20 @@ public class ApiHelper {
                 .then()
                 .spec(responseSpecification)
                 .extract().response().body().asString().replace("\"", "");
+
+
     }
 
-    public void deleteAllPostsTitlePresent(String userName, String token) {
-        PostsDTO[] listOfPosts = getAllPostsByUserRequest(userName.toLowerCase()).extract().response().body().as(PostsDTO[].class);
+    public void deleteAllPostsTillPresent(String userName, String token) {
+        PostsDTO[] listOfPosts = getAllPostsByUserRequest(userName.toLowerCase())
+                .extract().response().body().as(PostsDTO[].class);
+
         for (int i = 0; i < listOfPosts.length; i++) {
-            deletePostById(token, listOfPosts[i].getId());
-            logger.info(String.format("Post with id %s and title %s was deleted", listOfPosts[i].getId(), listOfPosts[i].getTitle()));
+            deletePostById(token, listOfPosts[i].get_id());
+            logger.info(
+                    String.format("Post with id %s and title '%s'"
+                            , listOfPosts[i].get_id(), listOfPosts[i].getTitle())
+            );
         }
     }
 
@@ -86,5 +93,7 @@ public class ApiHelper {
                 .delete(EndPoints.DELETE_POST, id)
                 .then()
                 .spec(responseSpecification);
+
     }
+
 }
