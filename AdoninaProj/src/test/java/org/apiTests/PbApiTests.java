@@ -2,8 +2,8 @@ package org.apiTests;
 
 import io.restassured.http.ContentType;
 import org.apache.log4j.Logger;
-import org.api.dto.responceDTO.ExchangeRateDTO;
-import org.api.dto.responceDTO.PrivatBankDTO;
+import org.api.dto.responseDTO.ExchangeRateDTO;
+import org.api.dto.responseDTO.PrivatBankDTO;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Assert;
 import org.junit.Test;

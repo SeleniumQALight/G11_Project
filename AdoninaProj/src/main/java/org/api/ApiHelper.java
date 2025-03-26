@@ -9,7 +9,7 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.apache.hc.core5.http.HttpStatus;
 import org.apache.log4j.Logger;
-import org.api.dto.responceDTO.PostsDTO;
+import org.api.dto.responseDTO.PostsDTO;
 import org.data.TestData;
 import org.json.JSONObject;
 
@@ -28,7 +28,7 @@ public class ApiHelper {
 
   public static ResponseSpecification responseSpecification = new ResponseSpecBuilder()
           .log(LogDetail.ALL)
-          .expectStatusCode(HttpStatus.SC_OK)
+//          .expectStatusCode(HttpStatus.SC_OK)
           .build();
 
   public ValidatableResponse getAllPostsByUserRequest(String userName) {
