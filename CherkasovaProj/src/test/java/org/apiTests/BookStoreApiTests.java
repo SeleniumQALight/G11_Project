@@ -16,7 +16,7 @@ public class BookStoreApiTests {
 
     @Before
     public void getTokenAndDeleteAllBooks() {
-        LoginResponseDTO loginResponse = apiHelperBookStore.loginUser("tanyache", "Tanita1122!".toLowerCase());
+        LoginResponseDTO loginResponse = apiHelperBookStore.loginUser("tanitache", "Tanita1122!".toLowerCase());
 
         token = loginResponse.getToken();
         userId = loginResponse.getUserId();
