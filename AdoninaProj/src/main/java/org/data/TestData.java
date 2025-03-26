@@ -15,7 +15,6 @@ public class TestData {
 
   public static final String VALID_LOGIN_BOOK_API = "vadon".toLowerCase();
   public static final String VALID_PASSWORD_BOOK_API = "A123456qwerty@";
-  public static final String VALID_USERID_BOOK_API = "822af33c-fc9b-42a1-ae48-bdac2bada1ab";
 
 
 }

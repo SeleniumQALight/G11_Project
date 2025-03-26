@@ -8,11 +8,11 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class LoginResponseDto {
-  private String created_date;
-  private String expires;
-  private Boolean isActive;
-  private String password;
-  private String token;
   private String userId;
   private String username;
+  private String password;
+  private String token;
+  private String expires;
+  private String created_date;
+  private Boolean isActive;
 }

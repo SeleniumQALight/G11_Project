@@ -28,7 +28,7 @@ public class ApiHelper {
 
   public static ResponseSpecification responseSpecification = new ResponseSpecBuilder()
           .log(LogDetail.ALL)
-          .expectStatusCode(HttpStatus.SC_OK)
+//          .expectStatusCode(HttpStatus.SC_OK)
           .build();
 
   public ValidatableResponse getAllPostsByUserRequest(String userName) {

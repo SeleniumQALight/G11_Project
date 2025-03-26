@@ -2,7 +2,6 @@ package org.api.dto.responseDTO;
 
 import lombok.*;
 
-import java.util.List;
 
 @Data
 @ToString
@@ -12,5 +11,5 @@ import java.util.List;
 public class UserBooksDto {
   private String userId;
   private String username;
-  private List<BooksDTO> books;
+  private BooksDTO[] books;
 }

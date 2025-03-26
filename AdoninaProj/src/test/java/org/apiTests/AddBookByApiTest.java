@@ -1,8 +1,10 @@
 package org.apiTests;
 
+import org.api.ApiHelper;
 import org.api.ApiHelperBookStore;
 import org.api.BooksEndPoints;
 import org.api.dto.responseDTO.UserBooksDto;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -10,8 +12,7 @@ import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.api.ApiHelper.requestSpecification;
-import static org.api.ApiHelper.responseSpecification;
-import static org.data.TestData.*;
+
 
 public class AddBookByApiTest {
   ApiHelperBookStore apiHelperBookStore = new ApiHelperBookStore();
@@ -20,32 +21,45 @@ public class AddBookByApiTest {
 
   @Before
   public void getTokenAndDeleteBooks() {
-    token = ApiHelperBookStore.getToken(VALID_LOGIN_BOOK_API, VALID_PASSWORD_BOOK_API);
-    userId = ApiHelperBookStore.getUserId(VALID_LOGIN_BOOK_API, VALID_PASSWORD_BOOK_API);
-    apiHelperBookStore.deleteAllBooks(token, userId);
+    token = apiHelperBookStore.getToken();
+    userId = apiHelperBookStore.getUserId();
+    apiHelperBookStore.deleteAllBooks(userId, token);
   }
 
   @After
   public void deleteBooks() {
-    apiHelperBookStore.deleteAllBooks(token, userId);
+    apiHelperBookStore.deleteAllBooks(userId, token);
+    Assert.assertEquals("Books are not deleted", 0,
+            given()
+                    .spec(requestSpecification)
+                    .header("Authorization", "Bearer " + token)
+                    .when()
+                    .get(BooksEndPoints.GET_BOOKS_OF_USER, userId)
+                    .then()
+                    .spec(ApiHelper.responseSpecification)
+                    .extract().response().body().as(UserBooksDto.class).getBooks().length);
   }
 
   @Test
   public void addBookToUserProfileByApiTest() {
     String isbn = apiHelperBookStore.getFirstBookIsbn(token);
-    apiHelperBookStore.addBookToUser(token, userId, isbn);
 
-    UserBooksDto response =
-            given()
-                    .spec(requestSpecification)
-                    .header("Authorization", "Bearer " + token)
-                    .when()
-                    .get(BooksEndPoints.GET_ALL_BOOKS_OF_USER, userId)
-                    .then()
-                    .spec(responseSpecification)
-                    .extract().as(UserBooksDto.class);
+    apiHelperBookStore.addBook(token, isbn, userId);
 
-    Assert.assertEquals(1, response.getBooks().size());
-    Assert.assertEquals(isbn, response.getBooks().get(0).getIsbn());
+
+    UserBooksDto actualResponse = given()
+            .spec(requestSpecification)
+            .header("Authorization", "Bearer " + token)
+            .when()
+            .get(BooksEndPoints.GET_BOOKS_OF_USER, userId)
+            .then()
+            .spec(ApiHelper.responseSpecification)
+            .extract().response().body().as(UserBooksDto.class);
+
+    SoftAssertions softAssertions = new SoftAssertions();
+    softAssertions
+            .assertThat(actualResponse.getBooks().length).isEqualTo(1);
+    softAssertions.assertThat(actualResponse.getBooks()[0].getIsbn()).isEqualTo(isbn);
+    softAssertions.assertAll();
   }
 }
