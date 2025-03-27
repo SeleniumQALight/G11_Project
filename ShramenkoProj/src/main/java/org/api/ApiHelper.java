@@ -10,11 +10,13 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
+import org.api.dto.requestDTO.CreatePostDTO;
 import org.api.dto.responseDTO.PostsDTO;
 import org.data.TestData;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
@@ -96,5 +98,30 @@ Logger logger = Logger.getLogger(getClass());
                 .delete(EndPoints.DELETE_POST, id)
                 .then()
                 .spec(responseSpecification);
+    }
+
+    public void createPosts(Integer numberOfPosts, String token, Map<String, String> postsData) {
+        //нам потрібен цикл, щоб створити потрібну кількість постів
+        for (int i = 0; i < numberOfPosts; i++) {
+            CreatePostDTO bodyForPostCreation =
+            CreatePostDTO.builder()
+                    .title(postsData.get("title") + " " + i)
+                    .body(postsData.get("body") + " " + i)
+                    .select1(postsData.get("select"))
+                    .uniquePost("no")
+                    .token(token)
+                    .build(); //це ми створили боді для реквесту "створення нового посту"
+
+            given()
+                    .spec(requestSpecification)
+                    .body(bodyForPostCreation)
+                    .when()
+                    .post(EndPoints.CREATE_POST)
+                    .then()
+                    .spec(responseSpecification);
+
+        }
+
+
     }
 }
