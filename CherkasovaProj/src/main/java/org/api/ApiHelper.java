@@ -10,11 +10,13 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
+import org.api.dto.requestDTO.CreatePostDTO;
 import org.api.dto.responseDTO.PostsDTO;
 import org.data.TestData;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
@@ -34,7 +36,7 @@ public class ApiHelper {
             .build();
 
 
-    public ValidatableResponse getAllPostsByUserRequest(String userName){
+    public ValidatableResponse getAllPostsByUserRequest(String userName) {
         return getAllPostsByUserRequest(userName, HttpStatus.SC_OK);
     }
 
@@ -71,7 +73,6 @@ public class ApiHelper {
                 .extract().response().body().asString().replace("\"", "");
 
 
-
     }
 
     public void deleteAllPostsTillPresent(String userName, String token) {
@@ -99,5 +100,28 @@ public class ApiHelper {
                 .delete(EndPoints.DELETE_POST, id)
                 .then()
                 .spec(responseSpecification);
+    }
+
+    public void createPosts(Integer numberOfPosts, String token, Map<String, String> postsData) {
+        for (int i = 0; i < numberOfPosts; i++) {
+            CreatePostDTO bodyForPostCreation =
+                    CreatePostDTO.builder()
+                            .title(postsData.get("title") + " " + i)
+                            .body(postsData.get("body"))
+                            .select1(postsData.get("select"))
+                            .uniquePost("no")
+                            .token(token)
+                            .build();
+
+            given()
+                    .spec(requestSpecification)
+                    .body(bodyForPostCreation)
+                    .when()
+                    .post(EndPoints.CREATE_POST)
+                    .then()
+                    .spec(responseSpecification);
+
+
+        }
     }
 }
