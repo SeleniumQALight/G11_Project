@@ -1,6 +1,8 @@
 package org.bdd.stepDefenitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.bdd.helpers.WebDriverHelper;
 
@@ -24,5 +26,25 @@ public class LoginPageStepsDefinitions extends MainSteps {
         pageProvider.getLoginPage().enterTextIntoInputPassword(VALID_PASSWORD);
         pageProvider.getLoginPage().clickOnButtonSignIn();
 
+    }
+
+    @When("I enter {string} into input Login in Login page")
+    public void iEnterLoginIntoInputLoginInLoginPage(String username) {
+        pageProvider.getLoginPage().enterTextIntoInputLogin(username);
+    }
+
+    @And("I enter {string} into input PassWord in Login page")
+    public void iEnterPasswordIntoInputPassWordInLoginPage(String password) {
+        pageProvider.getLoginPage().enterTextIntoInputPassword(password);
+    }
+
+    @And("I click on button SignIn in Login page")
+    public void iClickOnButtonSignInInLoginPage() {
+        pageProvider.getLoginPage().clickOnButtonSignIn();
+    }
+
+    @Then("I see alert message with text {string}")
+    public void iSeeAlertMessageWithTextInvalidUsernamePassword(String alertMessage) {
+        pageProvider.getLoginPage().checkErrorMessageText(alertMessage);
     }
 }
