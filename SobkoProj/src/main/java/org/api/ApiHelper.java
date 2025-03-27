@@ -10,11 +10,13 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.apache.http.HttpStatus;
 import org.apache.log4j.Logger;
+import org.api.dto.request.CreatePostDto;
 import org.api.dto.response.PostsDTO;
 import org.data.TestData;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
@@ -32,13 +34,12 @@ public class ApiHelper {
             .expectStatusCode(HttpStatus.SC_OK)
             .build();
 
-    public ValidatableResponse getAllPostsByUserRequest(String userName)
-    {
+    public ValidatableResponse getAllPostsByUserRequest(String userName) {
         return getAllPostsByUserRequest(userName, HttpStatus.SC_OK);
     }
 
 
-    public ValidatableResponse getAllPostsByUserRequest(String userName, int expectedStatusCode){
+    public ValidatableResponse getAllPostsByUserRequest(String userName, int expectedStatusCode) {
         return given()
 //                .contentType(ContentType.JSON)
 //                .log().all()
@@ -96,6 +97,29 @@ public class ApiHelper {
                 .then()
                 .spec(responseSpecification);
 
+    }
+
+    public void createPosts(Integer numberOfPosts, String token, Map<String, String> postsData) {
+        for (int i = 0; i < numberOfPosts; i++) {
+            CreatePostDto bodyForPostCreation =
+
+            CreatePostDto.builder()
+                    .title(postsData.get("title")+" "+ i)
+                    .body(postsData.get("body"))
+                    .select1(postsData.get("select"))
+                    .uniquePost("no")
+                    .token(token)
+                    .build();
+
+            given()
+                    .spec(requestSpecification)
+                    .body(bodyForPostCreation)
+                    .when()
+                    .post(EndPoints.CREATE_POST)
+                    .then()
+                    .spec(responseSpecification);
+
+        }
     }
 
 }
