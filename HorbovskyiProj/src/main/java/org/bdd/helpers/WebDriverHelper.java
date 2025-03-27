@@ -20,6 +20,11 @@ public class WebDriverHelper {
         }
     }
 
+    public void quiteDriver(){
+        webDriver.quit();
+        logger.info("Browser was closed");
+    }
+
     public WebDriver getWebDriver() {
         return webDriver;
     }
