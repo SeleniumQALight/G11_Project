@@ -139,4 +139,9 @@ public class LoginPage extends ParantPage {
         softAssertions.assertAll();
         return this;
     }
+
+    public LoginPage checkTextInAlertCenter(String errorMessage) {
+        checkTextInElement(massageField, errorMessage);
+        return this;
+    }
 }
