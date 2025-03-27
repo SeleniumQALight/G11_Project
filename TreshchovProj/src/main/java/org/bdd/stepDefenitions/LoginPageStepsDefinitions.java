@@ -6,8 +6,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.bdd.helpers.WebDriverHelper;
 
-import static org.data.TestData.VALID_LOGIN;
-import static org.data.TestData.VALID_PASSWORD;
+import static org.bdd.stepDefenitions.MainSteps.*;
+import static org.data.TestData.*;
 
 public class LoginPageStepsDefinitions extends MainSteps {
     public LoginPageStepsDefinitions(WebDriverHelper webDriverHelper) {
@@ -46,5 +46,17 @@ public class LoginPageStepsDefinitions extends MainSteps {
     @Then("I see alert message with text {string}")
     public void iSeeAlertMessageWithTextInvalidUsernamePassword(String alertMessage) {
         pageProvider.getLoginPage().checkErrorMessageText(alertMessage);
+    }
+
+    @And("I open Home page as {string} user and {string} password")
+    public void iOpenHomePageAsDefaultUserAndDefaultPassword(String userName, String password) {
+        if (DEFAULT.equalsIgnoreCase(userName)){
+            userName = VALID_LOGIN_API;
+        }
+        if (DEFAULT.equalsIgnoreCase(password)){
+            password = VALID_PASSWORD_API;
+        }
+        pageProvider.getLoginPage().openPage().enterTextIntoInputLogin(userName).enterTextIntoInputPassword(password).clickOnButtonSignIn();
+        pageProvider.getHomePage().checkIsRedirectToHomePage();
     }
 }
