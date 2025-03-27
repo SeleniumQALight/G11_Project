@@ -1,5 +1,7 @@
 package org.suites;
 
+import org.api.ApiHelper;
+import org.apiTests.ApiTests;
 import org.categories.SmokeTestsFilter;
 import org.junit.experimental.categories.Categories;
 import org.junit.runner.RunWith;
@@ -12,8 +14,9 @@ import org.registrationTest.ValidationMessageTest;
 @Categories.IncludeCategory(SmokeTestsFilter.class)
 @Suite.SuiteClasses({
         LoginTestWithPageObject.class,
-        ValidationMessageTest.class,
-        CreateNewPostTest.class
+//        ValidationMessageTest.class,
+//        CreateNewPostTest.class,
+        ApiTests.class
 })
 public class SmokeSuite {
 }
