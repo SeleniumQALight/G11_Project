@@ -1,6 +1,8 @@
 package org.api.BookStoreHW;
 
+
 import lombok.*;
+
 import java.util.List;
 
 @Getter
@@ -9,10 +11,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
-public class BooksResponseDTO {
+public class AddBookRequestDTO {
     private String userId;
-    private String username;
-    private List<BooksDTO> books;
+    private List<BookIsbnDTO> collectionOfIsbns;
 }
 

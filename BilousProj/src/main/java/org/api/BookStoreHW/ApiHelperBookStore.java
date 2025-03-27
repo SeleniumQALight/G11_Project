@@ -7,17 +7,14 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.apache.hc.core5.http.HttpStatus;
-import org.apache.log4j.Logger;
 import org.api.EndPointBookStore;
-import org.json.JSONArray;
 import org.json.JSONObject;
-
+import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
 public class ApiHelperBookStore {
-    Logger logger = Logger.getLogger(getClass());
 
     public static RequestSpecification requestSpecification = new RequestSpecBuilder()
             .setContentType(ContentType.JSON)
@@ -57,26 +54,35 @@ public class ApiHelperBookStore {
     }
 
     public void addBookToUser(String userId, int numberOfBook, String token) {
-        JSONObject requestBody = new JSONObject();
-        requestBody.put("userId", userId);
-        JSONArray collectionOfIsbns = new JSONArray();
-        JSONObject isbnObject = new JSONObject();
-        String isbn = chooseNumberOfBook(numberOfBook);
-        isbnObject.put("Isbn", isbn);
-        collectionOfIsbns.put(isbnObject);
-        requestBody.put("collectionOfIsbns", collectionOfIsbns);
+        BookIsbnDTO isbnDTO = BookIsbnDTO.builder()
+                .isbn(chooseNumberOfBook(numberOfBook))
+                .build();
+        AddBookRequestDTO addBookRequestDTO = AddBookRequestDTO.builder()
+                .userId(userId)
+                .collectionOfIsbns(List.of(isbnDTO))
+                .build();
 
         given()
                 .header("Authorization", "Bearer " + token)
                 .spec(requestSpecification)
-                .body(requestBody.toString())
+                .body(addBookRequestDTO)
                 .when()
                 .post(EndPointBookStore.ACTION_WITH_BOOKS)
                 .then()
-                .spec(responseSpecification.statusCode(HttpStatus.SC_OK));
+                .spec(responseSpecification.statusCode(HttpStatus.SC_CREATED));
+    }
+    public BooksResponseDTO getUserBooks(String userId, String token) {
+            return given()
+                .header("Authorization", "Bearer " + token)
+                .spec(requestSpecification)
+                .when()
+                .get(EndPointBookStore.BOOKS_FOR_USER, userId)
+                .then()
+                .spec(responseSpecification.statusCode(HttpStatus.SC_OK))
+                .extract().body().as(BooksResponseDTO.class);
     }
 
-    private String chooseNumberOfBook(int numberBook) {
+    public String chooseNumberOfBook(int numberBook) {
         BooksResponseDTO booksResponseDTO = getAllBooks();
         String bookIsbn = booksResponseDTO.getBooks().get(numberBook).getIsbn();
         System.out.println(bookIsbn + "isbn of book");
