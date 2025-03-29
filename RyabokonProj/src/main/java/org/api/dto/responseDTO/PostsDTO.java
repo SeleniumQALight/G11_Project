@@ -28,11 +28,11 @@ public class PostsDTO {
     }
 
     public String get_id() {
-        return _id;
+        return id;
     }
 
     public void set_id(String _id) {
-        this._id = _id;
+        this.id = _id;
     }
 
     public Boolean getIsVisitorOwner() {
@@ -94,7 +94,7 @@ public class PostsDTO {
     @Override
     public String toString() {
         return "PostsDTO{" +
-                "_id='" + _id + '\'' + "\n" +
+                "_id='" + id + '\'' + "\n" +
                 ", title='" + title + '\'' + "\n" +
                 ", body='" + body + '\'' + "\n" +
                 ", select='" + select + '\'' + "\n" +
