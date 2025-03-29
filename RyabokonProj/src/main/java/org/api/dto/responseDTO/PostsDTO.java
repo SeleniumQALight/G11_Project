@@ -1,6 +1,7 @@
 package org.api.dto.responseDTO;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
 public class PostsDTO {
     @JsonProperty("_id")
