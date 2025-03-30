@@ -21,7 +21,25 @@ public class PostsDTO {
     private String createdDate;
     private AuthorDTO author;
     private Boolean isVisitorOwner;
+}
 
+//package org.api.dto.responseDTO;
+//
+//import com.fasterxml.jackson.annotation.JsonProperty;
+//import lombok.*;
+//
+//public class PostsDTO {
+//    @JsonProperty("_id")
+//    private String id;
+//    private String title;
+//    private String body;
+//    @JsonProperty("select1")
+//    private String select;
+//    private String uniquePost;
+//    private String createdDate;
+//    private AuthorDTO author;
+//    private Boolean isVisitorOwner;
+//
 //    public PostsDTO() {
 //    }
 //
@@ -33,13 +51,13 @@ public class PostsDTO {
 //        this.author = author;
 //        this.isVisitorOwner = isVisitorOwner;
 //    }
-
+//
 //    public String get_id() {
-//        return _id;
+//        return id;
 //    }
 //
 //    public void set_id(String _id) {
-//        this._id = _id;
+//        this.id = _id;
 //    }
 //
 //    public Boolean getIsVisitorOwner() {
@@ -97,18 +115,18 @@ public class PostsDTO {
 //    public void setAuthor(AuthorDTO author) {
 //        this.author = author;
 //    }
-
+//
 //    @Override
 //    public String toString() {
 //        return "PostsDTO{" +
-//                "_id='" + _id + '\'' +
-//                ", title='" + title + '\'' +
-//                ", body='" + body + '\'' +
-//                ", select='" + select + '\'' +
-//                ", uniquePost='" + uniquePost + '\'' +
-//                ", createDate='" + createdDate + '\'' +
+//                "_id='" + id + '\'' + "\n" +
+//                ", title='" + title + '\'' + "\n" +
+//                ", body='" + body + '\'' + "\n" +
+//                ", select='" + select + '\'' + "\n" +
+//                ", uniquePost='" + uniquePost + '\'' + "\n" +
+//                ", createDate='" + createdDate + '\'' + "\n" +
 //                ", author=" + author +
 //                ", isVisitoOwner=" + isVisitorOwner +
 //                '}';
 //    }
-}
+//}
