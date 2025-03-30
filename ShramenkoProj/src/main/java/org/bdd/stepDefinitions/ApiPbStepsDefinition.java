@@ -26,7 +26,7 @@ public class ApiPbStepsDefinition {
                         .then()
                         .spec(responseSpecification)
                         .extract().response().body().as(PubInfoDTO.class);
-        rateUsd = responcePubInfo
+        System.out.println(responcePubInfo.getBuy());
 
     }
 }
