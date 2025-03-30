@@ -3,7 +3,7 @@ Feature: Registration errors messages feature
 
 
   Scenario Outline: R004 Check error messages on Registration page
-    Given I open Login page page
+    Given I open Login page
     When  I enter '<username>' into input Username in Login page
     And I enter '<email>' into input Email in Login page
     And I enter '<password>' into input Password in Login page

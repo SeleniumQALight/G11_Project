@@ -12,11 +12,6 @@ public class RegistrationPageValidationMessagesStepsdefs extends MainSteps {
     }
 
 
-    @Given("I open Login page page")
-    public void iOpenLoginPagePage() {
-        pageProvider.getLoginPage().openPage();
-    }
-
     @When("I enter {string} into input Username in Login page")
     public void iEnterIntoInputUsernameInLoginPage(String userName) {
         pageProvider.getLoginPage().enterTextIntoRegistrationUserNameField(userName);
