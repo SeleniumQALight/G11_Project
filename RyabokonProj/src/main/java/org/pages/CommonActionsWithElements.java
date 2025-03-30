@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.utils.ConfigProvider;
 
 import java.time.Duration;
+import java.util.ArrayList;
 
 public class CommonActionsWithElements {
     protected WebDriver webDriver;
@@ -166,8 +167,9 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
-//open new tab using JS
-    protected void openNewTab() {
+
+    //open new tab using JS
+    public void openNewTab() {
         try {
             ((org.openqa.selenium.JavascriptExecutor) webDriver).executeScript("window.open()");
             logger.info("New tab was opened");
@@ -210,6 +212,21 @@ public class CommonActionsWithElements {
             logger.error("Invalid state: " + state);
         }
     }
+
+    public void switchToNewTab(int tabIndex) {
+        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+        webDriver.switchTo().window(tabs.get(tabIndex));
+    }
+
+    public void switchToMainTab(int tabIndex) {
+        ArrayList<String> tabs = new ArrayList<>(webDriver.getWindowHandles());
+        webDriver.switchTo().window(tabs.get(tabIndex));
+    }
+
+    public void closeCurrentTab() {
+        logger.info("Current tab is cloosed.");
+        webDriver.close();
+       ;
+
+    }
 }
-
-

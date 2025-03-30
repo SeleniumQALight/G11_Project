@@ -1,5 +1,6 @@
 package org.pages;
 
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.data.RegistrationValidationMessages;
@@ -38,6 +39,9 @@ public class LoginPage extends ParentPage {
     @FindBy(id = "email-register")
     private WebElement inputEmailRegistrationForm;
 
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement warningMessageInCenter;
+
     final static String listErrorsMessagesLocator = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
     @FindBy(xpath = listErrorsMessagesLocator)
     private List<WebElement> listOfActualMessages;
@@ -53,12 +57,14 @@ public class LoginPage extends ParentPage {
         return "/";
     }
 
+    @Step
     public LoginPage openPage() {
         webDriver.get(baseUrl);
         logger.info("Login page was opened with url " + baseUrl);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoInputLogin(String login) {
 //        inputUserName.clear(); //почистити поле input
 //        inputUserName.sendKeys(login);//посилаємо login
@@ -67,31 +73,37 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoInputPassword(String password) {
         clearAndEnterTextIntoElement(inputPassword, password);
         return this;
     }
 
+    @Step
     public HomePage clickOnButtonSighIn() {
         clickOnElement(buttonSighIn);
         return new HomePage(webDriver);
     }
 
+    @Step
     public LoginPage checkIsButtonSighInVisible(){
         checkIsElementVisible(buttonSighIn);
         return this;
     }
 
+    @Step
     public LoginPage checkIsButtonSighInNotVisible(){
         checkIsElementNotVisible(buttonSighIn);
         return this;
     }
 
+    @Step
     public LoginPage checkIsAlertIncorrectLoginPasswordVisible(){
         checkIsElementVisible(alertIncorrectLoginPassword);
         return this;
     }
 
+    @Step
     public HomePage openLoginPageAndFillLoginWithValidCred() {
         //method повертає об'єкт класу HomePage, тому що після login ми опинимося на HomePage
         openPage();
@@ -101,6 +113,7 @@ public class LoginPage extends ParentPage {
         return new HomePage(webDriver);
     }
 
+    @Step
     public void openLoginPageAndFillLoginWithInvalidCred() {
         openPage();
         this.enterTextIntoInputLogin(TestData.INVALID_LOGIN);
@@ -108,37 +121,45 @@ public class LoginPage extends ParentPage {
         clickOnButtonSighIn();
     }
 
+    @Step
     public LoginPage checkIsInputLoginAndPasswordVisible(){
         checkIsElementVisible(inputUserName);
         checkIsElementVisible(inputPassword);
         return this;
     }
+
+    @Step
     public void checkIsInputLoginAndPasswordNotVisible(){
         checkIsElementNotVisible(inputUserName);
         checkIsElementNotVisible(inputPassword);
     }
 
+    @Step
     public LoginPage checkIsRedirectToLoginPage() {
         checkIsButtonSighInVisible();
         //checkUrl();
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationUserNameField(String login) {
         clearAndEnterTextIntoElement(inputUserNameRegistrationForm, login);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationEmailField(String email) {
         clearAndEnterTextIntoElement(inputEmailRegistrationForm, email);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationPasswordField(String password) {
         clearAndEnterTextIntoElement(inputPasswordRegistrationForm, password);
         return this;
     }
 
+    @Step
     public LoginPage checkErrorsMessages(String expectedErrors) {
         //error1;error2;error3 -> [error1, error2, error3]
         String[] messagesArray = expectedErrors.split(RegistrationValidationMessages.SEMICOLON);
@@ -168,6 +189,7 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    @Step
     public void enterLoginAndPasswordUsingTabAndEnter(){
         pressTab();
         pressTab();
@@ -177,6 +199,7 @@ public class LoginPage extends ParentPage {
         pressEnter();
     }
 
+    @Step
     public LoginPage enterTextIntoLoginWithTab(String login){
         for (int i = 0; i < 5; i++) {
             pressTab();
@@ -184,11 +207,15 @@ public class LoginPage extends ParentPage {
         enterText(login);
         return this;
     }
+
+    @Step
     public LoginPage enterTextIntoEmailWithTab(String email){
         pressTab();
         enterText(email);
         return this;
     }
+
+    @Step
     public LoginPage enterTextIntoPasswordWithTabAndEnter(String pass){
         pressTab();
         enterText(pass);
@@ -196,5 +223,9 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    public LoginPage checkTextInAllertInCenter(String expectedMessage) {
+        checkTextInElement(warningMessageInCenter, expectedMessage);
+        return this;
+    }
 }
 

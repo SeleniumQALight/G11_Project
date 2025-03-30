@@ -22,7 +22,7 @@ public class CreateNewPostTest extends BaseTest {
                 enterTextIntoInputBody("test body").
                 clickOnButtonSavePost().
                 checkIsRedirectToPostPage().
-                CheckIsAlertSuccessPresent().
+                checkIsAlertSuccessPresent().
                 checkTextThisPostWasWrittenIsVisible("One Person").
                 checkTextInSuccessMessage("New post successfully created.")
         ;

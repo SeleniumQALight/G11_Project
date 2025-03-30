@@ -1,5 +1,6 @@
 package org.pages;
 
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.data.RegistrationValidationMessages;
@@ -53,6 +54,7 @@ public class LoginPage extends ParentPage {
     protected String getRelativeUrl() {
         return "/";
     }
+@Step
 
     public LoginPage openPage() {//result of openPage is LoginPage
 
@@ -60,7 +62,7 @@ public class LoginPage extends ParentPage {
         logger.info("Login Page was opened with url " + baseUrl);
         return this; //returning LoginPage
     }
-
+    @Step
     public LoginPage enterTextIntoInputLogin(String login) {
        /* WebElement inputUserName = webDriver.findElement(By.xpath(".//input[@placeholder='Username']"));
         inputUserName.clear();
@@ -70,18 +72,18 @@ public class LoginPage extends ParentPage {
         return this;
 
     }
-
+    @Step
     public LoginPage enterTextIntoInputPassword(String password) {
         clearAndEnterTextIntoElement(inputPassword, password);
         return this;
     }
-
+    @Step
     public void clickOnButtonSignIn() {
         //buttonSignIn.click(); ** before we have created method CommonActionsWithElements
 
         clickOnElement(buttonSignIn);
     }
-
+    @Step
     public HomePage openLoginPageAndFillFormWithValidCred() {
         openPage();
         this.enterTextIntoInputLogin(TestData.VALID_LOGIN);
@@ -89,22 +91,22 @@ public class LoginPage extends ParentPage {
         clickOnButtonSignIn();
         return new HomePage(webDriver);
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationUsernameField(String login) {
         clearAndEnterTextIntoElement(inputUserNameRegistrationForm, login);
         return this;
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationEmailField(String email) {
         clearAndEnterTextIntoElement(inputEmailRegistrationForm, email);
         return this;
     }
-
+    @Step
     public LoginPage enterTextIntoRegistrationPasswordField(String password) {
         clearAndEnterTextIntoElement(inputPasswordRegistrationForm, password);
         return this;
     }
-
+    @Step
     public LoginPage checkErrorsMessages(String expectedErrors) {
 //error1;error2;error3 -> [error1, error2, error3]
         String[] messagesArray = expectedErrors.split(RegistrationValidationMessages.SEMICOLON);
@@ -123,17 +125,21 @@ public class LoginPage extends ParentPage {
         softAssertions.assertAll(); //відразу пишeмо після methood SoftAssertions softAssertions = new SoftAssertions();
         return this;
     }
-
+    @Step
     public boolean checkIfMessageInvalidLoginPasswordVisible() {
         return isElementVisible(messageInvalidLoginOrPassword);
     }
-
+    @Step
     public void checkIsInputLoginVisible() {
         checkIsElementVisible(inputUserName);
     }
-
+    @Step
     public void checkIsInputPasswordVisible() {
         checkIsElementVisible(inputPassword);
 
+    }
+
+    public void refreshPage() {
+        webDriver.navigate().refresh();
     }
 }

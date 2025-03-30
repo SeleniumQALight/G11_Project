@@ -10,4 +10,7 @@ public class TestData {
     public static final String INVALID_LOGIN = "gaauto11";
     public static final String INVALID_PASSWORD = "003456qwerty";
 
+    public static final String VALID_LOGIN_API =  "allash1901";
+    public static final String VALID_PASSWORD_API = "123456qwerty";
+
 }

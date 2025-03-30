@@ -1,5 +1,6 @@
 package org.pages;
 
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.data.RegistrationValidationMessages;
@@ -10,7 +11,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.pages.elements.HeaderForUserElement;
 import org.utils.Utils_Custom;
 
 import java.util.List;
@@ -43,6 +43,9 @@ public class LoginPage extends ParentPage {
   @FindBy(xpath = listErrorMessagesLocator)
   private List<WebElement> listOfActualMessages;
 
+  @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+  private WebElement warningMessageInCenter;
+
   public LoginPage(WebDriver webDriver) {
     super(webDriver);
   }
@@ -52,6 +55,7 @@ public class LoginPage extends ParentPage {
     return "/";
   }
 
+  @Step
   public LoginPage openPage() {
 
     webDriver.get(baseUrl);
@@ -59,6 +63,7 @@ public class LoginPage extends ParentPage {
     return this;
   }
 
+  @Step
   public LoginPage enterTextIntoInputLogin(String login) {
 //    WebElement inputUserName = webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
 //    inputUserName.clear();
@@ -68,6 +73,7 @@ public class LoginPage extends ParentPage {
     return this;
   }
 
+  @Step
   public LoginPage enterTextIntoInputPassw0rd(String password) {
 //    WebElement inputPassword = webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
 //    inputPassword.clear();
@@ -77,12 +83,14 @@ public class LoginPage extends ParentPage {
     return this;
   }
 
+  @Step
   public LoginPage clickOnButtonSignIn() {
     clickOnElement(buttonSignIn);
     logger.info("Button Sign In was clicked");
     return this;
   }
 
+  @Step
   public HomePage openLoginPageAndFillLoginFormWithValidCred() {
     openPage();
     this.enterTextIntoInputLogin(TestData.VALID_LOGIN);
@@ -91,51 +99,61 @@ public class LoginPage extends ParentPage {
     return new HomePage(webDriver);
   }
 
+  @Step
   public LoginPage checkIsErrorMessageDisplayed(String expectedText) {
     checkTextInElement(errorMessage, expectedText);
     return this;
   }
 
+  @Step
   public LoginPage checkIsInputUsernameNotVisible() {
     checkIsElementNotVisible(inputUserName);
     return this;
   }
 
+  @Step
   public LoginPage checkIsInputPasswordNotVisible() {
     checkIsElementNotVisible(inputPassword);
     return this;
   }
 
+  @Step
   public LoginPage enterTextIntoRegistrationUserNameField(String login) {
     clearAndEnterTextIntoInput(inputUserNameRegistrationForm, login);
     return this;
   }
 
+  @Step
   public LoginPage enterTextIntoRegistrationEmailField(String login) {
     clearAndEnterTextIntoInput(inputEmailRegistrationForm, login);
     return this;
   }
 
+  @Step
   public LoginPage enterTextIntoRegistrationPasswordField(String login) {
     clearAndEnterTextIntoInput(inputPasswordRegistrationForm, login);
     return this;
   }
 
+  @Step
   public LoginPage checkIsInputLoginVisible() {
     checkIsElementVisible(inputUserName);
     return this;
   }
 
+  @Step
   public LoginPage checkIsInputPasswordVisible() {
     checkIsElementVisible(inputPassword);
     return this;
   }
 
+  @Step
   public LoginPage checkIsButtonSignInVisible() {
     checkIsElementVisible(buttonSignIn);
     return this;
   }
 
+  @Step
   public LoginPage checkAllElementsOnLoginPageInHeaderVisible() {
     this.checkIsInputLoginVisible();
     this.checkIsInputPasswordVisible();
@@ -143,6 +161,7 @@ public class LoginPage extends ParentPage {
     return new LoginPage(webDriver);
   }
 
+  @Step
   public LoginPage checkErrorsMessages(String expectedErrors) {
     // error1;error2;error3 -> [error1, error2, error3]
     String[] messagesArray = expectedErrors.split(RegistrationValidationMessages.SEMICOLON);
@@ -162,6 +181,11 @@ public class LoginPage extends ParentPage {
               .isIn(messagesArray);
     }
     softAssertions.assertAll();
+    return this;
+  }
+
+  public LoginPage checkTextInAlertInCenter(String errorMessage) {
+    checkTextInElement(warningMessageInCenter, errorMessage);
     return this;
   }
 }

@@ -96,7 +96,7 @@ public class CommonActionsWithElements {
         logger.info("Text in element is expected");
     }
 
-    private void printErrorAndStopTest(Exception e) {
+    public void printErrorAndStopTest(Exception e) {
         logger.error("Cannot work with element " + e);
         Assert.fail("Cannot work with element " + e);
     }
@@ -193,7 +193,7 @@ public class CommonActionsWithElements {
     }
 
     // open new tab using JS
-    protected void openNewTab() {
+    public void openNewTab() {
         try {
             ((org.openqa.selenium.JavascriptExecutor) webDriver).executeScript("window.open()");
             logger.info("New tab was opened");
@@ -201,5 +201,6 @@ public class CommonActionsWithElements {
             printErrorAndStopTest(e);
         }
     }
+
 
 }

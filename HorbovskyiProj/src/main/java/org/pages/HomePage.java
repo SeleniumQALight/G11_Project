@@ -1,5 +1,6 @@
 package org.pages;
 
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.data.TestData;
@@ -38,6 +39,7 @@ public class HomePage extends ParentPage {
     }
 
 
+    @Step
     public HomePage openHomePageIfNeeded() {
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.openPage();
@@ -60,6 +62,7 @@ public class HomePage extends ParentPage {
         return this;
     }
 
+    @Step
     public PostPage createNewPostWithUniqueTitle(String title, String body) {
         openHomePageIfNeeded();
         getHeaderElement().clickOnButtonCreatePost()
@@ -70,4 +73,7 @@ public class HomePage extends ParentPage {
     }
 
 
+    public void closeCurrentTab() {
+
+    }
 }

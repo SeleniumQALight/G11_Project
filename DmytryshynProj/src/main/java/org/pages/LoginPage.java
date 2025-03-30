@@ -1,5 +1,6 @@
 package org.pages;
 
+import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.data.RegistrationValidationMessages;
@@ -39,6 +40,9 @@ public class LoginPage extends ParentPage { //create constructor
     @FindBy(xpath = "//div[text()='Invalid username/password.']")
     private WebElement invalidUsernamePasswordMessage;
 
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement alertInCenter;
+
     final static String listErrorsMessagesLocator = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
     @FindBy(xpath = listErrorsMessagesLocator)
     private List<WebElement> listOfActualMessages;
@@ -52,12 +56,14 @@ public class LoginPage extends ParentPage { //create constructor
         return "/";
     }
 
+    @Step
     public LoginPage openPage() {
         webDriver.get(baseUrl);
         logger.info("Login Page was opened with url " + baseUrl);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoInputLogin(String login) {
 //        WebElement inputUserName = webDriver.findElement(By.xpath("//input[@placeholder='Username']"));
 //        inputUserName.clear();
@@ -67,6 +73,7 @@ public class LoginPage extends ParentPage { //create constructor
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoInputPassword(String password) {
 //        WebElement inputPassword = webDriver.findElement(By.xpath("//input[@placeholder='Password']"));
 //        inputPassword.clear();
@@ -76,10 +83,12 @@ public class LoginPage extends ParentPage { //create constructor
         return this;
     }
 
+    @Step
     public void clickOnButtonSignIn() {
         clickOnElement(buttonSignIn);
     }
 
+    @Step
     public HomePage openLoginPageAndFillLoginFormWithValidCred() {
         openPage();
         enterTextIntoInputLogin(TestData.VALID_LOGIN);
@@ -88,21 +97,25 @@ public class LoginPage extends ParentPage { //create constructor
         return new HomePage(webDriver);
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationUserNameField(String login) {
         clearAndEnterTextIntoElement(inputUserNameRegistrationForm, login);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationEmailField(String email) {
         clearAndEnterTextIntoElement(inputEmailInRegistrationForm, email);
         return this;
     }
 
+    @Step
     public LoginPage enterTextIntoRegistrationPasswordField(String password) {
         clearAndEnterTextIntoElement(inputPasswordInRegistrationForm, password);
         return this;
     }
 
+    @Step
     public LoginPage checkErrorsMessages(String expectedErrors) {
         // error1;error2;error3 -> [error1, error2, error3]
         String[] messagesArray = expectedErrors.split(RegistrationValidationMessages.SEMICOLON);
@@ -125,34 +138,44 @@ public class LoginPage extends ParentPage { //create constructor
         return this;
     }
 
+    @Step
     public LoginPage checkIsInvalidUsernamePasswordMessageVisible() {
         checkIsElementVisible(invalidUsernamePasswordMessage);
         return this;
     }
 
+    @Step
     public LoginPage checkIsButtonSignInVisible() {
         checkIsElementVisible(buttonSignIn);
         return this;
     }
 
-
+    @Step
     public LoginPage checkIsInputUserNameRegistrationFormNotVisible() {
         checkIsElementNotVisible(inputUserNameRegistrationForm);
         return this;
     }
 
+    @Step
     public LoginPage checkIsInputEmailInRegistrationFormNotVisible() {
         checkIsElementNotVisible(inputEmailInRegistrationForm);
         return this;
     }
 
+    @Step
     public LoginPage checkIsInputUserNameFieldVisible() {
         checkIsElementVisible(inputUserName);
         return this;
     }
 
+    @Step
     public LoginPage checkIsInputPasswordFieldVisible() {
         checkIsElementVisible(inputPassword);
+        return this;
+    }
+
+    public LoginPage checkTextInAlertInCenter(String errorMessage) {
+        checkTextInElement(alertInCenter, errorMessage);
         return this;
     }
 }
