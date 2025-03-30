@@ -12,7 +12,7 @@ import lombok.*;
 
 public class PostsDTO {
     @JsonProperty("_id")
-    private String _id;
+    private String id;
     private String title;
     private String body;
     @JsonProperty("select1")

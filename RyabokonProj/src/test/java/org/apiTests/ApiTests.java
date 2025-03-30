@@ -8,8 +8,10 @@ import org.api.EndPoints;
 import org.api.dto.responseDTO.AuthorDTO;
 import org.api.dto.responseDTO.PostsDTO;
 import org.assertj.core.api.SoftAssertions;
+import org.categories.SmokeTestFilter;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import java.util.List;
 import java.util.Map;
@@ -25,7 +27,7 @@ public class ApiTests {
     ApiHelper apiHelper = new ApiHelper();
 
     @Test
-
+@Category(SmokeTestFilter.class)
     public void getAllPostsByUser() {
         PostsDTO[] actualResponse =
 
@@ -82,7 +84,7 @@ public class ApiTests {
         SoftAssertions softAssertions = new SoftAssertions();
         softAssertions.assertThat(actualResponse)
                 .usingRecursiveComparison()
-                .ignoringFields("_id", "createdDate", "author.avatar")
+                .ignoringFields("id", "createdDate", "author.avatar")
                 .isEqualTo(expectedResponse);
 
         softAssertions.assertAll();

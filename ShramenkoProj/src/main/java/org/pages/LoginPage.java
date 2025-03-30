@@ -39,6 +39,9 @@ public class LoginPage extends ParentPage {
     @FindBy(id = "email-register")
     private WebElement inputEmailRegistrationForm;
 
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement warningMessageInCenter;
+
     final static String listErrorsMessagesLocator = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
     @FindBy(xpath = listErrorsMessagesLocator)
     private List<WebElement> listOfActualMessages;
@@ -220,5 +223,9 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    public LoginPage checkTextInAllertInCenter(String expectedMessage) {
+        checkTextInElement(warningMessageInCenter, expectedMessage);
+        return this;
+    }
 }
 

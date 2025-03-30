@@ -1,5 +1,6 @@
 package org.apiTests;
 
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.apache.log4j.Logger;
@@ -28,7 +29,7 @@ public class apiTests {
     public void getAllPostsByUser(){
         PostsDTO[] actualResponse =
     given().
-            contentType(ContentType.JSON).log().all().
+            contentType(ContentType.JSON).log().all().filter(new AllureRestAssured()).
             when().get(EndPoints.POST_BY_USER,USER_NAME).
             then().log().all().statusCode(200)
         //method #1 RestAssured assert
