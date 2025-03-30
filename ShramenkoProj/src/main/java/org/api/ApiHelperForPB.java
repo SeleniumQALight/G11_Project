@@ -40,12 +40,12 @@ public class ApiHelperForPB {
     }
 
 
-    public PubInfoDTO[] getExchangeRatePB() {
+    public PubInfoDTO[] getExchangeRatePB(String coursId) {
         return given()
                 .spec(requestSpecification)
                 .queryParam("json", "")
                 .queryParam("exchange", "")
-                .queryParam("coursid", "5")
+                .queryParam("coursid", coursId)
                 .when()
                 .get(EndPointsForPB.PUB_INFO)
                 .then()

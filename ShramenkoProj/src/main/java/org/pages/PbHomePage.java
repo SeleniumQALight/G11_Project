@@ -1,6 +1,7 @@
 package org.pages;
 
 import org.apache.log4j.Logger;
+import org.data.TestDataPB;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,25 +21,38 @@ public class PbHomePage extends CommonActionsWithElements {
         super(webDriver);
     }
 
-
     private String rateBuy = "//td[@id='%s_buy']";
+    private String rateSell = "//td[@id='%s_sell']";
 
-    public String getRateFromUI(String nameOfExchange) {
-        String rateUI;
+    public void clickOnButtonExchangeInHeader(){
         clickOnElement(buttonExchangeRateInHeader, "ButtonExchangeRateInHeader");
+    }
+
+    public Double getRateBuyFromUI(String nameOfExchange) {
+        Double rateUiBuy;
         WebElement rateElement = webDriver.findElement(By.xpath(String.format(rateBuy, nameOfExchange)));
 
-        rateUI = new BigDecimal(rateElement.getText().replaceAll("[^0-9.]", "")
-                .trim()).setScale(5, RoundingMode.HALF_UP).toString();
+        rateUiBuy = new BigDecimal(rateElement.getText().replaceAll("[^0-9.]", "")
+                .trim()).setScale(5, RoundingMode.HALF_UP).doubleValue();
 
-        logger.info("Значення курсу UI для " + nameOfExchange + " після обробки: " + rateUI);
-        return rateUI;
+        TestDataPB.setRateUiBuy(rateUiBuy);
+        return rateUiBuy;
+    }
+
+    public Double getRateSellFromUI(String nameOfExchange) {
+        Double rateUiSell;
+        WebElement rateElement = webDriver.findElement(By.xpath(String.format(rateSell, nameOfExchange)));
+
+        rateUiSell = new BigDecimal(rateElement.getText().replaceAll("[^0-9.]", "")
+                .trim()).setScale(5, RoundingMode.HALF_UP).doubleValue();
+
+        TestDataPB.setRateUiSell(rateUiSell);
+        return rateUiSell;
     }
 
     public PbHomePage openPage() {
         webDriver.manage().window().maximize();
         webDriver.get(baseUrl);
-        logger.info("Page was opened with url " + baseUrl);
         return this;
     }
 }

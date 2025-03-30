@@ -4,15 +4,13 @@ import io.cucumber.java.en.*;
 import org.api.ApiHelperForPB;
 import org.api.dto.responseDTO.PubInfoDTO;
 import org.bdd.helpers.WebDriverHelper;
-import org.junit.Assert;
+import org.data.TestDataPB;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class ApiPbStepsDefinition extends MainSteps{
     ApiHelperForPB apiHelperForPB = new ApiHelperForPB();
-    String rateApi = "";
-    String rateUI = "";
 
     public ApiPbStepsDefinition(WebDriverHelper webDriverHelper) {
         super(webDriverHelper);
@@ -20,29 +18,28 @@ public class ApiPbStepsDefinition extends MainSteps{
 
 
     @Given("I get exchange rate via API for {string}")
-    public String iGetExchangeRateViaApi(String nameOfExchange) {
-        PubInfoDTO[] responsePubInfo = apiHelperForPB.getExchangeRatePB();
+    public void iGetExchangeRateViaApi(String nameOfExchange) {
+        PubInfoDTO[] responsePubInfo = apiHelperForPB.getExchangeRatePB("5");
 
-        BigDecimal rateApiDecimal = BigDecimal.ZERO;
+        BigDecimal rateApiBuyDecimal;
 
-        if (nameOfExchange.equalsIgnoreCase("EUR")) {
-            rateApiDecimal = new BigDecimal(responsePubInfo[0].getBuy());
+        for (int i = 0; i < responsePubInfo.length; i++) {
+            if (responsePubInfo[i].getCcy().equals(nameOfExchange)) {
+                rateApiBuyDecimal = new BigDecimal(responsePubInfo[i].getBuy());
+                TestDataPB.setRateApiBuy(rateApiBuyDecimal.setScale(
+                        5, RoundingMode.HALF_UP).doubleValue());
+            }
         }
-        if (nameOfExchange.equalsIgnoreCase("USD")) {
-            rateApiDecimal = new BigDecimal(responsePubInfo[1].getBuy());
+
+        BigDecimal rateApiSellDecimal;
+
+        for (int i = 0; i < responsePubInfo.length; i++) {
+            if (responsePubInfo[i].getCcy().equals(nameOfExchange)) {
+                rateApiSellDecimal = new BigDecimal(responsePubInfo[i].getSale());
+                TestDataPB.setRateApiSell(rateApiSellDecimal.setScale(
+                        5, RoundingMode.HALF_UP).doubleValue());
+            }
         }
-        rateApi = rateApiDecimal.setScale(5, RoundingMode.HALF_UP).toString();
-        return rateApi;
-    }
 
-    @When("I get exchange rate via UI for {string}")
-    public String iGetExchangeRateViaUI(String nameOfExchange) {
-        rateUI = pageProvider.getPbHomePage().openPage().getRateFromUI(nameOfExchange);
-        return rateUI;
-    }
-
-    @Then("I compare the API and UI exchange rates for {string}")
-    public void iCompareTheAPIAndUIExchangeRatesFor(String nameOfExchange) {
-        Assert.assertEquals("Rate of exchange ", rateApi, rateUI);
     }
 }
