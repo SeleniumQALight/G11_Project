@@ -18,7 +18,6 @@ import java.util.List;
 public class LoginPage extends ParantPage {
     private Logger logger = Logger.getLogger(getClass());
 
-
     @FindBy(xpath = ".//input[@placeholder='Username']")
     private WebElement inputUserName;
 
@@ -30,7 +29,6 @@ public class LoginPage extends ParantPage {
 
     @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
     private WebElement massageField;
-
 
     @FindBy(id = "username-register")
     private WebElement inputUserNameRegistrationForm;
@@ -83,10 +81,6 @@ public class LoginPage extends ParantPage {
         checkIsElementInvisible(inputPassword);
     }
 
-
-
-
-
     public void checkIsWarningMessageDisplayed() {
         checkTextInElement(massageField, "Invalid username/password.");
     }
@@ -134,8 +128,6 @@ public class LoginPage extends ParantPage {
                     .as("Message number " + i)
                     .isIn(messagesArray);
         }
-
-
         softAssertions.assertAll();
         return this;
     }
