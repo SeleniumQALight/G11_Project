@@ -27,7 +27,8 @@ public class LoginPage extends ParentPage {
 
     @FindBy(xpath = "//*[text()='Invalid username/password.']")
     private WebElement warningMessage;
-
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement warningMessage1;
 
     @FindBy(xpath = "//button[text()='Sign In']")
     private WebElement clickSignIn;
@@ -174,6 +175,11 @@ public class LoginPage extends ParentPage {
                 break;
             }
         }
+    }
+
+    public LoginPage checkTextInAlertMessage(String errorMessage) {
+        checkTextInElement(warningMessage1, errorMessage);
+        return this;
     }
 }
 

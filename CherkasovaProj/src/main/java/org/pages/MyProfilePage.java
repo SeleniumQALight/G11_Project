@@ -10,13 +10,16 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 
-public class MyProfilePage extends ParentPage{
+public class MyProfilePage extends ParentPage {
     private Logger logger = Logger.getLogger(getClass());
 
     private String postWithTitleLocator = "//*[text()='%s']";
 
     @FindBy(xpath = "//*[text()='Post successfully deleted.']")
     private WebElement successMessageDelete;
+
+    @FindBy(xpath = ".//a[@class='list-group-item list-group-item-action']")
+    private List<WebElement> postsList;
 
     public MyProfilePage(WebDriver webDriver) {
         super(webDriver);
@@ -79,5 +82,10 @@ public class MyProfilePage extends ParentPage{
         WebElement postName = getMyPost(postTitle);
         clickOnElement(postName);
         return new PostPage(webDriver);
+    }
+
+    public MyProfilePage checkNumberOfPosts(int numberOfPosts) {
+        Assert.assertEquals("Number of posts ", numberOfPosts, postsList.size());
+        return this;
     }
 }

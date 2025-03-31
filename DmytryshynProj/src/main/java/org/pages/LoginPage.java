@@ -40,6 +40,9 @@ public class LoginPage extends ParentPage { //create constructor
     @FindBy(xpath = "//div[text()='Invalid username/password.']")
     private WebElement invalidUsernamePasswordMessage;
 
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement alertInCenter;
+
     final static String listErrorsMessagesLocator = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
     @FindBy(xpath = listErrorsMessagesLocator)
     private List<WebElement> listOfActualMessages;
@@ -168,6 +171,11 @@ public class LoginPage extends ParentPage { //create constructor
     @Step
     public LoginPage checkIsInputPasswordFieldVisible() {
         checkIsElementVisible(inputPassword);
+        return this;
+    }
+
+    public LoginPage checkTextInAlertInCenter(String errorMessage) {
+        checkTextInElement(alertInCenter, errorMessage);
         return this;
     }
 }
