@@ -44,8 +44,8 @@ public class ApiHelperBookStore {
             .when()
             .delete(BooksEndPoints.DELETE_ALL_BOOKS)
             .then()
-            .spec(responseSpecification)
-            .statusCode(204);
+            .spec(responseSpecification.statusCode(204))
+            ;
   }
 
   public String getFirstBookIsbn (String token) {
