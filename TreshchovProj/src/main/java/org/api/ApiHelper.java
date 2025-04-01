@@ -114,8 +114,8 @@ public class ApiHelper {
 
 
     public void deleteAllBooks(String userId, String token) {
-        given().spec(requestSpecification).header("Authorization", token)
-                .when().delete(BooksEndPoints.DELETE_BOOKS, userId)
+        given().spec(requestSpecification).header("Authorization", token).queryParam("UserId", userId)
+                .when().delete(BooksEndPoints.BOOKS)
                 .then().log().all()
                 .statusCode(204);
     }
