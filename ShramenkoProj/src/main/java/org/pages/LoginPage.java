@@ -13,6 +13,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.utils.Utils_Custom;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class LoginPage extends ParentPage {
@@ -178,7 +179,7 @@ public class LoginPage extends ParentPage {
             softAssertions
                     .assertThat(listOfActualMessages.get(0).getText()) //чи є цей текст
                     .as("Message number " + i)
-                    .isIn(messagesArray); //в цьому списку
+                    .isIn(Arrays.asList(messagesArray)); //в цьому списку
         }
 
         softAssertions.assertAll();
