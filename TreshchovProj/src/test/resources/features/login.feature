@@ -2,6 +2,7 @@
 
   Feature: Login Feature
 
+    @R001
     Scenario: R001 Valid Login
       Given I open login page
       When I login with valid cred
@@ -9,6 +10,7 @@
 
 
 
+      @R002
       Scenario Outline: R002 Login with invalid creds
         Given I open login page
         When I enter '<login>' into input Login in Login page
