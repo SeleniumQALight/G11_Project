@@ -27,6 +27,9 @@ public class LoginPage extends ParentPage {
   @FindBy(xpath = "//button[text()='Sign In']")
   private WebElement buttonSignIn;
 
+  @FindBy(xpath = "//button[text()='Sign up for OurApp']")
+  private WebElement buttonSignUp;
+
   @FindBy(xpath = "//*[@class='alert alert-danger text-center']")
   private WebElement errorMessage;
 
@@ -186,6 +189,12 @@ public class LoginPage extends ParentPage {
 
   public LoginPage checkTextInAlertInCenter(String errorMessage) {
     checkTextInElement(warningMessageInCenter, errorMessage);
+    return this;
+  }
+
+  public LoginPage clickOnButtonSignUp() {
+    clickOnElement(buttonSignUp);
+    logger.info("Button Sign Up was clicked");
     return this;
   }
 }

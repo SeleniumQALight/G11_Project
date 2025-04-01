@@ -30,9 +30,7 @@ public class ValidationMessageTest extends BaseTest {
                 .enterTextIntoRegistrationPasswordField(password)
                 .checkErrorsMessages(expectedErrorsMessages);
         ;
-
     }
-
     public Object[][] parametersForValidationMessagesTest() {
         return new Object[][]{
                 {"tr", "tr", "tr", ERROR_USERNAME + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD},
@@ -52,7 +50,4 @@ public class ValidationMessageTest extends BaseTest {
         pageProvider.getLoginPage().pressTabKey(1);
         pageProvider.getLoginPage().checkErrorsMessages(ERROR_USERNAME + SEMICOLON + ERROR_EMAIL + SEMICOLON + ERROR_PASSWORD);
     }
-
-
-
 }

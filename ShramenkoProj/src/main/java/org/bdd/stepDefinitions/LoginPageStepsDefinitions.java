@@ -1,5 +1,6 @@
 package org.bdd.stepDefinitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -41,4 +42,27 @@ public class LoginPageStepsDefinitions extends MainSteps {
     }
 
 
+    @When("I enter {string} into input Username in Login page")
+    public void iEnterIntoInputUsernameInLoginPage(String userName) {
+        pageProvider.getLoginPage()
+                .enterTextIntoRegistrationUserNameField(userName);
+    }
+
+    @And("I enter {string} into input Email in Login page")
+    public void iEnterIntoInputEmailInLoginPage(String email) {
+        pageProvider.getLoginPage()
+                .enterTextIntoRegistrationEmailField(email);
+    }
+
+    @And("I enter {string} into input CreatePassword in Login page")
+    public void iEnterIntoInputCreatePasswordInLoginPage(String password) {
+        pageProvider.getLoginPage()
+                .enterTextIntoRegistrationPasswordField(password);
+    }
+
+    @Then("I see error message with text {string}")
+    public void iSeeErrorMessageWithText(String expectedMessages) {
+        pageProvider.getLoginPage()
+                .checkErrorsMessages(expectedMessages);
+    }
 }
