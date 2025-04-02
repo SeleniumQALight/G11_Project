@@ -1,4 +1,4 @@
-package org.bdd.stepDefenitions;
+package org.bdd.stepDefinitions;
 
 import org.bdd.helpers.WebDriverHelper;
 import org.pages.PageProvider;
