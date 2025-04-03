@@ -27,7 +27,7 @@ public class LoginTestWithPageObject extends BaseTest {
 //                .openLoginPageAndFillLoginWithValidCred();
                 .openPage()
                 .enterTextIntoInputLogin(VALID_LOGIN)
-                .enterTextIntoInputPassword(VALID_PASSWORD+1)
+                .enterTextIntoInputPassword(VALID_PASSWORD)
                 .clickOnButtonSighIn();
 
         //а тепер обов'язкова перевірка, чи все вийшло
