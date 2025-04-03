@@ -1,7 +1,6 @@
-package org.bdd.stepDefenitions;
+package org.bdd.stepDefinitions;
 
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import org.bdd.helpers.WebDriverHelper;
 
 public class HomePageStepdefs extends MainSteps {
