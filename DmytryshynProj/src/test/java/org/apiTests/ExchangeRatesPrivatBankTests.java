@@ -8,8 +8,8 @@ import org.assertj.core.api.SoftAssertions;
 import org.junit.Test;
 
 import java.util.List;
-import java.util.Map;
-
+import java.util.*;
+import java.util.stream.Collectors;
 import static io.restassured.RestAssured.given;
 
 public class ExchangeRatesPrivatBankTests {
@@ -17,7 +17,6 @@ public class ExchangeRatesPrivatBankTests {
 
     @Test
     public void verifyExchangeRatesPrivatBank() {
-
         Response response = given()
                 .contentType(ContentType.JSON)
                 .log().all()
@@ -41,18 +40,32 @@ public class ExchangeRatesPrivatBankTests {
         softAssertions.assertThat(actualBaseCurrency).as("Field: baseCurrency").isEqualTo(980);
         softAssertions.assertThat(actualBaseCurrencyLit).as("Field: baseCurrencyLit").isEqualTo("UAH");
 
-        List<Map<String, Object>> exchangeRates = response.jsonPath().getList("exchangeRate");
+        List<ExchangeRatesPrivatBankDTO> actualExchangeRates = response.jsonPath()
+                .getList("exchangeRate", ExchangeRatesPrivatBankDTO.class);
 
-        for (int i = 0; i < exchangeRates.size(); i++) {
-            Map<String, Object> rate = exchangeRates.get(i);
+        List<String> expectedCurrencies = Arrays.asList(
+                "AUD", "AZN", "BYN", "CAD", "CHF", "CNY", "CZK", "DKK", "EUR", "GBP",
+                "GEL", "HUF", "ILS", "JPY", "KZT", "MDL", "NOK", "PLN", "SEK", "SGD",
+                "TMT", "TRY", "UAH", "USD", "UZS"
+        );
 
-            softAssertions.assertThat(rate.get("baseCurrency"))
-                    .as("exchangeRate[" + i + "].baseCurrency")
-                    .isEqualTo("UAH");
+        List<String> actualCurrencies = actualExchangeRates.stream()
+                .map(ExchangeRatesPrivatBankDTO::getCurrency)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
 
-            softAssertions.assertThat(rate.get("currency"))
-                    .as("exchangeRate[" + i + "].currency")
-                    .isNotNull();
+        for (String expectedCurrency : expectedCurrencies) {
+            softAssertions.assertThat(actualCurrencies)
+                    .as("Currency %s should be present in exchange rates", expectedCurrency)
+                    .contains(expectedCurrency);
+        }
+
+        for (ExchangeRatesPrivatBankDTO rate : actualExchangeRates) {
+            if (rate.getCurrency() != null) {
+                softAssertions.assertThat(rate.getBaseCurrency())
+                        .as("Base currency for %s", rate.getCurrency())
+                        .isEqualTo("UAH");
+            }
         }
 
         softAssertions.assertAll();
