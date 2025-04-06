@@ -28,6 +28,8 @@ public class PageProvider {
         return new MyProfilePage(webDriver);
     }
 
+    public PbHomePage getPbHomePage(){return new PbHomePage(webDriver);}
+
     public void openNewTab() {
         ((JavascriptExecutor) webDriver).executeScript("window.open()");
         logger.info("New Tab is opened");
