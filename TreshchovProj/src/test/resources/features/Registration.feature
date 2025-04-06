@@ -8,5 +8,5 @@ Feature: Login Feature
 
     Examples:
       | username | email | password | error messages                                                                                                           |
-      | tr    | tr    | tr       | Username must be at least 3 characters.;You must provide a valid email address.;Password must be at least 12 characters. |
-      | trrr  | tr    | tr       | You must provide a valid email address.;Password must be at least 12 characters.                                         |
+      | tr       | tr    | tr       | Username must be at least 3 characters.;You must provide a valid email address.;Password must be at least 12 characters. |
+      | trrr     | tr    | tr       | You must provide a valid email address.;Password must be at least 12 characters.                                         |
