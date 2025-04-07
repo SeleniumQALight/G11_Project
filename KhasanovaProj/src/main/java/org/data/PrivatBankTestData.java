@@ -1,14 +1,15 @@
 package org.data;
 
 public class PrivatBankTestData {
-    public static String buyRateApi;
-    public static String sellRateApi;
+    public static String BUY_RATE_API;
+    public static String SELL_RATE_API;
 
-    public static String buyRateUi;
-    public static String sellRateUi;
+    public static String BUY_RATE_UI;
+    public static String SELL_RATE_UI;
 
-    public static void setRatesApi(String buy, String sell) {
-        buyRateApi = buy;
-        sellRateApi = sell;
+    public static void setRatesApi(String buy, String sale) {
+        BUY_RATE_API = buy;
+        SELL_RATE_API = sale;
     }
+
 }

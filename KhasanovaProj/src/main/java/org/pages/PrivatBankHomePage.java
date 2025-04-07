@@ -3,20 +3,17 @@ package org.pages;
 import org.apache.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
 import org.data.PrivatBankTestData;
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.FindBy;
 
-import java.time.Duration;
+public class PrivatBankHomePage extends CommonActionsWithElements {
 
-public class PrivatBankHomePage {
+    @FindBy(xpath = "//li//button[@class='btn exchange-rate']")
+    private WebElement exchangeRateButton;
 
-    private WebDriver webDriver;
     private Logger logger = Logger.getLogger(PrivatBankHomePage.class);
-    private WebDriverWait webDriverWait15;
 
     protected String privatBankBaseUrl = "https://privatbank.ua/";
 
@@ -24,8 +21,7 @@ public class PrivatBankHomePage {
     private String sellRate = "//span[contains(text(), '%s ')]/ancestor::td/following-sibling::td[contains(@id, '_sell')]";
 
     public PrivatBankHomePage(WebDriver webDriver) {
-        this.webDriver = webDriver;
-        this.webDriverWait15 = new WebDriverWait(webDriver, Duration.ofSeconds(15));
+        super(webDriver);
     }
 
     public WebElement getBuyRate(String currency) {
@@ -40,12 +36,12 @@ public class PrivatBankHomePage {
         WebElement buyRateElement = getBuyRate(currency);
         WebElement sellRateElement = getSellRate(currency);
 
-        PrivatBankTestData.buyRateUi = buyRateElement.getText();
-        PrivatBankTestData.sellRateUi = sellRateElement.getText();
+        PrivatBankTestData.BUY_RATE_UI = buyRateElement.getText();
+        PrivatBankTestData.SELL_RATE_UI = sellRateElement.getText();
 
         logger.info("Rates for currency " + currency + " were got: " +
-                "buy rate = " + PrivatBankTestData.buyRateUi + ", " +
-                "sell rate = " + PrivatBankTestData.sellRateUi);
+                "buy rate = " + PrivatBankTestData.BUY_RATE_UI + ", " +
+                "sell rate = " + PrivatBankTestData.SELL_RATE_UI);
         return this;
     }
 
@@ -56,24 +52,27 @@ public class PrivatBankHomePage {
     }
 
     public void clickOnExchangeRateButton() {
-        try {
-            WebElement exchangeRateButton = webDriver.findElement(By.xpath("//li//button[@class='btn exchange-rate']"));
-            webDriverWait15.until(ExpectedConditions.visibilityOf(exchangeRateButton));
-            exchangeRateButton.click();
-            logger.info(exchangeRateButton + " Element was clicked");
-        } catch (Exception e) {
-            Assert.fail("Cannot work with element " + e);
-        }
+        clickOnElement(exchangeRateButton);
+
     }
 
     public void checkExchangeRates() {
         SoftAssertions softAssertions = new SoftAssertions();
-        softAssertions.assertThat(PrivatBankTestData.buyRateUi)
+
+        double buyRateUi = Double.parseDouble(PrivatBankTestData.BUY_RATE_UI);
+        double buyRateApi = Double.parseDouble(PrivatBankTestData.BUY_RATE_API);
+
+        double sellRateUi = Double.parseDouble(PrivatBankTestData.SELL_RATE_UI);
+        double sellRateApi = Double.parseDouble(PrivatBankTestData.SELL_RATE_API);
+        logger.info(buyRateUi + " " + buyRateApi + " " + sellRateApi + " " + sellRateUi);
+        softAssertions.assertThat(buyRateUi)
                 .as("Buy rate from UI is not equal to buy rate from API")
-                .isEqualTo(PrivatBankTestData.buyRateApi.replaceAll("0+$", "").replaceAll("\\.$", ""));
-        softAssertions.assertThat(PrivatBankTestData.sellRateUi)
+                .isEqualTo(buyRateApi);
+
+        softAssertions.assertThat(sellRateUi)
                 .as("Sell rate from UI is not equal to sell rate from API")
-                .isEqualTo(PrivatBankTestData.sellRateApi.replaceAll("0+$", "").replaceAll("\\.$", ""));
+                .isEqualTo(sellRateApi);
+
         softAssertions.assertAll();
     }
 }
