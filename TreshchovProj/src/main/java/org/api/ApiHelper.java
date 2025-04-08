@@ -1,6 +1,7 @@
 package org.api;
 
 
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -9,11 +10,15 @@ import io.restassured.http.*;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.*;
 import org.apache.hc.core5.http.HttpStatus;
+import org.api.dto.requestDTO.AddBooksDTO;
+import org.api.dto.requestDTO.CollectionOfISBNsDTO;
+import org.api.dto.requestDTO.CreatePostDto;
 import org.api.dto.responseDTO.PostsDTO;
 import org.json.JSONObject;
 
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import static io.restassured.RestAssured.given;
@@ -26,7 +31,7 @@ public class ApiHelper {
 
     public static RequestSpecification requestSpecification = new RequestSpecBuilder()
             .setContentType(ContentType.JSON)
-            .log(LogDetail.ALL)
+            .log(LogDetail.ALL).addFilter(new AllureRestAssured())
             .build();
 
     public static ResponseSpecification responseSpecification = new ResponseSpecBuilder()
@@ -78,5 +83,63 @@ public class ApiHelper {
         given().spec(requestSpecification).body(bodyRequest)
                 .when().delete(EndPoints.DELETE_POST, id)
                 .then().spec(responseSpecification);
+    }
+
+    public void createPosts(Integer numberOfPosts,String token, Map<String, String> postsData) {
+        for (int i = 0; i < numberOfPosts; i++) {
+            CreatePostDto bodyForPostCreation = CreatePostDto.builder().
+                    title(postsData.get("title")+i).
+                    body(postsData.get("body")).
+                    select1(postsData.get("select")).
+                    uniquePost("no").
+                    token(token).
+                    build();
+
+            given().spec(requestSpecification).body(bodyForPostCreation)
+                    .when().post(EndPoints.CREATE_POST)
+                    .then().spec(responseSpecification);
+
+        }
+
+    }
+
+    public ValidatableResponse getTokenBooks(String userName, String password) {
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("userName", userName);
+        requestBody.put("password", password);
+        return given().spec(requestSpecification).body(requestBody.toMap())
+                .when().post(BooksEndPoints.LOGIN)
+                .then().spec(responseSpecification);
+    }
+
+
+    public void deleteAllBooks(String userId, String token) {
+        given().spec(requestSpecification).header("Authorization", token).queryParam("UserId", userId)
+                .when().delete(BooksEndPoints.BOOKS)
+                .then().log().all()
+                .statusCode(204);
+    }
+
+    public ValidatableResponse getAllBooks() {
+        return given().spec(requestSpecification)
+                .when().get(BooksEndPoints.BOOKS)
+                .then().log().all();
+    }
+
+    public void addBooksToUser(String userId , String token,String bookIsbn){
+        AddBooksDTO requestBody = AddBooksDTO.builder()
+                .userId(userId).collectionOfIsbns(new CollectionOfISBNsDTO[]{
+                        CollectionOfISBNsDTO.builder().isbn(bookIsbn).build()})
+                .build();
+        given().spec(requestSpecification).header("Authorization", token).body(requestBody)
+                .when().post(BooksEndPoints.BOOKS)
+                .then().log().all()
+                .statusCode(201);
+    }
+
+    public ValidatableResponse getUserById(String userId, String token) {
+        return given().spec(requestSpecification).header("Authorization", token)
+                .when().get(BooksEndPoints.USER_CHECK, userId)
+                .then().log().all();
     }
 }

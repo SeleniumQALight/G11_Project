@@ -6,13 +6,11 @@ import org.assertj.core.api.SoftAssertions;
 import org.data.RegistrationValidationMessages;
 import org.data.TestData;
 import org.junit.Assert;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.pages.elements.HeaderForUserElement;
 import org.utils.Utils_Custom;
 
 import java.util.List;
@@ -29,6 +27,9 @@ public class LoginPage extends ParentPage {
   @FindBy(xpath = "//button[text()='Sign In']")
   private WebElement buttonSignIn;
 
+  @FindBy(xpath = "//button[text()='Sign up for OurApp']")
+  private WebElement buttonSignUp;
+
   @FindBy(xpath = "//*[@class='alert alert-danger text-center']")
   private WebElement errorMessage;
 
@@ -44,6 +45,9 @@ public class LoginPage extends ParentPage {
   final static String listErrorMessagesLocator = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
   @FindBy(xpath = listErrorMessagesLocator)
   private List<WebElement> listOfActualMessages;
+
+  @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+  private WebElement warningMessageInCenter;
 
   public LoginPage(WebDriver webDriver) {
     super(webDriver);
@@ -180,6 +184,17 @@ public class LoginPage extends ParentPage {
               .isIn(messagesArray);
     }
     softAssertions.assertAll();
+    return this;
+  }
+
+  public LoginPage checkTextInAlertInCenter(String errorMessage) {
+    checkTextInElement(warningMessageInCenter, errorMessage);
+    return this;
+  }
+
+  public LoginPage clickOnButtonSignUp() {
+    clickOnElement(buttonSignUp);
+    logger.info("Button Sign Up was clicked");
     return this;
   }
 }

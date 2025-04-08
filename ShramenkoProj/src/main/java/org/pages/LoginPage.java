@@ -13,6 +13,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.utils.Utils_Custom;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class LoginPage extends ParentPage {
@@ -38,6 +39,9 @@ public class LoginPage extends ParentPage {
 
     @FindBy(id = "email-register")
     private WebElement inputEmailRegistrationForm;
+
+    @FindBy(xpath = ".//div[@class='alert alert-danger text-center']")
+    private WebElement warningMessageInCenter;
 
     final static String listErrorsMessagesLocator = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
     @FindBy(xpath = listErrorsMessagesLocator)
@@ -175,7 +179,7 @@ public class LoginPage extends ParentPage {
             softAssertions
                     .assertThat(listOfActualMessages.get(0).getText()) //чи є цей текст
                     .as("Message number " + i)
-                    .isIn(messagesArray); //в цьому списку
+                    .isIn(Arrays.asList(messagesArray)); //в цьому списку
         }
 
         softAssertions.assertAll();
@@ -220,5 +224,9 @@ public class LoginPage extends ParentPage {
         return this;
     }
 
+    public LoginPage checkTextInAllertInCenter(String expectedMessage) {
+        checkTextInElement(warningMessageInCenter, expectedMessage);
+        return this;
+    }
 }
 
