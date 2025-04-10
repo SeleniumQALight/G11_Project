@@ -55,7 +55,7 @@ public class BaseTest {
     // @AfterClass
 
     @Before
-    public void setup() {
+    public void setup() throws MalformedURLException {
         logger.info(symbols + testName.getMethodName() + " was started " + symbols);
 //        WebDriverManager.chromedriver().setup();
 //        webDriver = new ChromeDriver();
