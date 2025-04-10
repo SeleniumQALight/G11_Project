@@ -99,7 +99,7 @@ public class BaseTest {
         } else if ("edge".equalsIgnoreCase(browserFromProperty)) {
             WebDriverManager.edgedriver().setup();
             webDriver = new EdgeDriver();
-        }else if ("remote".equals(browserFromProperty)) {
+        } else if ("remote".equals(browserFromProperty)) {
             logger.info("Remote browser");
             // WebDriverManager.chromedriver().setup();
             DesiredCapabilities cap = new DesiredCapabilities();
@@ -120,15 +120,16 @@ public class BaseTest {
             browserOptions.setBrowserVersion("latest");
             HashMap<String, Object> sauceOptions = new HashMap<>();
             sauceOptions.put("username", "oauth-radulenko-c446e");
-          //  sauceOptions.put("accessKey", ConfigProvider.configHiddenProperties.saucelabs_pass());
+            //  sauceOptions.put("accessKey", ConfigProvider.configHiddenProperties.saucelabs_pass());
             sauceOptions.put("build", "Taras-build1");
             sauceOptions.put("name", testName.getMethodName());
             browserOptions.setCapability("sauce:options", sauceOptions);
 
-        // start the session
+            // start the session
             URL url = new URL("https://ondemand.us-west-1.saucelabs.com:443/wd/hub");
             webDriver = new RemoteWebDriver(url, browserOptions);
         }
+
         else {
             throw new IllegalArgumentException("Browser " + browserFromProperty + " is not supported");
         }
