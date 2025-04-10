@@ -5,11 +5,6 @@ import org.categories.SmokeTestFilter;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.interactions.Actions;
-
-import java.util.ArrayList;
 
 import static org.data.TestData.VALID_LOGIN;
 import static org.data.TestData.VALID_PASSWORD;
