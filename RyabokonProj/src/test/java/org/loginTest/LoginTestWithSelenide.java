@@ -6,6 +6,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Test;
 import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -22,8 +23,8 @@ public class LoginTestWithSelenide {
 // Should be in HomePage
         SelenideElement buttonMyProfile = $(By.xpath("//img[@alt='My profile']"));
         WebDriverManager.chromedriver().setup();
-        open("https://qa-complexapp.onrender.com");
-        inputUserName.setValue("qaatouto");
+        open("https://aqa-complexapp.onrender.com/");
+        inputUserName.setValue("qaauto");
         inputPassword.setValue("123456qwerty");
         buttonSignIn.click();
 
