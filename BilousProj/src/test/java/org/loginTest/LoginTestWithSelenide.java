@@ -28,6 +28,5 @@ public class LoginTestWithSelenide {
         inputPassword.setValue("123456qwerty");
         buttonSignIn.click();
         buttonMyProfile.shouldBe(Condition.visible);
-
     }
 }
