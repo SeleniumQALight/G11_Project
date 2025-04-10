@@ -6,6 +6,7 @@ import org.api.dto.responseDTO.ExchangeRateDTO;
 import org.api.dto.responseDTO.ExchangeRatesDateDTO;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.Test;
+
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
@@ -16,15 +17,15 @@ public class PrivatBankApiTests {
         String date = "22.03.2022";
         ExchangeRatesDateDTO actualResponse =
                 given()
-                          .contentType(ContentType.JSON)
-                          .queryParam("date", date)
-                          .log().all()
+                        .contentType(ContentType.JSON)
+                        .queryParam("date", date)
+                        .log().all()
                         .when()
-                          .get(PrivatBankEndPoints.GET_EXCHANGE_RATES)
+                        .get(PrivatBankEndPoints.GET_EXCHANGE_RATES)
                         .then()
-                          .log().all()
-                          .statusCode(200)
-                          .extract().body().as(ExchangeRatesDateDTO.class);
+                        .log().all()
+                        .statusCode(200)
+                        .extract().body().as(ExchangeRatesDateDTO.class);
 
         List<ExchangeRateDTO> exchangeRates = List.of(
                 new ExchangeRateDTO("UAH", "AUD"),
@@ -52,7 +53,7 @@ public class PrivatBankApiTests {
                 new ExchangeRateDTO("UAH", "UAH"),
                 new ExchangeRateDTO("UAH", "USD"),
                 new ExchangeRateDTO("UAH", "UZS")
-                );
+        );
 
         ExchangeRatesDateDTO expectedResponse = new ExchangeRatesDateDTO("22.03.2022", "PB", 980,
                 "UAH", exchangeRates);
@@ -61,10 +62,10 @@ public class PrivatBankApiTests {
 
         softAssertions
                 .assertThat(actualResponse)
-                        .usingRecursiveComparison()
-                                .ignoringFields("exchangeRate.saleRateNB", "exchangeRate.purchaseRateNB",
-                                        "exchangeRate.saleRate", "exchangeRate.purchaseRate")
-                                        .isEqualTo(expectedResponse);
+                .usingRecursiveComparison()
+                .ignoringFields("exchangeRate.saleRateNB", "exchangeRate.purchaseRateNB",
+                        "exchangeRate.saleRate", "exchangeRate.purchaseRate")
+                .isEqualTo(expectedResponse);
 
 
         softAssertions.assertAll();
@@ -72,19 +73,19 @@ public class PrivatBankApiTests {
     }
 
     @Test
-    public void validateExchangeRatesAreBiggerThanNull(){
+    public void validateExchangeRatesAreBiggerThanNull() {
         String date = "22.03.2022";
         ExchangeRatesDateDTO actualResponse =
                 given()
-                          .contentType(ContentType.JSON)
-                          .queryParam("date", date)
-                          .log().all()
+                        .contentType(ContentType.JSON)
+                        .queryParam("date", date)
+                        .log().all()
                         .when()
-                          .get(PrivatBankEndPoints.GET_EXCHANGE_RATES)
+                        .get(PrivatBankEndPoints.GET_EXCHANGE_RATES)
                         .then()
-                          .log().all()
-                          .statusCode(200)
-                          .extract().body().as(ExchangeRatesDateDTO.class);
+                        .log().all()
+                        .statusCode(200)
+                        .extract().body().as(ExchangeRatesDateDTO.class);
 
         SoftAssertions softAssertions = new SoftAssertions();
 
