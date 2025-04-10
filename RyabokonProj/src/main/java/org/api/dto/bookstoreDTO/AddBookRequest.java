@@ -12,5 +12,5 @@ import lombok.*;
 
 public class AddBookRequest {
     private String userId;
-    private List<BookISBN> collectionOfIsbn;
+    private List<BooksInfoDTO> collectionOfIsbns;
 }

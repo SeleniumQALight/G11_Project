@@ -10,10 +10,11 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 
-public class BooksList {
+public class BooksListForUser {
 
     private String userId;
     private String username;
-    private List<BooksDTO> books;
+    private List<BooksInfoDTO> books;
+
 
 }

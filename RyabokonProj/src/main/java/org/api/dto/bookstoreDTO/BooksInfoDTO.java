@@ -13,7 +13,7 @@ import lombok.Setter;
 
 
 
-public class BooksDTO {
+public class BooksInfoDTO {
     private String isbn;
     private String title;
     private String subTitle;
