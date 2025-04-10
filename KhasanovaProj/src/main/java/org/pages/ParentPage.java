@@ -8,11 +8,11 @@ import org.utils.ConfigProvider;
 import java.util.ArrayList;
 
 abstract public class ParentPage extends CommonActionsWithElements {
-    String environment = System.getProperty("env", "aqa");
+    static String environment = System.getProperty("env", "aqa");
 
 //    protected String baseUrl = "https://" + environment + "-complexapp.onrender.com";
 
-    protected String baseUrl = ConfigProvider.configProperties.base_url().replace("[env]", environment);
+    public static String baseUrl = ConfigProvider.configProperties.base_url().replace("[env]", environment);
 
     private Logger logger = Logger.getLogger(getClass());
 
