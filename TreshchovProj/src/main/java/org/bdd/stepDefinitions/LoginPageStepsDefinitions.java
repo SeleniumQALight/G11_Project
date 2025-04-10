@@ -58,4 +58,16 @@ public class LoginPageStepsDefinitions extends MainSteps {
         pageProvider.getLoginPage().openPage().enterTextIntoInputLogin(userName).enterTextIntoInputPassword(password).clickOnButtonSignIn();
         pageProvider.getHomePage().checkIsRedirectToHomePage();
     }
+
+    @When("I enter {} and {} and {}")
+    public void iEnterEmailAndLoginAndPassword(String login, String email, String password) {
+        pageProvider.getLoginPage().enterTextIntoRegistrationEmailField(email);
+        pageProvider.getLoginPage().enterTextIntoRegistrationUserNameField(login);
+        pageProvider.getLoginPage().enterTextIntoRegistrationPasswordField(password);
+    }
+
+    @Then("I see {} messages")
+    public void iSeeErrorMessages(String expectedErrors) {
+        pageProvider.getLoginPage().checkErrorsMessages(expectedErrors);
+    }
 }
