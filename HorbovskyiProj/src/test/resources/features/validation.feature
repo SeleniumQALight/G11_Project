@@ -1,5 +1,6 @@
 Feature: Validation feature
 
+  @R001
   Scenario Outline: R004 Check validation messages on registration
     Given I open Login page
     When I enter '<userName>' on sign up form input Username in Login page
