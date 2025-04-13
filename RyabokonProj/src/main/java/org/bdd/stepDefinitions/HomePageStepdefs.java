@@ -12,7 +12,7 @@ public class HomePageStepdefs extends MainSteps{
     }
 
     @Then ("I see avatar on HomePage")
-    public void HomePageStepdefs() {
+    public void iSeeAvatarOnHomePage() {
         pageProvider.getHomePage().getHeaderElement().checkIsButtonAvatarVisible();
 
 

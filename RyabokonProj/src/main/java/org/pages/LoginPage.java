@@ -41,7 +41,7 @@ public class LoginPage extends ParentPage {
     private List<WebElement> listOfActualMessages;
 
     @FindBy(xpath = ".//div[@class = 'alert alert-danger text-center' ]")
-    private WebElement messageInvalidLoginOrPassword;
+    private WebElement warningMessageInCenter;
 
     //@FindBy(xpath = ".//input[@placeholder='Username']")
    // private WebElement inputLogin;
@@ -125,9 +125,15 @@ public class LoginPage extends ParentPage {
         softAssertions.assertAll(); //відразу пишeмо після methood SoftAssertions softAssertions = new SoftAssertions();
         return this;
     }
+
+    public LoginPage checkTextInAlertInCenter(String errorMessage) {
+        checkTextInElement(warningMessageInCenter, errorMessage);
+        return this;
+    }
+
     @Step
     public boolean checkIfMessageInvalidLoginPasswordVisible() {
-        return isElementVisible(messageInvalidLoginOrPassword);
+        return isElementVisible(warningMessageInCenter);
     }
     @Step
     public void checkIsInputLoginVisible() {
