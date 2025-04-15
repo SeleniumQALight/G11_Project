@@ -31,7 +31,7 @@ public class LoginTestWithPageObject extends BaseTest {
 // chain method
         pageProvider.getLoginPage().openPage()
                 .enterTextIntoInputLogin(VALID_LOGIN)
-                .enterTextIntoInputPassword(VALID_PASSWORD+1)
+                .enterTextIntoInputPassword(VALID_PASSWORD)
                 .clickOnButtonSignIn();
         pageProvider.getHomePage().getHeaderElement().checkIsButtonSignOutVisible();
     }

@@ -8,6 +8,7 @@ import org.api.dto.responseDTO.AuthorDTO;
 import org.api.dto.responseDTO.PostsDTO;
 import org.assertj.core.api.SoftAssertions;
 import org.data.TestData;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,10 +26,14 @@ public class CreatePostByApiTest {
     public void getTokenAndDeletePosts() {
         token = apiHelper.getToken();
 apiHelper.deleteAllPostsTillPresent(TestData.VALID_LOGIN_API, token);
-
-
-
     }
+
+
+    @After
+    public void deletePosts() {
+        apiHelper.deleteAllPostsTillPresent(TestData.VALID_LOGIN_API, token);
+    }
+
 
     @Test
     public void createPostByApi() {
