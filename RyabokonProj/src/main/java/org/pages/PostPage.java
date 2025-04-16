@@ -28,7 +28,7 @@ public class PostPage extends ParentPage {
 
 
     private String uniquePost = "//p[text()='Is this post unique? : '%s']";
-    private String locatorForTextThisPostWasWritten  = "//*[contains(text(),'%s')]";
+    private String locatorForTextThisPostWasWritten  = "//*[contains(text(),'Is this post unique? : %s')]";
 
     public HeaderForUserElements getHeaderElement() {
         return new HeaderForUserElements(webDriver);
