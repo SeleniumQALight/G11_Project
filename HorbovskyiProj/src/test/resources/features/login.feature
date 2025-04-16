@@ -1,5 +1,6 @@
-Feature:
+Feature: Login feature
 
+ @R001
   Scenario: R001 Valid login
     Given I open Login page
     When I login with valid credentials
