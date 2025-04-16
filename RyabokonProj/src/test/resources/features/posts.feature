@@ -1,3 +1,4 @@
+
 Feature: Posts feature
 
   @DeletePostsTillPresentForDefaultUser
