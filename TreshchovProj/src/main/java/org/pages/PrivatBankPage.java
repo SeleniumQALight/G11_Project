@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class PrivatBankPage extends ParentPage {
-    @FindBy(xpath = "//a[@href=\"/exchange-rates\"]")
+    @FindBy(xpath = "//li//button[@class='btn exchange-rate']")
     private WebElement exchangeRatesLink;
 
     public PrivatBankPage(WebDriver webDriver) {
@@ -20,7 +20,7 @@ public class PrivatBankPage extends ParentPage {
 
 
     public PrivatBankPage openPage() {
-        webDriver.get("https://next.privat24.ua/");
+        webDriver.get("https://privatbank.ua/");
         return this;
     }
 

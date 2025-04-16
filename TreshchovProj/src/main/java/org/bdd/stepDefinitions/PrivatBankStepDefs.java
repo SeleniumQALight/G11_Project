@@ -19,22 +19,17 @@ public class PrivatBankStepDefs extends MainSteps{
         pageProvider.getPrivatBankPage().openPage();
     }
 
-    @And("I get currency list from UI")
-    public void iGetCurrencyListFromUI() {
-        pageProvider.getPrivatBankPage().openExchangeRates().getCurrencyRates();
+    @And("I get {string} from UI")
+    public void iGetCurrencyListFromUI(String currency) {
+        pageProvider.getPrivatBankPage().openExchangeRates().getCurrencyRates(currency);
     }
 
-    @Then("I compare currency list between API and UI")
+    @Then("I compare currency between API and UI")
     public void iCompareCurrencyListBetweenAPIAndUI() {
         SoftAssertions softAssertions = new SoftAssertions();
 
-        softAssertions.assertThat(TestData.EUR_BUY_API).as("EUR_BUY_API").isEqualTo(TestData.EUR_BUY_UI);
-        softAssertions.assertThat(TestData.EUR_SELL_API).as("EUR_SELL_API").isEqualTo(TestData.EUR_SELL_UI);
-        softAssertions.assertThat(TestData.USD_BUY_API).as("USD_BUY_API").isEqualTo(TestData.USD_BUY_UI);
-        softAssertions.assertThat(TestData.USD_SELL_API).as("USD_SELL_API").isEqualTo(TestData.USD_SELL_UI);
-        softAssertions.assertThat(TestData.PLN_BUY_API).as("PLN_BUY_API").isEqualTo(TestData.PLN_BUY_UI);
-        softAssertions.assertThat(TestData.PLN_SELL_API).as("PLN_SELL_API").isEqualTo(TestData.PLN_SELL_UI);
-
+        softAssertions.assertThat(TestData.CURRENCY_BUY_API).isEqualTo(TestData.CURRENCY_BUY_UI);
+        softAssertions.assertThat(TestData.CURRENCY_SELL_API).isEqualTo(TestData.CURRENCY_SELL_UI);
         softAssertions.assertAll();
     }
 }
