@@ -15,5 +15,8 @@ public class TestData {
     public static String currencyBuyApi;
     public static String currencySaleApi;
 
+    public static String currencyBuyUi;
+    public static String currencySaleUi;
+
 
 }

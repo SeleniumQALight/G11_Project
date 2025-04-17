@@ -17,8 +17,7 @@ public class ExamUaPBStepDefinition extends MainSteps{
     }
 
     @Then("I fetch the {string} exchange rate from PrivatBank UI")
-    public void iFetchTheExchangeRateFromPrivatBankUI(String arg0, String arg1) {
-
-
+    public void iFetchTheExchangeRateFromPrivatBankUI(String nameCurrency) {
+        pageProvider.getExamPbMainPage().getExchangeRatesBuy(nameCurrency);
     }
 }
