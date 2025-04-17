@@ -43,12 +43,16 @@ public class ApiHelperExamPB {
                 .extract().body().as(ExamCurrencyDTO[].class);
         if (nameCurrency.equals("EUR")) {
             int i = 0;
-            TestData.currencyBuyApi = currencyBuyResponseApi = responseApi[i].getBuy();
-            TestData.currencySaleApi = currencySaleResponseApi = responseApi[i].getSale();
+            TestData.currencyBuyApi = Math.round(Double.parseDouble(responseApi[i].getBuy())*10)/10;
+            System.out.println("BuyAPI: " + TestData.currencyBuyApi);
+            TestData.currencySaleApi = Math.round(Double.parseDouble(responseApi[i].getSale())*10)/10;
+            System.out.println("SaleAPI: " + TestData.currencySaleApi);
         } else if (nameCurrency.equals("USD")) {
             int i = 1;
-            TestData.currencyBuyApi = currencyBuyResponseApi = responseApi[i].getBuy();
-            TestData.currencySaleApi = currencySaleResponseApi = responseApi[i].getSale();
+            TestData.currencyBuyApi = Math.round(Double.parseDouble(responseApi[i].getBuy())*10)/10;
+            System.out.println("BuyAPI: " + TestData.currencyBuyApi);
+            TestData.currencySaleApi = Math.round(Double.parseDouble(responseApi[i].getSale())*10)/10;
+            System.out.println("SaleAPI: " + TestData.currencySaleApi);
         }
     }
 }

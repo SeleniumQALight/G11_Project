@@ -36,9 +36,11 @@ public class ExamPbMainPage extends ParantPage {
     public void getExchangeRatesBuy(String currency) {
         WebElement elementExchangeRatesBuy =
                 webDriver.findElement(By.xpath(String.format(String.valueOf(exchangeRatesBuy), currency.toUpperCase())));
-        TestData.currencyBuyUi = elementExchangeRatesBuy.getText();
+        TestData.currencyBuyUi = Math.round(Double.parseDouble(elementExchangeRatesBuy.getText())*10)/10;
+        System.out.println("BuyUI: " + TestData.currencyBuyUi);
         WebElement elementExchangeSaleBuy =
                 webDriver.findElement(By.xpath(String.format(String.valueOf(exchangeRatesSell), currency.toUpperCase())));
-        TestData.currencySaleUi = elementExchangeSaleBuy.getText();
+        TestData.currencySaleUi = Math.round(Double.parseDouble(elementExchangeSaleBuy.getText())*10)/10;
+        System.out.println("SaleUI: " + TestData.currencySaleUi);
     }
 }
