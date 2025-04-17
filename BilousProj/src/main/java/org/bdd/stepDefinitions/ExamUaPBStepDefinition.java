@@ -13,11 +13,12 @@ public class ExamUaPBStepDefinition extends MainSteps{
     @When("I open the PrivatBank main page")
     public void iOpenThePrivatBankMainPage() {
       pageProvider.getExamPbMainPage().openMainPagePB();
+      pageProvider.getExamPbMainPage().clickExchangeRatesButton();
     }
 
     @Then("I fetch the {string} exchange rate from PrivatBank UI")
     public void iFetchTheExchangeRateFromPrivatBankUI(String arg0, String arg1) {
-        pageProvider.getExamPbMainPage().clickExchangeRatesButton();
+
 
     }
 }

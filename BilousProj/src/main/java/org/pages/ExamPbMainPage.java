@@ -12,6 +12,16 @@ public class ExamPbMainPage extends ParantPage {
     @FindBy(xpath = "//ul[@class='new-style about']//button")
     private WebElement buttonExchangeRates;
 
+    @FindBy(xpath = "//td[@id='EUR_buy']")
+    private WebElement exchangeRatesEURBuy;
+    @FindBy(xpath = "//td[@id='EUR_sell']")
+    private WebElement exchangeRatesEURSell;
+
+    @FindBy(xpath = "//td[@id='USD_buy']")
+    private WebElement exchangeRatesUSDBuy;
+    @FindBy(xpath = "//td[@id='USD_sell']")
+    private WebElement exchangeRatesUSDSell;
+
     public ExamPbMainPage(WebDriver webDriver) {
         super(webDriver);
     }
