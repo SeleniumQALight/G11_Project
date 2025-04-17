@@ -12,4 +12,8 @@ public class TestData {
     public static final String VALID_LOGIN_API = "bilous55555".toLowerCase(Locale.ROOT);
     public static final String VALID_PASSWORD_API = "bil123456789".toLowerCase(Locale.ROOT);
 
+    public static String currencyBuyApi;
+    public static String currencySaleApi;
+
+
 }
