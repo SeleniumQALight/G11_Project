@@ -235,6 +235,16 @@ protected void useTabKey() {
         }
     }
 
+    protected void clickOnElementUsingActions(WebElement element) {
+        try {
+            Actions actions = new Actions(webDriver);
+            actions.moveToElement(element).click().build().perform();
+            logger.info("Clicked on element " + getElementName(element));
+        } catch (Exception e) {
+            printErrorAndStopTest(e);
+        }
+    }
+
 
 
 }
