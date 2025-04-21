@@ -6,5 +6,5 @@ public interface EndPointsPB {
     public static final String HOME_PAGE_PB = "https://privatbank.ua/";
 
     public static final String EXCHANGE_RATES_EUR_USD =
-            BASE_URL + "/pubinfo?json&exchange&coursid=5";
+            BASE_URL + "/pubinfo";
 }

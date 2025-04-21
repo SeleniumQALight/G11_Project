@@ -16,11 +16,6 @@ import org.data.TestData;
 import static io.restassured.RestAssured.given;
 
 public class ApiHelperExamPB {
-    Logger logger = Logger.getLogger(getClass());
-    @Getter
-    public String currencyBuyResponseApi;
-    @Getter
-    public String currencySaleResponseApi;
 
     public static RequestSpecification requestSpecification = new RequestSpecBuilder()
             .setContentType(ContentType.JSON)
@@ -36,18 +31,19 @@ public class ApiHelperExamPB {
         ExamCurrencyDTO[] responseApi =
                 given()
                 .spec(requestSpecification)
+                        .queryParams("json", "", "exchange", "", "coursid", "5")
                 .when()
                 .get(EndPointsPB.EXCHANGE_RATES_EUR_USD)
                 .then()
                 .spec(responseSpecification)
                 .extract().body().as(ExamCurrencyDTO[].class);
-        if (nameCurrency.equals("EUR")) {
+        if (nameCurrency.equals(responseApi[0].getCcy())) {
             int i = 0;
             TestData.currencyBuyApi = Math.round(Double.parseDouble(responseApi[i].getBuy())*10)/10;
             System.out.println("BuyAPI: " + TestData.currencyBuyApi);
             TestData.currencySaleApi = Math.round(Double.parseDouble(responseApi[i].getSale())*10)/10;
             System.out.println("SaleAPI: " + TestData.currencySaleApi);
-        } else if (nameCurrency.equals("USD")) {
+        } else if (nameCurrency.equals(responseApi[1].getCcy())) {
             int i = 1;
             TestData.currencyBuyApi = Math.round(Double.parseDouble(responseApi[i].getBuy())*10)/10;
             System.out.println("BuyAPI: " + TestData.currencyBuyApi);
