@@ -9,7 +9,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.utils.Utils_Custom;
 
@@ -42,7 +41,6 @@ public class LoginPage extends ParantPage {
     final static String listErrorsMessagesLocator = "//*[@class='alert alert-danger small liveValidateMessage liveValidateMessage--visible']";
     @FindBy(xpath = listErrorsMessagesLocator)
     private List<WebElement> listOfActualMessages;
-
 
     public LoginPage(WebDriver webDriver) {
         super(webDriver);
